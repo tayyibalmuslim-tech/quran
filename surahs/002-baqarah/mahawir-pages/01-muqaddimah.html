@@ -17,7 +17,7 @@
     --card:#FBF8F1;
     --mahwar-bg:#EEEDFE;
     --mahwar-text:#3C3489;
-    --verse-green:#1F4A2C;
+    --verse-green:#2E7D4F;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -525,6 +525,100 @@
     color:var(--ink-soft);
     margin-top:6px;
   }
+
+  /* ===== تبويبات نافذة الآيات ===== */
+  .verse-tabs{
+    display:flex;
+    border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .verse-tab{
+    flex:1;
+    padding:10px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:13px;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+  }
+  .verse-tab.active{
+    color:var(--gold-deep);
+    border-bottom-color:var(--gold-deep);
+    font-weight:700;
+  }
+  .verse-tab-panel{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    flex:1;
+    overflow:hidden;
+  }
+
+  /* ===== واجهة مدى الآيات ===== */
+  .verse-range-box{
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    overflow-y:auto;
+  }
+  .verse-range-box select{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    font-family:inherit;
+    font-size:14px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .verse-range-inputs{
+    display:flex;
+    gap:10px;
+  }
+  .verse-range-field{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .verse-range-field label{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .verse-range-field input{
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-family:inherit;
+    font-size:14px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .verse-range-field input:focus{ outline:none; border-color:var(--gold); }
+  .verse-range-add-btn{
+    background:var(--gold-deep);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:11px;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .verse-range-add-btn:hover{ background:var(--gold); }
+  .verse-range-add-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .verse-range-preview{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    background:var(--card);
+    border-radius:6px;
+    padding:8px 10px;
+    max-height:120px;
+    overflow-y:auto;
+  }
   .verse-results{
     overflow-y:auto;
     flex:1;
@@ -560,28 +654,18 @@
     padding:24px;
   }
 
-  /* ===== بلوك الآية المُدرجة داخل النص ===== */
+  /* ===== الآية المُدرجة — مضمّنة داخل السطر ===== */
   .inserted-verse{
-    display:block;
-    background:var(--card);
-    border-right:3px solid var(--gold);
-    border-radius:8px;
-    padding:10px 14px;
-    margin:8px 0;
-    position:relative;
-  }
-  .inserted-verse .iv-text{
     font-family:'Amiri', serif;
-    font-size:17px;
-    line-height:2.1;
+    font-size:inherit;
     color:var(--verse-green);
-    display:block;
+    font-weight:700;
   }
   .inserted-verse .iv-ref{
-    font-size:11px;
+    font-family:'Tajawal', sans-serif;
+    font-size:0.75em;
+    font-weight:400;
     color:var(--gold-deep);
-    margin-top:4px;
-    display:block;
   }
   .note-editable{
     min-height:180px;
@@ -1527,12 +1611,37 @@ document.addEventListener('DOMContentLoaded', function(){
       <h3>➕ إضافة آية</h3>
       <button class="verse-modal-close" id="verseModalClose">✕</button>
     </div>
-    <div class="verse-search-box">
-      <input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'...">
-      <div class="verse-search-hint">مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"</div>
+    <div class="verse-tabs">
+      <button class="verse-tab active" data-tab="search">🔍 بحث</button>
+      <button class="verse-tab" data-tab="range">📑 مجموعة آيات</button>
     </div>
-    <div class="verse-results" id="verseResults">
-      <div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>
+
+    <div class="verse-tab-panel" id="tabSearch">
+      <div class="verse-search-box">
+        <input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'...">
+        <div class="verse-search-hint">مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"</div>
+      </div>
+      <div class="verse-results" id="verseResults">
+        <div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>
+      </div>
+    </div>
+
+    <div class="verse-tab-panel" id="tabRange" style="display:none;">
+      <div class="verse-range-box">
+        <select id="rangeSurahSelect"></select>
+        <div class="verse-range-inputs">
+          <div class="verse-range-field">
+            <label>من آية</label>
+            <input type="number" id="rangeFromInput" min="1" value="1">
+          </div>
+          <div class="verse-range-field">
+            <label>إلى آية</label>
+            <input type="number" id="rangeToInput" min="1" value="1">
+          </div>
+        </div>
+        <button class="verse-range-add-btn" id="rangeAddBtn">➕ إضافة المجموعة</button>
+        <div class="verse-range-preview" id="rangePreview"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1549,8 +1658,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const closeBtn = document.getElementById('verseModalClose');
   const searchInput = document.getElementById('verseSearchInput');
   const resultsBox = document.getElementById('verseResults');
-
-  let activeEditable = null; // المحرر اللي هتتحط فيه الآية
 
   // ---------- تطبيع النص العربي للبحث (تجاهل التشكيل وبعض الفروق) ----------
   function normalize(text){
@@ -1655,38 +1762,88 @@ document.addEventListener('DOMContentLoaded', function(){
     searchTimer = setTimeout(()=> runSearch(searchInput.value), 200);
   });
 
-  // ---------- إدراج الآية كبلوك منسق ----------
-  function insertVerse(surah, ayahIndex){
-    if(!activeEditable) return;
-    const verseText = surah.verses[ayahIndex];
-    const block = document.createElement('div');
-    block.className = 'inserted-verse';
-    block.contentEditable = 'false';
-    const textSpan = document.createElement('span');
-    textSpan.className = 'iv-text';
-    textSpan.textContent = `﴿${verseText}﴾`;
+  let activeEditable = null; // المحرر اللي هتتحط فيه الآية
+  let savedInsertRange = null; // موضع المؤشر وقت فتح النافذة
+
+  // ---------- إدراج آية أو مجموعة آيات كنص عادي مضمّن داخل السطر ----------
+  // refs: مصفوفة من {surahIndex, ayahIndex} بترتيبها الصحيح
+  function insertVerses(refs){
+    if(!activeEditable || refs.length === 0) return;
+
+    // ابني نص الآيات مجمّعة: لو أكتر من آية من نفس السورة، نجمعهم في مرجع واحد "من X إلى Y"
+    let combinedText = '';
+    refs.forEach(ref=>{
+      const surah = QURAN_DATA[ref.surahIndex];
+      combinedText += `﴿${surah.verses[ref.ayahIndex]}﴾ `;
+    });
+
+    let refLabel;
+    if(refs.length === 1){
+      const surah = QURAN_DATA[refs[0].surahIndex];
+      refLabel = `(سورة ${surah.name} — آية ${refs[0].ayahIndex + 1}) `;
+    } else {
+      const firstSurah = QURAN_DATA[refs[0].surahIndex];
+      const lastSurah = QURAN_DATA[refs[refs.length-1].surahIndex];
+      if(firstSurah.id === lastSurah.id){
+        refLabel = `(سورة ${firstSurah.name} — الآيات ${refs[0].ayahIndex + 1}-${refs[refs.length-1].ayahIndex + 1}) `;
+      } else {
+        refLabel = `(من سورة ${firstSurah.name} آية ${refs[0].ayahIndex + 1} إلى سورة ${lastSurah.name} آية ${refs[refs.length-1].ayahIndex + 1}) `;
+      }
+    }
+
+    // نص عادي بالكامل (span بلون مخصص فقط، بدون contenteditable=false) عشان يندمج ويكون قابل للتعديل
+    const wrapper = document.createElement('span');
+    wrapper.className = 'inserted-verse';
+    wrapper.textContent = combinedText;
+
     const refSpan = document.createElement('span');
     refSpan.className = 'iv-ref';
-    refSpan.textContent = `سورة ${surah.name} — آية ${ayahIndex + 1}`;
-    block.appendChild(textSpan);
-    block.appendChild(refSpan);
+    refSpan.textContent = refLabel;
+    wrapper.appendChild(refSpan);
 
     activeEditable.focus();
-    // أدرج البلوك في نهاية المحرر (أبسط وأضمن سلوك)
-    activeEditable.appendChild(block);
-    // فراغ بعده للاستمرار في الكتابة
-    const br = document.createElement('div');
-    br.innerHTML = '<br>';
-    activeEditable.appendChild(br);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+
+    if(savedInsertRange && activeEditable.contains(savedInsertRange.startContainer)){
+      sel.addRange(savedInsertRange);
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(wrapper);
+      range.setStartAfter(wrapper);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else {
+      activeEditable.appendChild(wrapper);
+      const range = document.createRange();
+      range.setStartAfter(wrapper);
+      range.collapse(true);
+      sel.addRange(range);
+    }
 
     closeModal();
   }
 
+  // إبقاء اسم الدالة القديم يعمل كمرجع لدالة واحدة (توافق مع بقية الكود)
+  function insertVerse(surah, ayahIndex){
+    insertVerses([{ surahIndex: QURAN_DATA.indexOf(surah), ayahIndex }]);
+  }
+
   function openModal(editable){
     activeEditable = editable;
+    // احفظ موضع المؤشر الحالي قبل ما يروح الفوكس لمربع البحث
+    const sel = window.getSelection();
+    if(sel && sel.rangeCount > 0 && editable.contains(sel.getRangeAt(0).startContainer)){
+      savedInsertRange = sel.getRangeAt(0).cloneRange();
+    } else {
+      savedInsertRange = null;
+    }
     overlay.classList.add('open');
     searchInput.value = '';
     resultsBox.innerHTML = '<div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>';
+    // إعادة ضبط تبويب المدى دايماً على تبويب البحث عند الفتح
+    document.querySelector('.verse-tab[data-tab="search"]').click();
     setTimeout(()=> searchInput.focus(), 50);
   }
 
@@ -1699,6 +1856,77 @@ document.addEventListener('DOMContentLoaded', function(){
   overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
 
+  // ===== التبديل بين تبويب البحث وتبويب مدى الآيات =====
+  const tabSearchBtn = document.querySelector('.verse-tab[data-tab="search"]');
+  const tabRangeBtn = document.querySelector('.verse-tab[data-tab="range"]');
+  const tabSearchPanel = document.getElementById('tabSearch');
+  const tabRangePanel = document.getElementById('tabRange');
+
+  tabSearchBtn.addEventListener('click', ()=>{
+    tabSearchBtn.classList.add('active');
+    tabRangeBtn.classList.remove('active');
+    tabSearchPanel.style.display = 'flex';
+    tabRangePanel.style.display = 'none';
+    setTimeout(()=> searchInput.focus(), 50);
+  });
+  tabRangeBtn.addEventListener('click', ()=>{
+    tabRangeBtn.classList.add('active');
+    tabSearchBtn.classList.remove('active');
+    tabRangePanel.style.display = 'flex';
+    tabSearchPanel.style.display = 'none';
+  });
+
+  // ===== واجهة مدى الآيات =====
+  const rangeSurahSelect = document.getElementById('rangeSurahSelect');
+  const rangeFromInput = document.getElementById('rangeFromInput');
+  const rangeToInput = document.getElementById('rangeToInput');
+  const rangeAddBtn = document.getElementById('rangeAddBtn');
+  const rangePreview = document.getElementById('rangePreview');
+
+  // ابنِ قائمة السور مرة واحدة
+  QURAN_DATA.forEach((surah, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${surah.id}. ${surah.name} (${surah.verses.length} آية)`;
+    rangeSurahSelect.appendChild(opt);
+  });
+
+  function updateRangePreview(){
+    const si = parseInt(rangeSurahSelect.value);
+    const surah = QURAN_DATA[si];
+    const from = parseInt(rangeFromInput.value) || 1;
+    const to = parseInt(rangeToInput.value) || 1;
+    if(!surah || from < 1 || to < from || to > surah.verses.length){
+      rangePreview.textContent = 'حدد مدى آيات صحيح داخل عدد آيات السورة';
+      rangeAddBtn.disabled = true;
+      return;
+    }
+    const count = to - from + 1;
+    rangePreview.textContent = `سيتم إضافة ${count} آية من سورة ${surah.name} (من آية ${from} إلى آية ${to})`;
+    rangeAddBtn.disabled = false;
+  }
+
+  rangeSurahSelect.addEventListener('change', ()=>{
+    const si = parseInt(rangeSurahSelect.value);
+    rangeFromInput.max = QURAN_DATA[si].verses.length;
+    rangeToInput.max = QURAN_DATA[si].verses.length;
+    updateRangePreview();
+  });
+  rangeFromInput.addEventListener('input', updateRangePreview);
+  rangeToInput.addEventListener('input', updateRangePreview);
+  updateRangePreview(); // تهيئة أولية
+
+  rangeAddBtn.addEventListener('click', ()=>{
+    const si = parseInt(rangeSurahSelect.value);
+    const from = parseInt(rangeFromInput.value);
+    const to = parseInt(rangeToInput.value);
+    const refs = [];
+    for(let ayah = from; ayah <= to; ayah++){
+      refs.push({ surahIndex: si, ayahIndex: ayah - 1 });
+    }
+    insertVerses(refs);
+  });
+
   // ربط زرار "📖 آية" في كل شريط أدوات
   document.querySelectorAll('.verse-add-btn').forEach(btn=>{
     btn.addEventListener('mousedown', (e)=> e.preventDefault());
@@ -1706,6 +1934,33 @@ document.addEventListener('DOMContentLoaded', function(){
       const toolbar = btn.closest('.note-toolbar');
       const editor = toolbar.closest('.note-editor');
       const editable = editor.querySelector('.note-editable');
+      openModal(editable);
+    });
+  });
+
+  // ===== اختصار كتابة (( لفتح نافذة البحث عن آية تلقائياً =====
+  document.querySelectorAll('.note-editable').forEach(editable=>{
+    editable.addEventListener('keydown', (e)=>{
+      // نكتشف القوس الثاني: لو آخر حرف مكتوب فعلاً كان "(" واللي هيتكتب دلوقتي "(" كمان
+      if(e.key !== '(') return;
+      const sel = window.getSelection();
+      if(!sel || sel.rangeCount === 0) return;
+      const range = sel.getRangeAt(0);
+      const node = range.startContainer;
+      const offset = range.startOffset;
+      if(node.nodeType !== 3) return; // لازم نكون جوه نص عادي
+      const charBefore = node.textContent.charAt(offset - 1);
+      if(charBefore !== '(') return; // القوس الأول لازم يكون قبل الكيربور مباشرة
+
+      e.preventDefault();
+      // نحذف القوس الأول المكتوب قبل شوية
+      node.textContent = node.textContent.slice(0, offset - 1) + node.textContent.slice(offset);
+      const newRange = document.createRange();
+      newRange.setStart(node, offset - 1);
+      newRange.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(newRange);
+
       openModal(editable);
     });
   });
