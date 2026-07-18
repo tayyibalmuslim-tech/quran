@@ -16,6 +16,8 @@
     --gold-deep:#7C6329;
     --line:#D9CFB8;
     --card:#FBF8F1;
+    --error:#B3413A;
+    --success:#3E7C5C;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -27,9 +29,32 @@
     font-family:'Tajawal', sans-serif;
     min-height:100vh;
   }
+
+  .top-bar{
+    display:flex;
+    justify-content:flex-end;
+    padding:14px 24px 0;
+  }
+  .auth-link{
+    font-size:13px;
+    color:var(--gold-deep);
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:7px 16px;
+    border-radius:20px;
+    background:var(--card);
+    cursor:pointer;
+    transition:border-color .15s;
+  }
+  .auth-link:hover{ border-color:var(--gold); }
+  .auth-link.logged-in{
+    color:var(--ink-soft);
+    background:transparent;
+  }
+
   header{
     text-align:center;
-    padding:56px 20px 32px;
+    padding:40px 20px 32px;
     border-bottom:1px solid var(--line);
     position:relative;
   }
@@ -148,9 +173,142 @@
     font-size:12px;
     border-top:1px solid var(--line);
   }
+
+  .modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(43,38,32,0.55);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:100;
+  }
+  .modal-overlay.open{ display:flex; }
+  .auth-box{
+    width:100%;
+    max-width:400px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px 28px;
+    position:relative;
+  }
+  .modal-close{
+    position:absolute;
+    top:14px; left:14px;
+    background:none;
+    border:none;
+    font-size:20px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    line-height:1;
+  }
+  .auth-header{
+    text-align:center;
+    margin-bottom:24px;
+  }
+  .auth-header h2{
+    font-family:'Amiri', serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .auth-sub{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .tabs{
+    display:flex;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:22px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:10px;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--ink-soft);
+    background:var(--paper);
+    transition:all .15s;
+  }
+  .tab.active{
+    background:var(--gold);
+    color:#fff;
+    font-weight:500;
+  }
+  .field-group{ margin-bottom:14px; }
+  .field-group label{
+    display:block;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .field-group input{
+    width:100%;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:var(--paper);
+    font-family:'Tajawal', sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s;
+  }
+  .field-group input:focus{ border-color:var(--gold); }
+  .submit-btn{
+    width:100%;
+    padding:12px;
+    background:var(--gold-deep);
+    color:#fff;
+    border:none;
+    border-radius:9px;
+    font-family:'Tajawal', sans-serif;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    margin-top:6px;
+    transition:background .15s;
+  }
+  .submit-btn:hover{ background:var(--gold); }
+  .submit-btn:disabled{ opacity:.6; cursor:not-allowed; }
+  .auth-msg{
+    margin-top:12px;
+    padding:10px 14px;
+    border-radius:9px;
+    font-size:13px;
+    text-align:center;
+    display:none;
+  }
+  .auth-msg.error{ display:block; background:rgba(179,65,58,0.1); color:var(--error); }
+  .auth-msg.success{ display:block; background:rgba(62,124,92,0.1); color:var(--success); }
+
+  .logged-in-view{ text-align:center; }
+  .logged-in-view p{ margin-bottom:16px; font-size:14px; }
+  .logged-in-view .email{ color:var(--gold-deep); font-weight:500; }
+  .signout-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:10px 20px;
+    border-radius:9px;
+    cursor:pointer;
+    font-family:'Tajawal', sans-serif;
+    font-size:14px;
+  }
+  .signout-btn:hover{ border-color:var(--error); color:var(--error); }
 </style>
 </head>
 <body>
+
+<div class="top-bar">
+  <button id="auth-status" class="auth-link">تسجيل الدخول</button>
+</div>
 
 <header>
   <h1>مصحف التدبر</h1>
@@ -166,6 +324,43 @@
 </main>
 
 <footer>جاهز للتدبر: سورة البقرة — باقي السور قيد الإضافة تباعاً بإذن الله</footer>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="auth-box">
+    <button class="modal-close" id="modal-close">✕</button>
+
+    <div class="auth-header">
+      <h2>مصحف التدبر</h2>
+      <p class="auth-sub" id="auth-subtitle">سجّل دخولك لمزامنة تقدمك عبر أجهزتك</p>
+    </div>
+
+    <div id="logged-in-view" class="logged-in-view" style="display:none">
+      <p>مسجّل دخول بحساب: <span class="email" id="current-email"></span></p>
+      <button class="signout-btn" id="signout-btn">تسجيل الخروج</button>
+    </div>
+
+    <div id="auth-form-view">
+      <div class="tabs">
+        <div class="tab active" data-mode="login">تسجيل الدخول</div>
+        <div class="tab" data-mode="signup">إنشاء حساب</div>
+      </div>
+
+      <form id="auth-form">
+        <div class="field-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" required placeholder="example@email.com">
+        </div>
+        <div class="field-group">
+          <label for="password">كلمة المرور</label>
+          <input type="password" id="password" required minlength="6" placeholder="6 أحرف على الأقل">
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn">تسجيل الدخول</button>
+      </form>
+
+      <div class="auth-msg" id="auth-msg"></div>
+    </div>
+  </div>
+</div>
 
 <script>
 const READY_SURAHS = [2]; // السور اللي محتواها جاهز فعلياً
@@ -210,6 +405,129 @@ function render(surahs){
 }
 
 loadSurahs();
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8jxpVrvicStETloL8tk5s865dmNatIqE",
+    authDomain: "mazen-productivity-bab1c.firebaseapp.com",
+    projectId: "mazen-productivity-bab1c",
+    storageBucket: "mazen-productivity-bab1c.firebasestorage.app",
+    messagingSenderId: "388570583199",
+    appId: "1:388570583199:web:34af7ba9a1b050f12252aa",
+    measurementId: "G-WYD2VE2JJQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  let currentMode = "login";
+
+  const authStatusBtn = document.getElementById('auth-status');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalClose = document.getElementById('modal-close');
+  const tabs = document.querySelectorAll(".tab");
+  const form = document.getElementById("auth-form");
+  const submitBtn = document.getElementById("submit-btn");
+  const msgEl = document.getElementById("auth-msg");
+  const loggedInView = document.getElementById("logged-in-view");
+  const authFormView = document.getElementById("auth-form-view");
+  const currentEmailEl = document.getElementById("current-email");
+  const authSubtitle = document.getElementById("auth-subtitle");
+  const signoutBtn = document.getElementById("signout-btn");
+
+  authStatusBtn.addEventListener('click', () => modalOverlay.classList.add('open'));
+  modalClose.addEventListener('click', () => modalOverlay.classList.remove('open'));
+  modalOverlay.addEventListener('click', (e) => {
+    if(e.target === modalOverlay) modalOverlay.classList.remove('open');
+  });
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentMode = tab.dataset.mode;
+      submitBtn.textContent = currentMode === "login" ? "تسجيل الدخول" : "إنشاء الحساب";
+      hideMsg();
+    });
+  });
+
+  function showMsg(text, type){
+    msgEl.textContent = text;
+    msgEl.className = "auth-msg " + type;
+  }
+  function hideMsg(){
+    msgEl.className = "auth-msg";
+  }
+
+  function friendlyError(code){
+    const map = {
+      "auth/invalid-email": "صيغة البريد الإلكتروني غير صحيحة",
+      "auth/user-not-found": "لا يوجد حساب بهذا البريد",
+      "auth/wrong-password": "كلمة المرور غير صحيحة",
+      "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة",
+      "auth/email-already-in-use": "هذا البريد مسجّل بالفعل، جرّب تسجيل الدخول",
+      "auth/weak-password": "كلمة المرور ضعيفة، استخدم 6 أحرف على الأقل",
+      "auth/too-many-requests": "محاولات كثيرة، حاول لاحقاً"
+    };
+    return map[code] || "حدث خطأ، حاول مرة أخرى";
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideMsg();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري التحميل...";
+
+    try{
+      if(currentMode === "login"){
+        await signInWithEmailAndPassword(auth, email, password);
+        showMsg("تم تسجيل الدخول بنجاح", "success");
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+        showMsg("تم إنشاء الحساب بنجاح", "success");
+      }
+    }catch(err){
+      showMsg(friendlyError(err.code), "error");
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = currentMode === "login" ? "تسجيل الدخول" : "إنشاء الحساب";
+    }
+  });
+
+  signoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    modalOverlay.classList.remove('open');
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      authStatusBtn.textContent = user.email;
+      authStatusBtn.classList.add('logged-in');
+      loggedInView.style.display = "block";
+      authFormView.style.display = "none";
+      authSubtitle.textContent = "حسابك متزامن الآن عبر السحابة";
+      currentEmailEl.textContent = user.email;
+    } else {
+      authStatusBtn.textContent = "تسجيل الدخول";
+      authStatusBtn.classList.remove('logged-in');
+      loggedInView.style.display = "none";
+      authFormView.style.display = "block";
+      authSubtitle.textContent = "سجّل دخولك لمزامنة تقدمك عبر أجهزتك";
+    }
+  });
 </script>
 
 </body>
