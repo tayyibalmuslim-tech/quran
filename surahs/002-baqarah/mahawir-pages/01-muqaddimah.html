@@ -227,17 +227,24 @@
   }
   .note-item .note-text p{ margin:0 0 6px; }
   .note-item .note-text p:last-child{ margin-bottom:0; }
-  .note-item .note-edit-btn{
+  .note-item-actions{
+    display:flex;
+    gap:14px;
     margin-top:8px;
+  }
+  .note-item .note-edit-btn,
+  .note-item .note-delete-btn{
     font-size:12px;
     background:none;
     border:none;
-    color:var(--gold-deep);
     cursor:pointer;
     padding:2px 0;
     font-family:inherit;
   }
+  .note-item .note-edit-btn{ color:var(--gold-deep); }
   .note-item .note-edit-btn:hover{ text-decoration:underline; }
+  .note-item .note-delete-btn{ color:#b3261e; }
+  .note-item .note-delete-btn:hover{ text-decoration:underline; }
 
   .note-add-btn{
     margin-top:10px;
@@ -953,8 +960,20 @@
       </div>
     </div>
     <div class="field">
+      <div class="field-label">معاني المفردات</div>
+      <div class="field-value glossary">
+        <div class="glossary-item"><span class="glossary-word">سَوَآءٌ</span><span class="glossary-mean">— مستوٍ لا فرق فيه، أي الحال واحدة عندهم في الحالتين.</span></div>
+        <div class="glossary-item"><span class="glossary-word">أَأَنذَرْتَهُمْ</span><span class="glossary-mean">— من الإنذار، وهو التخويف المقترن بالتحذير من العاقبة.</span></div>
+        <div class="glossary-item"><span class="glossary-word">خَتَمَ ٱللَّهُ</span><span class="glossary-mean">— طبع وأغلق، فلا يدخلها حق ولا ينفذ منها خير.</span></div>
+        <div class="glossary-item"><span class="glossary-word">غِشَٰوَةٌ</span><span class="glossary-mean">— غطاء وحجاب يمنع الرؤية والإبصار، والمقصود هنا إبصار الحق.</span></div>
+        <div class="glossary-item"><span class="glossary-word">عَذَابٌ عَظِيمٌ</span><span class="glossary-mean">— عقوبة شديدة لا يقادر قدرها، جزاءً على إصرارهم على الكفر.</span></div>
+      </div>
+    </div>
+    <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value empty">لم يُضف بعد</div>
+      <div class="field-value">
+        بعد أن ذكر الله صفات المتقين المهتدين بالقرآن، ذكر في المقابل صنفاً آخر من الناس، وهم الكافرون الذين أصروا على جحودهم وعنادهم. تخبر الآيتان أن هؤلاء لن ينفعهم الإنذار ولا عدمه، لأن قلوبهم أغلقت عن قبول الحق بسبب إصرارهم وعنادهم، كما خُتم على سمعهم فلا يسمعون سماع تدبر وانتفاع، وعلى أبصارهم غشاوة تحجب عنهم رؤية آيات الله والاعتبار بها. وهذا الختم عقوبة من الله لهم بعد أن اختاروا الكفر بأنفسهم، وليس ظلماً منه سبحانه. وقد توعّدهم الله بعذاب عظيم جزاءً على كفرهم وإعراضهم.
+      </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
@@ -1064,8 +1083,25 @@
       </div>
     </div>
     <div class="field">
+      <div class="field-label">معاني المفردات</div>
+      <div class="field-value glossary">
+        <div class="glossary-item"><span class="glossary-word">يُخَادِعُونَ</span><span class="glossary-mean">— يُظهرون الإيمان ويُبطنون الكفر، محاولين خداع الله والمؤمنين.</span></div>
+        <div class="glossary-item"><span class="glossary-word">مَرَضٌ</span><span class="glossary-mean">— شكّ ونفاق يعتري القلب، فيمنعه من قبول الحق.</span></div>
+        <div class="glossary-item"><span class="glossary-word">لَا تُفْسِدُوا</span><span class="glossary-mean">— نهي عن الإفساد في الأرض بنشر الكفر والفتنة ومعاداة المؤمنين.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلسُّفَهَاءُ</span><span class="glossary-mean">— قليلو العقل والرأي، ضعاف الفهم فيما ينفعهم ويضرهم.</span></div>
+        <div class="glossary-item"><span class="glossary-word">شَيَاطِينِهِمْ</span><span class="glossary-mean">— رؤساؤهم وكبراؤهم من المنافقين والكفار الذين يحرّضونهم.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱسْتَوْقَدَ نَارًا</span><span class="glossary-mean">— أوقد ناراً ليستضيء بها، وهو مَثَل ضربه الله لحال المنافقين.</span></div>
+        <div class="glossary-item"><span class="glossary-word">صُمٌّ بُكْمٌ عُمْيٌ</span><span class="glossary-mean">— لا يسمعون الحق سماع قبول، ولا ينطقون به، ولا يبصرون آياته.</span></div>
+        <div class="glossary-item"><span class="glossary-word">صَيِّبٍ</span><span class="glossary-mean">— مطر شديد الانصباب من السماء، وهو مَثَل آخر لحالهم.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلصَّوَاعِقِ</span><span class="glossary-mean">— جمع صاعقة، وهي نار شديدة تنزل من السماء مصحوبة برعد قوي.</span></div>
+        <div class="glossary-item"><span class="glossary-word">مُحِيطٌ بِٱلْكَافِرِينَ</span><span class="glossary-mean">— عالم بهم وقادر عليهم إحاطة تامة لا يفوتونه ولا يُعجزونه.</span></div>
+      </div>
+    </div>
+    <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value empty">لم يُضف بعد</div>
+      <div class="field-value">
+        بعد ذكر صنفي المؤمنين والكافرين، تنتقل الآيات لتكشف عن صنف ثالث أشد خطراً، وهم المنافقون الذين يُظهرون الإيمان بألسنتهم ويُخفون الكفر في قلوبهم، ظانّين أنهم بذلك يخدعون الله والمؤمنين، وما يخدعون في الحقيقة إلا أنفسهم من حيث لا يشعرون. وتصف الآيات مرض قلوبهم الذي يزداد بسبب إصرارهم على الكذب والنفاق، ولهم بذلك عذاب أليم. ثم تفضح الآيات ازدواجيتهم: يدّعون الإصلاح وهم أهل الفساد، ويصفون المؤمنين بالسفه وهم السفهاء حقاً، ويُظهرون الإيمان أمام المؤمنين ثم يعودون لمشايعة رؤسائهم في الكفر والاستهزاء بالدين. ويضرب الله لهم مثلين: الأول كمن أوقد ناراً فلما أضاءت حوله أطفأها الله عنه وتركه في ظلام لا يبصر، والثاني كأصحاب مطر شديد فيه ظلمات ورعد وبرق يكادون يفقدون سمعهم وبصرهم من هوله، وذلك تصوير لحيرتهم واضطرابهم بين الإيمان الظاهر والكفر الباطن، وأن الله محيط بهم قادر عليهم مهما حاولوا الخداع والمراوغة.
+      </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
@@ -1725,15 +1761,39 @@ document.addEventListener('DOMContentLoaded', function(){
         const p = document.createElement('div');
         p.className = 'note-text';
         p.innerHTML = html;
+
+        const actionsRow = document.createElement('div');
+        actionsRow.className = 'note-item-actions';
+
         const editBtn = document.createElement('button');
         editBtn.className = 'note-edit-btn';
         editBtn.textContent = '✏️ تعديل';
         editBtn.addEventListener('click', ()=> openEditor(group, wrap, idx));
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'note-delete-btn';
+        deleteBtn.textContent = '🗑️ حذف';
+        deleteBtn.addEventListener('click', ()=> deleteNote(group, wrap, idx));
+
+        actionsRow.appendChild(editBtn);
+        actionsRow.appendChild(deleteBtn);
         item.appendChild(p);
-        item.appendChild(editBtn);
+        item.appendChild(actionsRow);
         list.appendChild(item);
       });
     });
+  }
+
+  function deleteNote(group, wrap, idx){
+    const items = notesData[group] || [];
+    const preview = (items[idx] || '').replace(/<[^>]*>/g, '').trim();
+    const shortPreview = preview.length > 40 ? preview.slice(0, 40) + '...' : preview;
+    const confirmed = confirm(`هل تريد حذف هذه الفقرة؟\n\n"${shortPreview}"\n\nلا يمكن التراجع بعد الحذف.`);
+    if(!confirmed) return;
+    items.splice(idx, 1);
+    notesData[group] = items;
+    saveNotes();
+    renderGroup(group);
   }
 
   function openEditor(group, wrap, editIndex){
