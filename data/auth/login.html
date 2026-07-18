@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول - مصحف التدبر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --error:#B3413A;
+    --success:#3E7C5C;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .auth-box{
+    width:100%;
+    max-width:400px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:36px 32px;
+  }
+  .auth-header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  h1{
+    font-family:'Amiri', serif;
+    font-size:26px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .auth-sub{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .tabs{
+    display:flex;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:11px;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--ink-soft);
+    background:var(--paper);
+    transition:all .15s;
+  }
+  .tab.active{
+    background:var(--gold);
+    color:#fff;
+    font-weight:500;
+  }
+  .field-group{ margin-bottom:16px; }
+  label{
+    display:block;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  input{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:var(--paper);
+    font-family:'Tajawal', sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s;
+  }
+  input:focus{ border-color:var(--gold); }
+  .submit-btn{
+    width:100%;
+    padding:13px;
+    background:var(--gold-deep);
+    color:#fff;
+    border:none;
+    border-radius:9px;
+    font-family:'Tajawal', sans-serif;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    margin-top:8px;
+    transition:background .15s;
+  }
+  .submit-btn:hover{ background:var(--gold); }
+  .submit-btn:disabled{ opacity:.6; cursor:not-allowed; }
+  .msg{
+    margin-top:14px;
+    padding:11px 14px;
+    border-radius:9px;
+    font-size:13px;
+    text-align:center;
+    display:none;
+  }
+  .msg.error{ display:block; background:rgba(179,65,58,0.1); color:var(--error); }
+  .msg.success{ display:block; background:rgba(62,124,92,0.1); color:var(--success); }
+  .user-status{
+    text-align:center;
+  }
+  .user-status p{ margin-bottom:16px; font-size:14px; }
+  .user-status .email{ color:var(--gold-deep); font-weight:500; }
+  .signout-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:10px 20px;
+    border-radius:9px;
+    cursor:pointer;
+    font-family:'Tajawal', sans-serif;
+    font-size:14px;
+  }
+  .signout-btn:hover{ border-color:var(--error); color:var(--error); }
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    color:var(--gold-deep);
+    text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-box">
+  <div class="auth-header">
+    <h1>مصحف التدبر</h1>
+    <p class="auth-sub" id="auth-subtitle">سجّل دخولك لمزامنة تقدمك عبر أجهزتك</p>
+  </div>
+
+  <!-- حالة: مسجّل دخول بالفعل -->
+  <div id="logged-in-view" style="display:none">
+    <div class="user-status">
+      <p>مسجّل دخول بحساب: <span class="email" id="current-email"></span></p>
+      <button class="signout-btn" id="signout-btn">تسجيل الخروج</button>
+    </div>
+  </div>
+
+  <!-- حالة: نموذج تسجيل / دخول -->
+  <div id="auth-form-view">
+    <div class="tabs">
+      <div class="tab active" data-mode="login">تسجيل الدخول</div>
+      <div class="tab" data-mode="signup">إنشاء حساب</div>
+    </div>
+
+    <form id="auth-form">
+      <div class="field-group">
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" required placeholder="example@email.com">
+      </div>
+      <div class="field-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" required minlength="6" placeholder="6 أحرف على الأقل">
+      </div>
+      <button type="submit" class="submit-btn" id="submit-btn">تسجيل الدخول</button>
+    </form>
+
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <a href="../index.html" class="back-link">← رجوع للصفحة الرئيسية</a>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // إعدادات Firebase الخاصة بمشروع مازن (مصحف التدبر)
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8jxpVrvicStETloL8tk5s865dmNatIqE",
+    authDomain: "mazen-productivity-bab1c.firebaseapp.com",
+    projectId: "mazen-productivity-bab1c",
+    storageBucket: "mazen-productivity-bab1c.firebasestorage.app",
+    messagingSenderId: "388570583199",
+    appId: "1:388570583199:web:34af7ba9a1b050f12252aa",
+    measurementId: "G-WYD2VE2JJQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  let currentMode = "login"; // login | signup
+
+  const tabs = document.querySelectorAll(".tab");
+  const form = document.getElementById("auth-form");
+  const submitBtn = document.getElementById("submit-btn");
+  const msgEl = document.getElementById("msg");
+  const loggedInView = document.getElementById("logged-in-view");
+  const authFormView = document.getElementById("auth-form-view");
+  const currentEmailEl = document.getElementById("current-email");
+  const authSubtitle = document.getElementById("auth-subtitle");
+  const signoutBtn = document.getElementById("signout-btn");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentMode = tab.dataset.mode;
+      submitBtn.textContent = currentMode === "login" ? "تسجيل الدخول" : "إنشاء الحساب";
+      hideMsg();
+    });
+  });
+
+  function showMsg(text, type){
+    msgEl.textContent = text;
+    msgEl.className = "msg " + type;
+  }
+  function hideMsg(){
+    msgEl.className = "msg";
+  }
+
+  function friendlyError(code){
+    const map = {
+      "auth/invalid-email": "صيغة البريد الإلكتروني غير صحيحة",
+      "auth/user-not-found": "لا يوجد حساب بهذا البريد",
+      "auth/wrong-password": "كلمة المرور غير صحيحة",
+      "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة",
+      "auth/email-already-in-use": "هذا البريد مسجّل بالفعل، جرّب تسجيل الدخول",
+      "auth/weak-password": "كلمة المرور ضعيفة، استخدم 6 أحرف على الأقل",
+      "auth/too-many-requests": "محاولات كثيرة، حاول لاحقاً"
+    };
+    return map[code] || "حدث خطأ، حاول مرة أخرى";
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideMsg();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري التحميل...";
+
+    try{
+      if(currentMode === "login"){
+        await signInWithEmailAndPassword(auth, email, password);
+        showMsg("تم تسجيل الدخول بنجاح", "success");
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+        showMsg("تم إنشاء الحساب بنجاح", "success");
+      }
+    }catch(err){
+      showMsg(friendlyError(err.code), "error");
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = currentMode === "login" ? "تسجيل الدخول" : "إنشاء الحساب";
+    }
+  });
+
+  signoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      loggedInView.style.display = "block";
+      authFormView.style.display = "none";
+      authSubtitle.textContent = "حسابك متزامن الآن عبر السحابة";
+      currentEmailEl.textContent = user.email;
+    } else {
+      loggedInView.style.display = "none";
+      authFormView.style.display = "block";
+      authSubtitle.textContent = "سجّل دخولك لمزامنة تقدمك عبر أجهزتك";
+    }
+  });
+</script>
+
+</body>
+</html>
