@@ -167,7 +167,14 @@ function getSurahId(){
   return params.get('id');
 }
 
+// خريطة صريحة لمجلدات السور الجاهزة (لتجنب أخطاء توليد الأسماء تلقائياً)
+const SURAH_FOLDERS = {
+  2: 'surahs/002-baqarah'
+};
+
 function surahFolder(id, name_translit){
+  if(SURAH_FOLDERS[id]) return SURAH_FOLDERS[id];
+  // احتياطي للسور المستقبلية التي لم تُضف بعد لخريطة أعلاه
   const padded = String(id).padStart(3,'0');
   const slug = name_translit.toLowerCase().replace(/'/g,'').replace(/\s+/g,'-');
   return `surahs/${padded}-${slug}`;
