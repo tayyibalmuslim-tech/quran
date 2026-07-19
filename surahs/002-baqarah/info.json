@@ -9,52 +9,102 @@
  },
  "mahawir": [
   {
-   "file": "01-muqaddimah.json",
+   "file": "01-muqaddimah.html",
    "title": "المقدمة وأصناف الناس",
    "range": "1-20",
-   "color": "purple"
+   "color": "purple",
+   "subsections": [
+    {"title": "حروف مقطعة وصفات المتقين", "range": "1-5"}
+   ]
   },
   {
-   "file": "02-adam-bani-israel.json",
+   "file": "02-adam-bani-israel.html",
    "title": "آدم وبنو إسرائيل",
    "range": "21-103",
-   "color": "teal"
+   "color": "teal",
+   "subsections": [
+    {"title": "دعوة التوحيد وإعجاز القرآن", "range": "21-29"},
+    {"title": "خلق آدم واستخلافه", "range": "30-39"},
+    {"title": "نداءات يا بني إسرائيل ونعم الله", "range": "40-59"},
+    {"title": "قصة البقرة", "range": "67-73"},
+    {"title": "عصيان بني إسرائيل وتحريفهم", "range": "74-103"}
+   ]
   },
   {
-   "file": "03-qiblah-sabr.json",
+   "file": "03-qiblah-sabr.html",
    "title": "القبلة والابتلاء والصبر",
    "range": "104-152",
-   "color": "coral"
+   "color": "coral",
+   "subsections": [
+    {"title": "النسخ وطعن اليهود", "range": "104-123"},
+    {"title": "إبراهيم وبناء الكعبة", "range": "124-141"},
+    {"title": "تحويل القبلة", "range": "142-152"}
+   ]
   },
   {
-   "file": "04-halal-haram.json",
+   "file": "04-halal-haram.html",
    "title": "الحلال والحرام",
    "range": "153-188",
-   "color": "pink"
+   "color": "pink",
+   "subsections": [
+    {"title": "الصبر والصلاة والابتلاء", "range": "153-157"},
+    {"title": "الصفا والمروة وكتمان العلم", "range": "158-162"},
+    {"title": "التوحيد ونقض عهد اليهود", "range": "163-167"},
+    {"title": "الأطعمة الحلال والحرام", "range": "168-173"},
+    {"title": "كتمان العلم وأكل الحرام", "range": "174-176"},
+    {"title": "البر الحقيقي والقصاص", "range": "177-179"},
+    {"title": "الوصية والصيام", "range": "180-187"},
+    {"title": "أكل أموال الناس بالباطل", "range": "188"}
+   ]
   },
   {
-   "file": "05-hajj-qital-talaq.json",
+   "file": "05-hajj-qital-talaq.html",
    "title": "الحج والقتال والطلاق",
    "range": "189-242",
-   "color": "purple"
+   "color": "purple",
+   "subsections": [
+    {"title": "الأهلة والحج والقتال", "range": "189-195"},
+    {"title": "مناسك الحج وأصناف الناس", "range": "196-207"},
+    {"title": "السلم الكامل وأحكام القتال", "range": "208-216"},
+    {"title": "الخمر والميسر واليتامى", "range": "217-220"},
+    {"title": "النكاح والطلاق والعدة", "range": "221-232"},
+    {"title": "الرضاع والإحداد", "range": "233-242"}
+   ]
   },
   {
-   "file": "06-qasas-kursi.json",
+   "file": "06-qasas-kursi.html",
    "title": "قصص وآية الكرسي",
    "range": "243-260",
-   "color": "teal"
+   "color": "teal",
+   "subsections": [
+    {"title": "الذين خرجوا من ديارهم والقتال في سبيل الله", "range": "243-245"},
+    {"title": "قصة طالوت وجالوت", "range": "246-251"},
+    {"title": "آية الكرسي", "range": "252-255"},
+    {"title": "لا إكراه في الدين", "range": "256-257"},
+    {"title": "إحياء الموتى (النمرود وعُزير وإبراهيم)", "range": "258-260"}
+   ]
   },
   {
-   "file": "07-infaq-riba-dayn.json",
+   "file": "07-infaq-riba-dayn.html",
    "title": "الإنفاق والربا والدَّين",
    "range": "261-283",
-   "color": "coral"
+   "color": "coral",
+   "subsections": [
+    {"title": "أمثال الإنفاق المقبول", "range": "261-266"},
+    {"title": "آداب الإنفاق وإخفاء الصدقة", "range": "267-274"},
+    {"title": "تحريم الربا", "range": "275-281"},
+    {"title": "آية الدَّين وكتابة الحقوق", "range": "282-283"}
+   ]
   },
   {
-   "file": "08-khatimah.json",
+   "file": "08-khatimah.html",
    "title": "الخاتمة: آمن الرسول",
    "range": "284-286",
-   "color": "pink"
+   "color": "pink",
+   "subsections": [
+    {"title": "ما في السماوات وما في الأرض", "range": "284"},
+    {"title": "آمن الرسول والتوكل الجامع", "range": "285-286"}
+   ]
   }
  ]
 }
