@@ -267,24 +267,30 @@ async function init(){
     contentEl.innerHTML = '';
 
     for(const [idx, mahwar] of info.mahawir.entries()){
+      const block = document.createElement('div');
+      block.className = 'mahwar-block';
       const colors = COLOR_MAP[mahwar.color] || COLOR_MAP.purple;
       const pageHref = `${folder}/mahawir-pages/${mahwar.file.replace('.json','.html')}`;
 
-      const link = document.createElement('a');
-      link.className = 'mahwar-block';
-      link.href = pageHref;
-      link.style.display = 'block';
-      link.style.textDecoration = 'none';
-      link.style.color = 'inherit';
+      const subsections = mahwar.subsections || [];
+      const subsectionsHtml = subsections.map(s => `
+        <a class="sub-item" href="${pageHref}">
+          <div class="sub-dot"></div>
+          <div class="sub-title">${s.title}</div>
+          <div class="sub-range">آيات ${s.range}</div>
+        </a>
+      `).join('');
 
-      link.innerHTML = `
-        <div class="mahwar-header">
+      block.innerHTML = `
+        <div class="mahwar-header" onclick="this.parentElement.classList.toggle('open')">
           <div class="mahwar-num" style="background:${colors.bg}; color:${colors.text}">${idx+1}</div>
           <div class="mahwar-title">${mahwar.title}</div>
           <div class="mahwar-range">آيات ${mahwar.range}</div>
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
+        <div class="subsections">${subsectionsHtml}</div>
       `;
-      contentEl.appendChild(link);
+      contentEl.appendChild(block);
     }
 
   }catch(err){
