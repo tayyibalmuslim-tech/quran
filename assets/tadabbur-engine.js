@@ -1,12 +1,20 @@
 /* ============================================
-   tadabbur-engine.js
+   tadabbur-engine.js  (نسخة المزامنة السحابية)
    المحرك المشترك لنظام الهايلايت + الملاحظات + إدراج الآيات
    يُستخدم في كل صفحات المحاور بكل السور
 
    يعتمد على وجود البيانات دي في وسم <body>:
    <body data-surah="2" data-mahwar="01-muqaddimah">
 
-   ويعتمد على تحميل quran-data.js قبله (فيه QURAN_DATA)
+   ويعتمد على:
+   1) تحميل quran-data.js قبله (فيه QURAN_DATA)
+   2) تحميل assets/firebase-sync.js في نفس الصفحة
+      (لو مش موجود، المحرك يشتغل محلياً فقط كما السابق)
+
+   منطق المزامنة:
+   - القراءة: نقارن طابع الوقت المحلي والسحابي ونأخذ الأحدث
+   - الكتابة: نحفظ محلياً فوراً + سحابياً بشكل مؤجَّل
+   - بيانات المستخدم القديمة (قبل السحابة) تُرفع تلقائياً أول مرة
    ============================================ */
 
 (function(){
@@ -21,16 +29,91 @@
   const STORAGE_KEY = `quran-tadabbur-hl-${SURAH_ID}-${MAHWAR_ID}`;
   const NOTES_KEY = `quran-tadabbur-notes-${SURAH_ID}-${MAHWAR_ID}`;
 
-  document.addEventListener('DOMContentLoaded', function(){
-    initHighlightSystem();
-    initNotesSystem();
+  /* ============================================
+     0) طبقة التخزين المزدوج (محلي + سحابي)
+     ============================================ */
+
+  // قراءة من localStorage مع دعم الصيغة القديمة (بيانات مباشرة بدون طابع وقت)
+  function readLocal(key){
+    try{
+      const raw = JSON.parse(localStorage.getItem(key));
+      if(raw && typeof raw === 'object' && 'data' in raw && 'ts' in raw) return raw;
+      if(raw && typeof raw === 'object') return { ts: 0, data: raw }; // صيغة قديمة
+    }catch(e){}
+    return null;
+  }
+
+  function writeLocal(key, data, ts){
+    try{ localStorage.setItem(key, JSON.stringify({ ts: ts, data: data })); }catch(e){}
+  }
+
+  // حفظ موحّد: محلي فوراً + سحابي مؤجَّل
+  function persist(key, field, data){
+    const ts = Date.now();
+    writeLocal(key, data, ts);
+    if(window.TadabburCloud && window.TadabburCloud.user){
+      window.TadabburCloud.saveField(SURAH_ID, MAHWAR_ID, field, JSON.stringify(data), ts);
+    }
+  }
+
+  // اختيار الأحدث بين المحلي والسحابي + مزامنة الطرف المتأخر
+  function resolveState(key, field, cloudPage){
+    const local = readLocal(key);
+
+    let cloudData;
+    let cloudTs = 0;
+    if(cloudPage && typeof cloudPage[field] === 'string'){
+      try{
+        cloudData = JSON.parse(cloudPage[field]);
+        cloudTs = cloudPage[field + 'Ts'] || 0;
+      }catch(e){ cloudData = undefined; }
+    }
+
+    let data = {};
+    let winner = 'none';
+
+    if(local && cloudData !== undefined){
+      if(local.ts > cloudTs){ data = local.data; winner = 'local'; }
+      else{ data = cloudData; winner = 'cloud'; }
+    } else if(local){
+      data = local.data; winner = 'local';
+    } else if(cloudData !== undefined){
+      data = cloudData; winner = 'cloud';
+    }
+
+    // مزامنة الطرف المتأخر
+    if(winner === 'local' && window.TadabburCloud && window.TadabburCloud.user){
+      const ts = local.ts || Date.now();
+      window.TadabburCloud.saveField(SURAH_ID, MAHWAR_ID, field, JSON.stringify(data), ts);
+      writeLocal(key, data, ts);
+    }
+    if(winner === 'cloud'){
+      writeLocal(key, data, cloudTs);
+    }
+
+    return data;
+  }
+
+  document.addEventListener('DOMContentLoaded', async function(){
+    // ننتظر تسجيل الدخول ثم نحمّل بيانات هذه الصفحة من السحابة
+    let cloudPage = null;
+    if(window.TadabburCloud){
+      try{
+        await window.TadabburCloud.ready;
+        cloudPage = await window.TadabburCloud.loadPage(SURAH_ID, MAHWAR_ID);
+      }catch(e){
+        console.error('تعذر تحميل البيانات السحابية، سيتم العمل محلياً:', e);
+      }
+    }
+    initHighlightSystem(cloudPage);
+    initNotesSystem(cloudPage);
     initVerseModal();
   });
 
   /* ============================================
      1) نظام الهايلايت والشطب
      ============================================ */
-  function initHighlightSystem(){
+  function initHighlightSystem(cloudPage){
     const content = document.querySelector('main');
     const menu = document.getElementById('selectionMenu');
     if(!content || !menu) return;
@@ -182,12 +265,11 @@
           data[el.dataset.hlId] = el.innerHTML;
         }
       });
-      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+      persist(STORAGE_KEY, 'highlights', data);
     }
 
     function loadHighlights(){
-      let data = {};
-      try{ data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }catch(e){}
+      const data = resolveState(STORAGE_KEY, 'highlights', cloudPage) || {};
       blocks.forEach(el=>{
         if(data[el.dataset.hlId]){
           el.innerHTML = data[el.dataset.hlId];
@@ -201,12 +283,11 @@
   /* ============================================
      2) نظام الملاحظات (المعنى التفصيلي + التدبر)
      ============================================ */
-  function initNotesSystem(){
-    let notesData = {};
-    try{ notesData = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}'); }catch(e){ notesData = {}; }
+  function initNotesSystem(cloudPage){
+    let notesData = resolveState(NOTES_KEY, 'notes', cloudPage) || {};
 
     function saveNotes(){
-      try{ localStorage.setItem(NOTES_KEY, JSON.stringify(notesData)); }catch(e){}
+      persist(NOTES_KEY, 'notes', notesData);
     }
 
     const ALLOWED_TAGS = new Set(['B','STRONG','I','EM','U','FONT','SPAN','BR','DIV','P']);
