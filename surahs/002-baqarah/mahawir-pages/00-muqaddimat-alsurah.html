@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مقدمة السورة - سورة البقرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --mahwar-bg:#EEEDFE;
+    --mahwar-text:#3C3489;
+    --verse-green:#2E7D4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+  }
+  .top-nav{
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .nav-links{ display:flex; gap:16px; font-size:14px; }
+  .nav-links a{ color:var(--gold-deep); text-decoration:none; }
+  .nav-links a:hover{ text-decoration:underline; }
+
+  header{
+    text-align:center;
+    padding:36px 20px 24px;
+  }
+  .mahwar-badge{
+    display:inline-block;
+    background:var(--mahwar-bg);
+    color:var(--mahwar-text);
+    font-size:13px;
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Amiri', serif;
+    font-size:34px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .range{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:12px 20px 80px;
+  }
+
+  .sub-block{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:20px;
+    padding:22px 24px;
+  }
+  .sub-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .sub-title{
+    font-family:'Amiri', serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .field{ margin-bottom:14px; }
+  .field:last-child{ margin-bottom:0; }
+  .field-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+    font-weight:500;
+  }
+  .field-value{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ink);
+    white-space:pre-line;
+  }
+  .field-value.empty{
+    color:#B3A98F;
+    font-style:italic;
+    font-size:13px;
+  }
+
+  /* بطاقات معلومات سريعة عن السورة */
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+  }
+  .info-card .info-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .info-card .info-value{
+    font-family:'Amiri', serif;
+    font-size:19px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+
+  .hadith-box{
+    background:var(--mahwar-bg);
+    border-right:3px solid var(--mahwar-text);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    line-height:1.9;
+  }
+  .hadith-box .hadith-text{
+    font-family:'Amiri', serif;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .hadith-box .hadith-source{
+    margin-top:6px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+</style>
+
+<link rel="stylesheet" href="../../../assets/tadabbur.css">
+<script src="../../../assets/quran-data.js"></script>
+</head>
+<body data-surah="2" data-mahwar="00-muqaddimat-alsurah">
+
+<div class="top-nav">
+  <a href="../../../index.html" class="nav-links"><span>← كل السور</span></a>
+  <div class="nav-links">
+    <a href="../../../surah.html?id=2">سورة البقرة</a>
+  </div>
+</div>
+
+<header>
+  <span class="mahwar-badge">مقدمة السورة</span>
+  <h1>سورة البقرة</h1>
+  <p class="range">قبل المحور الأول</p>
+</header>
+
+<main>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-label">نوع السورة</div>
+      <div class="info-value">مدنية</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">ترتيبها في المصحف</div>
+      <div class="info-value">الثانية</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">عدد آياتها</div>
+      <div class="info-value">286</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">عدد كلماتها</div>
+      <div class="info-value">6,144</div>
+    </div>
+  </div>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">التعريف بالسورة</span>
+    </div>
+    <div class="field">
+      <div class="field-value">
+        سورة البقرة أطول سورة في القرآن الكريم، وهي أول سورة نزلت في المدينة المنورة بعد الهجرة، ونزلت آياتها على مدى سنوات عديدة من الفترة المدنية لتناسب الأحداث والتشريعات التي كانت تنزل تباعاً. سُمّيت السورة بهذا الاسم لاشتمالها على قصة البقرة التي أُمر بنو إسرائيل بذبحها في عهد نبي الله موسى عليه السلام (الآيات 67-73)، وهي القصة الوحيدة من نوعها في القرآن التي تحمل السورة اسمها.
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-value">
+        تُعد سورة البقرة السورة المدنية الأولى، وقد جاءت لتؤسس لمجتمع المدينة الوليد بعد الهجرة؛ فجمعت بين قصص الأمم السابقة (وخاصة بني إسرائيل) والتشريعات العملية التي يحتاجها المجتمع المسلم الجديد: الصلاة والزكاة والصيام والحج، وأحكام الزواج والطلاق والميراث، والبيع والربا والدَّين، وأحكام القتال والجهاد. لذلك فهي أشمل سور القرآن للأحكام الفقهية والتشريعية.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">فضل السورة</span>
+    </div>
+    <div class="field">
+      <div class="hadith-box">
+        <div class="hadith-text">«إِنَّ لِكُلِّ شَيْءٍ سَنَامًا، وَإِنَّ سَنَامَ الْقُرْآنِ سُورَةُ الْبَقَرَةِ، مَنْ قَرَأَهَا فِي بَيْتِهِ لَيْلًا لَمْ يَدْخُلِ الشَّيْطَانُ ذَلِكَ الْبَيْتَ ثَلَاثَ لَيَالٍ»
+        <div class="hadith-source">رواه ابن حبان والحاكم، وصححه الألباني</div>
+      </div>
+      <div class="hadith-box">
+        <div class="hadith-text">«اقْرَءُوا الزَّهْرَاوَيْنِ: الْبَقَرَةَ وَسُورَةَ آلِ عِمْرَانَ، فَإِنَّهُمَا تَأْتِيَانِ يَوْمَ الْقِيَامَةِ كَأَنَّهُمَا غَمَامَتَانِ، أَوْ كَأَنَّهُمَا غَيَايَتَانِ، أَوْ كَأَنَّهُمَا فِرْقَانِ مِنْ طَيْرٍ صَوَافَّ، تُحَاجَّانِ عَنْ أَصْحَابِهِمَا»
+        <div class="hadith-source">رواه مسلم</div>
+      </div>
+      <div class="hadith-box">
+        <div class="hadith-text">«لَا تَجْعَلُوا بُيُوتَكُمْ مَقَابِرَ، إِنَّ الشَّيْطَانَ يَنْفِرُ مِنَ الْبَيْتِ الَّذِي تُقْرَأُ فِيهِ سُورَةُ الْبَقَرَةِ»
+        <div class="hadith-source">رواه مسلم</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">أبرز موضوعات السورة</span>
+    </div>
+    <div class="field">
+      <div class="field-value">
+        تدور محاور السورة الثمانية حول: أصناف الناس تجاه الهدى (مؤمنون، كافرون، منافقون)، ثم قصة آدم عليه السلام وابتداء الخلافة في الأرض، ثم سلسلة طويلة من الحديث عن بني إسرائيل ونعم الله عليهم ونقضهم للعهود، فقصة البقرة، ثم تحويل القبلة من بيت المقدس إلى الكعبة المشرفة وما صاحبه من ابتلاء وثبات، ثم تفصيل أحكام الحلال والحرام في الطعام والقصاص والصيام، ثم أحكام الحج والقتال والزواج والطلاق، ثم قصص فيها عبرة (طالوت وجالوت، إبراهيم وإحياء الموتى) وآية الكرسي العظيمة، ثم أحكام الإنفاق والربا والدَّين، وتختم السورة بآيتين عظيمتين جامعتين: آمن الرسول، وهما ختام السورة ودعاء شامل بالتوكل والاستعانة بالله.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">تدبراتي الشخصية</span>
+    </div>
+    <div class="field">
+      <div class="field-value">
+        <div class="notes-list"></div>
+        <button class="note-add-btn" data-note-group="muqaddimah-tadabbur">➕ إضافة</button>
+        <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا أي ملاحظة أو تدبر عام قبل بدء رحلتك مع السورة..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>سورة البقرة — مصحف التدبر</footer>
+
+<div id="selectionMenu">
+  <button class="dot-yellow" data-action="hl-yellow" title="هايلايت أصفر"></button>
+  <button class="dot-green" data-action="hl-green" title="هايلايت أخضر"></button>
+  <button class="dot-pink" data-action="hl-pink" title="هايلايت وردي"></button>
+  <button class="dot-blue" data-action="hl-blue" title="هايلايت أزرق"></button>
+  <button class="dot-strike" data-action="strike" title="شطب">S</button>
+  <button class="dot-remove" data-action="remove" title="إزالة التنسيق">✕</button>
+</div>
+
+<div class="verse-modal-overlay" id="verseModalOverlay">
+  <div class="verse-modal">
+    <div class="verse-modal-header">
+      <h3>➕ إضافة آية</h3>
+      <button class="verse-modal-close" id="verseModalClose">✕</button>
+    </div>
+    <div class="verse-tabs">
+      <button class="verse-tab active" data-tab="search">🔍 بحث</button>
+      <button class="verse-tab" data-tab="range">📑 مجموعة آيات</button>
+    </div>
+
+    <div class="verse-tab-panel" id="tabSearch">
+      <div class="verse-search-box">
+        <input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'...">
+        <div class="verse-search-hint">مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"</div>
+      </div>
+      <div class="verse-results" id="verseResults">
+        <div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>
+      </div>
+    </div>
+
+    <div class="verse-tab-panel" id="tabRange" style="display:none;">
+      <div class="verse-range-box">
+        <select id="rangeSurahSelect"></select>
+        <div class="verse-range-inputs">
+          <div class="verse-range-field">
+            <label>من آية</label>
+            <input type="number" id="rangeFromInput" min="1" value="1">
+          </div>
+          <div class="verse-range-field">
+            <label>إلى آية</label>
+            <input type="number" id="rangeToInput" min="1" value="1">
+          </div>
+        </div>
+        <button class="verse-range-add-btn" id="rangeAddBtn">➕ إضافة المجموعة</button>
+        <div class="verse-range-preview" id="rangePreview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../../assets/tadabbur-engine.js"></script>
+
+</body>
+</html>

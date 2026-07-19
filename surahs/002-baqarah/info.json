@@ -1,0 +1,60 @@
+{
+ "id": 2,
+ "name_ar": "البقرة",
+ "type": "مدنية",
+ "total_verses": 286,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-muqaddimah.json",
+   "title": "المقدمة وأصناف الناس",
+   "range": "1-20",
+   "color": "purple"
+  },
+  {
+   "file": "02-adam-bani-israel.json",
+   "title": "آدم وبنو إسرائيل",
+   "range": "21-103",
+   "color": "teal"
+  },
+  {
+   "file": "03-qiblah-sabr.json",
+   "title": "القبلة والابتلاء والصبر",
+   "range": "104-152",
+   "color": "coral"
+  },
+  {
+   "file": "04-halal-haram.json",
+   "title": "الحلال والحرام",
+   "range": "153-188",
+   "color": "pink"
+  },
+  {
+   "file": "05-hajj-qital-talaq.json",
+   "title": "الحج والقتال والطلاق",
+   "range": "189-242",
+   "color": "purple"
+  },
+  {
+   "file": "06-qasas-kursi.json",
+   "title": "قصص وآية الكرسي",
+   "range": "243-260",
+   "color": "teal"
+  },
+  {
+   "file": "07-infaq-riba-dayn.json",
+   "title": "الإنفاق والربا والدَّين",
+   "range": "261-283",
+   "color": "coral"
+  },
+  {
+   "file": "08-khatimah.json",
+   "title": "الخاتمة: آمن الرسول",
+   "range": "284-286",
+   "color": "pink"
+  }
+ ]
+}
