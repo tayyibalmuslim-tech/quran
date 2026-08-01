@@ -1,0 +1,19 @@
+{
+  "muqaddimah": {
+    "title": "مقدمة السورة",
+    "file": "00-muqaddimat-alsurah.html"
+  },
+  "mahawir": [
+    {
+      "title": "الأمر بالقراءة وأصل الخلق والتعليم",
+      "range": "١-١٩",
+      "color": "purple",
+      "file": "01-al-amr-bil-qiraah.html",
+      "subsections": [
+        { "title": "اقرأ باسم ربك", "range": "١-٥" },
+        { "title": "طغيان الإنسان عند الاستغناء", "range": "٦-٨" },
+        { "title": "الطاغية الذي ينهى عن الصلاة والأمر بالسجود", "range": "٩-١٩" }
+      ]
+    }
+  ]
+}
