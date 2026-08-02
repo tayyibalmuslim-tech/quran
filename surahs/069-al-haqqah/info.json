@@ -1,0 +1,43 @@
+{
+ "id": 69,
+ "name_ar": "الحاقة",
+ "type": "مكية",
+ "total_verses": 52,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-al-haqqah-ahwal-alqiyamah.html",
+   "title": "الحاقة وأهوال يوم القيامة",
+   "range": "1-18",
+   "color": "coral",
+   "subsections": [
+    {"title": "ما الحاقة؟", "range": "1-3"},
+    {"title": "مصير الأمم المكذبة: ثمود وعاد وفرعون ومن قبلهم", "range": "4-12"},
+    {"title": "النفخة في الصور وقيام الساعة", "range": "13-18"}
+   ]
+  },
+  {
+   "file": "02-ashab-alyamin-washshimal.html",
+   "title": "أصحاب اليمين وأصحاب الشمال",
+   "range": "19-37",
+   "color": "purple",
+   "subsections": [
+    {"title": "فرحة أصحاب اليمين بكتابهم", "range": "19-24"},
+    {"title": "حسرة أصحاب الشمال وعذابهم", "range": "25-37"}
+   ]
+  },
+  {
+   "file": "03-alquran-haqq-watanzih-arrasul.html",
+   "title": "القرآن حق وتنزيه الرسول ﷺ",
+   "range": "38-52",
+   "color": "teal",
+   "subsections": [
+    {"title": "قسم عظيم على صدق القرآن", "range": "38-43"},
+    {"title": "لو تقوّل الرسول على الله", "range": "44-52"}
+   ]
+  }
+ ]
+}
