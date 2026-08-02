@@ -553,3 +553,14 @@ del.hl-strike{color:#9a8f7a; text-decoration:line-through; text-decoration-thick
 
 .ayah-note-block{ margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed var(--line); }
 .ayah-note-block:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+
+.glossary{ display:flex; flex-direction:column; gap:8px; }
+.glossary-item{ display:flex; gap:8px; font-size:14px; line-height:1.8; flex-wrap:wrap; }
+.glossary-word{
+  font-family:'Amiri', serif;
+  font-weight:700;
+  color:var(--verse-green, #2E7D4F);
+  flex-shrink:0;
+  white-space:nowrap;
+}
+.glossary-meaning{ color:var(--ink); }
