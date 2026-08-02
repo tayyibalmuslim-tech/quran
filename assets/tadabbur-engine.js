@@ -608,10 +608,30 @@
           try{ b.classList.toggle('active', document.queryCommandState(b.dataset.cmd)); }catch(e){}
         });
       }
+
+      if(!toolbar.querySelector('[data-cmd="resetSizeHighlight"]')){
+        const resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.dataset.cmd = 'resetSizeHighlight';
+        resetBtn.title = 'حجم عادي + إزالة الهايلايت (بدون تغيير اللون)';
+        resetBtn.textContent = '🧹';
+        const removeBtn = toolbar.querySelector('button[data-cmd="removeFormat"]');
+        if(removeBtn) removeBtn.insertAdjacentElement('beforebegin', resetBtn);
+        else toolbar.appendChild(resetBtn);
+      }
+
       toolbar.querySelectorAll('button[data-cmd]').forEach(tBtn=>{
         tBtn.addEventListener('mousedown', (e)=> e.preventDefault());
         tBtn.addEventListener('click', ()=>{
           editable.focus();
+          if(tBtn.dataset.cmd === 'resetSizeHighlight'){
+            try{ document.execCommand('styleWithCSS', false, true); }catch(e){}
+            document.execCommand('fontSize', false, '3');
+            const hlCmd = document.queryCommandSupported && document.queryCommandSupported('hiliteColor') ? 'hiliteColor' : 'backColor';
+            document.execCommand(hlCmd, false, 'transparent');
+            refreshToolbarState();
+            return;
+          }
           document.execCommand(tBtn.dataset.cmd, false, null);
           refreshToolbarState();
         });
