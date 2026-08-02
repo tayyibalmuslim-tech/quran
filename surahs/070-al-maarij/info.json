@@ -1,0 +1,40 @@
+{
+ "id": 70,
+ "name_ar": "المعارج",
+ "type": "مكية",
+ "total_verses": 44,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-assual-an-aladhab-waahwal-alqiyamah.html",
+   "title": "السؤال عن العذاب وأهوال القيامة",
+   "range": "1-18",
+   "color": "coral",
+   "subsections": [
+    {"title": "سؤال سائل بعذاب واقع", "range": "1-4"},
+    {"title": "هول يوم القيامة وحال المجرمين", "range": "5-18"}
+   ]
+  },
+  {
+   "file": "02-tab-alinsan-wasifat-almusallin.html",
+   "title": "طبع الإنسان وصفات المصلين المفلحين",
+   "range": "19-35",
+   "color": "purple",
+   "subsections": [
+    {"title": "الإنسان الهلوع إلا المصلين", "range": "19-35"}
+   ]
+  },
+  {
+   "file": "03-takdhib-alkuffar-waindharuhum.html",
+   "title": "تكذيب الكفار وإنذارهم بيوم القيامة",
+   "range": "36-44",
+   "color": "teal",
+   "subsections": [
+    {"title": "استعجال الكفار واستهزاؤهم", "range": "36-44"}
+   ]
+  }
+ ]
+}
