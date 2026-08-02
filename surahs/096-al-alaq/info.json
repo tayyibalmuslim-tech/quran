@@ -1,4 +1,8 @@
 {
+  "id": 96,
+  "name_ar": "العلق",
+  "type": "مكية",
+  "total_verses": 19,
   "muqaddimah": {
     "title": "مقدمة السورة",
     "file": "00-muqaddimat-alsurah.html"
@@ -6,13 +10,13 @@
   "mahawir": [
     {
       "title": "الأمر بالقراءة وأصل الخلق والتعليم",
-      "range": "١-١٩",
+      "range": "1-19",
       "color": "purple",
       "file": "01-al-amr-bil-qiraah.html",
       "subsections": [
-        { "title": "اقرأ باسم ربك", "range": "١-٥" },
-        { "title": "طغيان الإنسان عند الاستغناء", "range": "٦-٨" },
-        { "title": "الطاغية الذي ينهى عن الصلاة والأمر بالسجود", "range": "٩-١٩" }
+        { "title": "اقرأ باسم ربك", "range": "1-5" },
+        { "title": "طغيان الإنسان عند الاستغناء", "range": "6-8" },
+        { "title": "الطاغية الذي ينهى عن الصلاة والأمر بالسجود", "range": "9-19" }
       ]
     }
   ]
