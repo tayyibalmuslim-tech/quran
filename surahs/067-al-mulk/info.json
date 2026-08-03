@@ -1,0 +1,49 @@
+{
+ "id": 67,
+ "name_ar": "الملك",
+ "type": "مكية",
+ "total_verses": 30,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-azmat-almulk-waqudrat-allah.html",
+   "title": "عظمة الملك وقدرة الله في الخلق",
+   "range": "1-5",
+   "color": "coral",
+   "subsections": [
+    {"title": "تبارك الله ذو الملك والخلق", "range": "1-5"}
+   ]
+  },
+  {
+   "file": "02-adhab-jahannam-wahiwar-ahliha.html",
+   "title": "عذاب جهنم وحوار أهلها",
+   "range": "6-11",
+   "color": "purple",
+   "subsections": [
+    {"title": "اعتراف الكفار بتكذيبهم", "range": "6-11"}
+   ]
+  },
+  {
+   "file": "03-maghfirat-alghayb-waayat-alqudrah.html",
+   "title": "مغفرة الغيب وآيات القدرة",
+   "range": "12-24",
+   "color": "teal",
+   "subsections": [
+    {"title": "خشية الغيب طريق المغفرة", "range": "12-15"},
+    {"title": "التحذير من عذاب السماء والأرض", "range": "16-24"}
+   ]
+  },
+  {
+   "file": "04-istijal-alkuffar-wawahdaniyat-arrizq.html",
+   "title": "استعجال الكفار ووحدانية الرزق والهداية",
+   "range": "25-30",
+   "color": "gold",
+   "subsections": [
+    {"title": "علم الغيب عند الله ونعمة الماء", "range": "25-30"}
+   ]
+  }
+ ]
+}
