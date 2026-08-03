@@ -1,0 +1,51 @@
+{
+ "id": 68,
+ "name_ar": "القلم",
+ "type": "مكية",
+ "total_verses": 52,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-alqasam-bilqalam-watanzih-arrasul.html",
+   "title": "القسم بالقلم وتنزيه الرسول عن الجنون",
+   "range": "1-16",
+   "color": "coral",
+   "subsections": [
+    {"title": "القسم بالقلم وتثبيت خلق النبي", "range": "1-7"},
+    {"title": "تحذير النبي من طاعة المكذبين ووصف صفاتهم", "range": "8-16"}
+   ]
+  },
+  {
+   "file": "02-qissat-ashab-aljannah.html",
+   "title": "قصة أصحاب الجنة",
+   "range": "17-33",
+   "color": "purple",
+   "subsections": [
+    {"title": "العزم على قطف الثمار سراً وحرمان الفقراء", "range": "17-25"},
+    {"title": "العذاب والندم والعبرة", "range": "26-33"}
+   ]
+  },
+  {
+   "file": "03-jazaa-almuttaqin-wadalal-hujaj-alkuffar.html",
+   "title": "جزاء المتقين وضلال حجج الكفار",
+   "range": "34-47",
+   "color": "teal",
+   "subsections": [
+    {"title": "الفرق بين المتقين والمجرمين", "range": "34-41"},
+    {"title": "هول يوم القيامة واستدراج الكفار", "range": "42-47"}
+   ]
+  },
+  {
+   "file": "04-sabr-annabi-waqissat-yunus.html",
+   "title": "صبر النبي وقصة يونس وتثبيت القرآن",
+   "range": "48-52",
+   "color": "gold",
+   "subsections": [
+    {"title": "العبرة من يونس والصبر على القوم", "range": "48-52"}
+   ]
+  }
+ ]
+}
