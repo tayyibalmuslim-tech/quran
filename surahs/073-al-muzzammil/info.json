@@ -1,0 +1,31 @@
+{
+ "id": 73,
+ "name_ar": "المزمل",
+ "type": "مكية",
+ "total_verses": 20,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-qiyam-allayl-waistidad-alnnabi-lihaml-abaa-alrrisala.html",
+   "title": "قيام الليل واستعداد النبي لحمل أعباء الرسالة",
+   "range": "1-19",
+   "color": "green",
+   "subsections": [
+    {"title": "الأمر بقيام الليل وترتيل القرآن", "range": "1-9"},
+    {"title": "الصبر على المكذبين ومصيرهم", "range": "10-19"}
+   ]
+  },
+  {
+   "file": "02-attakhfif-fi-qiyam-allayl-waahkam-mutafarriqa.html",
+   "title": "التخفيف في قيام الليل وأحكام متفرقة",
+   "range": "20-20",
+   "color": "gold",
+   "subsections": [
+    {"title": "التخفيف في قيام الليل والأمر بالصلاة والزكاة والاستغفار", "range": "20-20"}
+   ]
+  }
+ ]
+}
