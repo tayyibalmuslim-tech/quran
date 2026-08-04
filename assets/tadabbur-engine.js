@@ -326,7 +326,6 @@
         items.forEach((html, idx)=>{
           const item = document.createElement('div');
           item.className = 'note-item';
-          item.draggable = items.length > 1;
           item.dataset.idx = idx;
 
           if(items.length > 1){
@@ -334,6 +333,7 @@
             handle.className = 'note-drag-handle';
             handle.title = 'اسحب لإعادة الترتيب';
             handle.textContent = '⠿';
+            handle.draggable = true;
             item.appendChild(handle);
           }
 
@@ -383,20 +383,26 @@
       }
 
       list.querySelectorAll('.note-item').forEach(item=>{
-        // ---------- سحب بالفأرة (Desktop) ----------
-        item.addEventListener('dragstart', (e)=>{
-          dragIdx = parseInt(item.dataset.idx);
-          item.classList.add('dragging');
-          e.dataTransfer.effectAllowed = 'move';
-          try{ e.dataTransfer.setData('text/plain', String(dragIdx)); }catch(err){}
-        });
+        const handle = item.querySelector('.note-drag-handle');
 
-        item.addEventListener('dragend', ()=>{
-          item.classList.remove('dragging');
-          getItems().forEach(i=> i.classList.remove('drag-over'));
-        });
+        // ---------- سحب بالفأرة (Desktop) — يبدأ من المقبض فقط ----------
+        if(handle){
+          handle.addEventListener('dragstart', (e)=>{
+            dragIdx = parseInt(item.dataset.idx);
+            item.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            try{ e.dataTransfer.setData('text/plain', String(dragIdx)); }catch(err){}
+          });
 
+          handle.addEventListener('dragend', ()=>{
+            item.classList.remove('dragging');
+            getItems().forEach(i=> i.classList.remove('drag-over'));
+          });
+        }
+
+        // منطقة الإفلات تبقى على البطاقة كاملة عشان يقدر يفلت في أي جزء منها
         item.addEventListener('dragover', (e)=>{
+          if(dragIdx == null) return;
           e.preventDefault();
           e.dataTransfer.dropEffect = 'move';
           if(item.classList.contains('dragging')) return;
@@ -409,15 +415,16 @@
         });
 
         item.addEventListener('drop', (e)=>{
+          if(dragIdx == null) return;
           e.preventDefault();
           item.classList.remove('drag-over');
           const toIdx = parseInt(item.dataset.idx);
           reorderData(dragIdx, toIdx);
+          dragIdx = null;
           renderGroup(group);
         });
 
         // ---------- سحب باللمس (Mobile) — عبر مقبض السحب فقط ----------
-        const handle = item.querySelector('.note-drag-handle');
         if(!handle) return;
 
         handle.addEventListener('touchstart', (e)=>{
