@@ -1,0 +1,51 @@
+{
+ "id": 75,
+ "name_ar": "القيامة",
+ "type": "مكية",
+ "total_verses": 40,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-alqasam-biyawm-alqiyama-waithbat-albath.html",
+   "title": "القسم بيوم القيامة وإثبات البعث",
+   "range": "1-15",
+   "color": "blue",
+   "subsections": [
+    {"title": "القسم على البعث ورد استنكار الإنسان له", "range": "1-6"},
+    {"title": "أهوال يوم القيامة وحقيقة أعمال الإنسان", "range": "7-15"}
+   ]
+  },
+  {
+   "file": "02-annahy-an-alistijal-bilwahy-wahal-alwujuh.html",
+   "title": "النهي عن استعجال الوحي وحال الوجوه",
+   "range": "16-25",
+   "color": "gold",
+   "subsections": [
+    {"title": "النهي عن استعجال تلقي القرآن", "range": "16-19"},
+    {"title": "حب العاجلة والوجوه الناضرة والباسرة يوم القيامة", "range": "20-25"}
+   ]
+  },
+  {
+   "file": "03-mashhad-alihtidar-wahal-almukadhib.html",
+   "title": "مشهد الاحتضار وحال المكذب",
+   "range": "26-35",
+   "color": "coral",
+   "subsections": [
+    {"title": "مشهد الاحتضار وشدته", "range": "26-30"},
+    {"title": "حال المكذب المتكبر ووعيده المتكرر", "range": "31-35"}
+   ]
+  },
+  {
+   "file": "04-marahil-khalq-alinsan-dalilan-ala-albath.html",
+   "title": "مراحل خلق الإنسان دليلاً على البعث",
+   "range": "36-40",
+   "color": "purple",
+   "subsections": [
+    {"title": "الاستدلال بمراحل خلق الإنسان على قدرة الله على البعث", "range": "36-40"}
+   ]
+  }
+ ]
+}
