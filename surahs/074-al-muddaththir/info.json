@@ -1,0 +1,42 @@
+{
+ "id": 74,
+ "name_ar": "المدثر",
+ "type": "مكية",
+ "total_verses": 56,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-alamr-bilindhar-watakbir-allah-wahajr-alrrijz.html",
+   "title": "الأمر بالإنذار وتكبير الله وهجر الرجز",
+   "range": "1-10",
+   "color": "coral",
+   "subsections": [
+    {"title": "الأمر بالإنذار والتكبير والتطهر وهول يوم القيامة", "range": "1-10"}
+   ]
+  },
+  {
+   "file": "02-qissat-alwalid-bin-almughira-wajuhuduh.html",
+   "title": "قصة الوليد بن المغيرة وجحوده",
+   "range": "11-30",
+   "color": "gold",
+   "subsections": [
+    {"title": "نعم الله على الوليد وتفكيره في الطعن بالقرآن", "range": "11-20"},
+    {"title": "استكباره ووعيد سقر ووصفها", "range": "21-30"}
+   ]
+  },
+  {
+   "file": "03-alqasam-wahiwar-ahl-aljanna-walmujrimin.html",
+   "title": "القسم وحوار أهل الجنة والمجرمين",
+   "range": "31-56",
+   "color": "purple",
+   "subsections": [
+    {"title": "حكمة عدد خزنة النار والقسم على عظمة الإنذار", "range": "31-38"},
+    {"title": "حوار أهل الجنة مع المجرمين عن سبب دخولهم سقر", "range": "39-48"},
+    {"title": "إعراضهم عن التذكرة وختام السورة", "range": "49-56"}
+   ]
+  }
+ ]
+}
