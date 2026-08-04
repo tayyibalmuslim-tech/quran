@@ -1,0 +1,32 @@
+{
+ "id": 72,
+ "name_ar": "الجن",
+ "type": "مكية",
+ "total_verses": 28,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-istima-al-jinn-lilquran-waimanuhum.html",
+   "title": "استماع الجن للقرآن وإيمانهم به",
+   "range": "1-15",
+   "color": "purple",
+   "subsections": [
+    {"title": "شهادة الجن على عظمة القرآن وتوحيدهم لله", "range": "1-7"},
+    {"title": "حيرة الجن أمام حراسة السماء وتنوعهم في الهداية", "range": "8-15"}
+   ]
+  },
+  {
+   "file": "02-huras-alssamaa-waghayb-allah.html",
+   "title": "حراسة السماء وعلم الغيب",
+   "range": "16-28",
+   "color": "coral",
+   "subsections": [
+    {"title": "الفتنة بالماء وأمر إخلاص العبادة لله", "range": "16-20"},
+    {"title": "عجز النبي عن الضر والنفع واختصاص الله بعلم الغيب", "range": "21-28"}
+   ]
+  }
+ ]
+}
