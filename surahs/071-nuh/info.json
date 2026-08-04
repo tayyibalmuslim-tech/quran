@@ -1,0 +1,33 @@
+{
+ "id": 71,
+ "name_ar": "نوح",
+ "type": "مكية",
+ "total_verses": 28,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-dawah-nuh-al-ula-waasalibuha.html",
+   "title": "دعوة نوح الأولى لقومه وأساليبها المتنوعة",
+   "range": "1-20",
+   "color": "coral",
+   "subsections": [
+    {"title": "أمر نوح بالإنذار ودعوته الأولى", "range": "1-9"},
+    {"title": "أساليب الدعوة: الاستغفار والترغيب بنعم الله", "range": "10-14"},
+    {"title": "آيات الله في خلق السماوات والأرض", "range": "15-20"}
+   ]
+  },
+  {
+   "file": "02-shakwa-nuh-wadu-uh-ala-qawmih.html",
+   "title": "شكوى نوح ودعاؤه على قومه",
+   "range": "21-28",
+   "color": "purple",
+   "subsections": [
+    {"title": "شكوى العصيان واتباع الأثرياء المضلين", "range": "21-24"},
+    {"title": "إغراق القوم ودعاء نوح لنفسه وللمؤمنين", "range": "25-28"}
+   ]
+  }
+ ]
+}
