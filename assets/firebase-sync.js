@@ -311,7 +311,7 @@ async function loadPage(surahId, mahwarId){
   const user = window.TadabburCloud.user;
   if(!user) return null;
   try{
-    const snap = await getDoc(doc(db, 'users', user.uid, 'pages', `${surahId}_${mahwarId}`));
+    const snap = await getDoc(doc(db, 'tadabbur_users', user.uid, 'pages', `${surahId}_${mahwarId}`));
     return snap.exists() ? snap.data() : null;
   }catch(e){
     console.error('فشل تحميل البيانات السحابية:', e);
@@ -342,7 +342,7 @@ async function flushKey(key){
   if(!data) return;
   delete _pending[key];
   try{
-    await setDoc(doc(db, 'users', user.uid, 'pages', key), data, { merge:true });
+    await setDoc(doc(db, 'tadabbur_users', user.uid, 'pages', key), data, { merge:true });
   }catch(e){
     console.error('فشل الحفظ السحابي:', e);
     // نعيد البيانات للطابور لمحاولة لاحقة
