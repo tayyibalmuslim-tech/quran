@@ -326,6 +326,17 @@
         items.forEach((html, idx)=>{
           const item = document.createElement('div');
           item.className = 'note-item';
+          item.draggable = items.length > 1;
+          item.dataset.idx = idx;
+
+          if(items.length > 1){
+            const handle = document.createElement('span');
+            handle.className = 'note-drag-handle';
+            handle.title = 'اسحب لإعادة الترتيب';
+            handle.textContent = '⠿';
+            item.appendChild(handle);
+          }
+
           const p = document.createElement('div');
           p.className = 'note-text';
           p.innerHTML = html;
@@ -348,6 +359,115 @@
           item.appendChild(p);
           item.appendChild(actionsRow);
           list.appendChild(item);
+        });
+
+        if(items.length > 1) setupDragReorder(list, group);
+      });
+    }
+
+    /* ---------- إعادة الترتيب بالسحب والإفلات (فأرة + لمس) ---------- */
+    function setupDragReorder(list, group){
+      let dragIdx = null;
+      let touchItem = null;
+      let placeholder = null;
+
+      function getItems(){ return [...list.querySelectorAll('.note-item')]; }
+
+      function reorderData(fromIdx, toIdx){
+        const items = notesData[group] || [];
+        if(fromIdx === toIdx || fromIdx == null || toIdx == null) return;
+        const [moved] = items.splice(fromIdx, 1);
+        items.splice(toIdx, 0, moved);
+        notesData[group] = items;
+        saveNotes();
+      }
+
+      list.querySelectorAll('.note-item').forEach(item=>{
+        // ---------- سحب بالفأرة (Desktop) ----------
+        item.addEventListener('dragstart', (e)=>{
+          dragIdx = parseInt(item.dataset.idx);
+          item.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+          try{ e.dataTransfer.setData('text/plain', String(dragIdx)); }catch(err){}
+        });
+
+        item.addEventListener('dragend', ()=>{
+          item.classList.remove('dragging');
+          getItems().forEach(i=> i.classList.remove('drag-over'));
+        });
+
+        item.addEventListener('dragover', (e)=>{
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          if(item.classList.contains('dragging')) return;
+          getItems().forEach(i=> i.classList.remove('drag-over'));
+          item.classList.add('drag-over');
+        });
+
+        item.addEventListener('dragleave', ()=>{
+          item.classList.remove('drag-over');
+        });
+
+        item.addEventListener('drop', (e)=>{
+          e.preventDefault();
+          item.classList.remove('drag-over');
+          const toIdx = parseInt(item.dataset.idx);
+          reorderData(dragIdx, toIdx);
+          renderGroup(group);
+        });
+
+        // ---------- سحب باللمس (Mobile) — عبر مقبض السحب فقط ----------
+        const handle = item.querySelector('.note-drag-handle');
+        if(!handle) return;
+
+        handle.addEventListener('touchstart', (e)=>{
+          touchItem = item;
+          dragIdx = parseInt(item.dataset.idx);
+          item.classList.add('dragging');
+          placeholder = document.createElement('div');
+          placeholder.className = 'note-item-placeholder';
+          placeholder.style.height = item.offsetHeight + 'px';
+          item.after(placeholder);
+          item.style.position = 'fixed';
+          item.style.zIndex = '2000';
+          item.style.width = item.getBoundingClientRect().width + 'px';
+          const rect = item.getBoundingClientRect();
+          item.style.top = rect.top + 'px';
+          item.style.left = rect.left + 'px';
+        }, { passive:true });
+
+        handle.addEventListener('touchmove', (e)=>{
+          if(!touchItem) return;
+          e.preventDefault();
+          const touch = e.touches[0];
+          const dy = touch.clientY - touchItem.getBoundingClientRect().top - touchItem.offsetHeight/2;
+          touchItem.style.top = (parseFloat(touchItem.style.top) + dy) + 'px';
+
+          const below = document.elementFromPoint(touch.clientX, touch.clientY);
+          const overItem = below ? below.closest('.note-item') : null;
+          if(overItem && overItem !== touchItem && list.contains(overItem)){
+            const overIdx = getItems().indexOf(overItem);
+            const placeholderIdx = getItems().indexOf(placeholder);
+            if(overIdx < placeholderIdx) overItem.before(placeholder);
+            else overItem.after(placeholder);
+          }
+        }, { passive:false });
+
+        handle.addEventListener('touchend', ()=>{
+          if(!touchItem) return;
+          touchItem.style.position = '';
+          touchItem.style.zIndex = '';
+          touchItem.style.top = '';
+          touchItem.style.left = '';
+          touchItem.style.width = '';
+          touchItem.classList.remove('dragging');
+
+          const toIdx = placeholder ? getItems().indexOf(placeholder) : dragIdx;
+          placeholder && placeholder.remove();
+          reorderData(dragIdx, toIdx);
+          renderGroup(group);
+          touchItem = null;
+          placeholder = null;
         });
       });
     }
