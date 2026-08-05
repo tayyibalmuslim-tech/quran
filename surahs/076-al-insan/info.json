@@ -1,0 +1,41 @@
+{
+ "id": 76,
+ "name_ar": "الإنسان",
+ "type": "مدنية",
+ "total_verses": 31,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-khalq-alinsan-waibtilauh-wasifat-alabrar.html",
+   "title": "خلق الإنسان وابتلاؤه وصفات الأبرار",
+   "range": "1-12",
+   "color": "green",
+   "subsections": [
+    {"title": "خلق الإنسان وابتلاؤه ومصير الكافرين", "range": "1-4"},
+    {"title": "صفات الأبرار وإخلاصهم في الإطعام", "range": "5-12"}
+   ]
+  },
+  {
+   "file": "02-naim-alabrar-fi-aljanna.html",
+   "title": "نعيم الأبرار في الجنة",
+   "range": "13-22",
+   "color": "gold",
+   "subsections": [
+    {"title": "وصف مجالسهم وفرشهم وثمارهم", "range": "13-16"},
+    {"title": "الكؤوس والولدان والحلل ونعيم الملك الكبير", "range": "17-22"}
+   ]
+  },
+  {
+   "file": "03-tawjih-alnnabi-lilssabr-waldhikr-wakhitam-alssura.html",
+   "title": "توجيه النبي للصبر والذكر وختام السورة",
+   "range": "23-31",
+   "color": "purple",
+   "subsections": [
+    {"title": "توجيه النبي للصبر والذكر وحب الناس للعاجلة وختام السورة", "range": "23-31"}
+   ]
+  }
+ ]
+}
