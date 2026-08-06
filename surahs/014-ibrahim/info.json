@@ -1,0 +1,64 @@
+{
+ "id": 14,
+ "name_ar": "إبراهيم",
+ "type": "مكية",
+ "total_verses": 52,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-maqsad-alrrisala-waqissat-musa-maa-qawmih.html",
+   "title": "مقصد الرسالة وقصة موسى مع قومه",
+   "range": "1-8",
+   "color": "gold",
+   "subsections": [
+    {"title": "مقصد إنزال الكتاب ومصير المكذبين", "range": "1-4"},
+    {"title": "موسى يذكّر قومه بنعمة الله ووعده", "range": "5-8"}
+   ]
+  },
+  {
+   "file": "02-istikbar-alumam-ala-rusulihim.html",
+   "title": "استكبار الأمم على رسلهم ومصيرهم",
+   "range": "9-17",
+   "color": "coral",
+   "subsections": [
+    {"title": "استكبار الأمم السابقة وردّ رسلهم عليهم", "range": "9-12"},
+    {"title": "تهديد الكفار للرسل وإهلاك الله للظالمين", "range": "13-17"}
+   ]
+  },
+  {
+   "file": "03-amthal-almukadhibin-wamashhad-alqiyama.html",
+   "title": "أمثال المكذبين ومشهد القيامة",
+   "range": "18-27",
+   "color": "purple",
+   "subsections": [
+    {"title": "مثل أعمال الكافرين كالرماد وقدرة الله على الاستبدال", "range": "18-20"},
+    {"title": "حوار الضعفاء والمستكبرين والشيطان يوم القيامة", "range": "21-23"},
+    {"title": "مثل الكلمة الطيبة والكلمة الخبيثة", "range": "24-27"}
+   ]
+  },
+  {
+   "file": "04-juhud-alniam-wadhikruha.html",
+   "title": "جحود النعم وذكرها",
+   "range": "28-34",
+   "color": "green",
+   "subsections": [
+    {"title": "الذين بدّلوا نعمة الله كفراً ومصيرهم", "range": "28-31"},
+    {"title": "تعداد نعم الله الكثيرة على الإنسان", "range": "32-34"}
+   ]
+  },
+  {
+   "file": "05-duaa-ibrahim-watahdhir-alththalimin.html",
+   "title": "دعاء إبراهيم وتحذير الظالمين وختام السورة",
+   "range": "35-52",
+   "color": "blue",
+   "subsections": [
+    {"title": "دعاء إبراهيم لأهل مكة وذريته", "range": "35-41"},
+    {"title": "تحذير من الظلم وهول يوم القيامة", "range": "42-47"},
+    {"title": "مشهد يوم القيامة وختام السورة", "range": "48-52"}
+   ]
+  }
+ ]
+}
