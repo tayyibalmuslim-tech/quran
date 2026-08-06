@@ -1,0 +1,42 @@
+{
+ "id": 78,
+ "name_ar": "النبأ",
+ "type": "مكية",
+ "total_verses": 40,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-istinkar-alikhtilaf-fi-albath-waayat-allah-alkawniyya.html",
+   "title": "استنكار الاختلاف في البعث وآيات الله الكونية",
+   "range": "1-16",
+   "color": "coral",
+   "subsections": [
+    {"title": "استنكار خلاف المشركين في البعث", "range": "1-5"},
+    {"title": "آيات الله الكونية الدالة على قدرته", "range": "6-16"}
+   ]
+  },
+  {
+   "file": "02-yawm-alfasl-wamasir-alttaghin.html",
+   "title": "يوم الفصل ومصير الطاغين",
+   "range": "17-30",
+   "color": "purple",
+   "subsections": [
+    {"title": "يوم الفصل وأهواله الكونية", "range": "17-20"},
+    {"title": "مصير الطاغين في جهنم", "range": "21-30"}
+   ]
+  },
+  {
+   "file": "03-jazaa-almuttaqin-wakhitam-alssura.html",
+   "title": "جزاء المتقين وختام السورة",
+   "range": "31-40",
+   "color": "green",
+   "subsections": [
+    {"title": "جزاء المتقين في الجنة", "range": "31-36"},
+    {"title": "مشهد يوم القيامة وختام السورة", "range": "37-40"}
+   ]
+  }
+ ]
+}
