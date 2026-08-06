@@ -1,0 +1,52 @@
+{
+ "id": 77,
+ "name_ar": "المرسلات",
+ "type": "مكية",
+ "total_verses": 50,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-alqasam-bilmursalat-wawuqu-yawm-alfasl.html",
+   "title": "القسم بالمرسلات ووقوع يوم الفصل",
+   "range": "1-15",
+   "color": "blue",
+   "subsections": [
+    {"title": "القسم بالرياح والملائكة على وقوع الوعد", "range": "1-7"},
+    {"title": "علامات الساعة ويوم الفصل", "range": "8-15"}
+   ]
+  },
+  {
+   "file": "02-ihlak-alawwalin-waniam-allah.html",
+   "title": "إهلاك الأولين ونعم الله",
+   "range": "16-28",
+   "color": "gold",
+   "subsections": [
+    {"title": "إهلاك الأولين وسنة الله في المجرمين", "range": "16-19"},
+    {"title": "خلق الإنسان ونعم الأرض", "range": "20-28"}
+   ]
+  },
+  {
+   "file": "03-masir-almukadhibin-fi-alnnar.html",
+   "title": "مصير المكذبين في النار",
+   "range": "29-40",
+   "color": "coral",
+   "subsections": [
+    {"title": "وصف ظل جهنم وشررها", "range": "29-34"},
+    {"title": "يوم لا ينطقون فيه وتحدي المكذبين", "range": "35-40"}
+   ]
+  },
+  {
+   "file": "04-jazaa-almuhsinin-wakhitam-alssura.html",
+   "title": "جزاء المحسنين وختام السورة",
+   "range": "41-50",
+   "color": "green",
+   "subsections": [
+    {"title": "جزاء المحسنين المتقين المقابل", "range": "41-45"},
+    {"title": "مصير المجرمين وعنادهم وختام السورة", "range": "46-50"}
+   ]
+  }
+ ]
+}
