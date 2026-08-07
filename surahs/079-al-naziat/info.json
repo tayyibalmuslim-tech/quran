@@ -1,0 +1,32 @@
+{
+ "id": 79,
+ "name_ar": "النازعات",
+ "type": "مكية",
+ "total_verses": 46,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-alqasam-wayawm-albath-waqissat-musa-maa-firawn.html",
+   "title": "القسم ويوم البعث وقصة موسى مع فرعون",
+   "range": "1-26",
+   "color": "purple",
+   "subsections": [
+    {"title": "القسم على وقوع البعث واستنكار المشركين له", "range": "1-14"},
+    {"title": "قصة موسى مع فرعون وعاقبة استكباره", "range": "15-26"}
+   ]
+  },
+  {
+   "file": "02-khalq-alssamaa-waltamma-alkubra.html",
+   "title": "خلق السماء والطامة الكبرى",
+   "range": "27-46",
+   "color": "green",
+   "subsections": [
+    {"title": "الاستدلال بخلق السماء والأرض على قدرة الله", "range": "27-33"},
+    {"title": "الطامة الكبرى ومصير الطاغين والخائفين وختام السورة", "range": "34-46"}
+   ]
+  }
+ ]
+}
