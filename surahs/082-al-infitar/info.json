@@ -1,0 +1,32 @@
+{
+ "id": 82,
+ "name_ar": "الانفطار",
+ "type": "مكية",
+ "total_verses": 19,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-mashahid-alqiyamah-watawbikh-alinsan-almughtarr.html",
+   "title": "مشاهد القيامة وتوبيخ الإنسان المغتر",
+   "range": "1-12",
+   "color": "coral",
+   "subsections": [
+    {"title": "مشاهد انشقاق السماء وقيام الساعة", "range": "1-5"},
+    {"title": "توبيخ الإنسان المغتر بربه الكريم", "range": "6-8"},
+    {"title": "تكذيبكم بالدين والحفظة الكرام الكاتبون", "range": "9-12"}
+   ]
+  },
+  {
+   "file": "02-masir-alabrar-walfujjar-yawm-aldeen.html",
+   "title": "مصير الأبرار والفجار يوم الدين",
+   "range": "13-19",
+   "color": "coral",
+   "subsections": [
+    {"title": "مصير الأبرار والفجار يوم الدين", "range": "13-19"}
+   ]
+  }
+ ]
+}
