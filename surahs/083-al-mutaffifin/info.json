@@ -1,0 +1,34 @@
+{
+ "id": 83,
+ "name_ar": "المطففين",
+ "type": "مكية",
+ "total_verses": 36,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-wayl-lilmutaffifin-wamasir-alfujjar.html",
+   "title": "ويل للمطففين ومصير الفجار",
+   "range": "1-17",
+   "color": "coral",
+   "subsections": [
+    {"title": "وعيد المطففين في الكيل والميزان", "range": "1-6"},
+    {"title": "كتاب الفجار في سجّين ووعيد المكذبين", "range": "7-12"},
+    {"title": "صفة المكذب ومصيره المحجوب المُصلى", "range": "13-17"}
+   ]
+  },
+  {
+   "file": "02-masir-alabrar-wamashhad-alddahk-yawm-aldeen.html",
+   "title": "مصير الأبرار ومشهد الضحك يوم الدين",
+   "range": "18-36",
+   "color": "coral",
+   "subsections": [
+    {"title": "كتاب الأبرار في عليين يشهده المقربون", "range": "18-21"},
+    {"title": "وصف نعيم الأبرار في الجنة", "range": "22-28"},
+    {"title": "ختام السورة: مشهد الضحك المعكوس يوم الدين", "range": "29-36"}
+   ]
+  }
+ ]
+}
