@@ -1,0 +1,34 @@
+{
+ "id": 81,
+ "name_ar": "التكوير",
+ "type": "مكية",
+ "total_verses": 29,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-ahwal-alqiyamah-wal-inqilab-alkawni.html",
+   "title": "أهوال القيامة والانقلاب الكوني",
+   "range": "1-14",
+   "color": "coral",
+   "subsections": [
+    {"title": "العلامات الكونية ليوم القيامة", "range": "1-6"},
+    {"title": "تزويج النفوس وإدانة وأد البنات", "range": "7-9"},
+    {"title": "نشر الصحف وانكشاف مصير كل نفس", "range": "10-14"}
+   ]
+  },
+  {
+   "file": "02-alqasam-bisidq-alwahy-waamanat-alrasulayn.html",
+   "title": "القسم بصدق الوحي وأمانة الرسولين",
+   "range": "15-29",
+   "color": "coral",
+   "subsections": [
+    {"title": "القسم بالكواكب والليل والصبح على صدق الوحي", "range": "15-21"},
+    {"title": "تبرئة النبي ﷺ من تهم المشركين", "range": "22-25"},
+    {"title": "ختام السورة: القرآن ذكر للعالمين والمشيئة لله", "range": "26-29"}
+   ]
+  }
+ ]
+}
