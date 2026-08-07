@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القسم ويوم البعث وقصة موسى مع فرعون - سورة النازعات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --mahwar-bg:#EFE9F7;
+    --mahwar-text:#5B3D8C;
+    --verse-green:#2E7D4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+  }
+  .top-nav{
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .nav-links{ display:flex; gap:16px; font-size:14px; }
+  .nav-links a{ color:var(--gold-deep); text-decoration:none; }
+  .nav-links a:hover{ text-decoration:underline; }
+
+  header{
+    text-align:center;
+    padding:36px 20px 24px;
+  }
+  .mahwar-badge{
+    display:inline-block;
+    background:var(--mahwar-bg);
+    color:var(--mahwar-text);
+    font-size:13px;
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Amiri', serif;
+    font-size:34px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .range{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:12px 20px 80px;
+  }
+
+  .sub-block{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:20px;
+    padding:22px 24px;
+  }
+  .sub-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .sub-title{
+    font-family:'Amiri', serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .sub-range{
+    font-size:12px;
+    color:var(--gold-deep);
+    background:rgba(168,134,59,0.12);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .field{ margin-bottom:14px; }
+  .field:last-child{ margin-bottom:0; }
+  .field-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+    font-weight:500;
+  }
+  .field-value{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ink);
+    white-space:pre-line;
+  }
+  .field-value.empty{
+    color:#B3A98F;
+    font-style:italic;
+    font-size:13px;
+  }
+  .verses-text{
+    font-family:'Amiri', serif;
+    font-size:19px;
+    line-height:2.6;
+    color:var(--verse-green);
+  }
+  .glossary{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .glossary-item{
+    display:flex;
+    gap:8px;
+    font-size:14px;
+    line-height:1.8;
+  }
+  .glossary-word{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    color:var(--verse-green);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .glossary-mean{ color:var(--ink); }
+  .tafsir-ayah{
+    display:block;
+    font-family:'Amiri', serif;
+    font-size:17px;
+    color:var(--verse-green);
+    margin:16px 0 6px;
+    line-height:2;
+  }
+  .tafsir-ayah:first-child{ margin-top:0; }
+
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+</style>
+
+<link rel="stylesheet" href="../../../assets/tadabbur.css">
+<script src="../../../assets/quran-data.js"></script>
+<script type="module" src="../../../assets/firebase-sync.js"></script>
+</head>
+<body data-surah="79" data-mahwar="01-alqasam-wayawm-albath-waqissat-musa-maa-firawn">
+<div style="background:#FFF3CD;border-bottom:2px solid #E0A800;color:#664D03;padding:10px 16px;font-family:'IBM Plex Sans Arabic','Tahoma',sans-serif;font-size:13.5px;line-height:1.7;text-align:center;direction:rtl" role="note">
+⚠️ <strong>تنبيه:</strong> هذا المحتوى تم إعداده بمساعدة الذكاء الاصطناعي وقد يحتوي على أخطاء في الشرح والتحليل، يُرجى المراجعة والتحقق خاصة في المسائل الشرعية.
+</div>
+
+
+<div class="top-nav">
+  <a href="../../../index.html" class="nav-links"><span>← كل السور</span></a>
+  <div class="nav-links">
+    <a href="../../../surah.html?id=79">سورة النازعات</a>
+  </div>
+</div>
+
+<header>
+  <span class="mahwar-badge">المحور 1 من 2</span>
+  <h1>القسم ويوم البعث وقصة موسى مع فرعون</h1>
+  <p class="range">آيات 1-26</p>
+</header>
+
+<div class="mahwar-nav top">
+  <span class="mahwar-nav-btn disabled prev">
+    <span class="mahwar-nav-label">← السابق</span>
+    <span class="mahwar-nav-title">—</span>
+  </span>
+  <a href="../../../surah.html?id=79" class="mahwar-nav-mid"><span class="mid-text">📖 </span>كل المحاور</a>
+  <a href="02-khalq-alssamaa-waltamma-alkubra.html" class="mahwar-nav-btn next">
+    <span class="mahwar-nav-label">التالي →</span>
+    <span class="mahwar-nav-title">خلق السماء والطامة الكبرى</span>
+  </a>
+</div>
+
+<main>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">القسم على وقوع البعث واستنكار المشركين له</span>
+      <span class="sub-range">آيات 1-14</span>
+    </div>
+    <div class="field">
+      <div class="field-label">نص الآيات</div>
+      <div class="field-value verses-text">
+        ﴿وَٱلنَّـٰزِعَٰتِ غَرۡقٗا (١) وَٱلنَّـٰشِطَٰتِ نَشۡطٗا (٢) وَٱلسَّـٰبِحَٰتِ سَبۡحٗا (٣) فَٱلسَّـٰبِقَٰتِ سَبۡقٗا (٤) فَٱلۡمُدَبِّرَٰتِ أَمۡرٗا (٥) يَوۡمَ تَرۡجُفُ ٱلرَّاجِفَةُ (٦) تَتۡبَعُهَا ٱلرَّادِفَةُ (٧) قُلُوبٞ يَوۡمَئِذٖ وَاجِفَةٌ (٨) أَبۡصَٰرُهَا خَٰشِعَةٞ (٩) يَقُولُونَ أَءِنَّا لَمَرۡدُودُونَ فِي ٱلۡحَافِرَةِ (١٠) أَءِذَا كُنَّا عِظَٰمٗا نَّخِرَةٗ (١١) قَالُواْ تِلۡكَ إِذٗا كَرَّةٌ خَاسِرَةٞ (١٢) فَإِنَّمَا هِيَ زَجۡرَةٞ وَٰحِدَةٞ (١٣) فَإِذَا هُم بِٱلسَّاهِرَةِ (١٤)﴾
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">معاني المفردات</div>
+      <div class="field-value glossary">
+        <div class="glossary-item"><span class="glossary-word">ٱلنَّـٰزِعَٰتِ غَرۡقٗا</span><span class="glossary-mean">— الملائكة التي تنزع أرواح الكفار بشدة وقوة من أعماق أجسادهم.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلنَّـٰشِطَٰتِ نَشۡطٗا</span><span class="glossary-mean">— الملائكة التي تسل أرواح المؤمنين برفق وسهولة.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلسَّـٰبِحَٰتِ سَبۡحٗا</span><span class="glossary-mean">— الملائكة المسرعة في تنفيذ أمر الله بين السماء والأرض.</span></div>
+        <div class="glossary-item"><span class="glossary-word">تَرۡجُفُ ٱلرَّاجِفَةُ</span><span class="glossary-mean">— النفخة الأولى في الصور التي تهتز بها الأرض والجبال.</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلرَّادِفَةُ</span><span class="glossary-mean">— النفخة الثانية التي تتبع الأولى إيذاناً بالبعث.</span></div>
+        <div class="glossary-item"><span class="glossary-word">مَرۡدُودُونَ فِي ٱلۡحَافِرَةِ</span><span class="glossary-mean">— مُعادون إلى الحياة بعد الموت، كناية عن البعث الذي استبعده المشركون.</span></div>
+        <div class="glossary-item"><span class="glossary-word">عِظَٰمٗا نَّخِرَةٗ</span><span class="glossary-mean">— عظاماً بالية متفتتة، استبعاداً لإحيائها بعد هذا التحلل.</span></div>
+        <div class="glossary-item"><span class="glossary-word">زَجۡرَةٞ وَٰحِدَةٞ</span><span class="glossary-mean">— صيحة واحدة قوية تكفي لبعث الخلائق جميعاً.</span></div>
+        <div class="glossary-item"><span class="glossary-word">بِٱلسَّاهِرَةِ</span><span class="glossary-mean">— على وجه الأرض بعد أن كانوا في باطنها، أرض المحشر يوم القيامة.</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">المعنى الإجمالي</div>
+      <div class="field-value">
+        تفتتح السورة بقسم مؤكد بالملائكة الموكلة بقبض الأرواح وتدبير الكون: بالنازعات التي تنزع أرواح الكفار بشدة، والناشطات التي تسل أرواح المؤمنين برفق، والسابحات المسرعة في تنفيذ أمر الله، فالسابقات إلى الخير، فالمدبرات لأمور الكون بإذنه، على وقوع يوم القيامة: يوم تهتز فيه الأرض بالنفخة الأولى، تتبعها النفخة الثانية، فتضطرب القلوب من شدة الخوف وتخشع الأبصار ذلة وحياءً.
+
+ويحكي هذا المقطع استنكار المشركين للبعث: يقولون متعجبين مستبعدين: أإنا لمردودون إلى الحياة بعد الموت؟ أإذا كنا عظاماً بالية متفتتة نُبعث؟ قالوا: تلك إذاً رجعة خاسرة لا فائدة منها في زعمهم. فيردّ الله عليهم: فإنما هي صيحة واحدة قوية تكفي لبعث الخلائق جميعاً، فإذا هم على وجه الأرض أحياء بعد أن كانوا في باطنها، وهذا رد قاطع على استبعادهم لقدرة الله.
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">المعنى التفصيلي</div>
+      <div class="field-value">
+        <div class="ayah-note-block" data-note-group="tafsir-79-1-1-5">
+          <span class="tafsir-ayah">وَٱلنَّـٰزِعَٰتِ غَرۡقٗا (١) وَٱلنَّـٰشِطَٰتِ نَشۡطٗا (٢) وَٱلسَّـٰبِحَٰتِ سَبۡحٗا (٣) فَٱلسَّـٰبِقَٰتِ سَبۡقٗا (٤) فَٱلۡمُدَبِّرَٰتِ أَمۡرٗا (٥)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-79-1-1-5">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">قسم مؤكد بالملائكة الموكلة بقبض الأرواح: النازعات لأرواح الكفار بشدة، والناشطات لأرواح المؤمنين برفق، والسابحات المسرعة في تنفيذ أمر الله، فالسابقات إلى الخير، فالمدبرات لأمور الكون بإذنه.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-79-1-6-9">
+          <span class="tafsir-ayah">يَوۡمَ تَرۡجُفُ ٱلرَّاجِفَةُ (٦) تَتۡبَعُهَا ٱلرَّادِفَةُ (٧) قُلُوبٞ يَوۡمَئِذٖ وَاجِفَةٌ (٨) أَبۡصَٰرُهَا خَٰشِعَةٞ (٩)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-79-1-6-9">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">وصف يوم القيامة الذي أُقسم على وقوعه: يوم تهتز فيه الأرض بالنفخة الأولى تتبعها النفخة الثانية، فتضطرب القلوب من شدة الخوف وتخشع الأبصار ذلة وحياءً أمام هول ذلك اليوم.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-79-1-10-14">
+          <span class="tafsir-ayah">يَقُولُونَ أَءِنَّا لَمَرۡدُودُونَ فِي ٱلۡحَافِرَةِ (١٠) أَءِذَا كُنَّا عِظَٰمٗا نَّخِرَةٗ (١١) قَالُواْ تِلۡكَ إِذٗا كَرَّةٌ خَاسِرَةٞ (١٢) فَإِنَّمَا هِيَ زَجۡرَةٞ وَٰحِدَةٞ (١٣) فَإِذَا هُم بِٱلسَّاهِرَةِ (١٤)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-79-1-10-14">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">حكاية استنكار المشركين للبعث: أإنا لمردودون بعد الموت؟ أإذا صرنا عظاماً بالية؟ قالوا تلك رجعة خاسرة في زعمهم. فيردّ الله: فإنما هي صيحة واحدة تكفي لبعث الخلائق، فإذا هم على وجه الأرض أحياء، رد قاطع على استبعادهم.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">التدبر</div>
+      <div class="field-value">
+        <div class="notes-list"></div>
+        <button class="note-add-btn" data-note-group="tadabbur-79-1a">➕ إضافة</button>
+        <div class="note-editor">
+          <div class="note-toolbar">
+            <button type="button" data-cmd="bold" title="غامق">B</button>
+            <button type="button" data-cmd="italic" title="مائل">I</button>
+            <button type="button" data-cmd="underline" title="تسطير">U</button>
+            <span class="toolbar-sep"></span>
+            <select data-cmd="fontSize" title="حجم الخط">
+              <option value="2">صغير</option>
+              <option value="3" selected>عادي</option>
+              <option value="4">متوسط</option>
+              <option value="5">كبير</option>
+              <option value="6">كبير جداً</option>
+            </select>
+            <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+            <span class="toolbar-sep"></span>
+            <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+            <span class="toolbar-sep"></span>
+            <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+            <span class="toolbar-sep"></span>
+            <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+          </div>
+          <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك هنا..."></div>
+          <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-block">
+    <div class="sub-header">
+      <span class="sub-title">قصة موسى مع فرعون وعاقبة استكباره</span>
+      <span class="sub-range">آيات 15-26</span>
+    </div>
+    <div class="field">
+      <div class="field-label">نص الآيات</div>
+      <div class="field-value verses-text">
+        ﴿هَلۡ أَتَىٰكَ حَدِيثُ مُوسَىٰٓ (١٥) إِذۡ نَادَىٰهُ رَبُّهُۥ بِٱلۡوَادِ ٱلۡمُقَدَّسِ طُوًى (١٦) ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ (١٧) فَقُلۡ هَل لَّكَ إِلَىٰٓ أَن تَزَكَّىٰ (١٨) وَأَهۡدِيَكَ إِلَىٰ رَبِّكَ فَتَخۡشَىٰ (١٩) فَأَرَىٰهُ ٱلۡأٓيَةَ ٱلۡكُبۡرَىٰ (٢٠) فَكَذَّبَ وَعَصَىٰ (٢١) ثُمَّ أَدۡبَرَ يَسۡعَىٰ (٢٢) فَحَشَرَ فَنَادَىٰ (٢٣) فَقَالَ أَنَا۠ رَبُّكُمُ ٱلۡأَعۡلَىٰ (٢٤) فَأَخَذَهُ ٱللَّهُ نَكَالَ ٱلۡأٓخِرَةِ وَٱلۡأُولَىٰٓ (٢٥) إِنَّ فِي ذَٰلِكَ لَعِبۡرَةٗ لِّمَن يَخۡشَىٰٓ (٢٦)﴾
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">معاني المفردات</div>
+      <div class="field-value glossary">
+        <div class="glossary-item"><span class="glossary-word">ٱلۡوَادِ ٱلۡمُقَدَّسِ طُوًى</span><span class="glossary-mean">— الوادي المطهر المبارك الذي ناجى الله فيه موسى، ويُسمى طوى.</span></div>
+        <div class="glossary-item"><span class="glossary-word">إِنَّهُۥ طَغَىٰ</span><span class="glossary-mean">— تجاوز الحد في الظلم والاستكبار والادعاء الباطل.</span></div>
+        <div class="glossary-item"><span class="glossary-word">هَل لَّكَ إِلَىٰٓ أَن تَزَكَّىٰ</span><span class="glossary-mean">— دعوة رقيقة: هل ترغب في أن تتطهر من الشرك والظلم؟</span></div>
+        <div class="glossary-item"><span class="glossary-word">ٱلۡأٓيَةَ ٱلۡكُبۡرَىٰ</span><span class="glossary-mean">— المعجزة العظمى، وهي العصا واليد البيضاء.</span></div>
+        <div class="glossary-item"><span class="glossary-word">أَدۡبَرَ يَسۡعَىٰ</span><span class="glossary-mean">— أعرض عن الحق وسعى في محاربته ومعارضته.</span></div>
+        <div class="glossary-item"><span class="glossary-word">فَحَشَرَ فَنَادَىٰ</span><span class="glossary-mean">— جمع أعوانه وسحرته ونادى فيهم مدّعياً الربوبية.</span></div>
+        <div class="glossary-item"><span class="glossary-word">نَكَالَ ٱلۡأٓخِرَةِ وَٱلۡأُولَىٰٓ</span><span class="glossary-mean">— عقاباً شديداً جمع بين عذاب الدنيا بالغرق وعذاب الآخرة بالنار.</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">المعنى الإجمالي</div>
+      <div class="field-value">
+        بعد إثبات البعث، تحكي السورة قصة موسى عليه السلام تأكيداً على قدرة الله: هل أتاك خبر موسى، حين ناداه ربه في الوادي المقدس المبارك طوى، آمراً إياه: اذهب إلى فرعون فإنه تجاوز الحد في الظلم والاستكبار، فقل له بأسلوب رقيق: هل ترغب في أن تتطهر من الشرك والظلم، وأهديك إلى طريق ربك فتخشاه وتخافه؟ فأراه موسى المعجزة العظمى -العصا واليد البيضاء- فكذّب فرعون وعصى الأمر.
+
+ثم أعرض فرعون عن الحق وسعى في محاربته، فجمع أعوانه وسحرته ونادى فيهم مدّعياً الربوبية الباطلة قائلاً: أنا ربكم الأعلى، في قمة الاستكبار والطغيان. فأخذه الله أخذاً شديداً جمع بين عذاب الدنيا بالغرق وعذاب الآخرة بالنار، عبرة عظيمة لمن يخشى الله ويخاف عاقبة الطغيان والاستكبار.
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">المعنى التفصيلي</div>
+      <div class="field-value">
+        <div class="ayah-note-block" data-note-group="tafsir-79-1-15-20">
+          <span class="tafsir-ayah">هَلۡ أَتَىٰكَ حَدِيثُ مُوسَىٰٓ (١٥) إِذۡ نَادَىٰهُ رَبُّهُۥ بِٱلۡوَادِ ٱلۡمُقَدَّسِ طُوًى (١٦) ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ (١٧) فَقُلۡ هَل لَّكَ إِلَىٰٓ أَن تَزَكَّىٰ (١٨) وَأَهۡدِيَكَ إِلَىٰ رَبِّكَ فَتَخۡشَىٰ (١٩) فَأَرَىٰهُ ٱلۡأٓيَةَ ٱلۡكُبۡرَىٰ (٢٠)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-79-1-15-20">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">بداية قصة موسى: ناداه ربه في الوادي المقدس طوى، وأرسله إلى فرعون الطاغي بدعوة رقيقة للتزكية والهداية، فأراه المعجزة العظمى، وهذا نموذج للحكمة في الدعوة حتى مع أشد الناس طغياناً.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-79-1-21-26">
+          <span class="tafsir-ayah">فَكَذَّبَ وَعَصَىٰ (٢١) ثُمَّ أَدۡبَرَ يَسۡعَىٰ (٢٢) فَحَشَرَ فَنَادَىٰ (٢٣) فَقَالَ أَنَا۠ رَبُّكُمُ ٱلۡأَعۡلَىٰ (٢٤) فَأَخَذَهُ ٱللَّهُ نَكَالَ ٱلۡأٓخِرَةِ وَٱلۡأُولَىٰٓ (٢٥) إِنَّ فِي ذَٰلِكَ لَعِبۡرَةٗ لِّمَن يَخۡشَىٰٓ (٢٦)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-79-1-21-26">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">استكبار فرعون: كذّب وعصى، ثم أعرض وسعى في محاربة الحق، فجمع أعوانه ونادى مدّعياً الربوبية الباطلة، فأخذه الله أخذاً شديداً جمع بين عذاب الدنيا والآخرة، عبرة عظيمة لمن يخشى الله ويخاف عاقبة الطغيان.</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">التدبر</div>
+      <div class="field-value">
+        <div class="notes-list"></div>
+        <button class="note-add-btn" data-note-group="tadabbur-79-1b">➕ إضافة</button>
+        <div class="note-editor">
+          <div class="note-toolbar">
+            <button type="button" data-cmd="bold" title="غامق">B</button>
+            <button type="button" data-cmd="italic" title="مائل">I</button>
+            <button type="button" data-cmd="underline" title="تسطير">U</button>
+            <span class="toolbar-sep"></span>
+            <select data-cmd="fontSize" title="حجم الخط">
+              <option value="2">صغير</option>
+              <option value="3" selected>عادي</option>
+              <option value="4">متوسط</option>
+              <option value="5">كبير</option>
+              <option value="6">كبير جداً</option>
+            </select>
+            <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+            <span class="toolbar-sep"></span>
+            <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+            <span class="toolbar-sep"></span>
+            <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+            <span class="toolbar-sep"></span>
+            <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+          </div>
+          <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك هنا..."></div>
+          <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="mahwar-nav bottom">
+  <span class="mahwar-nav-btn disabled prev">
+    <span class="mahwar-nav-label">← السابق</span>
+    <span class="mahwar-nav-title">—</span>
+  </span>
+  <a href="../../../surah.html?id=79" class="mahwar-nav-mid"><span class="mid-text">📖 </span>كل المحاور</a>
+  <a href="02-khalq-alssamaa-waltamma-alkubra.html" class="mahwar-nav-btn next">
+    <span class="mahwar-nav-label">التالي →</span>
+    <span class="mahwar-nav-title">خلق السماء والطامة الكبرى</span>
+  </a>
+</div>
+
+<footer>سورة النازعات — مصحف التدبر</footer>
+
+<div id="selectionMenu">
+  <button class="dot-yellow" data-action="hl-yellow" title="هايلايت أصفر"></button>
+  <button class="dot-green" data-action="hl-green" title="هايلايت أخضر"></button>
+  <button class="dot-pink" data-action="hl-pink" title="هايلايت وردي"></button>
+  <button class="dot-blue" data-action="hl-blue" title="هايلايت أزرق"></button>
+  <button class="dot-strike" data-action="strike" title="شطب">S</button>
+  <button class="dot-remove" data-action="remove" title="إزالة التنسيق">✕</button>
+</div>
+
+<div class="verse-modal-overlay" id="verseModalOverlay">
+  <div class="verse-modal">
+    <div class="verse-modal-header">
+      <h3>➕ إضافة آية</h3>
+      <button class="verse-modal-close" id="verseModalClose">✕</button>
+    </div>
+    <div class="verse-tabs">
+      <button class="verse-tab active" data-tab="search">🔍 بحث</button>
+      <button class="verse-tab" data-tab="range">📑 مجموعة آيات</button>
+    </div>
+
+    <div class="verse-tab-panel" id="tabSearch">
+      <div class="verse-search-box">
+        <input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'...">
+        <div class="verse-search-hint">مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"</div>
+      </div>
+      <div class="verse-results" id="verseResults">
+        <div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>
+      </div>
+    </div>
+
+    <div class="verse-tab-panel" id="tabRange" style="display:none;">
+      <div class="verse-range-box">
+        <select id="rangeSurahSelect"></select>
+        <div class="verse-range-inputs">
+          <div class="verse-range-field">
+            <label>من آية</label>
+            <input type="number" id="rangeFromInput" min="1" value="1">
+          </div>
+          <div class="verse-range-field">
+            <label>إلى آية</label>
+            <input type="number" id="rangeToInput" min="1" value="1">
+          </div>
+        </div>
+        <button class="verse-range-add-btn" id="rangeAddBtn">➕ إضافة المجموعة</button>
+        <div class="verse-range-preview" id="rangePreview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../../assets/tadabbur-engine.js"></script>
+
+</body>
+</html>
