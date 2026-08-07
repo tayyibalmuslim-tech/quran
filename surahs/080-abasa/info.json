@@ -1,0 +1,42 @@
+{
+ "id": 80,
+ "name_ar": "عبس",
+ "type": "مكية",
+ "total_verses": 42,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-itab-alnnabi-washaraf-alquran.html",
+   "title": "عتاب النبي وشرف القرآن",
+   "range": "1-16",
+   "color": "coral",
+   "subsections": [
+    {"title": "عتاب النبي في قصة ابن أم مكتوم", "range": "1-10"},
+    {"title": "شرف القرآن ومكانته العالية", "range": "11-16"}
+   ]
+  },
+  {
+   "file": "02-khalq-alinsan-waniamat-alttaam.html",
+   "title": "خلق الإنسان ونعمة الطعام",
+   "range": "17-32",
+   "color": "gold",
+   "subsections": [
+    {"title": "جحود الإنسان ومراحل خلقه", "range": "17-23"},
+    {"title": "نعمة الطعام ودلائل القدرة الإلهية", "range": "24-32"}
+   ]
+  },
+  {
+   "file": "03-alssakhkha-wamashhad-alqiyama.html",
+   "title": "الصاخة ومشهد القيامة وختام السورة",
+   "range": "33-42",
+   "color": "purple",
+   "subsections": [
+    {"title": "الصاخة وفرار الإنسان من أقرب الناس إليه", "range": "33-37"},
+    {"title": "الوجوه المستبشرة والوجوه الكالحة وختام السورة", "range": "38-42"}
+   ]
+  }
+ ]
+}
