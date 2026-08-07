@@ -1,0 +1,32 @@
+{
+ "id": 49,
+ "name_ar": "الحجرات",
+ "type": "مدنية",
+ "total_verses": 18,
+ "muqaddimah": {
+  "file": "00-muqaddimat-alsurah.html",
+  "title": "مقدمة السورة"
+ },
+ "mahawir": [
+  {
+   "file": "01-adab-alukhuwwa-alimaniyya.html",
+   "title": "آداب الأخوة الإيمانية",
+   "range": "1-13",
+   "color": "blue",
+   "subsections": [
+    {"title": "أدب التعامل مع النبي ﷺ", "range": "1-8"},
+    {"title": "الصلح بين المؤمنين وأخوة الإيمان", "range": "9-10"},
+    {"title": "النهي عن السخرية والغيبة وآية التعارف", "range": "11-13"}
+   ]
+  },
+  {
+   "file": "02-haqiqat-aliman-wakhitam-alssura.html",
+   "title": "حقيقة الإيمان وختام السورة",
+   "range": "14-18",
+   "color": "gold",
+   "subsections": [
+    {"title": "الفرق بين الإسلام والإيمان، والرد على المنّ بالإسلام", "range": "14-18"}
+   ]
+  }
+ ]
+}
