@@ -333,7 +333,6 @@
             handle.className = 'note-drag-handle';
             handle.title = 'اسحب لإعادة الترتيب';
             handle.textContent = '⠿';
-            handle.draggable = true;
             item.appendChild(handle);
           }
 
@@ -368,7 +367,7 @@
     /* ---------- إعادة الترتيب بالسحب والإفلات (فأرة + لمس) ---------- */
     function setupDragReorder(list, group){
       let dragIdx = null;
-      let touchItem = null;
+      let dragItem = null;
       let placeholder = null;
 
       function getItems(){ return [...list.querySelectorAll('.note-item')]; }
@@ -382,100 +381,91 @@
         saveNotes();
       }
 
+      function startDrag(item, clientX, clientY){
+        dragItem = item;
+        dragIdx = parseInt(item.dataset.idx);
+        item.classList.add('dragging');
+        placeholder = document.createElement('div');
+        placeholder.className = 'note-item-placeholder';
+        placeholder.style.height = item.offsetHeight + 'px';
+        item.after(placeholder);
+        const rect = item.getBoundingClientRect();
+        item.style.position = 'fixed';
+        item.style.zIndex = '2000';
+        item.style.width = rect.width + 'px';
+        item.style.top = rect.top + 'px';
+        item.style.left = rect.left + 'px';
+        item.dataset.grabOffsetY = String(clientY - rect.top);
+      }
+
+      function moveDrag(clientX, clientY){
+        if(!dragItem) return;
+        const offsetY = parseFloat(dragItem.dataset.grabOffsetY) || 0;
+        dragItem.style.top = (clientY - offsetY) + 'px';
+
+        const below = document.elementFromPoint(clientX, clientY);
+        const overItem = below ? below.closest('.note-item') : null;
+        if(overItem && overItem !== dragItem && list.contains(overItem)){
+          const overIdx = getItems().indexOf(overItem);
+          const placeholderIdx = getItems().indexOf(placeholder);
+          if(overIdx < placeholderIdx) overItem.before(placeholder);
+          else overItem.after(placeholder);
+        }
+      }
+
+      function endDrag(){
+        if(!dragItem) return;
+        dragItem.style.position = '';
+        dragItem.style.zIndex = '';
+        dragItem.style.top = '';
+        dragItem.style.left = '';
+        dragItem.style.width = '';
+        delete dragItem.dataset.grabOffsetY;
+        dragItem.classList.remove('dragging');
+
+        const toIdx = placeholder ? getItems().indexOf(placeholder) : dragIdx;
+        placeholder && placeholder.remove();
+        reorderData(dragIdx, toIdx);
+        renderGroup(group);
+        dragItem = null;
+        placeholder = null;
+        dragIdx = null;
+      }
+
       list.querySelectorAll('.note-item').forEach(item=>{
         const handle = item.querySelector('.note-drag-handle');
+        if(!handle) return;
 
-        // ---------- سحب بالفأرة (Desktop) — يبدأ من المقبض فقط ----------
-        if(handle){
-          handle.addEventListener('dragstart', (e)=>{
-            dragIdx = parseInt(item.dataset.idx);
-            item.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-            try{ e.dataTransfer.setData('text/plain', String(dragIdx)); }catch(err){}
-          });
-
-          handle.addEventListener('dragend', ()=>{
-            item.classList.remove('dragging');
-            getItems().forEach(i=> i.classList.remove('drag-over'));
-          });
-        }
-
-        // منطقة الإفلات تبقى على البطاقة كاملة عشان يقدر يفلت في أي جزء منها
-        item.addEventListener('dragover', (e)=>{
-          if(dragIdx == null) return;
+        // ---------- سحب بالفأرة/تراكباد (Desktop) — مبني يدوياً بدل HTML5 Drag API ----------
+        // (تفادياً لتجمد التمرير في الصفحة أثناء السحب الذي تسببه واجهة السحب الأصلية في بعض المتصفحات)
+        handle.addEventListener('mousedown', (e)=>{
           e.preventDefault();
-          e.dataTransfer.dropEffect = 'move';
-          if(item.classList.contains('dragging')) return;
-          getItems().forEach(i=> i.classList.remove('drag-over'));
-          item.classList.add('drag-over');
-        });
+          startDrag(item, e.clientX, e.clientY);
 
-        item.addEventListener('dragleave', ()=>{
-          item.classList.remove('drag-over');
-        });
-
-        item.addEventListener('drop', (e)=>{
-          if(dragIdx == null) return;
-          e.preventDefault();
-          item.classList.remove('drag-over');
-          const toIdx = parseInt(item.dataset.idx);
-          reorderData(dragIdx, toIdx);
-          dragIdx = null;
-          renderGroup(group);
+          function onMouseMove(ev){ moveDrag(ev.clientX, ev.clientY); }
+          function onMouseUp(){
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            endDrag();
+          }
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
         });
 
         // ---------- سحب باللمس (Mobile) — عبر مقبض السحب فقط ----------
-        if(!handle) return;
-
         handle.addEventListener('touchstart', (e)=>{
-          touchItem = item;
-          dragIdx = parseInt(item.dataset.idx);
-          item.classList.add('dragging');
-          placeholder = document.createElement('div');
-          placeholder.className = 'note-item-placeholder';
-          placeholder.style.height = item.offsetHeight + 'px';
-          item.after(placeholder);
-          item.style.position = 'fixed';
-          item.style.zIndex = '2000';
-          item.style.width = item.getBoundingClientRect().width + 'px';
-          const rect = item.getBoundingClientRect();
-          item.style.top = rect.top + 'px';
-          item.style.left = rect.left + 'px';
+          const touch = e.touches[0];
+          startDrag(item, touch.clientX, touch.clientY);
         }, { passive:true });
 
         handle.addEventListener('touchmove', (e)=>{
-          if(!touchItem) return;
+          if(!dragItem) return;
           e.preventDefault();
           const touch = e.touches[0];
-          const dy = touch.clientY - touchItem.getBoundingClientRect().top - touchItem.offsetHeight/2;
-          touchItem.style.top = (parseFloat(touchItem.style.top) + dy) + 'px';
-
-          const below = document.elementFromPoint(touch.clientX, touch.clientY);
-          const overItem = below ? below.closest('.note-item') : null;
-          if(overItem && overItem !== touchItem && list.contains(overItem)){
-            const overIdx = getItems().indexOf(overItem);
-            const placeholderIdx = getItems().indexOf(placeholder);
-            if(overIdx < placeholderIdx) overItem.before(placeholder);
-            else overItem.after(placeholder);
-          }
+          moveDrag(touch.clientX, touch.clientY);
         }, { passive:false });
 
-        handle.addEventListener('touchend', ()=>{
-          if(!touchItem) return;
-          touchItem.style.position = '';
-          touchItem.style.zIndex = '';
-          touchItem.style.top = '';
-          touchItem.style.left = '';
-          touchItem.style.width = '';
-          touchItem.classList.remove('dragging');
-
-          const toIdx = placeholder ? getItems().indexOf(placeholder) : dragIdx;
-          placeholder && placeholder.remove();
-          reorderData(dragIdx, toIdx);
-          renderGroup(group);
-          touchItem = null;
-          placeholder = null;
-        });
+        handle.addEventListener('touchend', endDrag);
       });
     }
 
