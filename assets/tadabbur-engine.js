@@ -317,6 +317,26 @@
       });
     }
 
+    /* ---------- تعديل الترتيب يدوياً عبر كتابة رقم بجانب الملاحظة ---------- */
+    function applyManualOrder(group, fromIdx, rawValue, total){
+      let toIdx = parseInt(rawValue, 10);
+      if(isNaN(toIdx)){
+        renderGroup(group); // رجّع الرقم القديم لو الإدخال غير صالح
+        return;
+      }
+      toIdx = Math.max(1, Math.min(total, toIdx)) - 1; // تحويل لأساس-صفر وتقييد داخل النطاق
+      if(toIdx === fromIdx){
+        renderGroup(group);
+        return;
+      }
+      const items = notesData[group] || [];
+      const [moved] = items.splice(fromIdx, 1);
+      items.splice(toIdx, 0, moved);
+      notesData[group] = items;
+      saveNotes();
+      renderGroup(group);
+    }
+
     function renderGroup(group){
       document.querySelectorAll(`[data-note-group="${group}"].note-add-btn`).forEach(btn=>{
         const wrap = btn.closest('.ayah-note-block') || btn.closest('.field-value');
@@ -334,6 +354,23 @@
             handle.title = 'اسحب لإعادة الترتيب';
             handle.textContent = '⠿';
             item.appendChild(handle);
+
+            const orderInput = document.createElement('input');
+            orderInput.type = 'number';
+            orderInput.className = 'note-order-input';
+            orderInput.title = 'رقم الترتيب — عدّله لنقل الملاحظة لمكان جديد';
+            orderInput.min = '1';
+            orderInput.max = String(items.length);
+            orderInput.value = String(idx + 1);
+            orderInput.addEventListener('click', (e)=> e.stopPropagation());
+            orderInput.addEventListener('mousedown', (e)=> e.stopPropagation());
+            orderInput.addEventListener('keydown', (e)=>{
+              if(e.key === 'Enter'){ e.preventDefault(); orderInput.blur(); }
+            });
+            orderInput.addEventListener('change', ()=>{
+              applyManualOrder(group, idx, orderInput.value, items.length);
+            });
+            item.appendChild(orderInput);
           }
 
           const p = document.createElement('div');
@@ -370,6 +407,36 @@
       let dragItem = null;
       let placeholder = null;
 
+      // ---------- التمرير التلقائي عند الاقتراب من حافة الشاشة أثناء السحب ----------
+      const EDGE_ZONE = 70;       // px من حافة الشاشة يبدأ عندها السكرول
+      const MAX_SCROLL_SPEED = 18; // أقصى سرعة سكرول (px لكل فريم)
+      let lastClientX = 0, lastClientY = 0;
+      let autoScrollRAF = null;
+
+      function autoScrollTick(){
+        if(!dragItem){ autoScrollRAF = null; return; }
+        const vh = window.innerHeight;
+        let dy = 0;
+        if(lastClientY < EDGE_ZONE){
+          dy = -MAX_SCROLL_SPEED * (1 - lastClientY / EDGE_ZONE);
+        } else if(lastClientY > vh - EDGE_ZONE){
+          dy = MAX_SCROLL_SPEED * (1 - (vh - lastClientY) / EDGE_ZONE);
+        }
+        if(dy !== 0){
+          window.scrollBy(0, dy);
+          // إعادة حساب موضع العنصر والـ placeholder بعد السكرول لأن fixed منسوب للشاشة
+          moveDrag(lastClientX, lastClientY);
+        }
+        autoScrollRAF = requestAnimationFrame(autoScrollTick);
+      }
+
+      function startAutoScroll(){
+        if(autoScrollRAF == null) autoScrollRAF = requestAnimationFrame(autoScrollTick);
+      }
+      function stopAutoScroll(){
+        if(autoScrollRAF != null){ cancelAnimationFrame(autoScrollRAF); autoScrollRAF = null; }
+      }
+
       function getItems(){ return [...list.querySelectorAll('.note-item')]; }
 
       function reorderData(fromIdx, toIdx){
@@ -396,10 +463,15 @@
         item.style.top = rect.top + 'px';
         item.style.left = rect.left + 'px';
         item.dataset.grabOffsetY = String(clientY - rect.top);
+        lastClientX = clientX;
+        lastClientY = clientY;
+        startAutoScroll();
       }
 
       function moveDrag(clientX, clientY){
         if(!dragItem) return;
+        lastClientX = clientX;
+        lastClientY = clientY;
         const offsetY = parseFloat(dragItem.dataset.grabOffsetY) || 0;
         dragItem.style.top = (clientY - offsetY) + 'px';
 
@@ -415,6 +487,7 @@
 
       function endDrag(){
         if(!dragItem) return;
+        stopAutoScroll();
         dragItem.style.position = '';
         dragItem.style.zIndex = '';
         dragItem.style.top = '';
