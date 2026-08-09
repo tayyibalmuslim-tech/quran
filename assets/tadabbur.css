@@ -59,8 +59,9 @@ del.hl-strike{color:#9a8f7a; text-decoration:line-through; text-decoration-thick
   border-radius:8px;
   padding:12px 14px;
   padding-inline-start:32px;
+  padding-inline-end:32px;
   position:relative;
-  transition:opacity .15s, transform .15s, border-color .15s;
+  transition:opacity .15s, transform .15s, border-color .15s, background .15s;
 }
 .note-item.dragging{
   opacity:0.45;
@@ -69,11 +70,29 @@ del.hl-strike{color:#9a8f7a; text-decoration:line-through; text-decoration-thick
   border-color:var(--gold-deep, var(--gold));
   box-shadow:0 0 0 2px rgba(168,134,59,0.25) inset;
 }
+.note-item.note-done{
+  background:rgba(43,38,32,0.04);
+  border-right-color:var(--line);
+}
+.note-item.note-done .note-text{
+  opacity:0.6;
+  text-decoration:line-through;
+  text-decoration-color:var(--ink-soft);
+}
 .note-item-placeholder{
   background:rgba(168,134,59,0.12);
   border:2px dashed var(--gold);
   border-radius:8px;
   margin:0;
+}
+.note-done-checkbox{
+  position:absolute;
+  left:10px;
+  top:14px;
+  width:16px;
+  height:16px;
+  cursor:pointer;
+  accent-color:var(--gold-deep, var(--gold));
 }
 .note-drag-handle{
   position:absolute;
