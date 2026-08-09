@@ -286,6 +286,15 @@
   function initNotesSystem(cloudPage){
     let notesData = resolveState(NOTES_KEY, 'notes', cloudPage) || {};
 
+    // ---------- تطبيع البيانات القديمة: تحويل أي ملاحظة مخزّنة كنص خام لصيغة {html, done} ----------
+    Object.keys(notesData).forEach(group=>{
+      const items = notesData[group] || [];
+      notesData[group] = items.map(entry=>{
+        if(typeof entry === 'string') return { html: entry, done: false };
+        return { html: entry.html || '', done: !!entry.done };
+      });
+    });
+
     function saveNotes(){
       persist(NOTES_KEY, 'notes', notesData);
     }
@@ -343,10 +352,28 @@
         const list = wrap.querySelector('.notes-list');
         const items = notesData[group] || [];
         list.innerHTML = '';
-        items.forEach((html, idx)=>{
+        items.forEach((entry, idx)=>{
           const item = document.createElement('div');
           item.className = 'note-item';
           item.dataset.idx = idx;
+          if(entry.done) item.classList.add('note-done');
+
+          const doneCheckbox = document.createElement('input');
+          doneCheckbox.type = 'checkbox';
+          doneCheckbox.className = 'note-done-checkbox';
+          doneCheckbox.title = 'وضع علامة كملاحظة مكتملة/تمت مراجعتها';
+          doneCheckbox.checked = !!entry.done;
+          doneCheckbox.addEventListener('click', (e)=> e.stopPropagation());
+          doneCheckbox.addEventListener('mousedown', (e)=> e.stopPropagation());
+          doneCheckbox.addEventListener('change', ()=>{
+            const arr = notesData[group] || [];
+            if(arr[idx]){
+              arr[idx].done = doneCheckbox.checked;
+              saveNotes();
+              item.classList.toggle('note-done', doneCheckbox.checked);
+            }
+          });
+          item.appendChild(doneCheckbox);
 
           if(items.length > 1){
             const handle = document.createElement('span');
@@ -375,7 +402,7 @@
 
           const p = document.createElement('div');
           p.className = 'note-text';
-          p.innerHTML = html;
+          p.innerHTML = entry.html;
 
           const actionsRow = document.createElement('div');
           actionsRow.className = 'note-item-actions';
@@ -544,7 +571,7 @@
 
     function deleteNote(group, wrap, idx){
       const items = notesData[group] || [];
-      const preview = (items[idx] || '').replace(/<[^>]*>/g, '').trim();
+      const preview = (items[idx] ? items[idx].html : '').replace(/<[^>]*>/g, '').trim();
       const shortPreview = preview.length > 40 ? preview.slice(0, 40) + '...' : preview;
       const confirmed = confirm(`هل تريد حذف هذه الفقرة؟\n\n"${shortPreview}"\n\nلا يمكن التراجع بعد الحذف.`);
       if(!confirmed) return;
@@ -558,7 +585,7 @@
       const editor = wrap.querySelector('.note-editor');
       const editable = editor.querySelector('.note-editable');
       const items = notesData[group] || [];
-      editable.innerHTML = (editIndex !== undefined && editIndex !== null) ? items[editIndex] : '';
+      editable.innerHTML = (editIndex !== undefined && editIndex !== null) ? (items[editIndex] ? items[editIndex].html : '') : '';
       editor.dataset.editIndex = (editIndex !== undefined && editIndex !== null) ? editIndex : '';
       editor.classList.add('open');
       editable.focus();
@@ -857,9 +884,10 @@
         if(!notesData[group]) notesData[group] = [];
         const idx = editor.dataset.editIndex;
         if(idx !== '' && idx !== undefined){
-          notesData[group][parseInt(idx)] = html;
+          const existing = notesData[group][parseInt(idx)];
+          notesData[group][parseInt(idx)] = { html, done: existing ? !!existing.done : false };
         } else {
-          notesData[group].push(html);
+          notesData[group].push({ html, done: false });
         }
         saveNotes();
         renderGroup(group);
