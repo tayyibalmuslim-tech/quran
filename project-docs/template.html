@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تيمبلت بناء سورة جديدة — مصحف التدبر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --mahwar-bg:#EEEDFE;
+    --mahwar-text:#3C3489;
+    --verse-green:#2E7D4F;
+    --code-bg:#2B2620;
+    --code-text:#F4EFE4;
+    --code-line:#4A4438;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+    line-height:1.7;
+  }
+  .top-nav{
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    background:var(--card);
+    position:sticky; top:0; z-index:50;
+  }
+  .top-nav .brand{ font-weight:700; color:var(--gold-deep); }
+  .toc-links{ display:flex; gap:16px; font-size:14px; flex-wrap:wrap; }
+  .toc-links a{ color:var(--gold-deep); text-decoration:none; }
+  .toc-links a:hover{ text-decoration:underline; }
+
+  header.page-head{
+    text-align:center;
+    padding:40px 20px 26px;
+  }
+  header.page-head h1{
+    font-family:'Amiri', serif;
+    font-size:32px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  header.page-head p{
+    margin-top:10px;
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:620px;
+    margin-inline:auto;
+  }
+
+  main{
+    max-width:900px;
+    margin:0 auto;
+    padding:12px 20px 100px;
+  }
+
+  section.guide-section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:24px;
+    padding:26px 28px;
+  }
+  section.guide-section h2{
+    font-family:'Amiri', serif;
+    font-size:23px;
+    color:var(--gold-deep);
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  section.guide-section h3{
+    font-size:16px;
+    color:var(--ink);
+    margin:18px 0 8px;
+    font-weight:700;
+  }
+  section.guide-section p{ margin-bottom:10px; font-size:14.5px; }
+  section.guide-section ol, section.guide-section ul{
+    margin:8px 0 8px 0;
+    padding-inline-start:22px;
+  }
+  section.guide-section li{ margin-bottom:6px; font-size:14.5px; }
+  section.guide-section strong{ color:var(--gold-deep); }
+
+  .note-box{
+    background:var(--mahwar-bg);
+    border-right:3px solid var(--mahwar-text);
+    border-radius:8px;
+    padding:12px 16px;
+    margin:12px 0;
+    font-size:14px;
+  }
+  .warn-box{
+    background:#FBEFE4;
+    border-right:3px solid var(--gold);
+    border-radius:8px;
+    padding:12px 16px;
+    margin:12px 0;
+    font-size:14px;
+  }
+  .danger-box{
+    background:#FBE4E4;
+    border-right:3px solid #C0392B;
+    border-radius:8px;
+    padding:12px 16px;
+    margin:12px 0;
+    font-size:14px;
+  }
+
+  code.inline{
+    background:var(--code-line);
+    color:var(--code-text);
+    padding:2px 6px;
+    border-radius:4px;
+    font-family:'Fira Code', monospace;
+    font-size:13px;
+  }
+
+  pre.code-block{
+    background:var(--code-bg);
+    color:var(--code-text);
+    border-radius:10px;
+    padding:16px 18px;
+    overflow-x:auto;
+    font-family:'Fira Code', monospace;
+    font-size:12.5px;
+    line-height:1.7;
+    direction:ltr;
+    text-align:left;
+    margin:10px 0;
+    position:relative;
+    white-space:pre;
+  }
+  .code-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+    font-family:'Tajawal', sans-serif;
+    direction:rtl;
+  }
+
+  table.plan-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:10px 0;
+    font-size:13.5px;
+  }
+  table.plan-table th, table.plan-table td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:right;
+  }
+  table.plan-table th{
+    background:var(--mahwar-bg);
+    color:var(--mahwar-text);
+  }
+
+  .divider{
+    text-align:center;
+    margin:50px 0 30px;
+    position:relative;
+  }
+  .divider::before{
+    content:"";
+    position:absolute;
+    top:50%; right:0; left:0;
+    height:1px;
+    background:var(--line);
+  }
+  .divider span{
+    position:relative;
+    background:var(--paper);
+    padding:0 18px;
+    color:var(--gold-deep);
+    font-family:'Amiri', serif;
+    font-size:18px;
+  }
+
+  footer.page-foot{
+    text-align:center;
+    padding:24px;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+  }
+
+  @media (max-width:640px){
+    header.page-head h1{ font-size:26px; }
+    section.guide-section{ padding:18px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <span class="brand">📖 تيمبلت بناء سورة جديدة — مصحف التدبر (نسخة مصححة)</span>
+  <div class="toc-links">
+    <a href="#guide">دليل آلية العمل</a>
+    <a href="#critical">⚠️ الأجزاء الحرجة</a>
+    <a href="#template-muqaddimah">تيمبلت المقدمة</a>
+    <a href="#template-mahwar">تيمبلت المحور</a>
+    <a href="#checklist">الفحص الذاتي</a>
+  </div>
+</div>
+
+<header class="page-head">
+  <h1>ملف مرجعي شامل: بناء سورة كاملة من الصفر</h1>
+  <p>هذا الملف يجمع بين برومبت آلية العمل الكامل، وكل الأكواد الفعلية الكاملة (بدون اختصار) المستخدمة في مشروع "مصحف التدبر" الحقيقي على GitHub. تمت مراجعته بعد اكتشاف أن سورة العلق اترفعت بملفات ناقصة (بلا CSS وبلا محرر ملاحظات فعلي) — فأُضيفت كل الأكواد كاملة هنا لمنع تكرار المشكلة.</p>
+</header>
+
+<main>
+
+  <section class="guide-section" id="critical">
+    <h2>⚠️ الأجزاء الحرجة اللي لازم متتنساش (سبب مشكلة سورة العلق)</h2>
+    <div class="danger-box">
+      <strong>الخطأ اللي حصل فعلياً:</strong> اتبنت ملفات سورة العلق بالاعتماد على وصف مختصر لهذا التيمبلت، فطلعت الصفحات:
+      <ul>
+        <li>من غير أي <code class="inline">&lt;style&gt;</code> — يعني الصفحة اتعرضت بلا أي تنسيق خالص (مفيش خلفية، مفيش بطاقات، مفيش خط الآيات)</li>
+        <li>من غير محرر الملاحظات (<code class="inline">note-editor</code>) الفعلي تحت كل زرار "➕ إضافة" — يعني الزرار كان بيتدوس ومفيش حاجة بتفتح (عطل وظيفي حقيقي)</li>
+        <li><code class="inline">verse-modal-overlay</code> فاضي تماماً بدل محتواه الكامل</li>
+      </ul>
+    </div>
+    <p><strong>القاعدة الذهبية:</strong> أي ملف مقدمة أو محور جديد <strong>لازم يحتوي 4 أجزاء كاملة</strong> بدون اختصار أو استبدالها بـ "..." أو تعليق يقول "يُنسخ لاحقاً":</p>
+    <ol>
+      <li>كتلة <code class="inline">&lt;style&gt;</code> كاملة (موجودة أسفل هذا القسم، انسخها حرفياً)</li>
+      <li>محرر ملاحظات كامل (<code class="inline">note-editor</code> بكل أزراره) بعد <strong>كل</strong> زرار <code class="inline">note-add-btn</code> بلا استثناء</li>
+      <li><code class="inline">top-nav</code> فيه رابط رجوع لكل السور + رابط لصفحة السورة</li>
+      <li><code class="inline">verse-modal-overlay</code> بمحتواه الكامل (تابات البحث والمجموعة)</li>
+    </ol>
+
+    <h3>كتلة الـ&lt;style&gt; الكاملة الإلزامية (تُنسخ كما هي داخل &lt;head&gt; كل ملف مقدمة/محور)</h3>
+    <div class="code-label">CSS كامل — بدون اختصار، يحتوي كل الكلاسات المستخدمة في المحتوى</div>
+    <pre class="code-block">&lt;style&gt;
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --mahwar-bg:#EEEDFE;
+    --mahwar-text:#3C3489;
+    --verse-green:#2E7D4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+  }
+  .top-nav{
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .nav-links{ display:flex; gap:16px; font-size:14px; }
+  .nav-links a{ color:var(--gold-deep); text-decoration:none; }
+  .nav-links a:hover{ text-decoration:underline; }
+  header{
+    text-align:center;
+    padding:36px 20px 24px;
+  }
+  .mahwar-badge{
+    display:inline-block;
+    background:var(--mahwar-bg);
+    color:var(--mahwar-text);
+    font-size:13px;
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Amiri', serif;
+    font-size:34px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .range{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:12px 20px 80px;
+  }
+  .sub-block{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:20px;
+    padding:22px 24px;
+  }
+  .sub-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .sub-title{
+    font-family:'Amiri', serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .sub-range{
+    font-size:12px;
+    color:var(--gold-deep);
+    background:rgba(168,134,59,0.12);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .field{ margin-bottom:14px; }
+  .field:last-child{ margin-bottom:0; }
+  .field-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+    font-weight:500;
+  }
+  .field-value{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ink);
+    white-space:pre-line;
+  }
+  .field-value.empty{
+    color:#B3A98F;
+    font-style:italic;
+    font-size:13px;
+  }
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+  }
+  .info-card .info-label{ font-size:12px; color:var(--ink-soft); margin-bottom:6px; }
+  .info-card .info-value{ font-family:'Amiri', serif; font-size:19px; font-weight:700; color:var(--gold-deep); }
+  .hadith-box{
+    background:var(--mahwar-bg);
+    border-right:3px solid var(--mahwar-text);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    line-height:1.9;
+  }
+  .hadith-box .hadith-text{ font-family:'Amiri', serif; font-size:16px; color:var(--ink); }
+  .hadith-box .hadith-source{ margin-top:6px; font-size:12px; color:var(--ink-soft); }
+  .verses-text{
+    font-family:'Amiri', serif;
+    font-size:19px;
+    line-height:2.6;
+    color:var(--verse-green);
+  }
+  .ayah-num{
+    font-size:14px;
+    color:var(--gold-deep);
+    font-family:'Tajawal', sans-serif;
+  }
+  .glossary{ display:flex; flex-direction:column; gap:8px; }
+  .glossary-item{ display:flex; gap:8px; font-size:14px; line-height:1.8; flex-wrap:wrap; }
+  .glossary-word{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    color:var(--verse-green);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .glossary-meaning{ color:var(--ink); }
+  .ayah-note-block{ margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed var(--line); }
+  .ayah-note-block:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .tafsir-ayah{
+    display:block;
+    font-family:'Amiri', serif;
+    font-size:17px;
+    color:var(--verse-green);
+    margin:16px 0 6px;
+    line-height:2;
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:var(--card);
+    padding:10px 4px 8px;
+    box-shadow:0 4px 8px -4px rgba(43,38,32,0.12);
+  }
+  .tafsir-ayah:first-child{ margin-top:0; }
+  .tafsir-text{
+    font-size:14.5px;
+    line-height:1.9;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+&lt;/style&gt;</pre>
+
+    <h3>محرر الملاحظات الكامل (يُنسخ حرفياً بعد كل زرار "➕ إضافة" — بلا استثناء)</h3>
+    <div class="warn-box">القاعدة: كل <code class="inline">note-add-btn</code> (سواء تفسير آية أو تدبر قسم فرعي) لازم يتبعه مباشرة هذا الكود كامل داخل نفس الحاوية (<code class="inline">.ayah-note-block</code> أو <code class="inline">.field-value</code>)، لأن الجافاسكريبت بيدور على <code class="inline">.note-editor</code> جوه أقرب حاوية للزرار — لو مش موجود، الزرار مش هيعمل حاجة.</div>
+    <div class="code-label">HTML كامل لمحرر الملاحظات</div>
+    <pre class="code-block">&lt;div class="note-editor"&gt;
+  &lt;div class="note-toolbar"&gt;
+    &lt;button type="button" data-cmd="bold" title="غامق"&gt;B&lt;/button&gt;
+    &lt;button type="button" data-cmd="italic" title="مائل"&gt;I&lt;/button&gt;
+    &lt;button type="button" data-cmd="underline" title="تسطير"&gt;U&lt;/button&gt;
+    &lt;span class="toolbar-sep"&gt;&lt;/span&gt;
+    &lt;select data-cmd="fontSize" title="حجم الخط"&gt;
+      &lt;option value="2"&gt;صغير&lt;/option&gt;
+      &lt;option value="3" selected&gt;عادي&lt;/option&gt;
+      &lt;option value="4"&gt;متوسط&lt;/option&gt;
+      &lt;option value="5"&gt;كبير&lt;/option&gt;
+      &lt;option value="6"&gt;كبير جداً&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"&gt;&lt;span class="color-swatch"&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;span class="toolbar-sep"&gt;&lt;/span&gt;
+    &lt;button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت"&gt;🖊️&lt;/button&gt;
+    &lt;span class="toolbar-sep"&gt;&lt;/span&gt;
+    &lt;button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية"&gt;📖 آية&lt;/button&gt;
+    &lt;span class="toolbar-sep"&gt;&lt;/span&gt;
+    &lt;button type="button" data-cmd="removeFormat" title="إزالة التنسيق"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."&gt;&lt;/div&gt;
+  &lt;div class="note-editor-actions"&gt;&lt;button class="note-save-btn"&gt;إضافة&lt;/button&gt;&lt;button class="note-cancel-btn"&gt;إلغاء&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <h3>شريط التنقل العلوي + تنبيه المحتوى (يُنسخ فوق كل صفحة مباشرة بعد &lt;body&gt;)</h3>
+    <pre class="code-block">&lt;body data-surah="[رقم السورة]" data-mahwar="[معرّف الملف]"&gt;
+&lt;div style="background:#FFF3CD;border-bottom:2px solid #E0A800;color:#664D03;padding:10px 16px;font-family:'IBM Plex Sans Arabic','Tahoma',sans-serif;font-size:13.5px;line-height:1.7;text-align:center;direction:rtl" role="note"&gt;
+⚠️ &lt;strong&gt;تنبيه:&lt;/strong&gt; هذا المحتوى تم إعداده بمساعدة الذكاء الاصطناعي وقد يحتوي على أخطاء في الشرح والتحليل، يُرجى المراجعة والتحقق خاصة في المسائل الشرعية.
+&lt;/div&gt;
+
+&lt;div class="top-nav"&gt;
+  &lt;a href="../../../index.html" class="nav-links"&gt;&lt;span&gt;← كل السور&lt;/span&gt;&lt;/a&gt;
+  &lt;div class="nav-links"&gt;
+    &lt;a href="../../../surah.html?id=[رقم السورة]"&gt;سورة [الاسم]&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;header&gt;
+  &lt;span class="mahwar-badge"&gt;[مقدمة السورة / المحور X من Y]&lt;/span&gt;
+  &lt;h1&gt;[عنوان الصفحة]&lt;/h1&gt;
+  &lt;p class="range"&gt;[قبل المحور الأول / آيات من-إلى]&lt;/p&gt;
+&lt;/header&gt;</pre>
+
+    <h3>verse-modal-overlay الكامل (يُنسخ حرفياً في نهاية كل صفحة، قبل &lt;script&gt; المحرك)</h3>
+    <pre class="code-block">&lt;div id="selectionMenu"&gt;
+  &lt;button class="dot-yellow" data-action="hl-yellow" title="هايلايت أصفر"&gt;&lt;/button&gt;
+  &lt;button class="dot-green" data-action="hl-green" title="هايلايت أخضر"&gt;&lt;/button&gt;
+  &lt;button class="dot-pink" data-action="hl-pink" title="هايلايت وردي"&gt;&lt;/button&gt;
+  &lt;button class="dot-blue" data-action="hl-blue" title="هايلايت أزرق"&gt;&lt;/button&gt;
+  &lt;button class="dot-strike" data-action="strike" title="شطب"&gt;S&lt;/button&gt;
+  &lt;button class="dot-remove" data-action="remove" title="إزالة التنسيق"&gt;✕&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="verse-modal-overlay" id="verseModalOverlay"&gt;
+  &lt;div class="verse-modal"&gt;
+    &lt;div class="verse-modal-header"&gt;
+      &lt;h3&gt;➕ إضافة آية&lt;/h3&gt;
+      &lt;button class="verse-modal-close" id="verseModalClose"&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="verse-tabs"&gt;
+      &lt;button class="verse-tab active" data-tab="search"&gt;🔍 بحث&lt;/button&gt;
+      &lt;button class="verse-tab" data-tab="range"&gt;📑 مجموعة آيات&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="verse-tab-panel" id="tabSearch"&gt;
+      &lt;div class="verse-search-box"&gt;
+        &lt;input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'..."&gt;
+        &lt;div class="verse-search-hint"&gt;مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="verse-results" id="verseResults"&gt;
+        &lt;div class="verse-no-results"&gt;اكتب في الأعلى للبحث عن آية&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="verse-tab-panel" id="tabRange" style="display:none;"&gt;
+      &lt;div class="verse-range-box"&gt;
+        &lt;select id="rangeSurahSelect"&gt;&lt;/select&gt;
+        &lt;div class="verse-range-inputs"&gt;
+          &lt;div class="verse-range-field"&gt;
+            &lt;label&gt;من آية&lt;/label&gt;
+            &lt;input type="number" id="rangeFromInput" min="1" value="1"&gt;
+          &lt;/div&gt;
+          &lt;div class="verse-range-field"&gt;
+            &lt;label&gt;إلى آية&lt;/label&gt;
+            &lt;input type="number" id="rangeToInput" min="1" value="1"&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button class="verse-range-add-btn" id="rangeAddBtn"&gt;➕ إضافة المجموعة&lt;/button&gt;
+        &lt;div class="verse-range-preview" id="rangePreview"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../../../assets/tadabbur-engine.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+    <div class="note-box">
+      💡 ملحوظة عن <code class="inline">data-note-group</code>: التخزين بيتم بمفتاح يشمل <code class="inline">data-surah</code> و <code class="inline">data-mahwar</code> تلقائياً من الصفحة نفسها، يعني المعرّف محتاج يكون <strong>فريد جوه نفس الملف بس</strong>، مش لازم يكون فريد على مستوى الموقع كله. رغم كده الأفضل الالتزام بصيغة <code class="inline">tafsir-[رقم السورة]-[رقم بداية القسم]-[رقم تسلسلي]</code> و <code class="inline">tadabbur-[رقم السورة]-[رقم المحور][حرف الجزء الفرعي]</code> للوضوح والتناسق.
+    </div>
+
+    <div class="note-box">
+      💡 <strong>ميزة تثبيت الآية أثناء القراءة (sticky ayah):</strong> كلاس <code class="inline">.tafsir-ayah</code> في كتلة الـ&lt;style&gt; الإلزامية أعلى هذا الملف يحتوي بالفعل على <code class="inline">position:sticky; top:0;</code> مع خلفية <code class="inline">var(--card)</code> وظل خفيف. هذا يجعل نص كل آية في قسم "المعنى التفصيلي" يثبت أعلى الصفحة أثناء التمرير حتى تصل الآية التالية فتحل محلها في نفس الموضع الثابت. هذا السلوك <strong>مطلوب تلقائياً في كل ملف مقدمة أو محور جديد</strong> بمجرد نسخ كتلة الـCSS كما هي — لا حاجة لأي تعديل إضافي أو خطوة منفصلة، فقط تأكد أن كتلة الـstyle المنسوخة تتضمن خصائص الـsticky هذه ولم تُختصر أو تُستبدل بالنسخة القديمة منها.
+    </div>
+  </section>
+
+  <section class="guide-section" id="guide">
+    <h2>🗺️ آلية العمل: بناء سورة كاملة لمصحف التدبر</h2>
+
+    <p>المطلوب: بناء سورة <strong>[اسم السورة]</strong> كاملة لمشروع "مصحف التدبر"، بنفس البنية والمعايير المستخدمة في باقي ملفات المشروع (راجع سورة البقرة كمرجع فعلي حي دايماً، مش بس هذا التيمبلت). الناتج: ملف مقدمة + ملف لكل محور رئيسي، وكل محور مقسّم لأقسام فرعية (sub-blocks).</p>
+
+
+    <h3>الخطوة 0 — الرجوع لملف حقيقي كمرجع (إلزامي)</h3>
+    <div class="warn-box">قبل بناء أي سورة جديدة، لازم تُجلب نسخة فعلية كاملة من ملف مقدمة ومحور من سورة البقرة (الموجودة فعلياً على GitHub) ومقارنتها بأي ملف جديد قبل التسليم — التيمبلت ده مرجع سريع بس، مش بديل عن المقارنة الفعلية.</div>
+
+    <h3>الخطوة 1 — التخطيط الموضوعي (قبل أي HTML)</h3>
+    <p>قبل كتابة أي كود، تُعرض خطة نصية فيها:</p>
+    <ol>
+      <li><strong>تقسيم السورة لمحاور رئيسية</strong>: كل محور يغطي مجموعة آيات مترابطة موضوعياً (قصص، أحكام، عقيدة...). لو المحور سيحتوي أكثر من 25-30 آية، يُخطَّط من البداية كأقسام فرعية متعددة واضحة.</li>
+      <li><strong>تقسيم كل محور لأقسام فرعية</strong>: كل قسم فرعي يغطي <strong>5-10 آيات كحد أقصى مريح للقراءة</strong>، حسب الترابط الطبيعي (سياق واحد / قصة واحدة / حكم واحد) — لا تقسيم عشوائي بالعدد.</li>
+      <li>لكل قسم فرعي: عنوان مختصر يعبّر عن جوهر مضمونه.</li>
+    </ol>
+    <div class="warn-box">⚠️ لا تُكتب أي HTML قبل اعتماد الخطة الموضوعية من صاحب المشروع.</div>
+
+    <h3>الخطوة 2 — ملف المقدمة (00-muqaddimat-alsurah.html)</h3>
+    <p>ملف واحد يحتوي:</p>
+    <ul>
+      <li>بطاقات معلومات سريعة: نوع السورة (مكية/مدنية)، ترتيبها، عدد آياتها، عدد كلماتها</li>
+      <li>التعريف بالسورة: فقرتين (تعريف عام + سياق نزولها ومقصدها)</li>
+      <li>فضل السورة: أحاديث صحيحة موثّقة بمصادرها إن وُجدت، وإلا حقل فارغ محترم</li>
+      <li>أبرز موضوعات السورة: فقرة سردية تلخص كل المحاور الرئيسية بترابط</li>
+      <li>حقل "تدبراتي الشخصية" فارغ (نفس بنية باقي الملفات، بمحرر الملاحظات الكامل)</li>
+    </ul>
+
+    <h3>الخطوة 3 — ملفات المحاور الرئيسية (01، 02، 03...)</h3>
+    <p>كل ملف محور يحتوي sub-block واحد أو أكثر (الأقسام الفرعية)، وكل sub-block يجب أن يحتوي بالترتيب:</p>
+
+    <table class="plan-table">
+      <tr><th>العنصر</th><th>الوصف</th></tr>
+      <tr><td>أ) نص الآيات</td><td>النص العربي الكامل بالرسم العثماني (﴿...﴾)، بأرقام الآيات بين قوسين عربية (٩٦)</td></tr>
+      <tr><td>ب) معاني المفردات</td><td>الكلمات الغريبة/المهمة في هذا القسم فقط، كل كلمة مع معناها في جملة مختصرة دقيقة</td></tr>
+      <tr><td>ج) المعنى الإجمالي</td><td>فقرة واحدة متماسكة (5-8 جمل) تلخص القسم الفرعي بأسلوب سردي مبسّط، لا نسخ حرفي من كتب التفسير</td></tr>
+      <tr><td>د) المعنى التفصيلي</td><td>شرح آية بآية، كل آية في ayah-note-block منفصل، بمعرّف فريد ومحرر ملاحظات كامل (كود المحرر أعلى هذا الملف)</td></tr>
+      <tr><td>هـ) التدبر</td><td>حقل فارغ للملاحظات الشخصية، بمعرّف فريد خاص بالقسم الفرعي ومحرر ملاحظات كامل</td></tr>
+    </table>
+
+    <h3>قواعد الجودة الإلزامية</h3>
+    <ol>
+      <li><strong>الدقة الشرعية أولاً</strong>: أي معنى إجمالي/تفصيلي/معاني مفردات يعتمد على مصادر تفسير معتمدة (الطبري، ابن كثير، السعدي، القرطبي)، وليس اجتهاداً شخصياً بلا سند. عند وجود خلاف بين المفسرين، يُذكر بحياد.</li>
+      <li><strong>معيار التقسيم</strong>: أي قسم فرعي أكثر من 10 آيات يُقسَّم من البداية، لا يُبنى كبيراً ثم يُقسَّم لاحقاً.</li>
+      <li><strong>الأرقام والمعرّفات الفريدة</strong>: كل ayah-note-block وكل tadabbur field له معرّف فريد لا يتكرر في نفس الملف.</li>
+      <li><strong>البنية التقنية الموحدة والكاملة</strong>: كتلة الـCSS كاملة + محرر الملاحظات كامل + top-nav + verse-modal كامل في كل ملف — راجع قسم "الأجزاء الحرجة" أعلى هذا الملف.</li>
+      <li><strong>فحص ذاتي قبل التسليم</strong> — راجع قسم "الفحص الذاتي" أسفل هذا الملف.</li>
+    </ol>
+
+    <h3>طريقة التسليم</h3>
+    <ul>
+      <li>عرض الخطة الموضوعية أولاً، والانتظار حتى الموافقة عليها</li>
+      <li>بعد الموافقة: بناء المقدمة أولاً وعرضها</li>
+      <li>بعد ذلك كل محور على حدة، بالترتيب، وبعد كل محور عرض نتيجة الفحص الذاتي (عدد الآيات، توازن الوسوم، عدد الأقسام الفرعية، تأكيد وجود الـstyle والـnote-editor كاملين)</li>
+      <li>لو محور معين كبير جداً (أكثر من 40 آية): يُسأل هل يُبنى على مرتين أو دفعة واحدة</li>
+    </ul>
+
+    <div class="note-box">
+      💡 ملحوظة عملية: لو السورة طويلة (زي البقرة أو آل عمران)، الأفضل تُطلب المحاور الرئيسية واحداً واحداً بدل السورة كلها في رسالة واحدة، لتقليل احتمال الأخطاء وتسهيل المراجعة.
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- القسم الرابع: الفحص الذاتي                                     -->
+  <!-- ============================================================ -->
+
+  <section class="guide-section" id="checklist">
+    <h2>✅ قائمة الفحص الذاتي قبل تسليم أي ملف مقدمة أو محور</h2>
+    <ul>
+      <li><strong>[الأهم]</strong> الملف يحتوي كتلة <code class="inline">&lt;style&gt;</code> كاملة داخل &lt;head&gt; (ليست فاضية أو معتمدة على tadabbur.css وحده)</li>
+      <li>كلاس <code class="inline">.tafsir-ayah</code> يحتوي خصائص <code class="inline">position:sticky; top:0;</code> مع الخلفية والظل (وليس النسخة القديمة بدون sticky)</li>
+      <li><strong>[الأهم]</strong> كل <code class="inline">note-add-btn</code> (تفسير آية + تدبر) له <code class="inline">note-editor</code> كامل بعده مباشرة، مش placeholder ولا فاضي</li>
+      <li><code class="inline">verse-modal-overlay</code> يحتوي المحتوى الكامل (تابات بحث/مجموعة)، مش div فاضي</li>
+      <li>موجود <code class="inline">top-nav</code> فيه رابط رجوع للصفحة الرئيسية ورابط لصفحة السورة</li>
+      <li>عدد الآيات في نص الآيات يطابق النطاق المعلن بالضبط (بدون نقص أو تكرار)</li>
+      <li>توازن وسوم HTML: كل &lt;div&gt; مفتوح له &lt;/div&gt; مقفول (فحصها بعدّ الفتح والقفل برمجياً أفضل من العين)</li>
+      <li>كل قيم <code class="inline">data-note-group</code> فريدة داخل نفس الملف (لا تكرار بين tafsir و tadabbur)</li>
+      <li>كل قسم فرعي لا يتجاوز 10 آيات — وإلا وجب تقسيمه من البداية</li>
+      <li>سطر <code class="inline">firebase-sync.js</code> موجود بعد <code class="inline">quran-data.js</code> مباشرة في &lt;head&gt;</li>
+      <li>المعنى الإجمالي والتفصيلي مستندان لمصادر تفسير معتمدة (الطبري / ابن كثير / السعدي / القرطبي)، لا اجتهاد شخصي غير مسنود</li>
+      <li><code class="inline">info.json</code> يحتوي <code class="inline">id</code> و <code class="inline">name_ar</code> و <code class="inline">type</code> و <code class="inline">total_verses</code> بالإضافة لـ <code class="inline">muqaddimah</code> و <code class="inline">mahawir</code>، وقيم <code class="inline">range</code> بأرقام إنجليزية عادية (مثل "1-19") مش أرقام عربية هندية</li>
+      <li>اسم فولدر السورة على النمط <code class="inline">surahs/[رقم 3 خانات]-[الاسم بالإنجليزية]/</code> (مثال: <code class="inline">096-al-alaq</code>) وتم إضافة رقم السورة لمصفوفة <code class="inline">READY_SURAHS</code> في index.html</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="page-foot">تيمبلت بناء سورة جديدة — مصحف التدبر — نسخة مصححة بعد حادثة سورة العلق — للاستخدام الداخلي عند بدء أي سورة جديدة</footer>
+
+</body>
+</html>
