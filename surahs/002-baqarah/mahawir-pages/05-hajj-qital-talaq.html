@@ -123,6 +123,46 @@
     line-height:2.6;
     color:var(--verse-green);
   }
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
+  }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:'Tajawal', sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
+  .ayah-gloss{
+    display:flex; flex-direction:column; gap:6px;
+    margin:2px 0 12px; padding:11px 13px;
+    background:rgba(168,134,59,.075);
+    border-right:2px solid var(--gold);
+    border-radius:9px;
+  }
+  .ag-item{ display:flex; gap:7px; flex-wrap:wrap; font-size:14px; line-height:1.85; }
+  .ag-w{ font-family:'Amiri', serif; font-weight:700; color:var(--verse-green); flex-shrink:0; }
+  .ag-m{ color:var(--ink); }
+
   .tafsir-ayah{
     display:block;
     font-family:'Amiri', serif;
@@ -174,28 +214,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿۞يَسۡـَٔلُونَكَ عَنِ ٱلۡأَهِلَّةِۖ قُلۡ هِيَ مَوَٰقِيتُ لِلنَّاسِ وَٱلۡحَجِّۗ وَلَيۡسَ ٱلۡبِرُّ بِأَن تَأۡتُواْ ٱلۡبُيُوتَ مِن ظُهُورِهَا وَلَـٰكِنَّ ٱلۡبِرَّ مَنِ ٱتَّقَىٰۗ وَأۡتُواْ ٱلۡبُيُوتَ مِنۡ أَبۡوَٰبِهَاۚ وَٱتَّقُواْ ٱللَّهَ لَعَلَّكُمۡ تُفۡلِحُونَ (١٨٩) وَقَٰتِلُواْ فِي سَبِيلِ ٱللَّهِ ٱلَّذِينَ يُقَٰتِلُونَكُمۡ وَلَا تَعۡتَدُوٓاْۚ إِنَّ ٱللَّهَ لَا يُحِبُّ ٱلۡمُعۡتَدِينَ (١٩٠) وَٱقۡتُلُوهُمۡ حَيۡثُ ثَقِفۡتُمُوهُمۡ وَأَخۡرِجُوهُم مِّنۡ حَيۡثُ أَخۡرَجُوكُمۡۚ وَٱلۡفِتۡنَةُ أَشَدُّ مِنَ ٱلۡقَتۡلِۚ وَلَا تُقَٰتِلُوهُمۡ عِندَ ٱلۡمَسۡجِدِ ٱلۡحَرَامِ حَتَّىٰ يُقَٰتِلُوكُمۡ فِيهِۖ فَإِن قَٰتَلُوكُمۡ فَٱقۡتُلُوهُمۡۗ كَذَٰلِكَ جَزَآءُ ٱلۡكَٰفِرِينَ (١٩١) فَإِنِ ٱنتَهَوۡاْ فَإِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (١٩٢) وَقَٰتِلُوهُمۡ حَتَّىٰ لَا تَكُونَ فِتۡنَةٞ وَيَكُونَ ٱلدِّينُ لِلَّهِۖ فَإِنِ ٱنتَهَوۡاْ فَلَا عُدۡوَٰنَ إِلَّا عَلَى ٱلظَّـٰلِمِينَ (١٩٣) ٱلشَّهۡرُ ٱلۡحَرَامُ بِٱلشَّهۡرِ ٱلۡحَرَامِ وَٱلۡحُرُمَٰتُ قِصَاصٞۚ فَمَنِ ٱعۡتَدَىٰ عَلَيۡكُمۡ فَٱعۡتَدُواْ عَلَيۡهِ بِمِثۡلِ مَا ٱعۡتَدَىٰ عَلَيۡكُمۡۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ مَعَ ٱلۡمُتَّقِينَ (١٩٤) وَأَنفِقُواْ فِي سَبِيلِ ٱللَّهِ وَلَا تُلۡقُواْ بِأَيۡدِيكُمۡ إِلَى ٱلتَّهۡلُكَةِۛ وَأَحۡسِنُوٓاْۛ إِنَّ ٱللَّهَ يُحِبُّ ٱلۡمُحۡسِنِينَ (١٩٥)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">ٱلۡأَهِلَّةِ</span><span class="glossary-meaning">جمع هلال، وهو القمر أول ظهوره كل شهر.</span></div>
-        <div class="glossary-item"><span class="glossary-word">مَوَٰقِيتُ</span><span class="glossary-meaning">علامات تُعرف بها أوقات العبادات والمعاملات.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لَا تَعۡتَدُواْ</span><span class="glossary-meaning">لا تتجاوزوا الحد المأذون به في القتال.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡفِتۡنَةُ</span><span class="glossary-meaning">الشرك والصدّ عن دين الله، أو الإيذاء والإخراج من الديار.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلشَّهۡرُ ٱلۡحَرَامُ</span><span class="glossary-meaning">الأشهر الأربعة المحرَّم فيها القتال: ذو القعدة وذو الحجة والمحرم ورجب.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلتَّهۡلُكَةِ</span><span class="glossary-meaning">الهلاك، بترك الجهاد والإنفاق أو بالتقصير في الأخذ بأسباب النجاة.</span></div>
+      <div class="field-value verses-text" data-hl-id="v0">
+        ﴿۞يَسۡـَٔلُونَكَ عَنِ <span class="wq" data-m="جمع هلال، وهو القمر في أول ظهوره من كل شهر.">ٱلۡأَهِلَّةِ</span>ۖ قُلۡ هِيَ <span class="wq" data-m="علامات زمنية يعرف بها الناس أوقات عباداتهم ومعاملاتهم.">مَوَٰقِيتُ</span> لِلنَّاسِ وَٱلۡحَجِّۗ وَلَيۡسَ <span class="wq" data-m="اسم جامع لكل خير وطاعة تقرّب إلى الله.">ٱلۡبِرُّ</span> بِأَن تَأۡتُواْ ٱلۡبُيُوتَ مِن <span class="wq" data-m="مؤخرة البيوت؛ كانوا في الجاهلية يدخلون منها إذا أحرموا.">ظُهُورِهَا</span> وَلَـٰكِنَّ ٱلۡبِرَّ مَنِ ٱتَّقَىٰۗ وَأۡتُواْ ٱلۡبُيُوتَ مِنۡ أَبۡوَٰبِهَاۚ وَٱتَّقُواْ ٱللَّهَ لَعَلَّكُمۡ <span class="wq" data-m="تفوزون بالمطلوب وتنجون من المرهوب.">تُفۡلِحُونَ</span> (١٨٩) وَقَٰتِلُواْ فِي سَبِيلِ ٱللَّهِ ٱلَّذِينَ يُقَٰتِلُونَكُمۡ وَلَا <span class="wq" data-m="تتجاوزوا الحدّ المأذون به، كقتل من لا يقاتل من النساء والصبيان والشيوخ.">تَعۡتَدُوٓاْ</span>ۚ إِنَّ ٱللَّهَ لَا يُحِبُّ <span class="wq" data-m="المتجاوزين لحدود الله وما أذن فيه.">ٱلۡمُعۡتَدِينَ</span> (١٩٠) وَٱقۡتُلُوهُمۡ حَيۡثُ <span class="wq" data-m="وجدتموهم وظفرتم بهم وتمكنتم منهم.">ثَقِفۡتُمُوهُمۡ</span> وَأَخۡرِجُوهُم مِّنۡ حَيۡثُ أَخۡرَجُوكُمۡۚ وَ<span class="wq" data-m="الشرك وصدّ الناس عن دين الله، وإيذاء المؤمنين وإخراجهم من ديارهم.">ٱلۡفِتۡنَةُ</span> أَشَدُّ مِنَ ٱلۡقَتۡلِۚ وَلَا تُقَٰتِلُوهُمۡ عِندَ ٱلۡمَسۡجِدِ ٱلۡحَرَامِ حَتَّىٰ يُقَٰتِلُوكُمۡ فِيهِۖ فَإِن قَٰتَلُوكُمۡ فَٱقۡتُلُوهُمۡۗ كَذَٰلِكَ <span class="wq" data-m="العقوبة والمقابلة على الفعل.">جَزَآءُ</span> ٱلۡكَٰفِرِينَ (١٩١) فَإِنِ <span class="wq" data-m="كفّوا عن الكفر والقتال وأقلعوا عنه.">ٱنتَهَوۡاْ</span> فَإِنَّ ٱللَّهَ <span class="wq" data-m="كثير المغفرة، يستر الذنب ويتجاوز عنه.">غَفُورٞ</span> <span class="wq" data-m="واسع الرحمة بعباده.">رَّحِيمٞ</span> (١٩٢) وَقَٰتِلُوهُمۡ حَتَّىٰ لَا تَكُونَ فِتۡنَةٞ وَيَكُونَ ٱلدِّينُ لِلَّهِۖ فَإِنِ <span class="wq" data-m="كفّوا عن الكفر والقتال وأقلعوا عنه.">ٱنتَهَوۡاْ</span> فَلَا <span class="wq" data-m="اعتداء ومجاوزة للحد.">عُدۡوَٰنَ</span> إِلَّا عَلَى ٱلظَّـٰلِمِينَ (١٩٣) <span class="wq" data-m="أحد الأشهر الأربعة التي حُرّم فيها القتال: ذو القعدة وذو الحجة والمحرم ورجب.">ٱلشَّهۡرُ ٱلۡحَرَامُ</span> بِٱلشَّهۡرِ ٱلۡحَرَامِ وَ<span class="wq" data-m="جمع حُرمة، وهي كل ما وجب احترامه وحَرُم انتهاكه من زمان ومكان وحقوق.">ٱلۡحُرُمَٰتُ</span> <span class="wq" data-m="مماثلة ومساواة؛ يُقابَل الاعتداء بمثله من غير زيادة.">قِصَاصٞ</span>ۚ فَمَنِ ٱعۡتَدَىٰ عَلَيۡكُمۡ فَٱعۡتَدُواْ عَلَيۡهِ بِمِثۡلِ مَا ٱعۡتَدَىٰ عَلَيۡكُمۡۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ مَعَ ٱلۡمُتَّقِينَ (١٩٤) وَأَنفِقُواْ فِي سَبِيلِ ٱللَّهِ وَلَا <span class="wq" data-m="تُسلِموا أنفسكم وتُوقعوها بأيديكم.">تُلۡقُواْ بِأَيۡدِيكُمۡ</span> إِلَى <span class="wq" data-m="الهلاك والدمار، بترك الجهاد والإنفاق أو بالتفريط في أسباب النجاة.">ٱلتَّهۡلُكَةِ</span>ۛ <span class="wq" data-m="أتقنوا العمل وأجملوا في القول والفعل.">وَأَحۡسِنُوٓاْ</span>ۛ إِنَّ ٱللَّهَ يُحِبُّ ٱلۡمُحۡسِنِينَ (١٩٥)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تجيب الآيات عن سؤال الناس عن الأهلة، فتبيّن أنها مواقيت يُعرف بها الزمن للعبادات كالحج والصيام، وتصحح عادة جاهلية كانت لبعض العرب من دخول البيوت من ظهورها في الإحرام، مؤكدة أن البر الحقيقي هو تقوى الله لا هذه الطقوس الشكلية. ثم تأمر الآيات بالقتال في سبيل الله دفاعاً لا اعتداءً، فيُقاتَل من يقاتل المسلمين دون تجاوز الحدود، مع الإذن بقتال المشركين حيث وُجدوا جزاءً على إخراجهم المسلمين من ديارهم، مع النهي عن القتال عند المسجد الحرام إلا أن يبدأ الكفار به، لأن الفتنة (الشرك والصد عن الدين) أشد خطراً من القتل ذاته. وتقرر الآيات مبدأ القصاص في حرمة الأشهر، وأن من اعتدى يُقابَل بمثل اعتدائه دون زيادة، مع الأمر بالإنفاق في سبيل الله والتحذير من ترك الجهاد والإنفاق طريقاً إلى الهلاك، والدعوة للإحسان في كل الأحوال.</div>
+      <div class="field-value" data-hl-id="b8">تجيب الآيات عن سؤال الناس عن الأهلة، فتبيّن أنها مواقيت يُعرف بها الزمن للعبادات كالحج والصيام، وتصحح عادة جاهلية كانت لبعض العرب من دخول البيوت من ظهورها في الإحرام، مؤكدة أن البر الحقيقي هو تقوى الله لا هذه الطقوس الشكلية. ثم تأمر الآيات بالقتال في سبيل الله دفاعاً لا اعتداءً، فيُقاتَل من يقاتل المسلمين دون تجاوز الحدود، مع الإذن بقتال المشركين حيث وُجدوا جزاءً على إخراجهم المسلمين من ديارهم، مع النهي عن القتال عند المسجد الحرام إلا أن يبدأ الكفار به، لأن الفتنة (الشرك والصد عن الدين) أشد خطراً من القتل ذاته. وتقرر الآيات مبدأ القصاص في حرمة الأشهر، وأن من اعتدى يُقابَل بمثل اعتدائه دون زيادة، مع الأمر بالإنفاق في سبيل الله والتحذير من ترك الجهاد والإنفاق طريقاً إلى الهلاك، والدعوة للإحسان في كل الأحوال.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b9">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-1">➕ إضافة</button>
         <div class="note-editor">
@@ -226,9 +255,17 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d10">
         <div class="ayah-note-block" data-note-group="tafsir-5-1-1">
           <span class="tafsir-ayah">۞يَسۡـَٔلُونَكَ عَنِ ٱلۡأَهِلَّةِۖ قُلۡ هِيَ مَوَٰقِيتُ لِلنَّاسِ وَٱلۡحَجِّۗ وَلَيۡسَ ٱلۡبِرُّ بِأَن تَأۡتُواْ ٱلۡبُيُوتَ مِن ظُهُورِهَا وَلَـٰكِنَّ ٱلۡبِرَّ مَنِ ٱتَّقَىٰۗ وَأۡتُواْ ٱلۡبُيُوتَ مِنۡ أَبۡوَٰبِهَاۚ وَٱتَّقُواْ ٱللَّهَ لَعَلَّكُمۡ تُفۡلِحُونَ (١٨٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱلۡأَهِلَّةِ</span><span class="ag-m">— جمع هلال، وهو القمر في أول ظهوره من كل شهر.</span></div>
+            <div class="ag-item"><span class="ag-w">مَوَٰقِيتُ</span><span class="ag-m">— علامات زمنية يعرف بها الناس أوقات عباداتهم ومعاملاتهم.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡبِرُّ</span><span class="ag-m">— اسم جامع لكل خير وطاعة تقرّب إلى الله.</span></div>
+            <div class="ag-item"><span class="ag-w">ظُهُورِهَا</span><span class="ag-m">— مؤخرة البيوت؛ كانوا في الجاهلية يدخلون منها إذا أحرموا.</span></div>
+            <div class="ag-item"><span class="ag-w">تُفۡلِحُونَ</span><span class="ag-m">— تفوزون بالمطلوب وتنجون من المرهوب.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-1">➕ إضافة</button>
           <div class="note-editor">
@@ -258,6 +295,11 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-2">
           <span class="tafsir-ayah">وَقَٰتِلُواْ فِي سَبِيلِ ٱللَّهِ ٱلَّذِينَ يُقَٰتِلُونَكُمۡ وَلَا تَعۡتَدُوٓاْۚ إِنَّ ٱللَّهَ لَا يُحِبُّ ٱلۡمُعۡتَدِينَ (١٩٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَعۡتَدُوٓاْ</span><span class="ag-m">— تتجاوزوا الحدّ المأذون به، كقتل من لا يقاتل من النساء والصبيان والشيوخ.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُعۡتَدِينَ</span><span class="ag-m">— المتجاوزين لحدود الله وما أذن فيه.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-2">➕ إضافة</button>
           <div class="note-editor">
@@ -287,6 +329,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-3">
           <span class="tafsir-ayah">وَٱقۡتُلُوهُمۡ حَيۡثُ ثَقِفۡتُمُوهُمۡ وَأَخۡرِجُوهُم مِّنۡ حَيۡثُ أَخۡرَجُوكُمۡۚ وَٱلۡفِتۡنَةُ أَشَدُّ مِنَ ٱلۡقَتۡلِۚ وَلَا تُقَٰتِلُوهُمۡ عِندَ ٱلۡمَسۡجِدِ ٱلۡحَرَامِ حَتَّىٰ يُقَٰتِلُوكُمۡ فِيهِۖ فَإِن قَٰتَلُوكُمۡ فَٱقۡتُلُوهُمۡۗ كَذَٰلِكَ جَزَآءُ ٱلۡكَٰفِرِينَ (١٩١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ثَقِفۡتُمُوهُمۡ</span><span class="ag-m">— وجدتموهم وظفرتم بهم وتمكنتم منهم.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡفِتۡنَةُ</span><span class="ag-m">— الشرك وصدّ الناس عن دين الله، وإيذاء المؤمنين وإخراجهم من ديارهم.</span></div>
+            <div class="ag-item"><span class="ag-w">جَزَآءُ</span><span class="ag-m">— العقوبة والمقابلة على الفعل.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-3">➕ إضافة</button>
           <div class="note-editor">
@@ -316,6 +364,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-4">
           <span class="tafsir-ayah">فَإِنِ ٱنتَهَوۡاْ فَإِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (١٩٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱنتَهَوۡاْ</span><span class="ag-m">— كفّوا عن الكفر والقتال وأقلعوا عنه.</span></div>
+            <div class="ag-item"><span class="ag-w">غَفُورٞ</span><span class="ag-m">— كثير المغفرة، يستر الذنب ويتجاوز عنه.</span></div>
+            <div class="ag-item"><span class="ag-w">رَّحِيمٞ</span><span class="ag-m">— واسع الرحمة بعباده.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-4">➕ إضافة</button>
           <div class="note-editor">
@@ -345,6 +399,10 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-5">
           <span class="tafsir-ayah">وَقَٰتِلُوهُمۡ حَتَّىٰ لَا تَكُونَ فِتۡنَةٞ وَيَكُونَ ٱلدِّينُ لِلَّهِۖ فَإِنِ ٱنتَهَوۡاْ فَلَا عُدۡوَٰنَ إِلَّا عَلَى ٱلظَّـٰلِمِينَ (١٩٣)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">عُدۡوَٰنَ</span><span class="ag-m">— اعتداء ومجاوزة للحد.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-5">➕ إضافة</button>
           <div class="note-editor">
@@ -374,6 +432,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-6">
           <span class="tafsir-ayah">ٱلشَّهۡرُ ٱلۡحَرَامُ بِٱلشَّهۡرِ ٱلۡحَرَامِ وَٱلۡحُرُمَٰتُ قِصَاصٞۚ فَمَنِ ٱعۡتَدَىٰ عَلَيۡكُمۡ فَٱعۡتَدُواْ عَلَيۡهِ بِمِثۡلِ مَا ٱعۡتَدَىٰ عَلَيۡكُمۡۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ مَعَ ٱلۡمُتَّقِينَ (١٩٤)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱلشَّهۡرُ ٱلۡحَرَامُ</span><span class="ag-m">— أحد الأشهر الأربعة التي حُرّم فيها القتال: ذو القعدة وذو الحجة والمحرم ورجب.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡحُرُمَٰتُ</span><span class="ag-m">— جمع حُرمة، وهي كل ما وجب احترامه وحَرُم انتهاكه من زمان ومكان وحقوق.</span></div>
+            <div class="ag-item"><span class="ag-w">قِصَاصٞ</span><span class="ag-m">— مماثلة ومساواة؛ يُقابَل الاعتداء بمثله من غير زيادة.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-6">➕ إضافة</button>
           <div class="note-editor">
@@ -403,6 +467,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-1-7">
           <span class="tafsir-ayah">وَأَنفِقُواْ فِي سَبِيلِ ٱللَّهِ وَلَا تُلۡقُواْ بِأَيۡدِيكُمۡ إِلَى ٱلتَّهۡلُكَةِۛ وَأَحۡسِنُوٓاْۛ إِنَّ ٱللَّهَ يُحِبُّ ٱلۡمُحۡسِنِينَ (١٩٥)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تُلۡقُواْ بِأَيۡدِيكُمۡ</span><span class="ag-m">— تُسلِموا أنفسكم وتُوقعوها بأيديكم.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلتَّهۡلُكَةِ</span><span class="ag-m">— الهلاك والدمار، بترك الجهاد والإنفاق أو بالتفريط في أسباب النجاة.</span></div>
+            <div class="ag-item"><span class="ag-w">وَأَحۡسِنُوٓاْ</span><span class="ag-m">— أتقنوا العمل وأجملوا في القول والفعل.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-1-7">➕ إضافة</button>
           <div class="note-editor">
@@ -441,31 +511,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿وَأَتِمُّواْ ٱلۡحَجَّ وَٱلۡعُمۡرَةَ لِلَّهِۚ فَإِنۡ أُحۡصِرۡتُمۡ فَمَا ٱسۡتَيۡسَرَ مِنَ ٱلۡهَدۡيِۖ وَلَا تَحۡلِقُواْ رُءُوسَكُمۡ حَتَّىٰ يَبۡلُغَ ٱلۡهَدۡيُ مَحِلَّهُۥۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوۡ بِهِۦٓ أَذٗى مِّن رَّأۡسِهِۦ فَفِدۡيَةٞ مِّن صِيَامٍ أَوۡ صَدَقَةٍ أَوۡ نُسُكٖۚ فَإِذَآ أَمِنتُمۡ فَمَن تَمَتَّعَ بِٱلۡعُمۡرَةِ إِلَى ٱلۡحَجِّ فَمَا ٱسۡتَيۡسَرَ مِنَ ٱلۡهَدۡيِۚ فَمَن لَّمۡ يَجِدۡ فَصِيَامُ ثَلَـٰثَةِ أَيَّامٖ فِي ٱلۡحَجِّ وَسَبۡعَةٍ إِذَا رَجَعۡتُمۡۗ تِلۡكَ عَشَرَةٞ كَامِلَةٞۗ ذَٰلِكَ لِمَن لَّمۡ يَكُنۡ أَهۡلُهُۥ حَاضِرِي ٱلۡمَسۡجِدِ ٱلۡحَرَامِۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (١٩٦) ٱلۡحَجُّ أَشۡهُرٞ مَّعۡلُومَٰتٞۚ فَمَن فَرَضَ فِيهِنَّ ٱلۡحَجَّ فَلَا رَفَثَ وَلَا فُسُوقَ وَلَا جِدَالَ فِي ٱلۡحَجِّۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ يَعۡلَمۡهُ ٱللَّهُۗ وَتَزَوَّدُواْ فَإِنَّ خَيۡرَ ٱلزَّادِ ٱلتَّقۡوَىٰۖ وَٱتَّقُونِ يَـٰٓأُوْلِي ٱلۡأَلۡبَٰبِ (١٩٧) لَيۡسَ عَلَيۡكُمۡ جُنَاحٌ أَن تَبۡتَغُواْ فَضۡلٗا مِّن رَّبِّكُمۡۚ فَإِذَآ أَفَضۡتُم مِّنۡ عَرَفَٰتٖ فَٱذۡكُرُواْ ٱللَّهَ عِندَ ٱلۡمَشۡعَرِ ٱلۡحَرَامِۖ وَٱذۡكُرُوهُ كَمَا هَدَىٰكُمۡ وَإِن كُنتُم مِّن قَبۡلِهِۦ لَمِنَ ٱلضَّآلِّينَ (١٩٨) ثُمَّ أَفِيضُواْ مِنۡ حَيۡثُ أَفَاضَ ٱلنَّاسُ وَٱسۡتَغۡفِرُواْ ٱللَّهَۚ إِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (١٩٩) فَإِذَا قَضَيۡتُم مَّنَٰسِكَكُمۡ فَٱذۡكُرُواْ ٱللَّهَ كَذِكۡرِكُمۡ ءَابَآءَكُمۡ أَوۡ أَشَدَّ ذِكۡرٗاۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا وَمَا لَهُۥ فِي ٱلۡأٓخِرَةِ مِنۡ خَلَٰقٖ (٢٠٠) وَمِنۡهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا حَسَنَةٗ وَفِي ٱلۡأٓخِرَةِ حَسَنَةٗ وَقِنَا عَذَابَ ٱلنَّارِ (٢٠١) أُوْلَـٰٓئِكَ لَهُمۡ نَصِيبٞ مِّمَّا كَسَبُواْۚ وَٱللَّهُ سَرِيعُ ٱلۡحِسَابِ (٢٠٢) ۞وَٱذۡكُرُواْ ٱللَّهَ فِيٓ أَيَّامٖ مَّعۡدُودَٰتٖۚ فَمَن تَعَجَّلَ فِي يَوۡمَيۡنِ فَلَآ إِثۡمَ عَلَيۡهِ وَمَن تَأَخَّرَ فَلَآ إِثۡمَ عَلَيۡهِ لِمَنِ ٱتَّقَىٰۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُمۡ إِلَيۡهِ تُحۡشَرُونَ (٢٠٣) وَمِنَ ٱلنَّاسِ مَن يُعۡجِبُكَ قَوۡلُهُۥ فِي ٱلۡحَيَوٰةِ ٱلدُّنۡيَا وَيُشۡهِدُ ٱللَّهَ عَلَىٰ مَا فِي قَلۡبِهِۦ وَهُوَ أَلَدُّ ٱلۡخِصَامِ (٢٠٤) وَإِذَا تَوَلَّىٰ سَعَىٰ فِي ٱلۡأَرۡضِ لِيُفۡسِدَ فِيهَا وَيُهۡلِكَ ٱلۡحَرۡثَ وَٱلنَّسۡلَۚ وَٱللَّهُ لَا يُحِبُّ ٱلۡفَسَادَ (٢٠٥) وَإِذَا قِيلَ لَهُ ٱتَّقِ ٱللَّهَ أَخَذَتۡهُ ٱلۡعِزَّةُ بِٱلۡإِثۡمِۚ فَحَسۡبُهُۥ جَهَنَّمُۖ وَلَبِئۡسَ ٱلۡمِهَادُ (٢٠٦) وَمِنَ ٱلنَّاسِ مَن يَشۡرِي نَفۡسَهُ ٱبۡتِغَآءَ مَرۡضَاتِ ٱللَّهِۚ وَٱللَّهُ رَءُوفُۢ بِٱلۡعِبَادِ (٢٠٧)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">أُحۡصِرۡتُمۡ</span><span class="glossary-meaning">مُنعتم عن إتمام الحج أو العمرة بمرض أو عدو.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱسۡتَيۡسَرَ مِنَ ٱلۡهَدۡيِ</span><span class="glossary-meaning">ما تيسّر وسهُل من الذبح تقرباً إلى الله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">نُسُكٖ</span><span class="glossary-meaning">ذبيحة يتقرب بها إلى الله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">رَفَثَ</span><span class="glossary-meaning">الجماع ومقدماته وكل قول فاحش.</span></div>
-        <div class="glossary-item"><span class="glossary-word">فُسُوقَ</span><span class="glossary-meaning">الخروج عن طاعة الله بالمعاصي.</span></div>
-        <div class="glossary-item"><span class="glossary-word">جِدَالَ</span><span class="glossary-meaning">المماراة والمخاصمة بغير حق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">عَرَفَٰتٖ</span><span class="glossary-meaning">موضع الوقوف المعروف في الحج، ركن الحج الأعظم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمَشۡعَرِ ٱلۡحَرَامِ</span><span class="glossary-meaning">مزدلفة، موضع المبيت بعد عرفة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">خَلَٰقٖ</span><span class="glossary-meaning">نصيب من الخير والثواب.</span></div>
+      <div class="field-value verses-text" data-hl-id="v11">
+        ﴿وَأَتِمُّواْ ٱلۡحَجَّ وَٱلۡعُمۡرَةَ لِلَّهِۚ فَإِنۡ <span class="wq" data-m="مُنعتم من إتمام الحج أو العمرة بعدوّ أو مرض أو نحوه.">أُحۡصِرۡتُمۡ</span> فَمَا <span class="wq" data-m="تيسّر وسهُل وتهيّأ.">ٱسۡتَيۡسَرَ</span> مِنَ <span class="wq" data-m="ما يُساق إلى الحرم من الإبل والبقر والغنم تقرّباً إلى الله.">ٱلۡهَدۡيِ</span>ۖ وَلَا <span class="wq" data-m="تُزيلوا شعر الرأس.">تَحۡلِقُواْ</span> رُءُوسَكُمۡ حَتَّىٰ يَبۡلُغَ ٱلۡهَدۡيُ <span class="wq" data-m="الموضع أو الوقت الذي يحلّ فيه نحره.">مَحِلَّهُۥ</span>ۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوۡ بِهِۦٓ <span class="wq" data-m="ما يؤذي ويؤلم، كقمل أو جرح أو مرض في الرأس.">أَذٗى</span> مِّن رَّأۡسِهِۦ <span class="wq" data-m="ما يُبذل بدلاً عن ترك واجب أو فعل محظور.">فَفِدۡيَةٞ</span> مِّن صِيَامٍ أَوۡ صَدَقَةٍ أَوۡ <span class="wq" data-m="ذبيحة يُتقرَّب بها إلى الله.">نُسُكٖ</span>ۚ فَإِذَآ أَمِنتُمۡ فَمَن <span class="wq" data-m="أحرم بالعمرة في أشهر الحج ثم تحلّل منها ثم أحرم بالحج في العام نفسه.">تَمَتَّعَ</span> بِٱلۡعُمۡرَةِ إِلَى ٱلۡحَجِّ فَمَا <span class="wq" data-m="تيسّر وسهُل وتهيّأ.">ٱسۡتَيۡسَرَ</span> مِنَ <span class="wq" data-m="ما يُساق إلى الحرم من الإبل والبقر والغنم تقرّباً إلى الله.">ٱلۡهَدۡيِ</span>ۚ فَمَن لَّمۡ يَجِدۡ فَصِيَامُ ثَلَـٰثَةِ أَيَّامٖ فِي ٱلۡحَجِّ وَسَبۡعَةٍ إِذَا رَجَعۡتُمۡۗ تِلۡكَ عَشَرَةٞ كَامِلَةٞۗ ذَٰلِكَ لِمَن لَّمۡ يَكُنۡ أَهۡلُهُۥ <span class="wq" data-m="أهل مكة ومن كان مسكنه قريباً منها.">حَاضِرِي ٱلۡمَسۡجِدِ ٱلۡحَرَامِ</span>ۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (١٩٦) ٱلۡحَجُّ <span class="wq" data-m="شوال وذو القعدة وعشر من ذي الحجة.">أَشۡهُرٞ مَّعۡلُومَٰتٞ</span>ۚ فَمَن <span class="wq" data-m="ألزم نفسه بالحج وأوجبه عليه بالإحرام.">فَرَضَ</span> فِيهِنَّ ٱلۡحَجَّ فَلَا <span class="wq" data-m="الجماع ومقدماته وفاحش الكلام.">رَفَثَ</span> وَلَا <span class="wq" data-m="الخروج عن طاعة الله بارتكاب المعاصي.">فُسُوقَ</span> وَلَا <span class="wq" data-m="المماراة والخصومة التي تورث العداوة.">جِدَالَ</span> فِي ٱلۡحَجِّۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ يَعۡلَمۡهُ ٱللَّهُۗ <span class="wq" data-m="خذوا ما يبلّغكم في سفركم، وزاد الآخرة التقوى.">وَتَزَوَّدُواْ</span> فَإِنَّ خَيۡرَ <span class="wq" data-m="ما يُتزوَّد به في السفر من طعام وغيره.">ٱلزَّادِ</span> ٱلتَّقۡوَىٰۖ وَٱتَّقُونِ يَـٰٓأُوْلِي <span class="wq" data-m="جمع لُبّ، وهي العقول الخالصة من شوائب الهوى.">ٱلۡأَلۡبَٰبِ</span> (١٩٧) لَيۡسَ عَلَيۡكُمۡ <span class="wq" data-m="إثم وحرج.">جُنَاحٌ</span> أَن <span class="wq" data-m="تطلبوا رزقاً بالتجارة في موسم الحج.">تَبۡتَغُواْ فَضۡلٗا</span> مِّن رَّبِّكُمۡۚ فَإِذَآ <span class="wq" data-m="دفعتم ونزلتم بكثرة وازدحام.">أَفَضۡتُم</span> مِّنۡ <span class="wq" data-m="الموضع الذي يقف فيه الحجاج يوم التاسع من ذي الحجة.">عَرَفَٰتٖ</span> فَٱذۡكُرُواْ ٱللَّهَ عِندَ <span class="wq" data-m="موضع بمزدلفة يذكر الله عنده الحجاج بعد الإفاضة من عرفة.">ٱلۡمَشۡعَرِ ٱلۡحَرَامِ</span>ۖ وَٱذۡكُرُوهُ كَمَا هَدَىٰكُمۡ وَإِن كُنتُم مِّن قَبۡلِهِۦ لَمِنَ <span class="wq" data-m="التائهين عن طريق الحق.">ٱلضَّآلِّينَ</span> (١٩٨) ثُمَّ <span class="wq" data-m="اندفعوا راجعين من عرفة.">أَفِيضُواْ</span> مِنۡ حَيۡثُ <span class="wq" data-m="دفع جمهور الحجاج من عرفات، لا من كانت قريش تتميّز به بالوقوف بمزدلفة.">أَفَاضَ ٱلنَّاسُ</span> <span class="wq" data-m="اطلبوا من الله ستر الذنب والتجاوز عنه.">وَٱسۡتَغۡفِرُواْ</span> ٱللَّهَۚ إِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (١٩٩) فَإِذَا <span class="wq" data-m="أدّيتم وفرغتم من.">قَضَيۡتُم</span> <span class="wq" data-m="عبادات الحج وشعائره.">مَّنَٰسِكَكُمۡ</span> فَٱذۡكُرُواْ ٱللَّهَ كَذِكۡرِكُمۡ ءَابَآءَكُمۡ أَوۡ أَشَدَّ ذِكۡرٗاۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا وَمَا لَهُۥ فِي ٱلۡأٓخِرَةِ مِنۡ <span class="wq" data-m="نصيب وحظ.">خَلَٰقٖ</span> (٢٠٠) وَمِنۡهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا <span class="wq" data-m="كل ما يُستحسن من خير الدنيا والآخرة.">حَسَنَةٗ</span> وَفِي ٱلۡأٓخِرَةِ <span class="wq" data-m="كل ما يُستحسن من خير الدنيا والآخرة.">حَسَنَةٗ</span> <span class="wq" data-m="احفظنا واصرف عنا.">وَقِنَا</span> عَذَابَ ٱلنَّارِ (٢٠١) أُوْلَـٰٓئِكَ لَهُمۡ <span class="wq" data-m="حظ ووافر من الجزاء.">نَصِيبٞ</span> مِّمَّا كَسَبُواْۚ وَٱللَّهُ <span class="wq" data-m="لا يشغله حساب عن حساب، ويحاسب الخلق في أسرع وقت.">سَرِيعُ ٱلۡحِسَابِ</span> (٢٠٢) ۞وَٱذۡكُرُواْ ٱللَّهَ فِيٓ <span class="wq" data-m="أيام التشريق: الحادي عشر والثاني عشر والثالث عشر من ذي الحجة.">أَيَّامٖ مَّعۡدُودَٰتٖ</span>ۚ فَمَن <span class="wq" data-m="استعجل النفر من منى في يومين.">تَعَجَّلَ</span> فِي يَوۡمَيۡنِ فَلَآ إِثۡمَ عَلَيۡهِ وَمَن تَأَخَّرَ فَلَآ إِثۡمَ عَلَيۡهِ لِمَنِ ٱتَّقَىٰۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُمۡ إِلَيۡهِ <span class="wq" data-m="تُجمعون وتُساقون إليه للحساب.">تُحۡشَرُونَ</span> (٢٠٣) وَمِنَ ٱلنَّاسِ مَن <span class="wq" data-m="يروقك ويستميلك حسن كلامه وحلاوة منطقه.">يُعۡجِبُكَ قَوۡلُهُۥ</span> فِي ٱلۡحَيَوٰةِ ٱلدُّنۡيَا <span class="wq" data-m="يحلف بالله كذباً على ما في قلبه ليصدَّق.">وَيُشۡهِدُ ٱللَّهَ</span> عَلَىٰ مَا فِي قَلۡبِهِۦ وَهُوَ <span class="wq" data-m="شديد العداوة والجدال، لا يقبل الحق ولا ينصف.">أَلَدُّ ٱلۡخِصَامِ</span> (٢٠٤) وَإِذَا <span class="wq" data-m="أدبر وانصرف، وقيل: صار ذا ولاية وسلطة.">تَوَلَّىٰ</span> <span class="wq" data-m="عمل واجتهد وسار.">سَعَىٰ</span> فِي ٱلۡأَرۡضِ لِيُفۡسِدَ فِيهَا وَيُهۡلِكَ <span class="wq" data-m="الزرع والمزارع.">ٱلۡحَرۡثَ</span> <span class="wq" data-m="الذرية والنتاج من الناس والدواب.">وَٱلنَّسۡلَ</span>ۚ وَٱللَّهُ لَا يُحِبُّ ٱلۡفَسَادَ (٢٠٥) وَإِذَا قِيلَ لَهُ ٱتَّقِ ٱللَّهَ <span class="wq" data-m="حملته الأنفة والكبر على التمادي في الذنب ورفض النصيحة.">أَخَذَتۡهُ ٱلۡعِزَّةُ بِٱلۡإِثۡمِ</span>ۚ <span class="wq" data-m="كافيه وجزاؤه.">فَحَسۡبُهُۥ</span> جَهَنَّمُۖ <span class="wq" data-m="وقبُح وساء.">وَلَبِئۡسَ</span> <span class="wq" data-m="الفراش والمستقر الذي يُمهَّد للنوم.">ٱلۡمِهَادُ</span> (٢٠٦) وَمِنَ ٱلنَّاسِ مَن <span class="wq" data-m="يبيع نفسه ويبذلها في طاعة الله.">يَشۡرِي نَفۡسَهُ</span> <span class="wq" data-m="طلباً والتماساً.">ٱبۡتِغَآءَ</span> <span class="wq" data-m="رضا ومحبة.">مَرۡضَاتِ</span> ٱللَّهِۚ وَٱللَّهُ <span class="wq" data-m="شديد الرحمة بالغ اللطف.">رَءُوفُۢ</span> بِٱلۡعِبَادِ (٢٠٧)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تفصّل الآيات أحكام إتمام الحج والعمرة لله، مع رخصة من مُنع عنهما بعذر أن يذبح ما تيسر، وتحريم حلق الرأس قبل بلوغ الهدي محله إلا لعذر مرض أو أذى فتجب عليه فدية من صيام أو صدقة أو نسك، وبيان صيام عشرة أيام لمن لم يجد الهدي في حالة التمتع بالعمرة إلى الحج. ثم تبيّن الآيات أن الحج في أشهر معلومة، ومن أحرم فيهنّ وجب عليه الامتناع عن الرفث والفسوق والجدال، مع الحث على التزود بالتقوى خير زاد، ونفي الحرج عمن يبتغي فضلاً من التجارة أثناء الحج. وتذكر مناسك الإفاضة من عرفات وذكر الله عند المشعر الحرام، وتصف صنفين من الناس: من يطلب متاع الدنيا فقط فلا نصيب له في الآخرة، ومن يجمع بين طلب خيري الدنيا والآخرة والاستعاذة من عذاب النار، وهؤلاء هم أصحاب النصيب الحقيقي من كسبهم.</div>
+      <div class="field-value" data-hl-id="b22">تفصّل الآيات أحكام إتمام الحج والعمرة لله، مع رخصة من مُنع عنهما بعذر أن يذبح ما تيسر، وتحريم حلق الرأس قبل بلوغ الهدي محله إلا لعذر مرض أو أذى فتجب عليه فدية من صيام أو صدقة أو نسك، وبيان صيام عشرة أيام لمن لم يجد الهدي في حالة التمتع بالعمرة إلى الحج. ثم تبيّن الآيات أن الحج في أشهر معلومة، ومن أحرم فيهنّ وجب عليه الامتناع عن الرفث والفسوق والجدال، مع الحث على التزود بالتقوى خير زاد، ونفي الحرج عمن يبتغي فضلاً من التجارة أثناء الحج. وتذكر مناسك الإفاضة من عرفات وذكر الله عند المشعر الحرام، وتصف صنفين من الناس: من يطلب متاع الدنيا فقط فلا نصيب له في الآخرة، ومن يجمع بين طلب خيري الدنيا والآخرة والاستعاذة من عذاب النار، وهؤلاء هم أصحاب النصيب الحقيقي من كسبهم.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b23">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-2">➕ إضافة</button>
         <div class="note-editor">
@@ -496,9 +552,22 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d24">
         <div class="ayah-note-block" data-note-group="tafsir-5-2-1">
           <span class="tafsir-ayah">وَأَتِمُّواْ ٱلۡحَجَّ وَٱلۡعُمۡرَةَ لِلَّهِۚ فَإِنۡ أُحۡصِرۡتُمۡ فَمَا ٱسۡتَيۡسَرَ مِنَ ٱلۡهَدۡيِۖ وَلَا تَحۡلِقُواْ رُءُوسَكُمۡ حَتَّىٰ يَبۡلُغَ ٱلۡهَدۡيُ مَحِلَّهُۥۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوۡ بِهِۦٓ أَذٗى مِّن رَّأۡسِهِۦ فَفِدۡيَةٞ مِّن صِيَامٍ أَوۡ صَدَقَةٍ أَوۡ نُسُكٖۚ فَإِذَآ أَمِنتُمۡ فَمَن تَمَتَّعَ بِٱلۡعُمۡرَةِ إِلَى ٱلۡحَجِّ فَمَا ٱسۡتَيۡسَرَ مِنَ ٱلۡهَدۡيِۚ فَمَن لَّمۡ يَجِدۡ فَصِيَامُ ثَلَـٰثَةِ أَيَّامٖ فِي ٱلۡحَجِّ وَسَبۡعَةٍ إِذَا رَجَعۡتُمۡۗ تِلۡكَ عَشَرَةٞ كَامِلَةٞۗ ذَٰلِكَ لِمَن لَّمۡ يَكُنۡ أَهۡلُهُۥ حَاضِرِي ٱلۡمَسۡجِدِ ٱلۡحَرَامِۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (١٩٦)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أُحۡصِرۡتُمۡ</span><span class="ag-m">— مُنعتم من إتمام الحج أو العمرة بعدوّ أو مرض أو نحوه.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱسۡتَيۡسَرَ</span><span class="ag-m">— تيسّر وسهُل وتهيّأ.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡهَدۡيِ</span><span class="ag-m">— ما يُساق إلى الحرم من الإبل والبقر والغنم تقرّباً إلى الله.</span></div>
+            <div class="ag-item"><span class="ag-w">تَحۡلِقُواْ</span><span class="ag-m">— تُزيلوا شعر الرأس.</span></div>
+            <div class="ag-item"><span class="ag-w">مَحِلَّهُۥ</span><span class="ag-m">— الموضع أو الوقت الذي يحلّ فيه نحره.</span></div>
+            <div class="ag-item"><span class="ag-w">أَذٗى</span><span class="ag-m">— ما يؤذي ويؤلم، كقمل أو جرح أو مرض في الرأس.</span></div>
+            <div class="ag-item"><span class="ag-w">فَفِدۡيَةٞ</span><span class="ag-m">— ما يُبذل بدلاً عن ترك واجب أو فعل محظور.</span></div>
+            <div class="ag-item"><span class="ag-w">نُسُكٖ</span><span class="ag-m">— ذبيحة يُتقرَّب بها إلى الله.</span></div>
+            <div class="ag-item"><span class="ag-w">تَمَتَّعَ</span><span class="ag-m">— أحرم بالعمرة في أشهر الحج ثم تحلّل منها ثم أحرم بالحج في العام نفسه.</span></div>
+            <div class="ag-item"><span class="ag-w">حَاضِرِي ٱلۡمَسۡجِدِ ٱلۡحَرَامِ</span><span class="ag-m">— أهل مكة ومن كان مسكنه قريباً منها.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-1">➕ إضافة</button>
           <div class="note-editor">
@@ -528,6 +597,17 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-2">
           <span class="tafsir-ayah">ٱلۡحَجُّ أَشۡهُرٞ مَّعۡلُومَٰتٞۚ فَمَن فَرَضَ فِيهِنَّ ٱلۡحَجَّ فَلَا رَفَثَ وَلَا فُسُوقَ وَلَا جِدَالَ فِي ٱلۡحَجِّۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ يَعۡلَمۡهُ ٱللَّهُۗ وَتَزَوَّدُواْ فَإِنَّ خَيۡرَ ٱلزَّادِ ٱلتَّقۡوَىٰۖ وَٱتَّقُونِ يَـٰٓأُوْلِي ٱلۡأَلۡبَٰبِ (١٩٧)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أَشۡهُرٞ مَّعۡلُومَٰتٞ</span><span class="ag-m">— شوال وذو القعدة وعشر من ذي الحجة.</span></div>
+            <div class="ag-item"><span class="ag-w">فَرَضَ</span><span class="ag-m">— ألزم نفسه بالحج وأوجبه عليه بالإحرام.</span></div>
+            <div class="ag-item"><span class="ag-w">رَفَثَ</span><span class="ag-m">— الجماع ومقدماته وفاحش الكلام.</span></div>
+            <div class="ag-item"><span class="ag-w">فُسُوقَ</span><span class="ag-m">— الخروج عن طاعة الله بارتكاب المعاصي.</span></div>
+            <div class="ag-item"><span class="ag-w">جِدَالَ</span><span class="ag-m">— المماراة والخصومة التي تورث العداوة.</span></div>
+            <div class="ag-item"><span class="ag-w">وَتَزَوَّدُواْ</span><span class="ag-m">— خذوا ما يبلّغكم في سفركم، وزاد الآخرة التقوى.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلزَّادِ</span><span class="ag-m">— ما يُتزوَّد به في السفر من طعام وغيره.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡأَلۡبَٰبِ</span><span class="ag-m">— جمع لُبّ، وهي العقول الخالصة من شوائب الهوى.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-2">➕ إضافة</button>
           <div class="note-editor">
@@ -557,6 +637,15 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-3">
           <span class="tafsir-ayah">لَيۡسَ عَلَيۡكُمۡ جُنَاحٌ أَن تَبۡتَغُواْ فَضۡلٗا مِّن رَّبِّكُمۡۚ فَإِذَآ أَفَضۡتُم مِّنۡ عَرَفَٰتٖ فَٱذۡكُرُواْ ٱللَّهَ عِندَ ٱلۡمَشۡعَرِ ٱلۡحَرَامِۖ وَٱذۡكُرُوهُ كَمَا هَدَىٰكُمۡ وَإِن كُنتُم مِّن قَبۡلِهِۦ لَمِنَ ٱلضَّآلِّينَ (١٩٨)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">جُنَاحٌ</span><span class="ag-m">— إثم وحرج.</span></div>
+            <div class="ag-item"><span class="ag-w">تَبۡتَغُواْ فَضۡلٗا</span><span class="ag-m">— تطلبوا رزقاً بالتجارة في موسم الحج.</span></div>
+            <div class="ag-item"><span class="ag-w">أَفَضۡتُم</span><span class="ag-m">— دفعتم ونزلتم بكثرة وازدحام.</span></div>
+            <div class="ag-item"><span class="ag-w">عَرَفَٰتٖ</span><span class="ag-m">— الموضع الذي يقف فيه الحجاج يوم التاسع من ذي الحجة.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمَشۡعَرِ ٱلۡحَرَامِ</span><span class="ag-m">— موضع بمزدلفة يذكر الله عنده الحجاج بعد الإفاضة من عرفة.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلضَّآلِّينَ</span><span class="ag-m">— التائهين عن طريق الحق.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-3">➕ إضافة</button>
           <div class="note-editor">
@@ -586,6 +675,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-4">
           <span class="tafsir-ayah">ثُمَّ أَفِيضُواْ مِنۡ حَيۡثُ أَفَاضَ ٱلنَّاسُ وَٱسۡتَغۡفِرُواْ ٱللَّهَۚ إِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (١٩٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أَفِيضُواْ</span><span class="ag-m">— اندفعوا راجعين من عرفة.</span></div>
+            <div class="ag-item"><span class="ag-w">أَفَاضَ ٱلنَّاسُ</span><span class="ag-m">— دفع جمهور الحجاج من عرفات، لا من كانت قريش تتميّز به بالوقوف بمزدلفة.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱسۡتَغۡفِرُواْ</span><span class="ag-m">— اطلبوا من الله ستر الذنب والتجاوز عنه.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-4">➕ إضافة</button>
           <div class="note-editor">
@@ -615,6 +710,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-5">
           <span class="tafsir-ayah">فَإِذَا قَضَيۡتُم مَّنَٰسِكَكُمۡ فَٱذۡكُرُواْ ٱللَّهَ كَذِكۡرِكُمۡ ءَابَآءَكُمۡ أَوۡ أَشَدَّ ذِكۡرٗاۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا وَمَا لَهُۥ فِي ٱلۡأٓخِرَةِ مِنۡ خَلَٰقٖ (٢٠٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">قَضَيۡتُم</span><span class="ag-m">— أدّيتم وفرغتم من.</span></div>
+            <div class="ag-item"><span class="ag-w">مَّنَٰسِكَكُمۡ</span><span class="ag-m">— عبادات الحج وشعائره.</span></div>
+            <div class="ag-item"><span class="ag-w">خَلَٰقٖ</span><span class="ag-m">— نصيب وحظ.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-5">➕ إضافة</button>
           <div class="note-editor">
@@ -644,6 +745,11 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-6">
           <span class="tafsir-ayah">وَمِنۡهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِي ٱلدُّنۡيَا حَسَنَةٗ وَفِي ٱلۡأٓخِرَةِ حَسَنَةٗ وَقِنَا عَذَابَ ٱلنَّارِ (٢٠١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">حَسَنَةٗ</span><span class="ag-m">— كل ما يُستحسن من خير الدنيا والآخرة.</span></div>
+            <div class="ag-item"><span class="ag-w">وَقِنَا</span><span class="ag-m">— احفظنا واصرف عنا.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-6">➕ إضافة</button>
           <div class="note-editor">
@@ -673,6 +779,11 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-7">
           <span class="tafsir-ayah">أُوْلَـٰٓئِكَ لَهُمۡ نَصِيبٞ مِّمَّا كَسَبُواْۚ وَٱللَّهُ سَرِيعُ ٱلۡحِسَابِ (٢٠٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">نَصِيبٞ</span><span class="ag-m">— حظ ووافر من الجزاء.</span></div>
+            <div class="ag-item"><span class="ag-w">سَرِيعُ ٱلۡحِسَابِ</span><span class="ag-m">— لا يشغله حساب عن حساب، ويحاسب الخلق في أسرع وقت.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-7">➕ إضافة</button>
           <div class="note-editor">
@@ -702,6 +813,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-8">
           <span class="tafsir-ayah">۞وَٱذۡكُرُواْ ٱللَّهَ فِيٓ أَيَّامٖ مَّعۡدُودَٰتٖۚ فَمَن تَعَجَّلَ فِي يَوۡمَيۡنِ فَلَآ إِثۡمَ عَلَيۡهِ وَمَن تَأَخَّرَ فَلَآ إِثۡمَ عَلَيۡهِ لِمَنِ ٱتَّقَىٰۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُمۡ إِلَيۡهِ تُحۡشَرُونَ (٢٠٣)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أَيَّامٖ مَّعۡدُودَٰتٖ</span><span class="ag-m">— أيام التشريق: الحادي عشر والثاني عشر والثالث عشر من ذي الحجة.</span></div>
+            <div class="ag-item"><span class="ag-w">تَعَجَّلَ</span><span class="ag-m">— استعجل النفر من منى في يومين.</span></div>
+            <div class="ag-item"><span class="ag-w">تُحۡشَرُونَ</span><span class="ag-m">— تُجمعون وتُساقون إليه للحساب.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-8">➕ إضافة</button>
           <div class="note-editor">
@@ -731,6 +848,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-9">
           <span class="tafsir-ayah">وَمِنَ ٱلنَّاسِ مَن يُعۡجِبُكَ قَوۡلُهُۥ فِي ٱلۡحَيَوٰةِ ٱلدُّنۡيَا وَيُشۡهِدُ ٱللَّهَ عَلَىٰ مَا فِي قَلۡبِهِۦ وَهُوَ أَلَدُّ ٱلۡخِصَامِ (٢٠٤)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يُعۡجِبُكَ قَوۡلُهُۥ</span><span class="ag-m">— يروقك ويستميلك حسن كلامه وحلاوة منطقه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَيُشۡهِدُ ٱللَّهَ</span><span class="ag-m">— يحلف بالله كذباً على ما في قلبه ليصدَّق.</span></div>
+            <div class="ag-item"><span class="ag-w">أَلَدُّ ٱلۡخِصَامِ</span><span class="ag-m">— شديد العداوة والجدال، لا يقبل الحق ولا ينصف.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-9">➕ إضافة</button>
           <div class="note-editor">
@@ -760,6 +883,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-10">
           <span class="tafsir-ayah">وَإِذَا تَوَلَّىٰ سَعَىٰ فِي ٱلۡأَرۡضِ لِيُفۡسِدَ فِيهَا وَيُهۡلِكَ ٱلۡحَرۡثَ وَٱلنَّسۡلَۚ وَٱللَّهُ لَا يُحِبُّ ٱلۡفَسَادَ (٢٠٥)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَوَلَّىٰ</span><span class="ag-m">— أدبر وانصرف، وقيل: صار ذا ولاية وسلطة.</span></div>
+            <div class="ag-item"><span class="ag-w">سَعَىٰ</span><span class="ag-m">— عمل واجتهد وسار.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡحَرۡثَ</span><span class="ag-m">— الزرع والمزارع.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلنَّسۡلَ</span><span class="ag-m">— الذرية والنتاج من الناس والدواب.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-10">➕ إضافة</button>
           <div class="note-editor">
@@ -789,6 +919,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-11">
           <span class="tafsir-ayah">وَإِذَا قِيلَ لَهُ ٱتَّقِ ٱللَّهَ أَخَذَتۡهُ ٱلۡعِزَّةُ بِٱلۡإِثۡمِۚ فَحَسۡبُهُۥ جَهَنَّمُۖ وَلَبِئۡسَ ٱلۡمِهَادُ (٢٠٦)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أَخَذَتۡهُ ٱلۡعِزَّةُ بِٱلۡإِثۡمِ</span><span class="ag-m">— حملته الأنفة والكبر على التمادي في الذنب ورفض النصيحة.</span></div>
+            <div class="ag-item"><span class="ag-w">فَحَسۡبُهُۥ</span><span class="ag-m">— كافيه وجزاؤه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَلَبِئۡسَ</span><span class="ag-m">— وقبُح وساء.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمِهَادُ</span><span class="ag-m">— الفراش والمستقر الذي يُمهَّد للنوم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-11">➕ إضافة</button>
           <div class="note-editor">
@@ -818,6 +955,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-2-12">
           <span class="tafsir-ayah">وَمِنَ ٱلنَّاسِ مَن يَشۡرِي نَفۡسَهُ ٱبۡتِغَآءَ مَرۡضَاتِ ٱللَّهِۚ وَٱللَّهُ رَءُوفُۢ بِٱلۡعِبَادِ (٢٠٧)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يَشۡرِي نَفۡسَهُ</span><span class="ag-m">— يبيع نفسه ويبذلها في طاعة الله.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱبۡتِغَآءَ</span><span class="ag-m">— طلباً والتماساً.</span></div>
+            <div class="ag-item"><span class="ag-w">مَرۡضَاتِ</span><span class="ag-m">— رضا ومحبة.</span></div>
+            <div class="ag-item"><span class="ag-w">رَءُوفُۢ</span><span class="ag-m">— شديد الرحمة بالغ اللطف.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-2-12">➕ إضافة</button>
           <div class="note-editor">
@@ -856,28 +1000,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱدۡخُلُواْ فِي ٱلسِّلۡمِ كَآفَّةٗ وَلَا تَتَّبِعُواْ خُطُوَٰتِ ٱلشَّيۡطَٰنِۚ إِنَّهُۥ لَكُمۡ عَدُوّٞ مُّبِينٞ (٢٠٨) فَإِن زَلَلۡتُم مِّنۢ بَعۡدِ مَا جَآءَتۡكُمُ ٱلۡبَيِّنَٰتُ فَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ عَزِيزٌ حَكِيمٌ (٢٠٩) هَلۡ يَنظُرُونَ إِلَّآ أَن يَأۡتِيَهُمُ ٱللَّهُ فِي ظُلَلٖ مِّنَ ٱلۡغَمَامِ وَٱلۡمَلَـٰٓئِكَةُ وَقُضِيَ ٱلۡأَمۡرُۚ وَإِلَى ٱللَّهِ تُرۡجَعُ ٱلۡأُمُورُ (٢١٠) سَلۡ بَنِيٓ إِسۡرَٰٓءِيلَ كَمۡ ءَاتَيۡنَٰهُم مِّنۡ ءَايَةِۭ بَيِّنَةٖۗ وَمَن يُبَدِّلۡ نِعۡمَةَ ٱللَّهِ مِنۢ بَعۡدِ مَا جَآءَتۡهُ فَإِنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (٢١١) زُيِّنَ لِلَّذِينَ كَفَرُواْ ٱلۡحَيَوٰةُ ٱلدُّنۡيَا وَيَسۡخَرُونَ مِنَ ٱلَّذِينَ ءَامَنُواْۘ وَٱلَّذِينَ ٱتَّقَوۡاْ فَوۡقَهُمۡ يَوۡمَ ٱلۡقِيَٰمَةِۗ وَٱللَّهُ يَرۡزُقُ مَن يَشَآءُ بِغَيۡرِ حِسَابٖ (٢١٢) كَانَ ٱلنَّاسُ أُمَّةٗ وَٰحِدَةٗ فَبَعَثَ ٱللَّهُ ٱلنَّبِيِّـۧنَ مُبَشِّرِينَ وَمُنذِرِينَ وَأَنزَلَ مَعَهُمُ ٱلۡكِتَٰبَ بِٱلۡحَقِّ لِيَحۡكُمَ بَيۡنَ ٱلنَّاسِ فِيمَا ٱخۡتَلَفُواْ فِيهِۚ وَمَا ٱخۡتَلَفَ فِيهِ إِلَّا ٱلَّذِينَ أُوتُوهُ مِنۢ بَعۡدِ مَا جَآءَتۡهُمُ ٱلۡبَيِّنَٰتُ بَغۡيَۢا بَيۡنَهُمۡۖ فَهَدَى ٱللَّهُ ٱلَّذِينَ ءَامَنُواْ لِمَا ٱخۡتَلَفُواْ فِيهِ مِنَ ٱلۡحَقِّ بِإِذۡنِهِۦۗ وَٱللَّهُ يَهۡدِي مَن يَشَآءُ إِلَىٰ صِرَٰطٖ مُّسۡتَقِيمٍ (٢١٣) أَمۡ حَسِبۡتُمۡ أَن تَدۡخُلُواْ ٱلۡجَنَّةَ وَلَمَّا يَأۡتِكُم مَّثَلُ ٱلَّذِينَ خَلَوۡاْ مِن قَبۡلِكُمۖ مَّسَّتۡهُمُ ٱلۡبَأۡسَآءُ وَٱلضَّرَّآءُ وَزُلۡزِلُواْ حَتَّىٰ يَقُولَ ٱلرَّسُولُ وَٱلَّذِينَ ءَامَنُواْ مَعَهُۥ مَتَىٰ نَصۡرُ ٱللَّهِۗ أَلَآ إِنَّ نَصۡرَ ٱللَّهِ قَرِيبٞ (٢١٤) يَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلۡ مَآ أَنفَقۡتُم مِّنۡ خَيۡرٖ فَلِلۡوَٰلِدَيۡنِ وَٱلۡأَقۡرَبِينَ وَٱلۡيَتَٰمَىٰ وَٱلۡمَسَٰكِينِ وَٱبۡنِ ٱلسَّبِيلِۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ فَإِنَّ ٱللَّهَ بِهِۦ عَلِيمٞ (٢١٥) كُتِبَ عَلَيۡكُمُ ٱلۡقِتَالُ وَهُوَ كُرۡهٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تَكۡرَهُواْ شَيۡـٔٗا وَهُوَ خَيۡرٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تُحِبُّواْ شَيۡـٔٗا وَهُوَ شَرّٞ لَّكُمۡۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢١٦)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">ٱلسِّلۡمِ</span><span class="glossary-meaning">الإسلام والطاعة والاستسلام لله بكل أحكامه.</span></div>
-        <div class="glossary-item"><span class="glossary-word">كَآفَّةٗ</span><span class="glossary-meaning">جميعاً، بلا استثناء أو تجزئة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">زَلَلۡتُم</span><span class="glossary-meaning">أخطأتم أو انحرفتم عن الحق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ظُلَلٖ مِّنَ ٱلۡغَمَامِ</span><span class="glossary-meaning">سُحُب من الغمام، مشهد من مشاهد يوم القيامة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡبَأۡسَآءُ وَٱلضَّرَّآءُ</span><span class="glossary-meaning">شدة الفقر والمرض والابتلاء.</span></div>
-        <div class="glossary-item"><span class="glossary-word">زُلۡزِلُواْ</span><span class="glossary-meaning">أُصيبوا بشدة الخوف والاضطراب.</span></div>
+      <div class="field-value verses-text" data-hl-id="v25">
+        ﴿يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱدۡخُلُواْ فِي <span class="wq" data-m="الإسلام والاستسلام لله بالطاعة.">ٱلسِّلۡمِ</span> <span class="wq" data-m="جميعاً، بجميع شرائعه لا ببعضها.">كَآفَّةٗ</span> وَلَا تَتَّبِعُواْ <span class="wq" data-m="طرقه ومسالكه التي يزيّنها ليستدرج بها.">خُطُوَٰتِ ٱلشَّيۡطَٰنِ</span>ۚ إِنَّهُۥ لَكُمۡ عَدُوّٞ <span class="wq" data-m="ظاهر العداوة لا تخفى على أحد.">مُّبِينٞ</span> (٢٠٨) فَإِن <span class="wq" data-m="انحرفتم عن الحق وأخطأتم الطريق.">زَلَلۡتُم</span> مِّنۢ بَعۡدِ مَا جَآءَتۡكُمُ <span class="wq" data-m="الحجج والدلائل الواضحة.">ٱلۡبَيِّنَٰتُ</span> فَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ <span class="wq" data-m="غالب لا يُقهر ولا يُمانَع.">عَزِيزٌ</span> <span class="wq" data-m="يضع الأمور مواضعها بعلم وإتقان.">حَكِيمٌ</span> (٢٠٩) هَلۡ <span class="wq" data-m="ينتظرون ويترقبون.">يَنظُرُونَ</span> إِلَّآ أَن يَأۡتِيَهُمُ ٱللَّهُ فِي <span class="wq" data-m="جمع ظُلّة، وهي ما يُظِلّ ويغطي من فوق.">ظُلَلٖ</span> مِّنَ <span class="wq" data-m="السحاب الأبيض الرقيق.">ٱلۡغَمَامِ</span> وَٱلۡمَلَـٰٓئِكَةُ <span class="wq" data-m="فُرغ من الحساب وأُنفذ القضاء بين الخلق.">وَقُضِيَ ٱلۡأَمۡرُ</span>ۚ وَإِلَى ٱللَّهِ تُرۡجَعُ ٱلۡأُمُورُ (٢١٠) <span class="wq" data-m="اسأل.">سَلۡ</span> بَنِيٓ إِسۡرَٰٓءِيلَ كَمۡ ءَاتَيۡنَٰهُم مِّنۡ <span class="wq" data-m="معجزة ظاهرة أو حجة واضحة لا لبس فيها.">ءَايَةِۭ بَيِّنَةٖ</span>ۗ وَمَن <span class="wq" data-m="يغيّرها ويستبدل بها الكفر والجحود.">يُبَدِّلۡ</span> نِعۡمَةَ ٱللَّهِ مِنۢ بَعۡدِ مَا جَآءَتۡهُ فَإِنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (٢١١) <span class="wq" data-m="حُسّن وجُمّل في أعينهم حتى أحبّوه.">زُيِّنَ</span> لِلَّذِينَ كَفَرُواْ ٱلۡحَيَوٰةُ ٱلدُّنۡيَا <span class="wq" data-m="يستهزئون ويحتقرون.">وَيَسۡخَرُونَ</span> مِنَ ٱلَّذِينَ ءَامَنُواْۘ وَٱلَّذِينَ ٱتَّقَوۡاْ فَوۡقَهُمۡ يَوۡمَ ٱلۡقِيَٰمَةِۗ وَٱللَّهُ يَرۡزُقُ مَن يَشَآءُ <span class="wq" data-m="عطاءً واسعاً بلا تضييق ولا مقابل.">بِغَيۡرِ حِسَابٖ</span> (٢١٢) كَانَ ٱلنَّاسُ <span class="wq" data-m="على دين واحد وملة واحدة قبل الاختلاف.">أُمَّةٗ وَٰحِدَةٗ</span> فَبَعَثَ ٱللَّهُ ٱلنَّبِيِّـۧنَ <span class="wq" data-m="يبشرون المطيعين بالثواب.">مُبَشِّرِينَ</span> <span class="wq" data-m="يحذّرون العصاة من العقاب.">وَمُنذِرِينَ</span> وَأَنزَلَ مَعَهُمُ ٱلۡكِتَٰبَ بِٱلۡحَقِّ لِيَحۡكُمَ بَيۡنَ ٱلنَّاسِ فِيمَا ٱخۡتَلَفُواْ فِيهِۚ وَمَا ٱخۡتَلَفَ فِيهِ إِلَّا ٱلَّذِينَ أُوتُوهُ مِنۢ بَعۡدِ مَا جَآءَتۡهُمُ <span class="wq" data-m="الحجج والدلائل الواضحة.">ٱلۡبَيِّنَٰتُ</span> <span class="wq" data-m="ظلماً وحسداً وطلباً للعلوّ بعضهم على بعض.">بَغۡيَۢا بَيۡنَهُمۡ</span>ۖ فَهَدَى ٱللَّهُ ٱلَّذِينَ ءَامَنُواْ لِمَا ٱخۡتَلَفُواْ فِيهِ مِنَ ٱلۡحَقِّ <span class="wq" data-m="بتوفيقه ومشيئته.">بِإِذۡنِهِۦ</span>ۗ وَٱللَّهُ يَهۡدِي مَن يَشَآءُ إِلَىٰ <span class="wq" data-m="طريق قويم لا اعوجاج فيه.">صِرَٰطٖ مُّسۡتَقِيمٍ</span> (٢١٣) أَمۡ <span class="wq" data-m="ظننتم وحسبتم.">حَسِبۡتُمۡ</span> أَن تَدۡخُلُواْ ٱلۡجَنَّةَ <span class="wq" data-m="ولم يصبكم بعدُ.">وَلَمَّا يَأۡتِكُم</span> <span class="wq" data-m="شبيه حالهم وما جرى لهم من الشدائد.">مَّثَلُ</span> ٱلَّذِينَ <span class="wq" data-m="مضوا وسبقوا من الأمم.">خَلَوۡاْ</span> مِن قَبۡلِكُمۖ مَّسَّتۡهُمُ <span class="wq" data-m="شدة الفقر والبؤس والضيق في المال.">ٱلۡبَأۡسَآءُ</span> <span class="wq" data-m="المرض والأذى في البدن.">وَٱلضَّرَّآءُ</span> <span class="wq" data-m="اضطربوا وزُعزِعوا من شدة الخوف والابتلاء.">وَزُلۡزِلُواْ</span> حَتَّىٰ يَقُولَ ٱلرَّسُولُ وَٱلَّذِينَ ءَامَنُواْ مَعَهُۥ مَتَىٰ نَصۡرُ ٱللَّهِۗ أَلَآ إِنَّ نَصۡرَ ٱللَّهِ قَرِيبٞ (٢١٤) يَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلۡ مَآ أَنفَقۡتُم مِّنۡ خَيۡرٖ فَلِلۡوَٰلِدَيۡنِ <span class="wq" data-m="ذوي القرابة الأدنى فالأدنى.">وَٱلۡأَقۡرَبِينَ</span> <span class="wq" data-m="جمع يتيم، وهو من مات أبوه قبل بلوغه.">وَٱلۡيَتَٰمَىٰ</span> <span class="wq" data-m="أهل الحاجة الذين لا يجدون ما يكفيهم.">وَٱلۡمَسَٰكِينِ</span> <span class="wq" data-m="المسافر المنقطع عن ماله وأهله.">وَٱبۡنِ ٱلسَّبِيلِ</span>ۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ فَإِنَّ ٱللَّهَ بِهِۦ عَلِيمٞ (٢١٥) <span class="wq" data-m="فُرض وأُوجب.">كُتِبَ</span> عَلَيۡكُمُ ٱلۡقِتَالُ وَهُوَ <span class="wq" data-m="مشقة تكرهها النفس وتنفر منها.">كُرۡهٞ</span> لَّكُمۡۖ <span class="wq" data-m="لعل، وهي من الله واقعة لا محالة.">وَعَسَىٰٓ</span> أَن تَكۡرَهُواْ شَيۡـٔٗا وَهُوَ خَيۡرٞ لَّكُمۡۖ <span class="wq" data-m="لعل، وهي من الله واقعة لا محالة.">وَعَسَىٰٓ</span> أَن تُحِبُّواْ شَيۡـٔٗا وَهُوَ شَرّٞ لَّكُمۡۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢١٦)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تدعو الآيات المؤمنين إلى الدخول في الإسلام كاملاً دون تبعيض، والحذر من اتباع خطوات الشيطان التي تُدخل الفرقة والانحراف، محذّرة من الزلل بعد وضوح الحجة. وتصف مشهداً من أهوال يوم القيامة حين يأتي أمر الله في ظلل من الغمام مع الملائكة، وترجع الأمور كلها إليه. ثم تذكّر الآيات ببني إسرائيل وكثرة الآيات البينة التي أوتوها، محذّرة من تبديل نعمة الله. وتبيّن أن الحياة الدنيا زُيّنت للكافرين فسخروا من المؤمنين، بينما المتقون فوقهم منزلة يوم القيامة. وتقرر الآيات أن الناس كانوا أمة واحدة فبعث الله النبيين مبشرين ومنذرين مع الكتاب ليحكم بينهم فيما اختلفوا فيه، وأن الاختلاف وقع بغياً بين أهل العلم أنفسهم بعد البينات، فهدى الله المؤمنين للحق بإذنه. ثم تسلي الآيات المؤمنين ببيان أن طريق الجنة محفوف بالابتلاء بالبأساء والضراء كما ابتُلي من قبلهم حتى استبطأ الرسول والمؤمنون نصر الله، مؤكدة أن نصر الله قريب. وتختم ببيان مصارف الإنفاق المستحقة: الوالدان والأقربون واليتامى والمساكين وابن السبيل، وفريضة القتال رغم كراهية النفس له أحياناً لما فيه من خير قد لا يدركه الإنسان، وبيان عِظَم الصد عن سبيل الله والفتنة عن الدين أكبر من القتل، وذكر مصير من يرتد عن دينه ويموت كافراً، وبشارة المهاجرين المجاهدين برحمة الله ومغفرته.</div>
+      <div class="field-value" data-hl-id="b33">تدعو الآيات المؤمنين إلى الدخول في الإسلام كاملاً دون تبعيض، والحذر من اتباع خطوات الشيطان التي تُدخل الفرقة والانحراف، محذّرة من الزلل بعد وضوح الحجة. وتصف مشهداً من أهوال يوم القيامة حين يأتي أمر الله في ظلل من الغمام مع الملائكة، وترجع الأمور كلها إليه. ثم تذكّر الآيات ببني إسرائيل وكثرة الآيات البينة التي أوتوها، محذّرة من تبديل نعمة الله. وتبيّن أن الحياة الدنيا زُيّنت للكافرين فسخروا من المؤمنين، بينما المتقون فوقهم منزلة يوم القيامة. وتقرر الآيات أن الناس كانوا أمة واحدة فبعث الله النبيين مبشرين ومنذرين مع الكتاب ليحكم بينهم فيما اختلفوا فيه، وأن الاختلاف وقع بغياً بين أهل العلم أنفسهم بعد البينات، فهدى الله المؤمنين للحق بإذنه. ثم تسلي الآيات المؤمنين ببيان أن طريق الجنة محفوف بالابتلاء بالبأساء والضراء كما ابتُلي من قبلهم حتى استبطأ الرسول والمؤمنون نصر الله، مؤكدة أن نصر الله قريب. وتختم ببيان مصارف الإنفاق المستحقة: الوالدان والأقربون واليتامى والمساكين وابن السبيل، وفريضة القتال رغم كراهية النفس له أحياناً لما فيه من خير قد لا يدركه الإنسان، وبيان عِظَم الصد عن سبيل الله والفتنة عن الدين أكبر من القتل، وذكر مصير من يرتد عن دينه ويموت كافراً، وبشارة المهاجرين المجاهدين برحمة الله ومغفرته.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b34">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-3">➕ إضافة</button>
         <div class="note-editor">
@@ -908,9 +1041,16 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d35">
         <div class="ayah-note-block" data-note-group="tafsir-5-3-1">
           <span class="tafsir-ayah">يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱدۡخُلُواْ فِي ٱلسِّلۡمِ كَآفَّةٗ وَلَا تَتَّبِعُواْ خُطُوَٰتِ ٱلشَّيۡطَٰنِۚ إِنَّهُۥ لَكُمۡ عَدُوّٞ مُّبِينٞ (٢٠٨)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱلسِّلۡمِ</span><span class="ag-m">— الإسلام والاستسلام لله بالطاعة.</span></div>
+            <div class="ag-item"><span class="ag-w">كَآفَّةٗ</span><span class="ag-m">— جميعاً، بجميع شرائعه لا ببعضها.</span></div>
+            <div class="ag-item"><span class="ag-w">خُطُوَٰتِ ٱلشَّيۡطَٰنِ</span><span class="ag-m">— طرقه ومسالكه التي يزيّنها ليستدرج بها.</span></div>
+            <div class="ag-item"><span class="ag-w">مُّبِينٞ</span><span class="ag-m">— ظاهر العداوة لا تخفى على أحد.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-1">➕ إضافة</button>
           <div class="note-editor">
@@ -940,6 +1080,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-2">
           <span class="tafsir-ayah">فَإِن زَلَلۡتُم مِّنۢ بَعۡدِ مَا جَآءَتۡكُمُ ٱلۡبَيِّنَٰتُ فَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ عَزِيزٌ حَكِيمٌ (٢٠٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">زَلَلۡتُم</span><span class="ag-m">— انحرفتم عن الحق وأخطأتم الطريق.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡبَيِّنَٰتُ</span><span class="ag-m">— الحجج والدلائل الواضحة.</span></div>
+            <div class="ag-item"><span class="ag-w">عَزِيزٌ</span><span class="ag-m">— غالب لا يُقهر ولا يُمانَع.</span></div>
+            <div class="ag-item"><span class="ag-w">حَكِيمٌ</span><span class="ag-m">— يضع الأمور مواضعها بعلم وإتقان.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-2">➕ إضافة</button>
           <div class="note-editor">
@@ -969,6 +1116,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-3">
           <span class="tafsir-ayah">هَلۡ يَنظُرُونَ إِلَّآ أَن يَأۡتِيَهُمُ ٱللَّهُ فِي ظُلَلٖ مِّنَ ٱلۡغَمَامِ وَٱلۡمَلَـٰٓئِكَةُ وَقُضِيَ ٱلۡأَمۡرُۚ وَإِلَى ٱللَّهِ تُرۡجَعُ ٱلۡأُمُورُ (٢١٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يَنظُرُونَ</span><span class="ag-m">— ينتظرون ويترقبون.</span></div>
+            <div class="ag-item"><span class="ag-w">ظُلَلٖ</span><span class="ag-m">— جمع ظُلّة، وهي ما يُظِلّ ويغطي من فوق.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡغَمَامِ</span><span class="ag-m">— السحاب الأبيض الرقيق.</span></div>
+            <div class="ag-item"><span class="ag-w">وَقُضِيَ ٱلۡأَمۡرُ</span><span class="ag-m">— فُرغ من الحساب وأُنفذ القضاء بين الخلق.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-3">➕ إضافة</button>
           <div class="note-editor">
@@ -998,6 +1152,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-4">
           <span class="tafsir-ayah">سَلۡ بَنِيٓ إِسۡرَٰٓءِيلَ كَمۡ ءَاتَيۡنَٰهُم مِّنۡ ءَايَةِۭ بَيِّنَةٖۗ وَمَن يُبَدِّلۡ نِعۡمَةَ ٱللَّهِ مِنۢ بَعۡدِ مَا جَآءَتۡهُ فَإِنَّ ٱللَّهَ شَدِيدُ ٱلۡعِقَابِ (٢١١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">سَلۡ</span><span class="ag-m">— اسأل.</span></div>
+            <div class="ag-item"><span class="ag-w">ءَايَةِۭ بَيِّنَةٖ</span><span class="ag-m">— معجزة ظاهرة أو حجة واضحة لا لبس فيها.</span></div>
+            <div class="ag-item"><span class="ag-w">يُبَدِّلۡ</span><span class="ag-m">— يغيّرها ويستبدل بها الكفر والجحود.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-4">➕ إضافة</button>
           <div class="note-editor">
@@ -1027,6 +1187,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-5">
           <span class="tafsir-ayah">زُيِّنَ لِلَّذِينَ كَفَرُواْ ٱلۡحَيَوٰةُ ٱلدُّنۡيَا وَيَسۡخَرُونَ مِنَ ٱلَّذِينَ ءَامَنُواْۘ وَٱلَّذِينَ ٱتَّقَوۡاْ فَوۡقَهُمۡ يَوۡمَ ٱلۡقِيَٰمَةِۗ وَٱللَّهُ يَرۡزُقُ مَن يَشَآءُ بِغَيۡرِ حِسَابٖ (٢١٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">زُيِّنَ</span><span class="ag-m">— حُسّن وجُمّل في أعينهم حتى أحبّوه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَيَسۡخَرُونَ</span><span class="ag-m">— يستهزئون ويحتقرون.</span></div>
+            <div class="ag-item"><span class="ag-w">بِغَيۡرِ حِسَابٖ</span><span class="ag-m">— عطاءً واسعاً بلا تضييق ولا مقابل.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-5">➕ إضافة</button>
           <div class="note-editor">
@@ -1056,6 +1222,15 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-6">
           <span class="tafsir-ayah">كَانَ ٱلنَّاسُ أُمَّةٗ وَٰحِدَةٗ فَبَعَثَ ٱللَّهُ ٱلنَّبِيِّـۧنَ مُبَشِّرِينَ وَمُنذِرِينَ وَأَنزَلَ مَعَهُمُ ٱلۡكِتَٰبَ بِٱلۡحَقِّ لِيَحۡكُمَ بَيۡنَ ٱلنَّاسِ فِيمَا ٱخۡتَلَفُواْ فِيهِۚ وَمَا ٱخۡتَلَفَ فِيهِ إِلَّا ٱلَّذِينَ أُوتُوهُ مِنۢ بَعۡدِ مَا جَآءَتۡهُمُ ٱلۡبَيِّنَٰتُ بَغۡيَۢا بَيۡنَهُمۡۖ فَهَدَى ٱللَّهُ ٱلَّذِينَ ءَامَنُواْ لِمَا ٱخۡتَلَفُواْ فِيهِ مِنَ ٱلۡحَقِّ بِإِذۡنِهِۦۗ وَٱللَّهُ يَهۡدِي مَن يَشَآءُ إِلَىٰ صِرَٰطٖ مُّسۡتَقِيمٍ (٢١٣)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">أُمَّةٗ وَٰحِدَةٗ</span><span class="ag-m">— على دين واحد وملة واحدة قبل الاختلاف.</span></div>
+            <div class="ag-item"><span class="ag-w">مُبَشِّرِينَ</span><span class="ag-m">— يبشرون المطيعين بالثواب.</span></div>
+            <div class="ag-item"><span class="ag-w">وَمُنذِرِينَ</span><span class="ag-m">— يحذّرون العصاة من العقاب.</span></div>
+            <div class="ag-item"><span class="ag-w">بَغۡيَۢا بَيۡنَهُمۡ</span><span class="ag-m">— ظلماً وحسداً وطلباً للعلوّ بعضهم على بعض.</span></div>
+            <div class="ag-item"><span class="ag-w">بِإِذۡنِهِۦ</span><span class="ag-m">— بتوفيقه ومشيئته.</span></div>
+            <div class="ag-item"><span class="ag-w">صِرَٰطٖ مُّسۡتَقِيمٍ</span><span class="ag-m">— طريق قويم لا اعوجاج فيه.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-6">➕ إضافة</button>
           <div class="note-editor">
@@ -1085,6 +1260,16 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-7">
           <span class="tafsir-ayah">أَمۡ حَسِبۡتُمۡ أَن تَدۡخُلُواْ ٱلۡجَنَّةَ وَلَمَّا يَأۡتِكُم مَّثَلُ ٱلَّذِينَ خَلَوۡاْ مِن قَبۡلِكُمۖ مَّسَّتۡهُمُ ٱلۡبَأۡسَآءُ وَٱلضَّرَّآءُ وَزُلۡزِلُواْ حَتَّىٰ يَقُولَ ٱلرَّسُولُ وَٱلَّذِينَ ءَامَنُواْ مَعَهُۥ مَتَىٰ نَصۡرُ ٱللَّهِۗ أَلَآ إِنَّ نَصۡرَ ٱللَّهِ قَرِيبٞ (٢١٤)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">حَسِبۡتُمۡ</span><span class="ag-m">— ظننتم وحسبتم.</span></div>
+            <div class="ag-item"><span class="ag-w">وَلَمَّا يَأۡتِكُم</span><span class="ag-m">— ولم يصبكم بعدُ.</span></div>
+            <div class="ag-item"><span class="ag-w">مَّثَلُ</span><span class="ag-m">— شبيه حالهم وما جرى لهم من الشدائد.</span></div>
+            <div class="ag-item"><span class="ag-w">خَلَوۡاْ</span><span class="ag-m">— مضوا وسبقوا من الأمم.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡبَأۡسَآءُ</span><span class="ag-m">— شدة الفقر والبؤس والضيق في المال.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلضَّرَّآءُ</span><span class="ag-m">— المرض والأذى في البدن.</span></div>
+            <div class="ag-item"><span class="ag-w">وَزُلۡزِلُواْ</span><span class="ag-m">— اضطربوا وزُعزِعوا من شدة الخوف والابتلاء.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-7">➕ إضافة</button>
           <div class="note-editor">
@@ -1114,6 +1299,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-8">
           <span class="tafsir-ayah">يَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلۡ مَآ أَنفَقۡتُم مِّنۡ خَيۡرٖ فَلِلۡوَٰلِدَيۡنِ وَٱلۡأَقۡرَبِينَ وَٱلۡيَتَٰمَىٰ وَٱلۡمَسَٰكِينِ وَٱبۡنِ ٱلسَّبِيلِۗ وَمَا تَفۡعَلُواْ مِنۡ خَيۡرٖ فَإِنَّ ٱللَّهَ بِهِۦ عَلِيمٞ (٢١٥)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">وَٱلۡأَقۡرَبِينَ</span><span class="ag-m">— ذوي القرابة الأدنى فالأدنى.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلۡيَتَٰمَىٰ</span><span class="ag-m">— جمع يتيم، وهو من مات أبوه قبل بلوغه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلۡمَسَٰكِينِ</span><span class="ag-m">— أهل الحاجة الذين لا يجدون ما يكفيهم.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱبۡنِ ٱلسَّبِيلِ</span><span class="ag-m">— المسافر المنقطع عن ماله وأهله.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-8">➕ إضافة</button>
           <div class="note-editor">
@@ -1143,6 +1335,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-3-9">
           <span class="tafsir-ayah">كُتِبَ عَلَيۡكُمُ ٱلۡقِتَالُ وَهُوَ كُرۡهٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تَكۡرَهُواْ شَيۡـٔٗا وَهُوَ خَيۡرٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تُحِبُّواْ شَيۡـٔٗا وَهُوَ شَرّٞ لَّكُمۡۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢١٦)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">كُتِبَ</span><span class="ag-m">— فُرض وأُوجب.</span></div>
+            <div class="ag-item"><span class="ag-w">كُرۡهٞ</span><span class="ag-m">— مشقة تكرهها النفس وتنفر منها.</span></div>
+            <div class="ag-item"><span class="ag-w">وَعَسَىٰٓ</span><span class="ag-m">— لعل، وهي من الله واقعة لا محالة.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-3-9">➕ إضافة</button>
           <div class="note-editor">
@@ -1181,27 +1379,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿يَسۡـَٔلُونَكَ عَنِ ٱلشَّهۡرِ ٱلۡحَرَامِ قِتَالٖ فِيهِۖ قُلۡ قِتَالٞ فِيهِ كَبِيرٞۚ وَصَدٌّ عَن سَبِيلِ ٱللَّهِ وَكُفۡرُۢ بِهِۦ وَٱلۡمَسۡجِدِ ٱلۡحَرَامِ وَإِخۡرَاجُ أَهۡلِهِۦ مِنۡهُ أَكۡبَرُ عِندَ ٱللَّهِۚ وَٱلۡفِتۡنَةُ أَكۡبَرُ مِنَ ٱلۡقَتۡلِۗ وَلَا يَزَالُونَ يُقَٰتِلُونَكُمۡ حَتَّىٰ يَرُدُّوكُمۡ عَن دِينِكُمۡ إِنِ ٱسۡتَطَٰعُواْۚ وَمَن يَرۡتَدِدۡ مِنكُمۡ عَن دِينِهِۦ فَيَمُتۡ وَهُوَ كَافِرٞ فَأُوْلَـٰٓئِكَ حَبِطَتۡ أَعۡمَٰلُهُمۡ فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۖ وَأُوْلَـٰٓئِكَ أَصۡحَٰبُ ٱلنَّارِۖ هُمۡ فِيهَا خَٰلِدُونَ (٢١٧) إِنَّ ٱلَّذِينَ ءَامَنُواْ وَٱلَّذِينَ هَاجَرُواْ وَجَٰهَدُواْ فِي سَبِيلِ ٱللَّهِ أُوْلَـٰٓئِكَ يَرۡجُونَ رَحۡمَتَ ٱللَّهِۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ (٢١٨) ۞يَسۡـَٔلُونَكَ عَنِ ٱلۡخَمۡرِ وَٱلۡمَيۡسِرِۖ قُلۡ فِيهِمَآ إِثۡمٞ كَبِيرٞ وَمَنَٰفِعُ لِلنَّاسِ وَإِثۡمُهُمَآ أَكۡبَرُ مِن نَّفۡعِهِمَاۗ وَيَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلِ ٱلۡعَفۡوَۗ كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمُ ٱلۡأٓيَٰتِ لَعَلَّكُمۡ تَتَفَكَّرُونَ (٢١٩) فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۗ وَيَسۡـَٔلُونَكَ عَنِ ٱلۡيَتَٰمَىٰۖ قُلۡ إِصۡلَاحٞ لَّهُمۡ خَيۡرٞۖ وَإِن تُخَالِطُوهُمۡ فَإِخۡوَٰنُكُمۡۚ وَٱللَّهُ يَعۡلَمُ ٱلۡمُفۡسِدَ مِنَ ٱلۡمُصۡلِحِۚ وَلَوۡ شَآءَ ٱللَّهُ لَأَعۡنَتَكُمۡۚ إِنَّ ٱللَّهَ عَزِيزٌ حَكِيمٞ (٢٢٠)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">ٱلۡخَمۡرِ</span><span class="glossary-meaning">كل ما يُسكر ويُغطي العقل من الأشربة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمَيۡسِرِ</span><span class="glossary-meaning">القمار بكل صوره.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡعَفۡوَۗ</span><span class="glossary-meaning">الفاضل عن الحاجة من المال، وهو ما يُنفق تطوعاً.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تُخَالِطُوهُمۡ</span><span class="glossary-meaning">تشاركوهم في المعيشة والمال بحسن نية.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لَأَعۡنَتَكُمۡ</span><span class="glossary-meaning">لأوقعكم في المشقة والحرج.</span></div>
+      <div class="field-value verses-text" data-hl-id="v36">
+        ﴿يَسۡـَٔلُونَكَ عَنِ ٱلشَّهۡرِ ٱلۡحَرَامِ قِتَالٖ فِيهِۖ قُلۡ قِتَالٞ فِيهِ كَبِيرٞۚ <span class="wq" data-m="منع الناس ومنعُ النفس عن دين الله.">وَصَدٌّ عَن سَبِيلِ ٱللَّهِ</span> <span class="wq" data-m="جحود بالله وإنكار له.">وَكُفۡرُۢ بِهِۦ</span> وَٱلۡمَسۡجِدِ ٱلۡحَرَامِ وَإِخۡرَاجُ أَهۡلِهِۦ مِنۡهُ أَكۡبَرُ عِندَ ٱللَّهِۚ وَٱلۡفِتۡنَةُ أَكۡبَرُ مِنَ ٱلۡقَتۡلِۗ وَلَا يَزَالُونَ يُقَٰتِلُونَكُمۡ حَتَّىٰ <span class="wq" data-m="يرجعوكم عن دينكم إلى الكفر.">يَرُدُّوكُمۡ</span> عَن دِينِكُمۡ إِنِ ٱسۡتَطَٰعُواْۚ وَمَن <span class="wq" data-m="يرجع عن الإسلام إلى الكفر.">يَرۡتَدِدۡ</span> مِنكُمۡ عَن دِينِهِۦ فَيَمُتۡ وَهُوَ كَافِرٞ فَأُوْلَـٰٓئِكَ <span class="wq" data-m="بطلت وذهب ثوابها فلا ينتفعون بها.">حَبِطَتۡ أَعۡمَٰلُهُمۡ</span> فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۖ وَأُوْلَـٰٓئِكَ أَصۡحَٰبُ ٱلنَّارِۖ هُمۡ فِيهَا <span class="wq" data-m="ماكثون فيها أبداً لا يخرجون منها.">خَٰلِدُونَ</span> (٢١٧) إِنَّ ٱلَّذِينَ ءَامَنُواْ وَٱلَّذِينَ <span class="wq" data-m="تركوا ديارهم وأوطانهم فراراً بدينهم.">هَاجَرُواْ</span> <span class="wq" data-m="بذلوا الوسع والطاقة في قتال العدو ومجاهدة النفس.">وَجَٰهَدُواْ</span> فِي سَبِيلِ ٱللَّهِ أُوْلَـٰٓئِكَ <span class="wq" data-m="يطمعون ويؤمّلون.">يَرۡجُونَ</span> رَحۡمَتَ ٱللَّهِۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ (٢١٨) ۞يَسۡـَٔلُونَكَ عَنِ <span class="wq" data-m="كل مسكر يخامر العقل ويغطيه.">ٱلۡخَمۡرِ</span> <span class="wq" data-m="القمار بجميع صوره وأشكاله.">وَٱلۡمَيۡسِرِ</span>ۖ قُلۡ فِيهِمَآ إِثۡمٞ كَبِيرٞ <span class="wq" data-m="فوائد دنيوية عارضة كالربح والطرب ومنافع التجارة فيها.">وَمَنَٰفِعُ</span> لِلنَّاسِ وَإِثۡمُهُمَآ أَكۡبَرُ مِن نَّفۡعِهِمَاۗ وَيَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلِ <span class="wq" data-m="ما زاد عن الحاجة وفضل عن قوت النفس والأهل.">ٱلۡعَفۡوَ</span>ۗ كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمُ ٱلۡأٓيَٰتِ لَعَلَّكُمۡ <span class="wq" data-m="تُعملون عقولكم في العواقب والمآلات.">تَتَفَكَّرُونَ</span> (٢١٩) فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۗ وَيَسۡـَٔلُونَكَ عَنِ ٱلۡيَتَٰمَىٰۖ قُلۡ <span class="wq" data-m="تنمية أموالهم وحسن تربيتهم والقيام بمصالحهم.">إِصۡلَاحٞ لَّهُمۡ</span> خَيۡرٞۖ وَإِن <span class="wq" data-m="تشاركوهم في المعيشة والمال والسكنى.">تُخَالِطُوهُمۡ</span> فَإِخۡوَٰنُكُمۡۚ وَٱللَّهُ يَعۡلَمُ <span class="wq" data-m="من يقصد الإضرار بمال اليتيم وأكله.">ٱلۡمُفۡسِدَ</span> مِنَ <span class="wq" data-m="من يقصد نفع اليتيم وحفظ ماله.">ٱلۡمُصۡلِحِ</span>ۚ وَلَوۡ شَآءَ ٱللَّهُ <span class="wq" data-m="لشقّ عليكم وأوقعكم في الحرج والمشقة.">لَأَعۡنَتَكُمۡ</span>ۚ إِنَّ ٱللَّهَ عَزِيزٌ حَكِيمٞ (٢٢٠)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تجيب الآيات عن سؤال الناس عن الخمر والميسر، مبينة أن فيهما إثماً كبيراً ومنافع دنيوية للناس، لكن إثمهما أكبر من نفعهما، وهذا تمهيد تدريجي نحو التحريم الكامل الذي جاء لاحقاً في سورة المائدة. ثم تجيب عن سؤال آخر عن الإنفاق فتوجّه إلى إنفاق الفاضل عن الحاجة (العفو)، وتختم ببيان أن الله يبيّن آياته للناس رجاء التفكر. وتتناول الآيات كذلك حكم أموال اليتامى، فتدعو إلى الإصلاح لهم بدل عزلة أموالهم بالكامل، مبيحة مخالطتهم في المعيشة بحسن نية باعتبارهم إخوة، مع تأكيد أن الله يعلم المفسد من المصلح في نياتهم، ولو شاء لجعل الأمر عسيراً على الناس لكنه رحمهم بالتيسير.</div>
+      <div class="field-value" data-hl-id="b43">تجيب الآيات عن سؤال الناس عن الخمر والميسر، مبينة أن فيهما إثماً كبيراً ومنافع دنيوية للناس، لكن إثمهما أكبر من نفعهما، وهذا تمهيد تدريجي نحو التحريم الكامل الذي جاء لاحقاً في سورة المائدة. ثم تجيب عن سؤال آخر عن الإنفاق فتوجّه إلى إنفاق الفاضل عن الحاجة (العفو)، وتختم ببيان أن الله يبيّن آياته للناس رجاء التفكر. وتتناول الآيات كذلك حكم أموال اليتامى، فتدعو إلى الإصلاح لهم بدل عزلة أموالهم بالكامل، مبيحة مخالطتهم في المعيشة بحسن نية باعتبارهم إخوة، مع تأكيد أن الله يعلم المفسد من المصلح في نياتهم، ولو شاء لجعل الأمر عسيراً على الناس لكنه رحمهم بالتيسير.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b44">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-4">➕ إضافة</button>
         <div class="note-editor">
@@ -1232,9 +1420,18 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d45">
         <div class="ayah-note-block" data-note-group="tafsir-5-4-1">
           <span class="tafsir-ayah">يَسۡـَٔلُونَكَ عَنِ ٱلشَّهۡرِ ٱلۡحَرَامِ قِتَالٖ فِيهِۖ قُلۡ قِتَالٞ فِيهِ كَبِيرٞۚ وَصَدٌّ عَن سَبِيلِ ٱللَّهِ وَكُفۡرُۢ بِهِۦ وَٱلۡمَسۡجِدِ ٱلۡحَرَامِ وَإِخۡرَاجُ أَهۡلِهِۦ مِنۡهُ أَكۡبَرُ عِندَ ٱللَّهِۚ وَٱلۡفِتۡنَةُ أَكۡبَرُ مِنَ ٱلۡقَتۡلِۗ وَلَا يَزَالُونَ يُقَٰتِلُونَكُمۡ حَتَّىٰ يَرُدُّوكُمۡ عَن دِينِكُمۡ إِنِ ٱسۡتَطَٰعُواْۚ وَمَن يَرۡتَدِدۡ مِنكُمۡ عَن دِينِهِۦ فَيَمُتۡ وَهُوَ كَافِرٞ فَأُوْلَـٰٓئِكَ حَبِطَتۡ أَعۡمَٰلُهُمۡ فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۖ وَأُوْلَـٰٓئِكَ أَصۡحَٰبُ ٱلنَّارِۖ هُمۡ فِيهَا خَٰلِدُونَ (٢١٧)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">وَصَدٌّ عَن سَبِيلِ ٱللَّهِ</span><span class="ag-m">— منع الناس ومنعُ النفس عن دين الله.</span></div>
+            <div class="ag-item"><span class="ag-w">وَكُفۡرُۢ بِهِۦ</span><span class="ag-m">— جحود بالله وإنكار له.</span></div>
+            <div class="ag-item"><span class="ag-w">يَرُدُّوكُمۡ</span><span class="ag-m">— يرجعوكم عن دينكم إلى الكفر.</span></div>
+            <div class="ag-item"><span class="ag-w">يَرۡتَدِدۡ</span><span class="ag-m">— يرجع عن الإسلام إلى الكفر.</span></div>
+            <div class="ag-item"><span class="ag-w">حَبِطَتۡ أَعۡمَٰلُهُمۡ</span><span class="ag-m">— بطلت وذهب ثوابها فلا ينتفعون بها.</span></div>
+            <div class="ag-item"><span class="ag-w">خَٰلِدُونَ</span><span class="ag-m">— ماكثون فيها أبداً لا يخرجون منها.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-4-1">➕ إضافة</button>
           <div class="note-editor">
@@ -1264,6 +1461,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-4-2">
           <span class="tafsir-ayah">إِنَّ ٱلَّذِينَ ءَامَنُواْ وَٱلَّذِينَ هَاجَرُواْ وَجَٰهَدُواْ فِي سَبِيلِ ٱللَّهِ أُوْلَـٰٓئِكَ يَرۡجُونَ رَحۡمَتَ ٱللَّهِۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ (٢١٨)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">هَاجَرُواْ</span><span class="ag-m">— تركوا ديارهم وأوطانهم فراراً بدينهم.</span></div>
+            <div class="ag-item"><span class="ag-w">وَجَٰهَدُواْ</span><span class="ag-m">— بذلوا الوسع والطاقة في قتال العدو ومجاهدة النفس.</span></div>
+            <div class="ag-item"><span class="ag-w">يَرۡجُونَ</span><span class="ag-m">— يطمعون ويؤمّلون.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-4-2">➕ إضافة</button>
           <div class="note-editor">
@@ -1293,6 +1496,14 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-4-3">
           <span class="tafsir-ayah">۞يَسۡـَٔلُونَكَ عَنِ ٱلۡخَمۡرِ وَٱلۡمَيۡسِرِۖ قُلۡ فِيهِمَآ إِثۡمٞ كَبِيرٞ وَمَنَٰفِعُ لِلنَّاسِ وَإِثۡمُهُمَآ أَكۡبَرُ مِن نَّفۡعِهِمَاۗ وَيَسۡـَٔلُونَكَ مَاذَا يُنفِقُونَۖ قُلِ ٱلۡعَفۡوَۗ كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمُ ٱلۡأٓيَٰتِ لَعَلَّكُمۡ تَتَفَكَّرُونَ (٢١٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱلۡخَمۡرِ</span><span class="ag-m">— كل مسكر يخامر العقل ويغطيه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلۡمَيۡسِرِ</span><span class="ag-m">— القمار بجميع صوره وأشكاله.</span></div>
+            <div class="ag-item"><span class="ag-w">وَمَنَٰفِعُ</span><span class="ag-m">— فوائد دنيوية عارضة كالربح والطرب ومنافع التجارة فيها.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡعَفۡوَ</span><span class="ag-m">— ما زاد عن الحاجة وفضل عن قوت النفس والأهل.</span></div>
+            <div class="ag-item"><span class="ag-w">تَتَفَكَّرُونَ</span><span class="ag-m">— تُعملون عقولكم في العواقب والمآلات.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-4-3">➕ إضافة</button>
           <div class="note-editor">
@@ -1322,6 +1533,14 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-4-4">
           <span class="tafsir-ayah">فِي ٱلدُّنۡيَا وَٱلۡأٓخِرَةِۗ وَيَسۡـَٔلُونَكَ عَنِ ٱلۡيَتَٰمَىٰۖ قُلۡ إِصۡلَاحٞ لَّهُمۡ خَيۡرٞۖ وَإِن تُخَالِطُوهُمۡ فَإِخۡوَٰنُكُمۡۚ وَٱللَّهُ يَعۡلَمُ ٱلۡمُفۡسِدَ مِنَ ٱلۡمُصۡلِحِۚ وَلَوۡ شَآءَ ٱللَّهُ لَأَعۡنَتَكُمۡۚ إِنَّ ٱللَّهَ عَزِيزٌ حَكِيمٞ (٢٢٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">إِصۡلَاحٞ لَّهُمۡ</span><span class="ag-m">— تنمية أموالهم وحسن تربيتهم والقيام بمصالحهم.</span></div>
+            <div class="ag-item"><span class="ag-w">تُخَالِطُوهُمۡ</span><span class="ag-m">— تشاركوهم في المعيشة والمال والسكنى.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُفۡسِدَ</span><span class="ag-m">— من يقصد الإضرار بمال اليتيم وأكله.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُصۡلِحِ</span><span class="ag-m">— من يقصد نفع اليتيم وحفظ ماله.</span></div>
+            <div class="ag-item"><span class="ag-w">لَأَعۡنَتَكُمۡ</span><span class="ag-m">— لشقّ عليكم وأوقعكم في الحرج والمشقة.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-4-4">➕ إضافة</button>
           <div class="note-editor">
@@ -1360,30 +1579,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿وَلَا تَنكِحُواْ ٱلۡمُشۡرِكَٰتِ حَتَّىٰ يُؤۡمِنَّۚ وَلَأَمَةٞ مُّؤۡمِنَةٌ خَيۡرٞ مِّن مُّشۡرِكَةٖ وَلَوۡ أَعۡجَبَتۡكُمۡۗ وَلَا تُنكِحُواْ ٱلۡمُشۡرِكِينَ حَتَّىٰ يُؤۡمِنُواْۚ وَلَعَبۡدٞ مُّؤۡمِنٌ خَيۡرٞ مِّن مُّشۡرِكٖ وَلَوۡ أَعۡجَبَكُمۡۗ أُوْلَـٰٓئِكَ يَدۡعُونَ إِلَى ٱلنَّارِۖ وَٱللَّهُ يَدۡعُوٓاْ إِلَى ٱلۡجَنَّةِ وَٱلۡمَغۡفِرَةِ بِإِذۡنِهِۦۖ وَيُبَيِّنُ ءَايَٰتِهِۦ لِلنَّاسِ لَعَلَّهُمۡ يَتَذَكَّرُونَ (٢٢١) وَيَسۡـَٔلُونَكَ عَنِ ٱلۡمَحِيضِۖ قُلۡ هُوَ أَذٗى فَٱعۡتَزِلُواْ ٱلنِّسَآءَ فِي ٱلۡمَحِيضِ وَلَا تَقۡرَبُوهُنَّ حَتَّىٰ يَطۡهُرۡنَۖ فَإِذَا تَطَهَّرۡنَ فَأۡتُوهُنَّ مِنۡ حَيۡثُ أَمَرَكُمُ ٱللَّهُۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلتَّوَّٰبِينَ وَيُحِبُّ ٱلۡمُتَطَهِّرِينَ (٢٢٢) نِسَآؤُكُمۡ حَرۡثٞ لَّكُمۡ فَأۡتُواْ حَرۡثَكُمۡ أَنَّىٰ شِئۡتُمۡۖ وَقَدِّمُواْ لِأَنفُسِكُمۡۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُم مُّلَٰقُوهُۗ وَبَشِّرِ ٱلۡمُؤۡمِنِينَ (٢٢٣) وَلَا تَجۡعَلُواْ ٱللَّهَ عُرۡضَةٗ لِّأَيۡمَٰنِكُمۡ أَن تَبَرُّواْ وَتَتَّقُواْ وَتُصۡلِحُواْ بَيۡنَ ٱلنَّاسِۚ وَٱللَّهُ سَمِيعٌ عَلِيمٞ (٢٢٤) لَّا يُؤَاخِذُكُمُ ٱللَّهُ بِٱللَّغۡوِ فِيٓ أَيۡمَٰنِكُمۡ وَلَـٰكِن يُؤَاخِذُكُم بِمَا كَسَبَتۡ قُلُوبُكُمۡۗ وَٱللَّهُ غَفُورٌ حَلِيمٞ (٢٢٥) لِّلَّذِينَ يُؤۡلُونَ مِن نِّسَآئِهِمۡ تَرَبُّصُ أَرۡبَعَةِ أَشۡهُرٖۖ فَإِن فَآءُو فَإِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (٢٢٦) وَإِنۡ عَزَمُواْ ٱلطَّلَٰقَ فَإِنَّ ٱللَّهَ سَمِيعٌ عَلِيمٞ (٢٢٧) وَٱلۡمُطَلَّقَٰتُ يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ ثَلَـٰثَةَ قُرُوٓءٖۚ وَلَا يَحِلُّ لَهُنَّ أَن يَكۡتُمۡنَ مَا خَلَقَ ٱللَّهُ فِيٓ أَرۡحَامِهِنَّ إِن كُنَّ يُؤۡمِنَّ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۚ وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَٰلِكَ إِنۡ أَرَادُوٓاْ إِصۡلَـٰحٗاۚ وَلَهُنَّ مِثۡلُ ٱلَّذِي عَلَيۡهِنَّ بِٱلۡمَعۡرُوفِۚ وَلِلرِّجَالِ عَلَيۡهِنَّ دَرَجَةٞۗ وَٱللَّهُ عَزِيزٌ حَكِيمٌ (٢٢٨) ٱلطَّلَٰقُ مَرَّتَانِۖ فَإِمۡسَاكُۢ بِمَعۡرُوفٍ أَوۡ تَسۡرِيحُۢ بِإِحۡسَٰنٖۗ وَلَا يَحِلُّ لَكُمۡ أَن تَأۡخُذُواْ مِمَّآ ءَاتَيۡتُمُوهُنَّ شَيۡـًٔا إِلَّآ أَن يَخَافَآ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِۖ فَإِنۡ خِفۡتُمۡ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِ فَلَا جُنَاحَ عَلَيۡهِمَا فِيمَا ٱفۡتَدَتۡ بِهِۦۗ تِلۡكَ حُدُودُ ٱللَّهِ فَلَا تَعۡتَدُوهَاۚ وَمَن يَتَعَدَّ حُدُودَ ٱللَّهِ فَأُوْلَـٰٓئِكَ هُمُ ٱلظَّـٰلِمُونَ (٢٢٩) فَإِن طَلَّقَهَا فَلَا تَحِلُّ لَهُۥ مِنۢ بَعۡدُ حَتَّىٰ تَنكِحَ زَوۡجًا غَيۡرَهُۥۗ فَإِن طَلَّقَهَا فَلَا جُنَاحَ عَلَيۡهِمَآ أَن يَتَرَاجَعَآ إِن ظَنَّآ أَن يُقِيمَا حُدُودَ ٱللَّهِۗ وَتِلۡكَ حُدُودُ ٱللَّهِ يُبَيِّنُهَا لِقَوۡمٖ يَعۡلَمُونَ (٢٣٠) وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ فَبَلَغۡنَ أَجَلَهُنَّ فَأَمۡسِكُوهُنَّ بِمَعۡرُوفٍ أَوۡ سَرِّحُوهُنَّ بِمَعۡرُوفٖۚ وَلَا تُمۡسِكُوهُنَّ ضِرَارٗا لِّتَعۡتَدُواْۚ وَمَن يَفۡعَلۡ ذَٰلِكَ فَقَدۡ ظَلَمَ نَفۡسَهُۥۚ وَلَا تَتَّخِذُوٓاْ ءَايَٰتِ ٱللَّهِ هُزُوٗاۚ وَٱذۡكُرُواْ نِعۡمَتَ ٱللَّهِ عَلَيۡكُمۡ وَمَآ أَنزَلَ عَلَيۡكُم مِّنَ ٱلۡكِتَٰبِ وَٱلۡحِكۡمَةِ يَعِظُكُم بِهِۦۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِكُلِّ شَيۡءٍ عَلِيمٞ (٢٣١) وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ فَبَلَغۡنَ أَجَلَهُنَّ فَلَا تَعۡضُلُوهُنَّ أَن يَنكِحۡنَ أَزۡوَٰجَهُنَّ إِذَا تَرَٰضَوۡاْ بَيۡنَهُم بِٱلۡمَعۡرُوفِۗ ذَٰلِكَ يُوعَظُ بِهِۦ مَن كَانَ مِنكُمۡ يُؤۡمِنُ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۗ ذَٰلِكُمۡ أَزۡكَىٰ لَكُمۡ وَأَطۡهَرُۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢٣٢)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمُشۡرِكَٰتِ</span><span class="glossary-meaning">النساء الوثنيات غير المؤمنات بالله ورسوله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمَحِيضِ</span><span class="glossary-meaning">الحيض، وهو دم العادة الشهرية عند المرأة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">حَرۡثٞ</span><span class="glossary-meaning">موضع الزرع، كناية عن كون النساء محلاً للنسل.</span></div>
-        <div class="glossary-item"><span class="glossary-word">عُرۡضَةٗ لِّأَيۡمَٰنِكُمۡ</span><span class="glossary-meaning">لا تجعلوا اليمين بالله عائقاً عن فعل الخير والصلح.</span></div>
-        <div class="glossary-item"><span class="glossary-word">بِٱللَّغۡوِ فِيٓ أَيۡمَٰنِكُمۡ</span><span class="glossary-meaning">اليمين التي تجري على اللسان بلا قصد التوكيد.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يُؤۡلُونَ</span><span class="glossary-meaning">يحلفون على ترك معاشرة زوجاتهم مدة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تَرَبُّصُ</span><span class="glossary-meaning">انتظار وتأجيل.</span></div>
-        <div class="glossary-item"><span class="glossary-word">قُرُوٓءٖ</span><span class="glossary-meaning">أطهار أو حِيَض، والراجح عند جمهور المفسرين أنها الأطهار.</span></div>
+      <div class="field-value verses-text" data-hl-id="v46">
+        ﴿وَلَا <span class="wq" data-m="تتزوجوا.">تَنكِحُواْ</span> <span class="wq" data-m="من تعبد مع الله غيره.">ٱلۡمُشۡرِكَٰتِ</span> حَتَّىٰ يُؤۡمِنَّۚ <span class="wq" data-m="المملوكة الرقيقة.">وَلَأَمَةٞ</span> مُّؤۡمِنَةٌ خَيۡرٞ مِّن مُّشۡرِكَةٖ وَلَوۡ أَعۡجَبَتۡكُمۡۗ وَلَا <span class="wq" data-m="تزوّجوا مَن تحت ولايتكم من النساء.">تُنكِحُواْ</span> ٱلۡمُشۡرِكِينَ حَتَّىٰ يُؤۡمِنُواْۚ <span class="wq" data-m="المملوك الرقيق.">وَلَعَبۡدٞ</span> مُّؤۡمِنٌ خَيۡرٞ مِّن مُّشۡرِكٖ وَلَوۡ أَعۡجَبَكُمۡۗ أُوْلَـٰٓئِكَ يَدۡعُونَ إِلَى ٱلنَّارِۖ وَٱللَّهُ يَدۡعُوٓاْ إِلَى ٱلۡجَنَّةِ وَٱلۡمَغۡفِرَةِ بِإِذۡنِهِۦۖ وَيُبَيِّنُ ءَايَٰتِهِۦ لِلنَّاسِ لَعَلَّهُمۡ يَتَذَكَّرُونَ (٢٢١) وَيَسۡـَٔلُونَكَ عَنِ <span class="wq" data-m="دم الحيض، ويُراد به زمانه أو موضعه بحسب السياق.">ٱلۡمَحِيضِ</span>ۖ قُلۡ هُوَ <span class="wq" data-m="قذر مستقذر ومصدر ضرر.">أَذٗى</span> <span class="wq" data-m="اجتنبوا؛ والمراد اجتناب الجماع خاصة لا هجرهنّ.">فَٱعۡتَزِلُواْ</span> ٱلنِّسَآءَ فِي <span class="wq" data-m="دم الحيض، ويُراد به زمانه أو موضعه بحسب السياق.">ٱلۡمَحِيضِ</span> وَلَا تَقۡرَبُوهُنَّ حَتَّىٰ <span class="wq" data-m="ينقطع عنهن دم الحيض.">يَطۡهُرۡنَ</span>ۖ فَإِذَا <span class="wq" data-m="اغتسلن بعد انقطاع الدم.">تَطَهَّرۡنَ</span> فَأۡتُوهُنَّ مِنۡ حَيۡثُ أَمَرَكُمُ ٱللَّهُۚ إِنَّ ٱللَّهَ يُحِبُّ <span class="wq" data-m="كثيري الرجوع إلى الله من الذنب.">ٱلتَّوَّٰبِينَ</span> وَيُحِبُّ <span class="wq" data-m="المتنزهين عن الأقذار والمعاصي حسّاً ومعنى.">ٱلۡمُتَطَهِّرِينَ</span> (٢٢٢) نِسَآؤُكُمۡ <span class="wq" data-m="موضع الزرع؛ تشبيهاً لموضع النسل بالأرض التي يُبذر فيها.">حَرۡثٞ لَّكُمۡ</span> فَأۡتُواْ حَرۡثَكُمۡ <span class="wq" data-m="من أيّ جهة أردتم، ما دام في موضع الحرث.">أَنَّىٰ شِئۡتُمۡ</span>ۖ <span class="wq" data-m="اعملوا صالحاً يسبقكم ويكون ذخراً لكم.">وَقَدِّمُواْ لِأَنفُسِكُمۡ</span>ۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُم <span class="wq" data-m="صائرون إليه للحساب لا محالة.">مُّلَٰقُوهُ</span>ۗ وَبَشِّرِ ٱلۡمُؤۡمِنِينَ (٢٢٣) وَلَا تَجۡعَلُواْ ٱللَّهَ <span class="wq" data-m="حاجزاً ومانعاً، أو هدفاً معرَّضاً لكثرة الحلف به.">عُرۡضَةٗ</span> <span class="wq" data-m="جمع يمين، وهي الحلف والقسم.">لِّأَيۡمَٰنِكُمۡ</span> أَن <span class="wq" data-m="تفعلوا البرّ والخير.">تَبَرُّواْ</span> وَتَتَّقُواْ وَتُصۡلِحُواْ بَيۡنَ ٱلنَّاسِۚ وَٱللَّهُ سَمِيعٌ عَلِيمٞ (٢٢٤) لَّا <span class="wq" data-m="يعاقبكم ويحاسبكم.">يُؤَاخِذُكُمُ</span> ٱللَّهُ <span class="wq" data-m="ما يجري على اللسان بلا قصد ولا عقد قلب، كقول: لا والله وبلى والله.">بِٱللَّغۡوِ</span> فِيٓ أَيۡمَٰنِكُمۡ وَلَـٰكِن يُؤَاخِذُكُم بِمَا كَسَبَتۡ قُلُوبُكُمۡۗ وَٱللَّهُ غَفُورٌ <span class="wq" data-m="لا يعاجل بالعقوبة مع القدرة عليها.">حَلِيمٞ</span> (٢٢٥) لِّلَّذِينَ <span class="wq" data-m="يحلفون ألّا يقربوا نساءهم، وهو المسمى بالإيلاء.">يُؤۡلُونَ</span> مِن نِّسَآئِهِمۡ <span class="wq" data-m="انتظار وتأنٍّ مدةً محددة.">تَرَبُّصُ</span> أَرۡبَعَةِ أَشۡهُرٖۖ فَإِن <span class="wq" data-m="رجعوا عن يمينهم وعادوا إلى نسائهم.">فَآءُو</span> فَإِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (٢٢٦) وَإِنۡ <span class="wq" data-m="صمّموا عليه ومضوا فيه بعد المدة.">عَزَمُواْ ٱلطَّلَٰقَ</span> فَإِنَّ ٱللَّهَ سَمِيعٌ عَلِيمٞ (٢٢٧) <span class="wq" data-m="النساء اللاتي طُلّقن بعد الدخول.">وَٱلۡمُطَلَّقَٰتُ</span> <span class="wq" data-m="ينتظرن ولا يتزوجن حتى تنقضي العدة.">يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ</span> ثَلَـٰثَةَ <span class="wq" data-m="جمع قَرْء، وهو الحيضة أو الطهر بين حيضتين.">قُرُوٓءٖ</span>ۚ وَلَا يَحِلُّ لَهُنَّ أَن يَكۡتُمۡنَ مَا خَلَقَ ٱللَّهُ فِيٓ <span class="wq" data-m="جمع رَحِم، وهو موضع تكوّن الحمل.">أَرۡحَامِهِنَّ</span> إِن كُنَّ يُؤۡمِنَّ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۚ <span class="wq" data-m="أزواجهن.">وَبُعُولَتُهُنَّ</span> <span class="wq" data-m="أولى بمراجعتهن ما دامت العدة قائمة.">أَحَقُّ بِرَدِّهِنَّ</span> فِي ذَٰلِكَ إِنۡ أَرَادُوٓاْ إِصۡلَـٰحٗاۚ وَلَهُنَّ مِثۡلُ ٱلَّذِي عَلَيۡهِنَّ بِٱلۡمَعۡرُوفِۚ وَلِلرِّجَالِ عَلَيۡهِنَّ <span class="wq" data-m="مرتبة زائدة بما عليه من القوامة والنفقة والمسؤولية.">دَرَجَةٞ</span>ۗ وَٱللَّهُ عَزِيزٌ حَكِيمٌ (٢٢٨) ٱلطَّلَٰقُ مَرَّتَانِۖ <span class="wq" data-m="إبقاء الزوجة في العصمة بحسن عشرة وأداء حقّ.">فَإِمۡسَاكُۢ بِمَعۡرُوفٍ</span> أَوۡ <span class="wq" data-m="تطليقها من غير إضرار ولا ظلم ولا هضم لحقها.">تَسۡرِيحُۢ بِإِحۡسَٰنٖ</span>ۗ وَلَا يَحِلُّ لَكُمۡ أَن تَأۡخُذُواْ مِمَّآ <span class="wq" data-m="أعطيتموهن من المهر والصداق.">ءَاتَيۡتُمُوهُنَّ</span> شَيۡـًٔا إِلَّآ أَن يَخَافَآ أَلَّا يُقِيمَا <span class="wq" data-m="أحكامه وشرائعه التي لا يجوز تجاوزها.">حُدُودَ ٱللَّهِ</span>ۖ فَإِنۡ خِفۡتُمۡ أَلَّا يُقِيمَا <span class="wq" data-m="أحكامه وشرائعه التي لا يجوز تجاوزها.">حُدُودَ ٱللَّهِ</span> فَلَا جُنَاحَ عَلَيۡهِمَا فِيمَا <span class="wq" data-m="بذلته من مال لتفتدي به نفسها، وهو الخُلع.">ٱفۡتَدَتۡ بِهِۦ</span>ۗ تِلۡكَ حُدُودُ ٱللَّهِ فَلَا تَعۡتَدُوهَاۚ وَمَن <span class="wq" data-m="يتجاوز ويخالف.">يَتَعَدَّ</span> <span class="wq" data-m="أحكامه وشرائعه التي لا يجوز تجاوزها.">حُدُودَ ٱللَّهِ</span> فَأُوْلَـٰٓئِكَ هُمُ ٱلظَّـٰلِمُونَ (٢٢٩) فَإِن طَلَّقَهَا فَلَا تَحِلُّ لَهُۥ مِنۢ بَعۡدُ حَتَّىٰ <span class="wq" data-m="تتزوج زوجاً آخر زواج رغبة حقيقي، لا زواج تحليل.">تَنكِحَ زَوۡجًا غَيۡرَهُۥ</span>ۗ فَإِن طَلَّقَهَا فَلَا جُنَاحَ عَلَيۡهِمَآ أَن <span class="wq" data-m="يعودا إلى الزواج من جديد بعقد جديد.">يَتَرَاجَعَآ</span> إِن ظَنَّآ أَن يُقِيمَا <span class="wq" data-m="أحكامه وشرائعه التي لا يجوز تجاوزها.">حُدُودَ ٱللَّهِ</span>ۗ وَتِلۡكَ حُدُودُ ٱللَّهِ يُبَيِّنُهَا لِقَوۡمٖ يَعۡلَمُونَ (٢٣٠) وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ <span class="wq" data-m="قاربن انقضاء عدّتهن.">فَبَلَغۡنَ أَجَلَهُنَّ</span> <span class="wq" data-m="راجعوهن وأبقوهن في العصمة.">فَأَمۡسِكُوهُنَّ</span> بِمَعۡرُوفٍ أَوۡ <span class="wq" data-m="اتركوهن حتى تنقضي عدتهن فيَبِنّ منكم.">سَرِّحُوهُنَّ</span> بِمَعۡرُوفٖۚ وَلَا تُمۡسِكُوهُنَّ <span class="wq" data-m="قصداً للإضرار بهن وتطويل العدة عليهن.">ضِرَارٗا</span> لِّتَعۡتَدُواْۚ وَمَن يَفۡعَلۡ ذَٰلِكَ فَقَدۡ ظَلَمَ نَفۡسَهُۥۚ وَلَا تَتَّخِذُوٓاْ ءَايَٰتِ ٱللَّهِ <span class="wq" data-m="سخرية ولعباً واستخفافاً.">هُزُوٗا</span>ۚ وَٱذۡكُرُواْ نِعۡمَتَ ٱللَّهِ عَلَيۡكُمۡ وَمَآ أَنزَلَ عَلَيۡكُم مِّنَ ٱلۡكِتَٰبِ <span class="wq" data-m="السنة النبوية، وقيل: الفقه في الدين وإصابة الحق.">وَٱلۡحِكۡمَةِ</span> <span class="wq" data-m="يذكّركم ويخوّفكم بما ينفعكم.">يَعِظُكُم</span> بِهِۦۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِكُلِّ شَيۡءٍ عَلِيمٞ (٢٣١) وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ <span class="wq" data-m="قاربن انقضاء عدّتهن.">فَبَلَغۡنَ أَجَلَهُنَّ</span> فَلَا <span class="wq" data-m="تمنعوهن وتضيّقوا عليهن في الزواج ممن يرغبن.">تَعۡضُلُوهُنَّ</span> أَن يَنكِحۡنَ أَزۡوَٰجَهُنَّ إِذَا <span class="wq" data-m="اتفقوا ورضي كل طرف بالآخر.">تَرَٰضَوۡاْ</span> بَيۡنَهُم بِٱلۡمَعۡرُوفِۗ ذَٰلِكَ يُوعَظُ بِهِۦ مَن كَانَ مِنكُمۡ يُؤۡمِنُ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۗ ذَٰلِكُمۡ <span class="wq" data-m="أطهر وأنمى للبركة وأطيب للنفس.">أَزۡكَىٰ</span> لَكُمۡ وَأَطۡهَرُۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢٣٢)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تنهى الآيات عن نكاح المشركات حتى يؤمنّ، مؤكدة أن الأمة المؤمنة خير من الحرة المشركة ولو أعجبت، وكذلك النهي عن تزويج المشركين المؤمنات حتى يؤمنوا. وتجيب عن سؤال الرجال عن معاشرة الحائض فتبيّن أنه أذى يجب اجتنابه في وقته دون هجر تام، مع بيان أن النساء محل الإنجاب فيُؤتين من حيث أمر الله. ثم تنهى الآيات عن اتخاذ اليمين بالله عائقاً عن البر والتقوى والإصلاح بين الناس، مفرّقة بين اليمين اللاغية التي لا مؤاخذة فيها وبين ما كسبته القلوب من عزم اليمين. وتبيّن أحكام الإيلاء (حلف الرجل على ترك معاشرة زوجته)، فله أربعة أشهر ثم يُطالَب بالرجوع أو الطلاق. وتفصّل الآيات أحكام عدة المطلقة (ثلاثة قروء)، وحق الزوج في مراجعتها في هذه المدة إن أراد الإصلاح، مع التذكير بأن للنساء مثل ما عليهن بالمعروف. ثم تبيّن أن الطلاق مرتان يعقبهما إمساك بمعروف أو تسريح بإحسان، مع تحريم أخذ الزوج ما أعطاه لزوجته إلا في حالة الخُلع برضاهما، وحدود الله في ذلك لا يجوز تجاوزها. وتختم ببيان أن الطلقة الثالثة تُحرّم المرأة على زوجها حتى تنكح زوجاً آخر نكاحاً حقيقياً، والنهي عن عضل النساء عن الزواج بعد انتهاء عدتهن إذا تراضوا بالمعروف.</div>
+      <div class="field-value" data-hl-id="b56">تنهى الآيات عن نكاح المشركات حتى يؤمنّ، مؤكدة أن الأمة المؤمنة خير من الحرة المشركة ولو أعجبت، وكذلك النهي عن تزويج المشركين المؤمنات حتى يؤمنوا. وتجيب عن سؤال الرجال عن معاشرة الحائض فتبيّن أنه أذى يجب اجتنابه في وقته دون هجر تام، مع بيان أن النساء محل الإنجاب فيُؤتين من حيث أمر الله. ثم تنهى الآيات عن اتخاذ اليمين بالله عائقاً عن البر والتقوى والإصلاح بين الناس، مفرّقة بين اليمين اللاغية التي لا مؤاخذة فيها وبين ما كسبته القلوب من عزم اليمين. وتبيّن أحكام الإيلاء (حلف الرجل على ترك معاشرة زوجته)، فله أربعة أشهر ثم يُطالَب بالرجوع أو الطلاق. وتفصّل الآيات أحكام عدة المطلقة (ثلاثة قروء)، وحق الزوج في مراجعتها في هذه المدة إن أراد الإصلاح، مع التذكير بأن للنساء مثل ما عليهن بالمعروف. ثم تبيّن أن الطلاق مرتان يعقبهما إمساك بمعروف أو تسريح بإحسان، مع تحريم أخذ الزوج ما أعطاه لزوجته إلا في حالة الخُلع برضاهما، وحدود الله في ذلك لا يجوز تجاوزها. وتختم ببيان أن الطلقة الثالثة تُحرّم المرأة على زوجها حتى تنكح زوجاً آخر نكاحاً حقيقياً، والنهي عن عضل النساء عن الزواج بعد انتهاء عدتهن إذا تراضوا بالمعروف.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b57">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-5">➕ إضافة</button>
         <div class="note-editor">
@@ -1414,9 +1620,17 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d58">
         <div class="ayah-note-block" data-note-group="tafsir-5-5-1">
           <span class="tafsir-ayah">وَلَا تَنكِحُواْ ٱلۡمُشۡرِكَٰتِ حَتَّىٰ يُؤۡمِنَّۚ وَلَأَمَةٞ مُّؤۡمِنَةٌ خَيۡرٞ مِّن مُّشۡرِكَةٖ وَلَوۡ أَعۡجَبَتۡكُمۡۗ وَلَا تُنكِحُواْ ٱلۡمُشۡرِكِينَ حَتَّىٰ يُؤۡمِنُواْۚ وَلَعَبۡدٞ مُّؤۡمِنٌ خَيۡرٞ مِّن مُّشۡرِكٖ وَلَوۡ أَعۡجَبَكُمۡۗ أُوْلَـٰٓئِكَ يَدۡعُونَ إِلَى ٱلنَّارِۖ وَٱللَّهُ يَدۡعُوٓاْ إِلَى ٱلۡجَنَّةِ وَٱلۡمَغۡفِرَةِ بِإِذۡنِهِۦۖ وَيُبَيِّنُ ءَايَٰتِهِۦ لِلنَّاسِ لَعَلَّهُمۡ يَتَذَكَّرُونَ (٢٢١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَنكِحُواْ</span><span class="ag-m">— تتزوجوا.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُشۡرِكَٰتِ</span><span class="ag-m">— من تعبد مع الله غيره.</span></div>
+            <div class="ag-item"><span class="ag-w">وَلَأَمَةٞ</span><span class="ag-m">— المملوكة الرقيقة.</span></div>
+            <div class="ag-item"><span class="ag-w">تُنكِحُواْ</span><span class="ag-m">— تزوّجوا مَن تحت ولايتكم من النساء.</span></div>
+            <div class="ag-item"><span class="ag-w">وَلَعَبۡدٞ</span><span class="ag-m">— المملوك الرقيق.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-1">➕ إضافة</button>
           <div class="note-editor">
@@ -1446,6 +1660,16 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-2">
           <span class="tafsir-ayah">وَيَسۡـَٔلُونَكَ عَنِ ٱلۡمَحِيضِۖ قُلۡ هُوَ أَذٗى فَٱعۡتَزِلُواْ ٱلنِّسَآءَ فِي ٱلۡمَحِيضِ وَلَا تَقۡرَبُوهُنَّ حَتَّىٰ يَطۡهُرۡنَۖ فَإِذَا تَطَهَّرۡنَ فَأۡتُوهُنَّ مِنۡ حَيۡثُ أَمَرَكُمُ ٱللَّهُۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلتَّوَّٰبِينَ وَيُحِبُّ ٱلۡمُتَطَهِّرِينَ (٢٢٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">ٱلۡمَحِيضِ</span><span class="ag-m">— دم الحيض، ويُراد به زمانه أو موضعه بحسب السياق.</span></div>
+            <div class="ag-item"><span class="ag-w">أَذٗى</span><span class="ag-m">— قذر مستقذر ومصدر ضرر.</span></div>
+            <div class="ag-item"><span class="ag-w">فَٱعۡتَزِلُواْ</span><span class="ag-m">— اجتنبوا؛ والمراد اجتناب الجماع خاصة لا هجرهنّ.</span></div>
+            <div class="ag-item"><span class="ag-w">يَطۡهُرۡنَ</span><span class="ag-m">— ينقطع عنهن دم الحيض.</span></div>
+            <div class="ag-item"><span class="ag-w">تَطَهَّرۡنَ</span><span class="ag-m">— اغتسلن بعد انقطاع الدم.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلتَّوَّٰبِينَ</span><span class="ag-m">— كثيري الرجوع إلى الله من الذنب.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُتَطَهِّرِينَ</span><span class="ag-m">— المتنزهين عن الأقذار والمعاصي حسّاً ومعنى.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-2">➕ إضافة</button>
           <div class="note-editor">
@@ -1475,6 +1699,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-3">
           <span class="tafsir-ayah">نِسَآؤُكُمۡ حَرۡثٞ لَّكُمۡ فَأۡتُواْ حَرۡثَكُمۡ أَنَّىٰ شِئۡتُمۡۖ وَقَدِّمُواْ لِأَنفُسِكُمۡۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّكُم مُّلَٰقُوهُۗ وَبَشِّرِ ٱلۡمُؤۡمِنِينَ (٢٢٣)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">حَرۡثٞ لَّكُمۡ</span><span class="ag-m">— موضع الزرع؛ تشبيهاً لموضع النسل بالأرض التي يُبذر فيها.</span></div>
+            <div class="ag-item"><span class="ag-w">أَنَّىٰ شِئۡتُمۡ</span><span class="ag-m">— من أيّ جهة أردتم، ما دام في موضع الحرث.</span></div>
+            <div class="ag-item"><span class="ag-w">وَقَدِّمُواْ لِأَنفُسِكُمۡ</span><span class="ag-m">— اعملوا صالحاً يسبقكم ويكون ذخراً لكم.</span></div>
+            <div class="ag-item"><span class="ag-w">مُّلَٰقُوهُ</span><span class="ag-m">— صائرون إليه للحساب لا محالة.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-3">➕ إضافة</button>
           <div class="note-editor">
@@ -1504,6 +1735,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-4">
           <span class="tafsir-ayah">وَلَا تَجۡعَلُواْ ٱللَّهَ عُرۡضَةٗ لِّأَيۡمَٰنِكُمۡ أَن تَبَرُّواْ وَتَتَّقُواْ وَتُصۡلِحُواْ بَيۡنَ ٱلنَّاسِۚ وَٱللَّهُ سَمِيعٌ عَلِيمٞ (٢٢٤)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">عُرۡضَةٗ</span><span class="ag-m">— حاجزاً ومانعاً، أو هدفاً معرَّضاً لكثرة الحلف به.</span></div>
+            <div class="ag-item"><span class="ag-w">لِّأَيۡمَٰنِكُمۡ</span><span class="ag-m">— جمع يمين، وهي الحلف والقسم.</span></div>
+            <div class="ag-item"><span class="ag-w">تَبَرُّواْ</span><span class="ag-m">— تفعلوا البرّ والخير.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-4">➕ إضافة</button>
           <div class="note-editor">
@@ -1533,6 +1770,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-5">
           <span class="tafsir-ayah">لَّا يُؤَاخِذُكُمُ ٱللَّهُ بِٱللَّغۡوِ فِيٓ أَيۡمَٰنِكُمۡ وَلَـٰكِن يُؤَاخِذُكُم بِمَا كَسَبَتۡ قُلُوبُكُمۡۗ وَٱللَّهُ غَفُورٌ حَلِيمٞ (٢٢٥)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يُؤَاخِذُكُمُ</span><span class="ag-m">— يعاقبكم ويحاسبكم.</span></div>
+            <div class="ag-item"><span class="ag-w">بِٱللَّغۡوِ</span><span class="ag-m">— ما يجري على اللسان بلا قصد ولا عقد قلب، كقول: لا والله وبلى والله.</span></div>
+            <div class="ag-item"><span class="ag-w">حَلِيمٞ</span><span class="ag-m">— لا يعاجل بالعقوبة مع القدرة عليها.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-5">➕ إضافة</button>
           <div class="note-editor">
@@ -1562,6 +1805,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-6">
           <span class="tafsir-ayah">لِّلَّذِينَ يُؤۡلُونَ مِن نِّسَآئِهِمۡ تَرَبُّصُ أَرۡبَعَةِ أَشۡهُرٖۖ فَإِن فَآءُو فَإِنَّ ٱللَّهَ غَفُورٞ رَّحِيمٞ (٢٢٦)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يُؤۡلُونَ</span><span class="ag-m">— يحلفون ألّا يقربوا نساءهم، وهو المسمى بالإيلاء.</span></div>
+            <div class="ag-item"><span class="ag-w">تَرَبُّصُ</span><span class="ag-m">— انتظار وتأنٍّ مدةً محددة.</span></div>
+            <div class="ag-item"><span class="ag-w">فَآءُو</span><span class="ag-m">— رجعوا عن يمينهم وعادوا إلى نسائهم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-6">➕ إضافة</button>
           <div class="note-editor">
@@ -1591,6 +1840,10 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-7">
           <span class="tafsir-ayah">وَإِنۡ عَزَمُواْ ٱلطَّلَٰقَ فَإِنَّ ٱللَّهَ سَمِيعٌ عَلِيمٞ (٢٢٧)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">عَزَمُواْ ٱلطَّلَٰقَ</span><span class="ag-m">— صمّموا عليه ومضوا فيه بعد المدة.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-7">➕ إضافة</button>
           <div class="note-editor">
@@ -1620,6 +1873,16 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-8">
           <span class="tafsir-ayah">وَٱلۡمُطَلَّقَٰتُ يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ ثَلَـٰثَةَ قُرُوٓءٖۚ وَلَا يَحِلُّ لَهُنَّ أَن يَكۡتُمۡنَ مَا خَلَقَ ٱللَّهُ فِيٓ أَرۡحَامِهِنَّ إِن كُنَّ يُؤۡمِنَّ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۚ وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَٰلِكَ إِنۡ أَرَادُوٓاْ إِصۡلَـٰحٗاۚ وَلَهُنَّ مِثۡلُ ٱلَّذِي عَلَيۡهِنَّ بِٱلۡمَعۡرُوفِۚ وَلِلرِّجَالِ عَلَيۡهِنَّ دَرَجَةٞۗ وَٱللَّهُ عَزِيزٌ حَكِيمٌ (٢٢٨)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">وَٱلۡمُطَلَّقَٰتُ</span><span class="ag-m">— النساء اللاتي طُلّقن بعد الدخول.</span></div>
+            <div class="ag-item"><span class="ag-w">يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ</span><span class="ag-m">— ينتظرن ولا يتزوجن حتى تنقضي العدة.</span></div>
+            <div class="ag-item"><span class="ag-w">قُرُوٓءٖ</span><span class="ag-m">— جمع قَرْء، وهو الحيضة أو الطهر بين حيضتين.</span></div>
+            <div class="ag-item"><span class="ag-w">أَرۡحَامِهِنَّ</span><span class="ag-m">— جمع رَحِم، وهو موضع تكوّن الحمل.</span></div>
+            <div class="ag-item"><span class="ag-w">وَبُعُولَتُهُنَّ</span><span class="ag-m">— أزواجهن.</span></div>
+            <div class="ag-item"><span class="ag-w">أَحَقُّ بِرَدِّهِنَّ</span><span class="ag-m">— أولى بمراجعتهن ما دامت العدة قائمة.</span></div>
+            <div class="ag-item"><span class="ag-w">دَرَجَةٞ</span><span class="ag-m">— مرتبة زائدة بما عليه من القوامة والنفقة والمسؤولية.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-8">➕ إضافة</button>
           <div class="note-editor">
@@ -1649,6 +1912,15 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-9">
           <span class="tafsir-ayah">ٱلطَّلَٰقُ مَرَّتَانِۖ فَإِمۡسَاكُۢ بِمَعۡرُوفٍ أَوۡ تَسۡرِيحُۢ بِإِحۡسَٰنٖۗ وَلَا يَحِلُّ لَكُمۡ أَن تَأۡخُذُواْ مِمَّآ ءَاتَيۡتُمُوهُنَّ شَيۡـًٔا إِلَّآ أَن يَخَافَآ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِۖ فَإِنۡ خِفۡتُمۡ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِ فَلَا جُنَاحَ عَلَيۡهِمَا فِيمَا ٱفۡتَدَتۡ بِهِۦۗ تِلۡكَ حُدُودُ ٱللَّهِ فَلَا تَعۡتَدُوهَاۚ وَمَن يَتَعَدَّ حُدُودَ ٱللَّهِ فَأُوْلَـٰٓئِكَ هُمُ ٱلظَّـٰلِمُونَ (٢٢٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">فَإِمۡسَاكُۢ بِمَعۡرُوفٍ</span><span class="ag-m">— إبقاء الزوجة في العصمة بحسن عشرة وأداء حقّ.</span></div>
+            <div class="ag-item"><span class="ag-w">تَسۡرِيحُۢ بِإِحۡسَٰنٖ</span><span class="ag-m">— تطليقها من غير إضرار ولا ظلم ولا هضم لحقها.</span></div>
+            <div class="ag-item"><span class="ag-w">ءَاتَيۡتُمُوهُنَّ</span><span class="ag-m">— أعطيتموهن من المهر والصداق.</span></div>
+            <div class="ag-item"><span class="ag-w">حُدُودَ ٱللَّهِ</span><span class="ag-m">— أحكامه وشرائعه التي لا يجوز تجاوزها.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱفۡتَدَتۡ بِهِۦ</span><span class="ag-m">— بذلته من مال لتفتدي به نفسها، وهو الخُلع.</span></div>
+            <div class="ag-item"><span class="ag-w">يَتَعَدَّ</span><span class="ag-m">— يتجاوز ويخالف.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-9">➕ إضافة</button>
           <div class="note-editor">
@@ -1678,6 +1950,11 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-10">
           <span class="tafsir-ayah">فَإِن طَلَّقَهَا فَلَا تَحِلُّ لَهُۥ مِنۢ بَعۡدُ حَتَّىٰ تَنكِحَ زَوۡجًا غَيۡرَهُۥۗ فَإِن طَلَّقَهَا فَلَا جُنَاحَ عَلَيۡهِمَآ أَن يَتَرَاجَعَآ إِن ظَنَّآ أَن يُقِيمَا حُدُودَ ٱللَّهِۗ وَتِلۡكَ حُدُودُ ٱللَّهِ يُبَيِّنُهَا لِقَوۡمٖ يَعۡلَمُونَ (٢٣٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَنكِحَ زَوۡجًا غَيۡرَهُۥ</span><span class="ag-m">— تتزوج زوجاً آخر زواج رغبة حقيقي، لا زواج تحليل.</span></div>
+            <div class="ag-item"><span class="ag-w">يَتَرَاجَعَآ</span><span class="ag-m">— يعودا إلى الزواج من جديد بعقد جديد.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-10">➕ إضافة</button>
           <div class="note-editor">
@@ -1707,6 +1984,16 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-11">
           <span class="tafsir-ayah">وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ فَبَلَغۡنَ أَجَلَهُنَّ فَأَمۡسِكُوهُنَّ بِمَعۡرُوفٍ أَوۡ سَرِّحُوهُنَّ بِمَعۡرُوفٖۚ وَلَا تُمۡسِكُوهُنَّ ضِرَارٗا لِّتَعۡتَدُواْۚ وَمَن يَفۡعَلۡ ذَٰلِكَ فَقَدۡ ظَلَمَ نَفۡسَهُۥۚ وَلَا تَتَّخِذُوٓاْ ءَايَٰتِ ٱللَّهِ هُزُوٗاۚ وَٱذۡكُرُواْ نِعۡمَتَ ٱللَّهِ عَلَيۡكُمۡ وَمَآ أَنزَلَ عَلَيۡكُم مِّنَ ٱلۡكِتَٰبِ وَٱلۡحِكۡمَةِ يَعِظُكُم بِهِۦۚ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِكُلِّ شَيۡءٍ عَلِيمٞ (٢٣١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">فَبَلَغۡنَ أَجَلَهُنَّ</span><span class="ag-m">— قاربن انقضاء عدّتهن.</span></div>
+            <div class="ag-item"><span class="ag-w">فَأَمۡسِكُوهُنَّ</span><span class="ag-m">— راجعوهن وأبقوهن في العصمة.</span></div>
+            <div class="ag-item"><span class="ag-w">سَرِّحُوهُنَّ</span><span class="ag-m">— اتركوهن حتى تنقضي عدتهن فيَبِنّ منكم.</span></div>
+            <div class="ag-item"><span class="ag-w">ضِرَارٗا</span><span class="ag-m">— قصداً للإضرار بهن وتطويل العدة عليهن.</span></div>
+            <div class="ag-item"><span class="ag-w">هُزُوٗا</span><span class="ag-m">— سخرية ولعباً واستخفافاً.</span></div>
+            <div class="ag-item"><span class="ag-w">وَٱلۡحِكۡمَةِ</span><span class="ag-m">— السنة النبوية، وقيل: الفقه في الدين وإصابة الحق.</span></div>
+            <div class="ag-item"><span class="ag-w">يَعِظُكُم</span><span class="ag-m">— يذكّركم ويخوّفكم بما ينفعكم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-11">➕ إضافة</button>
           <div class="note-editor">
@@ -1736,6 +2023,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-5-12">
           <span class="tafsir-ayah">وَإِذَا طَلَّقۡتُمُ ٱلنِّسَآءَ فَبَلَغۡنَ أَجَلَهُنَّ فَلَا تَعۡضُلُوهُنَّ أَن يَنكِحۡنَ أَزۡوَٰجَهُنَّ إِذَا تَرَٰضَوۡاْ بَيۡنَهُم بِٱلۡمَعۡرُوفِۗ ذَٰلِكَ يُوعَظُ بِهِۦ مَن كَانَ مِنكُمۡ يُؤۡمِنُ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۗ ذَٰلِكُمۡ أَزۡكَىٰ لَكُمۡ وَأَطۡهَرُۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ (٢٣٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَعۡضُلُوهُنَّ</span><span class="ag-m">— تمنعوهن وتضيّقوا عليهن في الزواج ممن يرغبن.</span></div>
+            <div class="ag-item"><span class="ag-w">تَرَٰضَوۡاْ</span><span class="ag-m">— اتفقوا ورضي كل طرف بالآخر.</span></div>
+            <div class="ag-item"><span class="ag-w">أَزۡكَىٰ</span><span class="ag-m">— أطهر وأنمى للبركة وأطيب للنفس.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-5-12">➕ إضافة</button>
           <div class="note-editor">
@@ -1774,33 +2067,17 @@
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿۞وَٱلۡوَٰلِدَٰتُ يُرۡضِعۡنَ أَوۡلَـٰدَهُنَّ حَوۡلَيۡنِ كَامِلَيۡنِۖ لِمَنۡ أَرَادَ أَن يُتِمَّ ٱلرَّضَاعَةَۚ وَعَلَى ٱلۡمَوۡلُودِ لَهُۥ رِزۡقُهُنَّ وَكِسۡوَتُهُنَّ بِٱلۡمَعۡرُوفِۚ لَا تُكَلَّفُ نَفۡسٌ إِلَّا وُسۡعَهَاۚ لَا تُضَآرَّ وَٰلِدَةُۢ بِوَلَدِهَا وَلَا مَوۡلُودٞ لَّهُۥ بِوَلَدِهِۦۚ وَعَلَى ٱلۡوَارِثِ مِثۡلُ ذَٰلِكَۗ فَإِنۡ أَرَادَا فِصَالًا عَن تَرَاضٖ مِّنۡهُمَا وَتَشَاوُرٖ فَلَا جُنَاحَ عَلَيۡهِمَاۗ وَإِنۡ أَرَدتُّمۡ أَن تَسۡتَرۡضِعُوٓاْ أَوۡلَـٰدَكُمۡ فَلَا جُنَاحَ عَلَيۡكُمۡ إِذَا سَلَّمۡتُم مَّآ ءَاتَيۡتُم بِٱلۡمَعۡرُوفِۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٞ (٢٣٣) وَٱلَّذِينَ يُتَوَفَّوۡنَ مِنكُمۡ وَيَذَرُونَ أَزۡوَٰجٗا يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ أَرۡبَعَةَ أَشۡهُرٖ وَعَشۡرٗاۖ فَإِذَا بَلَغۡنَ أَجَلَهُنَّ فَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ بِٱلۡمَعۡرُوفِۗ وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ (٢٣٤) وَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا عَرَّضۡتُم بِهِۦ مِنۡ خِطۡبَةِ ٱلنِّسَآءِ أَوۡ أَكۡنَنتُمۡ فِيٓ أَنفُسِكُمۡۚ عَلِمَ ٱللَّهُ أَنَّكُمۡ سَتَذۡكُرُونَهُنَّ وَلَـٰكِن لَّا تُوَاعِدُوهُنَّ سِرًّا إِلَّآ أَن تَقُولُواْ قَوۡلٗا مَّعۡرُوفٗاۚ وَلَا تَعۡزِمُواْ عُقۡدَةَ ٱلنِّكَاحِ حَتَّىٰ يَبۡلُغَ ٱلۡكِتَٰبُ أَجَلَهُۥۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ يَعۡلَمُ مَا فِيٓ أَنفُسِكُمۡ فَٱحۡذَرُوهُۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ غَفُورٌ حَلِيمٞ (٢٣٥) لَّا جُنَاحَ عَلَيۡكُمۡ إِن طَلَّقۡتُمُ ٱلنِّسَآءَ مَا لَمۡ تَمَسُّوهُنَّ أَوۡ تَفۡرِضُواْ لَهُنَّ فَرِيضَةٗۚ وَمَتِّعُوهُنَّ عَلَى ٱلۡمُوسِعِ قَدَرُهُۥ وَعَلَى ٱلۡمُقۡتِرِ قَدَرُهُۥ مَتَٰعَۢا بِٱلۡمَعۡرُوفِۖ حَقًّا عَلَى ٱلۡمُحۡسِنِينَ (٢٣٦) وَإِن طَلَّقۡتُمُوهُنَّ مِن قَبۡلِ أَن تَمَسُّوهُنَّ وَقَدۡ فَرَضۡتُمۡ لَهُنَّ فَرِيضَةٗ فَنِصۡفُ مَا فَرَضۡتُمۡ إِلَّآ أَن يَعۡفُونَ أَوۡ يَعۡفُوَاْ ٱلَّذِي بِيَدِهِۦ عُقۡدَةُ ٱلنِّكَاحِۚ وَأَن تَعۡفُوٓاْ أَقۡرَبُ لِلتَّقۡوَىٰۚ وَلَا تَنسَوُاْ ٱلۡفَضۡلَ بَيۡنَكُمۡۚ إِنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٌ (٢٣٧) حَٰفِظُواْ عَلَى ٱلصَّلَوَٰتِ وَٱلصَّلَوٰةِ ٱلۡوُسۡطَىٰ وَقُومُواْ لِلَّهِ قَٰنِتِينَ (٢٣٨) فَإِنۡ خِفۡتُمۡ فَرِجَالًا أَوۡ رُكۡبَانٗاۖ فَإِذَآ أَمِنتُمۡ فَٱذۡكُرُواْ ٱللَّهَ كَمَا عَلَّمَكُم مَّا لَمۡ تَكُونُواْ تَعۡلَمُونَ (٢٣٩) وَٱلَّذِينَ يُتَوَفَّوۡنَ مِنكُمۡ وَيَذَرُونَ أَزۡوَٰجٗا وَصِيَّةٗ لِّأَزۡوَٰجِهِم مَّتَٰعًا إِلَى ٱلۡحَوۡلِ غَيۡرَ إِخۡرَاجٖۚ فَإِنۡ خَرَجۡنَ فَلَا جُنَاحَ عَلَيۡكُمۡ فِي مَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ مِن مَّعۡرُوفٖۗ وَٱللَّهُ عَزِيزٌ حَكِيمٞ (٢٤٠) وَلِلۡمُطَلَّقَٰتِ مَتَٰعُۢ بِٱلۡمَعۡرُوفِۖ حَقًّا عَلَى ٱلۡمُتَّقِينَ (٢٤١) كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمۡ ءَايَٰتِهِۦ لَعَلَّكُمۡ تَعۡقِلُونَ (٢٤٢)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">يُرۡضِعۡنَ أَوۡلَٰدَهُنَّ حَوۡلَيۡنِ كَامِلَيۡنِ</span><span class="glossary-meaning">مدة الرضاعة الكاملة سنتان قمريتان.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمَوۡلُودِ لَهُۥ</span><span class="glossary-meaning">الأب، لأن الولد يُنسب إليه.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لَا تُضَآرَّ</span><span class="glossary-meaning">لا يُلحق الضرر بالوالدة أو بالأب بسبب الولد.</span></div>
-        <div class="glossary-item"><span class="glossary-word">فِصَالًا</span><span class="glossary-meaning">فطام الولد عن الرضاعة قبل الحولين.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تَسۡتَرۡضِعُوٓاْ</span><span class="glossary-meaning">تطلبوا مرضعة أخرى غير الأم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يُتَوَفَّوۡنَ</span><span class="glossary-meaning">يموتون.</span></div>
-        <div class="glossary-item"><span class="glossary-word">أَرۡبَعَةَ أَشۡهُرٖ وَعَشۡرٗا</span><span class="glossary-meaning">مدة عدة المتوفى عنها زوجها.</span></div>
-        <div class="glossary-item"><span class="glossary-word">خِطۡبَةِ ٱلنِّسَآءِ</span><span class="glossary-meaning">التصريح أو التلميح برغبة الزواج من المرأة المعتدة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمُوسِعِ</span><span class="glossary-meaning">الغني القادر على الإنفاق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡمُقۡتِرِ</span><span class="glossary-meaning">الفقير ضيّق الحال.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلصَّلَوٰةِ ٱلۡوُسۡطَىٰ</span><span class="glossary-meaning">الصلاة الوسطى بين الصلوات، والراجح عند جمهور المفسرين أنها صلاة العصر.</span></div>
+      <div class="field-value verses-text" data-hl-id="v59">
+        ﴿۞<span class="wq" data-m="الأمهات.">وَٱلۡوَٰلِدَٰتُ</span> يُرۡضِعۡنَ أَوۡلَـٰدَهُنَّ <span class="wq" data-m="سنتين تامّتين.">حَوۡلَيۡنِ كَامِلَيۡنِ</span>ۖ لِمَنۡ أَرَادَ أَن يُتِمَّ <span class="wq" data-m="إرضاع الطفل المدة المقررة له.">ٱلرَّضَاعَةَ</span>ۚ وَعَلَى <span class="wq" data-m="الأب، وعُبّر عنه بذلك لأن الولد يُنسب إليه.">ٱلۡمَوۡلُودِ لَهُۥ</span> رِزۡقُهُنَّ <span class="wq" data-m="ملبسهن وما يسترهن.">وَكِسۡوَتُهُنَّ</span> <span class="wq" data-m="بما تعارف الناس أنه عدل وإحسان من غير إسراف ولا تقتير.">بِٱلۡمَعۡرُوفِ</span>ۚ لَا تُكَلَّفُ نَفۡسٌ إِلَّا <span class="wq" data-m="طاقتها وقدرتها.">وُسۡعَهَا</span>ۚ لَا <span class="wq" data-m="تُلحَق بها المضارّة أو تُلحِقها هي بغيرها.">تُضَآرَّ</span> وَٰلِدَةُۢ بِوَلَدِهَا وَلَا مَوۡلُودٞ لَّهُۥ بِوَلَدِهِۦۚ وَعَلَى <span class="wq" data-m="وارث الأب، عليه من النفقة مثل ما كان على الأب.">ٱلۡوَارِثِ</span> مِثۡلُ ذَٰلِكَۗ فَإِنۡ أَرَادَا <span class="wq" data-m="فطاماً للرضيع قبل تمام الحولين.">فِصَالًا</span> عَن <span class="wq" data-m="اتفاق ورضا من الطرفين معاً.">تَرَاضٖ</span> مِّنۡهُمَا <span class="wq" data-m="تبادل الرأي للوصول إلى الأصلح للولد.">وَتَشَاوُرٖ</span> فَلَا جُنَاحَ عَلَيۡهِمَاۗ وَإِنۡ أَرَدتُّمۡ أَن <span class="wq" data-m="تطلبوا مرضعة أخرى ترضع أولادكم.">تَسۡتَرۡضِعُوٓاْ</span> أَوۡلَـٰدَكُمۡ فَلَا جُنَاحَ عَلَيۡكُمۡ إِذَا سَلَّمۡتُم مَّآ ءَاتَيۡتُم <span class="wq" data-m="بما تعارف الناس أنه عدل وإحسان من غير إسراف ولا تقتير.">بِٱلۡمَعۡرُوفِ</span>ۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٞ (٢٣٣) وَٱلَّذِينَ <span class="wq" data-m="تُقبض أرواحهم فيموتون.">يُتَوَفَّوۡنَ</span> مِنكُمۡ <span class="wq" data-m="ويتركون بعدهم.">وَيَذَرُونَ</span> أَزۡوَٰجٗا يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ <span class="wq" data-m="مدة عدة الوفاة المقررة شرعاً.">أَرۡبَعَةَ أَشۡهُرٖ وَعَشۡرٗا</span>ۖ فَإِذَا بَلَغۡنَ أَجَلَهُنَّ فَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ <span class="wq" data-m="بما تعارف الناس أنه عدل وإحسان من غير إسراف ولا تقتير.">بِٱلۡمَعۡرُوفِ</span>ۗ وَٱللَّهُ بِمَا تَعۡمَلُونَ <span class="wq" data-m="عليم ببواطن الأمور وخفاياها.">خَبِيرٞ</span> (٢٣٤) وَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا <span class="wq" data-m="لمّحتم به تلميحاً من غير تصريح.">عَرَّضۡتُم بِهِۦ</span> مِنۡ <span class="wq" data-m="طلب المرأة للزواج.">خِطۡبَةِ ٱلنِّسَآءِ</span> أَوۡ <span class="wq" data-m="أضمرتم وأخفيتم في نفوسكم.">أَكۡنَنتُمۡ</span> فِيٓ أَنفُسِكُمۡۚ عَلِمَ ٱللَّهُ أَنَّكُمۡ سَتَذۡكُرُونَهُنَّ وَلَـٰكِن <span class="wq" data-m="لا تتفقوا معهن على نكاح في الخفاء أثناء العدة.">لَّا تُوَاعِدُوهُنَّ سِرًّا</span> إِلَّآ أَن تَقُولُواْ قَوۡلٗا مَّعۡرُوفٗاۚ <span class="wq" data-m="لا تصمّموا على إبرام عقد الزواج.">وَلَا تَعۡزِمُواْ عُقۡدَةَ ٱلنِّكَاحِ</span> حَتَّىٰ <span class="wq" data-m="تنقضي العدة المفروضة كتاباً من الله.">يَبۡلُغَ ٱلۡكِتَٰبُ أَجَلَهُۥ</span>ۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ يَعۡلَمُ مَا فِيٓ أَنفُسِكُمۡ <span class="wq" data-m="خافوا عقابه وراقبوه في السر والعلن.">فَٱحۡذَرُوهُ</span>ۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ غَفُورٌ حَلِيمٞ (٢٣٥) لَّا جُنَاحَ عَلَيۡكُمۡ إِن طَلَّقۡتُمُ ٱلنِّسَآءَ مَا لَمۡ <span class="wq" data-m="تدخلوا بهن.">تَمَسُّوهُنَّ</span> أَوۡ تَفۡرِضُواْ لَهُنَّ <span class="wq" data-m="مهراً مقدَّراً مسمّى في العقد.">فَرِيضَةٗ</span>ۚ <span class="wq" data-m="أعطوهن ما يجبر خاطرهن من مال أو كسوة.">وَمَتِّعُوهُنَّ</span> عَلَى <span class="wq" data-m="الغني الواسع الرزق.">ٱلۡمُوسِعِ</span> <span class="wq" data-m="ما يطيقه ويقدر عليه بحسب حاله.">قَدَرُهُۥ</span> وَعَلَى <span class="wq" data-m="الفقير ضيّق الرزق.">ٱلۡمُقۡتِرِ</span> <span class="wq" data-m="ما يطيقه ويقدر عليه بحسب حاله.">قَدَرُهُۥ</span> مَتَٰعَۢا <span class="wq" data-m="بما تعارف الناس أنه عدل وإحسان من غير إسراف ولا تقتير.">بِٱلۡمَعۡرُوفِ</span>ۖ حَقًّا عَلَى ٱلۡمُحۡسِنِينَ (٢٣٦) وَإِن طَلَّقۡتُمُوهُنَّ مِن قَبۡلِ أَن <span class="wq" data-m="تدخلوا بهن.">تَمَسُّوهُنَّ</span> وَقَدۡ فَرَضۡتُمۡ لَهُنَّ <span class="wq" data-m="مهراً مقدَّراً مسمّى في العقد.">فَرِيضَةٗ</span> فَنِصۡفُ مَا فَرَضۡتُمۡ إِلَّآ أَن <span class="wq" data-m="تتنازل النساء عن نصف المهر الواجب لهن.">يَعۡفُونَ</span> أَوۡ <span class="wq" data-m="يتنازل الزوج فيترك لها المهر كاملاً.">يَعۡفُوَاْ ٱلَّذِي بِيَدِهِۦ عُقۡدَةُ ٱلنِّكَاحِ</span>ۚ وَأَن تَعۡفُوٓاْ أَقۡرَبُ لِلتَّقۡوَىٰۚ وَلَا تَنسَوُاْ <span class="wq" data-m="الإحسان والتسامح والتفضّل فيما بينكم.">ٱلۡفَضۡلَ</span> بَيۡنَكُمۡۚ إِنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٌ (٢٣٧) <span class="wq" data-m="داوموا عليها وأدّوها في أوقاتها بشروطها.">حَٰفِظُواْ</span> عَلَى ٱلصَّلَوَٰتِ وَ<span class="wq" data-m="أفضلها وأوسطها، وأرجح الأقوال أنها صلاة العصر.">ٱلصَّلَوٰةِ ٱلۡوُسۡطَىٰ</span> وَقُومُواْ لِلَّهِ <span class="wq" data-m="خاشعين مطيعين ساكتين عن كلام الناس.">قَٰنِتِينَ</span> (٢٣٨) فَإِنۡ خِفۡتُمۡ <span class="wq" data-m="مشاةً على أقدامكم.">فَرِجَالًا</span> أَوۡ <span class="wq" data-m="راكبين على الدواب.">رُكۡبَانٗا</span>ۖ فَإِذَآ <span class="wq" data-m="زال عنكم الخوف واطمأننتم.">أَمِنتُمۡ</span> فَٱذۡكُرُواْ ٱللَّهَ كَمَا عَلَّمَكُم مَّا لَمۡ تَكُونُواْ تَعۡلَمُونَ (٢٣٩) وَٱلَّذِينَ <span class="wq" data-m="تُقبض أرواحهم فيموتون.">يُتَوَفَّوۡنَ</span> مِنكُمۡ <span class="wq" data-m="ويتركون بعدهم.">وَيَذَرُونَ</span> أَزۡوَٰجٗا <span class="wq" data-m="عهداً لأزواجهم بالنفقة والسكنى.">وَصِيَّةٗ</span> لِّأَزۡوَٰجِهِم <span class="wq" data-m="تمتيعاً بالسكنى والنفقة سنة كاملة.">مَّتَٰعًا إِلَى ٱلۡحَوۡلِ</span> <span class="wq" data-m="من غير أن يُخرجن من بيوتهن.">غَيۡرَ إِخۡرَاجٖ</span>ۚ فَإِنۡ خَرَجۡنَ فَلَا جُنَاحَ عَلَيۡكُمۡ فِي مَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ مِن مَّعۡرُوفٖۗ وَٱللَّهُ عَزِيزٌ حَكِيمٞ (٢٤٠) وَلِلۡمُطَلَّقَٰتِ <span class="wq" data-m="عطية تُجبر بها خاطرها بحسب العرف وحال الزوج.">مَتَٰعُۢ بِٱلۡمَعۡرُوفِ</span>ۖ حَقًّا عَلَى ٱلۡمُتَّقِينَ (٢٤١) كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمۡ ءَايَٰتِهِۦ لَعَلَّكُمۡ <span class="wq" data-m="تفهمون وتدركون بعقولكم.">تَعۡقِلُونَ</span> (٢٤٢)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تبيّن الآيات حق الطفل في الرضاعة الكاملة لمن أراد إتمامها سنتين كاملتين، مع وجوب نفقة الأم وكسوتها على الأب بالمعروف دون تكليف فوق الوسع، والنهي عن إلحاق الضرر بأي من الوالدين بسبب الولد، ورخصة الفطام المبكر أو الاسترضاع بمرضعة أخرى بشرط التراضي والإنصاف. ثم تنتقل الآيات إلى أحكام عدة المتوفى عنها زوجها، فتحدد مدتها بأربعة أشهر وعشرة أيام، مع نفي الحرج عما تفعله المرأة في نفسها بعد انتهاء العدة بالمعروف. وتبيّن حكم التعريض بخطبة المعتدات دون التصريح أو المواعدة السرية، وتحريم عقد النكاح قبل انتهاء العدة. وتفصّل أحكام المطلقة قبل الدخول: فإن سُمّي لها مهر فلها نصفه إلا أن تعفو أو يعفو الزوج، وإن لم يُسمَّ لها مهر فلها متاع بالمعروف. ثم تأمر الآيات بالمحافظة على الصلوات وبخاصة الصلاة الوسطى، مع رخصة أداء الصلاة في حال الخوف على أي هيئة ميسرة. وتختم الآيات بأحكام متعة المتوفى عنها زوجها ومتعة المطلقات بالمعروف، مؤكدة أن الله يبيّن آياته للناس لعلهم يعقلون ويهتدون.</div>
+      <div class="field-value" data-hl-id="b72">تبيّن الآيات حق الطفل في الرضاعة الكاملة لمن أراد إتمامها سنتين كاملتين، مع وجوب نفقة الأم وكسوتها على الأب بالمعروف دون تكليف فوق الوسع، والنهي عن إلحاق الضرر بأي من الوالدين بسبب الولد، ورخصة الفطام المبكر أو الاسترضاع بمرضعة أخرى بشرط التراضي والإنصاف. ثم تنتقل الآيات إلى أحكام عدة المتوفى عنها زوجها، فتحدد مدتها بأربعة أشهر وعشرة أيام، مع نفي الحرج عما تفعله المرأة في نفسها بعد انتهاء العدة بالمعروف. وتبيّن حكم التعريض بخطبة المعتدات دون التصريح أو المواعدة السرية، وتحريم عقد النكاح قبل انتهاء العدة. وتفصّل أحكام المطلقة قبل الدخول: فإن سُمّي لها مهر فلها نصفه إلا أن تعفو أو يعفو الزوج، وإن لم يُسمَّ لها مهر فلها متاع بالمعروف. ثم تأمر الآيات بالمحافظة على الصلوات وبخاصة الصلاة الوسطى، مع رخصة أداء الصلاة في حال الخوف على أي هيئة ميسرة. وتختم الآيات بأحكام متعة المتوفى عنها زوجها ومتعة المطلقات بالمعروف، مؤكدة أن الله يبيّن آياته للناس لعلهم يعقلون ويهتدون.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="b73">
         <div class="notes-list"></div>
         <button class="note-add-btn" data-note-group="tadabbur-5-6">➕ إضافة</button>
         <div class="note-editor">
@@ -1831,9 +2108,25 @@
     </div>
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
+      <div class="field-value" data-hl-id="d74">
         <div class="ayah-note-block" data-note-group="tafsir-5-6-1">
           <span class="tafsir-ayah">۞وَٱلۡوَٰلِدَٰتُ يُرۡضِعۡنَ أَوۡلَـٰدَهُنَّ حَوۡلَيۡنِ كَامِلَيۡنِۖ لِمَنۡ أَرَادَ أَن يُتِمَّ ٱلرَّضَاعَةَۚ وَعَلَى ٱلۡمَوۡلُودِ لَهُۥ رِزۡقُهُنَّ وَكِسۡوَتُهُنَّ بِٱلۡمَعۡرُوفِۚ لَا تُكَلَّفُ نَفۡسٌ إِلَّا وُسۡعَهَاۚ لَا تُضَآرَّ وَٰلِدَةُۢ بِوَلَدِهَا وَلَا مَوۡلُودٞ لَّهُۥ بِوَلَدِهِۦۚ وَعَلَى ٱلۡوَارِثِ مِثۡلُ ذَٰلِكَۗ فَإِنۡ أَرَادَا فِصَالًا عَن تَرَاضٖ مِّنۡهُمَا وَتَشَاوُرٖ فَلَا جُنَاحَ عَلَيۡهِمَاۗ وَإِنۡ أَرَدتُّمۡ أَن تَسۡتَرۡضِعُوٓاْ أَوۡلَـٰدَكُمۡ فَلَا جُنَاحَ عَلَيۡكُمۡ إِذَا سَلَّمۡتُم مَّآ ءَاتَيۡتُم بِٱلۡمَعۡرُوفِۗ وَٱتَّقُواْ ٱللَّهَ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٞ (٢٣٣)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">وَٱلۡوَٰلِدَٰتُ</span><span class="ag-m">— الأمهات.</span></div>
+            <div class="ag-item"><span class="ag-w">حَوۡلَيۡنِ كَامِلَيۡنِ</span><span class="ag-m">— سنتين تامّتين.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلرَّضَاعَةَ</span><span class="ag-m">— إرضاع الطفل المدة المقررة له.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمَوۡلُودِ لَهُۥ</span><span class="ag-m">— الأب، وعُبّر عنه بذلك لأن الولد يُنسب إليه.</span></div>
+            <div class="ag-item"><span class="ag-w">وَكِسۡوَتُهُنَّ</span><span class="ag-m">— ملبسهن وما يسترهن.</span></div>
+            <div class="ag-item"><span class="ag-w">بِٱلۡمَعۡرُوفِ</span><span class="ag-m">— بما تعارف الناس أنه عدل وإحسان من غير إسراف ولا تقتير.</span></div>
+            <div class="ag-item"><span class="ag-w">وُسۡعَهَا</span><span class="ag-m">— طاقتها وقدرتها.</span></div>
+            <div class="ag-item"><span class="ag-w">تُضَآرَّ</span><span class="ag-m">— تُلحَق بها المضارّة أو تُلحِقها هي بغيرها.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡوَارِثِ</span><span class="ag-m">— وارث الأب، عليه من النفقة مثل ما كان على الأب.</span></div>
+            <div class="ag-item"><span class="ag-w">فِصَالًا</span><span class="ag-m">— فطاماً للرضيع قبل تمام الحولين.</span></div>
+            <div class="ag-item"><span class="ag-w">تَرَاضٖ</span><span class="ag-m">— اتفاق ورضا من الطرفين معاً.</span></div>
+            <div class="ag-item"><span class="ag-w">وَتَشَاوُرٖ</span><span class="ag-m">— تبادل الرأي للوصول إلى الأصلح للولد.</span></div>
+            <div class="ag-item"><span class="ag-w">تَسۡتَرۡضِعُوٓاْ</span><span class="ag-m">— تطلبوا مرضعة أخرى ترضع أولادكم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-1">➕ إضافة</button>
           <div class="note-editor">
@@ -1863,6 +2156,13 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-2">
           <span class="tafsir-ayah">وَٱلَّذِينَ يُتَوَفَّوۡنَ مِنكُمۡ وَيَذَرُونَ أَزۡوَٰجٗا يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ أَرۡبَعَةَ أَشۡهُرٖ وَعَشۡرٗاۖ فَإِذَا بَلَغۡنَ أَجَلَهُنَّ فَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ بِٱلۡمَعۡرُوفِۗ وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ (٢٣٤)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يُتَوَفَّوۡنَ</span><span class="ag-m">— تُقبض أرواحهم فيموتون.</span></div>
+            <div class="ag-item"><span class="ag-w">وَيَذَرُونَ</span><span class="ag-m">— ويتركون بعدهم.</span></div>
+            <div class="ag-item"><span class="ag-w">أَرۡبَعَةَ أَشۡهُرٖ وَعَشۡرٗا</span><span class="ag-m">— مدة عدة الوفاة المقررة شرعاً.</span></div>
+            <div class="ag-item"><span class="ag-w">خَبِيرٞ</span><span class="ag-m">— عليم ببواطن الأمور وخفاياها.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-2">➕ إضافة</button>
           <div class="note-editor">
@@ -1892,6 +2192,16 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-3">
           <span class="tafsir-ayah">وَلَا جُنَاحَ عَلَيۡكُمۡ فِيمَا عَرَّضۡتُم بِهِۦ مِنۡ خِطۡبَةِ ٱلنِّسَآءِ أَوۡ أَكۡنَنتُمۡ فِيٓ أَنفُسِكُمۡۚ عَلِمَ ٱللَّهُ أَنَّكُمۡ سَتَذۡكُرُونَهُنَّ وَلَـٰكِن لَّا تُوَاعِدُوهُنَّ سِرًّا إِلَّآ أَن تَقُولُواْ قَوۡلٗا مَّعۡرُوفٗاۚ وَلَا تَعۡزِمُواْ عُقۡدَةَ ٱلنِّكَاحِ حَتَّىٰ يَبۡلُغَ ٱلۡكِتَٰبُ أَجَلَهُۥۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ يَعۡلَمُ مَا فِيٓ أَنفُسِكُمۡ فَٱحۡذَرُوهُۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ غَفُورٌ حَلِيمٞ (٢٣٥)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">عَرَّضۡتُم بِهِۦ</span><span class="ag-m">— لمّحتم به تلميحاً من غير تصريح.</span></div>
+            <div class="ag-item"><span class="ag-w">خِطۡبَةِ ٱلنِّسَآءِ</span><span class="ag-m">— طلب المرأة للزواج.</span></div>
+            <div class="ag-item"><span class="ag-w">أَكۡنَنتُمۡ</span><span class="ag-m">— أضمرتم وأخفيتم في نفوسكم.</span></div>
+            <div class="ag-item"><span class="ag-w">لَّا تُوَاعِدُوهُنَّ سِرًّا</span><span class="ag-m">— لا تتفقوا معهن على نكاح في الخفاء أثناء العدة.</span></div>
+            <div class="ag-item"><span class="ag-w">وَلَا تَعۡزِمُواْ عُقۡدَةَ ٱلنِّكَاحِ</span><span class="ag-m">— لا تصمّموا على إبرام عقد الزواج.</span></div>
+            <div class="ag-item"><span class="ag-w">يَبۡلُغَ ٱلۡكِتَٰبُ أَجَلَهُۥ</span><span class="ag-m">— تنقضي العدة المفروضة كتاباً من الله.</span></div>
+            <div class="ag-item"><span class="ag-w">فَٱحۡذَرُوهُ</span><span class="ag-m">— خافوا عقابه وراقبوه في السر والعلن.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-3">➕ إضافة</button>
           <div class="note-editor">
@@ -1921,6 +2231,15 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-4">
           <span class="tafsir-ayah">لَّا جُنَاحَ عَلَيۡكُمۡ إِن طَلَّقۡتُمُ ٱلنِّسَآءَ مَا لَمۡ تَمَسُّوهُنَّ أَوۡ تَفۡرِضُواْ لَهُنَّ فَرِيضَةٗۚ وَمَتِّعُوهُنَّ عَلَى ٱلۡمُوسِعِ قَدَرُهُۥ وَعَلَى ٱلۡمُقۡتِرِ قَدَرُهُۥ مَتَٰعَۢا بِٱلۡمَعۡرُوفِۖ حَقًّا عَلَى ٱلۡمُحۡسِنِينَ (٢٣٦)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَمَسُّوهُنَّ</span><span class="ag-m">— تدخلوا بهن.</span></div>
+            <div class="ag-item"><span class="ag-w">فَرِيضَةٗ</span><span class="ag-m">— مهراً مقدَّراً مسمّى في العقد.</span></div>
+            <div class="ag-item"><span class="ag-w">وَمَتِّعُوهُنَّ</span><span class="ag-m">— أعطوهن ما يجبر خاطرهن من مال أو كسوة.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُوسِعِ</span><span class="ag-m">— الغني الواسع الرزق.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡمُقۡتِرِ</span><span class="ag-m">— الفقير ضيّق الرزق.</span></div>
+            <div class="ag-item"><span class="ag-w">قَدَرُهُۥ</span><span class="ag-m">— ما يطيقه ويقدر عليه بحسب حاله.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-4">➕ إضافة</button>
           <div class="note-editor">
@@ -1950,6 +2269,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-5">
           <span class="tafsir-ayah">وَإِن طَلَّقۡتُمُوهُنَّ مِن قَبۡلِ أَن تَمَسُّوهُنَّ وَقَدۡ فَرَضۡتُمۡ لَهُنَّ فَرِيضَةٗ فَنِصۡفُ مَا فَرَضۡتُمۡ إِلَّآ أَن يَعۡفُونَ أَوۡ يَعۡفُوَاْ ٱلَّذِي بِيَدِهِۦ عُقۡدَةُ ٱلنِّكَاحِۚ وَأَن تَعۡفُوٓاْ أَقۡرَبُ لِلتَّقۡوَىٰۚ وَلَا تَنسَوُاْ ٱلۡفَضۡلَ بَيۡنَكُمۡۚ إِنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ بَصِيرٌ (٢٣٧)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">يَعۡفُونَ</span><span class="ag-m">— تتنازل النساء عن نصف المهر الواجب لهن.</span></div>
+            <div class="ag-item"><span class="ag-w">يَعۡفُوَاْ ٱلَّذِي بِيَدِهِۦ عُقۡدَةُ ٱلنِّكَاحِ</span><span class="ag-m">— يتنازل الزوج فيترك لها المهر كاملاً.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلۡفَضۡلَ</span><span class="ag-m">— الإحسان والتسامح والتفضّل فيما بينكم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-5">➕ إضافة</button>
           <div class="note-editor">
@@ -1979,6 +2304,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-6">
           <span class="tafsir-ayah">حَٰفِظُواْ عَلَى ٱلصَّلَوَٰتِ وَٱلصَّلَوٰةِ ٱلۡوُسۡطَىٰ وَقُومُواْ لِلَّهِ قَٰنِتِينَ (٢٣٨)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">حَٰفِظُواْ</span><span class="ag-m">— داوموا عليها وأدّوها في أوقاتها بشروطها.</span></div>
+            <div class="ag-item"><span class="ag-w">ٱلصَّلَوٰةِ ٱلۡوُسۡطَىٰ</span><span class="ag-m">— أفضلها وأوسطها، وأرجح الأقوال أنها صلاة العصر.</span></div>
+            <div class="ag-item"><span class="ag-w">قَٰنِتِينَ</span><span class="ag-m">— خاشعين مطيعين ساكتين عن كلام الناس.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-6">➕ إضافة</button>
           <div class="note-editor">
@@ -2008,6 +2339,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-7">
           <span class="tafsir-ayah">فَإِنۡ خِفۡتُمۡ فَرِجَالًا أَوۡ رُكۡبَانٗاۖ فَإِذَآ أَمِنتُمۡ فَٱذۡكُرُواْ ٱللَّهَ كَمَا عَلَّمَكُم مَّا لَمۡ تَكُونُواْ تَعۡلَمُونَ (٢٣٩)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">فَرِجَالًا</span><span class="ag-m">— مشاةً على أقدامكم.</span></div>
+            <div class="ag-item"><span class="ag-w">رُكۡبَانٗا</span><span class="ag-m">— راكبين على الدواب.</span></div>
+            <div class="ag-item"><span class="ag-w">أَمِنتُمۡ</span><span class="ag-m">— زال عنكم الخوف واطمأننتم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-7">➕ إضافة</button>
           <div class="note-editor">
@@ -2037,6 +2374,12 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-8">
           <span class="tafsir-ayah">وَٱلَّذِينَ يُتَوَفَّوۡنَ مِنكُمۡ وَيَذَرُونَ أَزۡوَٰجٗا وَصِيَّةٗ لِّأَزۡوَٰجِهِم مَّتَٰعًا إِلَى ٱلۡحَوۡلِ غَيۡرَ إِخۡرَاجٖۚ فَإِنۡ خَرَجۡنَ فَلَا جُنَاحَ عَلَيۡكُمۡ فِي مَا فَعَلۡنَ فِيٓ أَنفُسِهِنَّ مِن مَّعۡرُوفٖۗ وَٱللَّهُ عَزِيزٌ حَكِيمٞ (٢٤٠)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">وَصِيَّةٗ</span><span class="ag-m">— عهداً لأزواجهم بالنفقة والسكنى.</span></div>
+            <div class="ag-item"><span class="ag-w">مَّتَٰعًا إِلَى ٱلۡحَوۡلِ</span><span class="ag-m">— تمتيعاً بالسكنى والنفقة سنة كاملة.</span></div>
+            <div class="ag-item"><span class="ag-w">غَيۡرَ إِخۡرَاجٖ</span><span class="ag-m">— من غير أن يُخرجن من بيوتهن.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-8">➕ إضافة</button>
           <div class="note-editor">
@@ -2066,6 +2409,10 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-9">
           <span class="tafsir-ayah">وَلِلۡمُطَلَّقَٰتِ مَتَٰعُۢ بِٱلۡمَعۡرُوفِۖ حَقًّا عَلَى ٱلۡمُتَّقِينَ (٢٤١)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">مَتَٰعُۢ بِٱلۡمَعۡرُوفِ</span><span class="ag-m">— عطية تُجبر بها خاطرها بحسب العرف وحال الزوج.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-9">➕ إضافة</button>
           <div class="note-editor">
@@ -2095,6 +2442,10 @@
         </div>
         <div class="ayah-note-block" data-note-group="tafsir-5-6-10">
           <span class="tafsir-ayah">كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمۡ ءَايَٰتِهِۦ لَعَلَّكُمۡ تَعۡقِلُونَ (٢٤٢)</span>
+          <div class="ayah-gloss">
+            <div class="ag-item"><span class="ag-w">تَعۡقِلُونَ</span><span class="ag-m">— تفهمون وتدركون بعقولكم.</span></div>
+          </div>
+
           <div class="notes-list"></div>
           <button class="note-add-btn" data-note-group="tafsir-5-6-10">➕ إضافة</button>
           <div class="note-editor">
@@ -2179,6 +2530,28 @@
     </div>
   </div>
 </div>
+
+<script>
+/* معاني المفردات: إظهار بالوقوف (سطح المكتب) أو بالضغط (الجوال) */
+(function(){
+  function place(el){
+    el.classList.remove('flip-start','flip-end');
+    var tip = el.getBoundingClientRect(), w = Math.min(280, innerWidth*0.78);
+    var c = tip.left + tip.width/2;
+    if(c - w/2 < 8) el.classList.add('flip-start');
+    else if(c + w/2 > innerWidth - 8) el.classList.add('flip-end');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('.wq');
+    if(t) place(t);
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.wq') : null;
+    document.querySelectorAll('.wq.on').forEach(function(el){ if(el !== t) el.classList.remove('on'); });
+    if(t){ place(t); t.classList.toggle('on'); }
+  });
+})();
+</script>
 
 <script src="../../../assets/tadabbur-engine.js"></script>
 
