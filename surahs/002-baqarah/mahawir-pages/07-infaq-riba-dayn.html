@@ -123,6 +123,35 @@
     line-height:2.6;
     color:var(--verse-green);
   }
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
+  }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:'Tajawal', sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
   .tafsir-ayah{
     display:block;
     font-family:'Amiri', serif;
@@ -177,24 +206,6 @@
       <div class="field-value verses-text">
         ﴿مَّثَلُ ٱلَّذِينَ يُنفِقُونَ أَمۡوَٰلَهُمۡ فِي سَبِيلِ ٱللَّهِ كَمَثَلِ حَبَّةٍ أَنۢبَتَتۡ سَبۡعَ سَنَابِلَ فِي كُلِّ سُنۢبُلَةٖ مِّاْئَةُ حَبَّةٖۗ وَٱللَّهُ يُضَـٰعِفُ لِمَن يَشَآءُۚ وَٱللَّهُ وَٰسِعٌ عَلِيمٌ (٢٦١) ٱلَّذِينَ يُنفِقُونَ أَمۡوَٰلَهُمۡ فِي سَبِيلِ ٱللَّهِ ثُمَّ لَا يُتۡبِعُونَ مَآ أَنفَقُواْ مَنّٗا وَلَآ أَذٗى لَّهُمۡ أَجۡرُهُمۡ عِندَ رَبِّهِمۡ وَلَا خَوۡفٌ عَلَيۡهِمۡ وَلَا هُمۡ يَحۡزَنُونَ (٢٦٢) ۞قَوۡلٞ مَّعۡرُوفٞ وَمَغۡفِرَةٌ خَيۡرٞ مِّن صَدَقَةٖ يَتۡبَعُهَآ أَذٗىۗ وَٱللَّهُ غَنِيٌّ حَلِيمٞ (٢٦٣) يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ لَا تُبۡطِلُواْ صَدَقَٰتِكُم بِٱلۡمَنِّ وَٱلۡأَذَىٰ كَٱلَّذِي يُنفِقُ مَالَهُۥ رِئَآءَ ٱلنَّاسِ وَلَا يُؤۡمِنُ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۖ فَمَثَلُهُۥ كَمَثَلِ صَفۡوَانٍ عَلَيۡهِ تُرَابٞ فَأَصَابَهُۥ وَابِلٞ فَتَرَكَهُۥ صَلۡدٗاۖ لَّا يَقۡدِرُونَ عَلَىٰ شَيۡءٖ مِّمَّا كَسَبُواْۗ وَٱللَّهُ لَا يَهۡدِي ٱلۡقَوۡمَ ٱلۡكَٰفِرِينَ (٢٦٤) وَمَثَلُ ٱلَّذِينَ يُنفِقُونَ أَمۡوَٰلَهُمُ ٱبۡتِغَآءَ مَرۡضَاتِ ٱللَّهِ وَتَثۡبِيتٗا مِّنۡ أَنفُسِهِمۡ كَمَثَلِ جَنَّةِۭ بِرَبۡوَةٍ أَصَابَهَا وَابِلٞ فَـَٔاتَتۡ أُكُلَهَا ضِعۡفَيۡنِ فَإِن لَّمۡ يُصِبۡهَا وَابِلٞ فَطَلّٞۗ وَٱللَّهُ بِمَا تَعۡمَلُونَ بَصِيرٌ (٢٦٥) أَيَوَدُّ أَحَدُكُمۡ أَن تَكُونَ لَهُۥ جَنَّةٞ مِّن نَّخِيلٖ وَأَعۡنَابٖ تَجۡرِي مِن تَحۡتِهَا ٱلۡأَنۡهَٰرُ لَهُۥ فِيهَا مِن كُلِّ ٱلثَّمَرَٰتِ وَأَصَابَهُ ٱلۡكِبَرُ وَلَهُۥ ذُرِّيَّةٞ ضُعَفَآءُ فَأَصَابَهَآ إِعۡصَارٞ فِيهِ نَارٞ فَٱحۡتَرَقَتۡۗ كَذَٰلِكَ يُبَيِّنُ ٱللَّهُ لَكُمُ ٱلۡأٓيَٰتِ لَعَلَّكُمۡ تَتَفَكَّرُونَ (٢٦٦)﴾
       </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">سَنَابِلَ</span><span class="glossary-meaning">جمع سنبلة، وهي رأس الزرع الذي يحمل الحب.</span></div>
-        <div class="glossary-item"><span class="glossary-word">مَنّٗا وَلَآ أَذٗى</span><span class="glossary-meaning">من غير أن يذكّر المتصدَّق عليه بصدقته أو يؤذيه بقول أو فعل.</span></div>
-        <div class="glossary-item"><span class="glossary-word">صَدَقَةٖ يَتۡبَعُهَآ أَذٗى</span><span class="glossary-meaning">صدقة يُلحق بها المتصدق أذية بالمنّ أو التقريع.</span></div>
-        <div class="glossary-item"><span class="glossary-word">رِئَآءَ ٱلنَّاسِ</span><span class="glossary-meaning">مراءاةً لهم لا ابتغاء وجه الله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">صَفۡوَانٍ</span><span class="glossary-meaning">حجر أملس صلب لا ينبت فيه شيء.</span></div>
-        <div class="glossary-item"><span class="glossary-word">وَابِلٞ</span><span class="glossary-meaning">مطر غزير شديد.</span></div>
-        <div class="glossary-item"><span class="glossary-word">صَلۡدٗا</span><span class="glossary-meaning">أملس لا شيء عليه، كناية عن ضياع الإنفاق الرائي.</span></div>
-        <div class="glossary-item"><span class="glossary-word">جَنَّةِۭ بِرَبۡوَةٍ</span><span class="glossary-meaning">بستان في أرض مرتفعة، وهو أجود للزراعة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">طَلّٞ</span><span class="glossary-meaning">مطر خفيف كالندى.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تضرب الآيات مثلاً رائعاً للإنفاق في سبيل الله بالحبة التي تنبت سبع سنابل في كل سنبلة مئة حبة، وذلك تصوير لمضاعفة الأجر أضعافاً كثيرة لمن ينفق بإخلاص. وتشترط الآيات لقبول هذا الإنفاق ألا يتبعه المنفق منّاً على من أعطاه ولا أذى يجرحه، فمن فعل ذلك ضاع أجره، بل القول الطيب والصفح خير من صدقة يتبعها أذى. وتحذر الآيات من إبطال الصدقات بالمنّ والأذى، مصورة حال المرائي بمن ينفق ماله ليراه الناس دون إيمان حقيقي، فمثله كمثل حجر أملس عليه غبار أصابه مطر غزير فتركه أملس لا شيء عليه، فلا ينتفع بشيء من عمله. في المقابل، يُضرب مثل المخلصين المنفقين ابتغاء وجه الله بجنة مرتفعة أصابها مطر غزير فأتت ثمرها ضعفين، وإن لم يصبها مطر غزير كفاها الطل، فعملهم مبارك في كل حال. وتختم الآيات بمثل تحذيري: من يتمنى منكم أن تكون له جنة نخيل وأعناب ثم تحترق وهو في أمس الحاجة إليها بسبب كبر سنه وضعف ذريته؟ كذلك يبين الله آياته للناس لعلهم يتفكرون في عاقبة أعمالهم.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
@@ -418,24 +429,6 @@
       <div class="field-value verses-text">
         ﴿يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ أَنفِقُواْ مِن طَيِّبَٰتِ مَا كَسَبۡتُمۡ وَمِمَّآ أَخۡرَجۡنَا لَكُم مِّنَ ٱلۡأَرۡضِۖ وَلَا تَيَمَّمُواْ ٱلۡخَبِيثَ مِنۡهُ تُنفِقُونَ وَلَسۡتُم بِـَٔاخِذِيهِ إِلَّآ أَن تُغۡمِضُواْ فِيهِۚ وَٱعۡلَمُوٓاْ أَنَّ ٱللَّهَ غَنِيٌّ حَمِيدٌ (٢٦٧) ٱلشَّيۡطَٰنُ يَعِدُكُمُ ٱلۡفَقۡرَ وَيَأۡمُرُكُم بِٱلۡفَحۡشَآءِۖ وَٱللَّهُ يَعِدُكُم مَّغۡفِرَةٗ مِّنۡهُ وَفَضۡلٗاۗ وَٱللَّهُ وَٰسِعٌ عَلِيمٞ (٢٦٨) يُؤۡتِي ٱلۡحِكۡمَةَ مَن يَشَآءُۚ وَمَن يُؤۡتَ ٱلۡحِكۡمَةَ فَقَدۡ أُوتِيَ خَيۡرٗا كَثِيرٗاۗ وَمَا يَذَّكَّرُ إِلَّآ أُوْلُواْ ٱلۡأَلۡبَٰبِ (٢٦٩) وَمَآ أَنفَقۡتُم مِّن نَّفَقَةٍ أَوۡ نَذَرۡتُم مِّن نَّذۡرٖ فَإِنَّ ٱللَّهَ يَعۡلَمُهُۥۗ وَمَا لِلظَّـٰلِمِينَ مِنۡ أَنصَارٍ (٢٧٠) إِن تُبۡدُواْ ٱلصَّدَقَٰتِ فَنِعِمَّا هِيَۖ وَإِن تُخۡفُوهَا وَتُؤۡتُوهَا ٱلۡفُقَرَآءَ فَهُوَ خَيۡرٞ لَّكُمۡۚ وَيُكَفِّرُ عَنكُم مِّن سَيِّـَٔاتِكُمۡۗ وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ (٢٧١) ۞لَّيۡسَ عَلَيۡكَ هُدَىٰهُمۡ وَلَـٰكِنَّ ٱللَّهَ يَهۡدِي مَن يَشَآءُۗ وَمَا تُنفِقُواْ مِنۡ خَيۡرٖ فَلِأَنفُسِكُمۡۚ وَمَا تُنفِقُونَ إِلَّا ٱبۡتِغَآءَ وَجۡهِ ٱللَّهِۚ وَمَا تُنفِقُواْ مِنۡ خَيۡرٖ يُوَفَّ إِلَيۡكُمۡ وَأَنتُمۡ لَا تُظۡلَمُونَ (٢٧٢) لِلۡفُقَرَآءِ ٱلَّذِينَ أُحۡصِرُواْ فِي سَبِيلِ ٱللَّهِ لَا يَسۡتَطِيعُونَ ضَرۡبٗا فِي ٱلۡأَرۡضِ يَحۡسَبُهُمُ ٱلۡجَاهِلُ أَغۡنِيَآءَ مِنَ ٱلتَّعَفُّفِ تَعۡرِفُهُم بِسِيمَـٰهُمۡ لَا يَسۡـَٔلُونَ ٱلنَّاسَ إِلۡحَافٗاۗ وَمَا تُنفِقُواْ مِنۡ خَيۡرٖ فَإِنَّ ٱللَّهَ بِهِۦ عَلِيمٌ (٢٧٣) ٱلَّذِينَ يُنفِقُونَ أَمۡوَٰلَهُم بِٱلَّيۡلِ وَٱلنَّهَارِ سِرّٗا وَعَلَانِيَةٗ فَلَهُمۡ أَجۡرُهُمۡ عِندَ رَبِّهِمۡ وَلَا خَوۡفٌ عَلَيۡهِمۡ وَلَا هُمۡ يَحۡزَنُونَ (٢٧٤)﴾
       </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">طَيِّبَٰتِ</span><span class="glossary-meaning">الحلال الجيد من كسبكم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لَا تَيَمَّمُواْ ٱلۡخَبِيثَ</span><span class="glossary-meaning">لا تقصدوا إخراج الرديء من أموالكم في الصدقة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تُغۡمِضُواْ فِيهِ</span><span class="glossary-meaning">تتساهلوا في قبوله لو أُعطيتموه بدل حقكم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يَعِدُكُمُ ٱلۡفَقۡرَ</span><span class="glossary-meaning">يخوّفكم من الفقر ليمنعكم عن الإنفاق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ٱلۡأَلۡبَٰبِ</span><span class="glossary-meaning">العقول الراجحة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">أُحۡصِرُواْ فِي سَبِيلِ ٱللَّهِ</span><span class="glossary-meaning">انقطعوا عن الكسب لانشغالهم بالجهاد أو طلب العلم في سبيل الله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ضَرۡبٗا فِي ٱلۡأَرۡضِ</span><span class="glossary-meaning">سفراً وسعياً للتكسب.</span></div>
-        <div class="glossary-item"><span class="glossary-word">سِيمَٰهُمۡ</span><span class="glossary-meaning">علامتهم الظاهرة من أثر الحاجة رغم تعففهم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">إِلۡحَافٗا</span><span class="glossary-meaning">إلحاحاً شديداً في السؤال.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تأمر الآيات بالإنفاق من طيبات الكسب ومما أخرج الله من الأرض، وتنهى عن قصد إخراج الرديء الخبيث في الصدقة وهو ما لا يقبله المرء لنفسه إلا بتساهل. وتحذر من وسوسة الشيطان الذي يخوّف بالفقر ليصد عن الإنفاق، بينما الله يعد بالمغفرة والفضل. وتبيّن الآيات أن الحكمة عطاء عظيم لا يتذكره إلا أصحاب العقول الراجحة، وأن الله يعلم كل نفقة أو نذر، وأنه لا نصير للظالمين. ثم تقارن الآيات بين إظهار الصدقة وإخفائها، فتبيّن أن إخفاءها وإيصالها للفقراء مباشرة خير وأكفر لبعض السيئات، مؤكدة أن الهداية بيد الله وحده لا على الداعي، وأن كل نفقة تعود بخيرها على صاحبها كاملة غير منقوصة. وتخص الآيات بالذكر فئة الفقراء الذين انقطعوا في سبيل الله عن السعي للكسب فيظنهم الجاهل أغنياء من شدة تعففهم عن السؤال، مع أن علامات الفقر ظاهرة عليهم، وهم لا يلحّون في السؤال إن سألوا. وتختم بالثناء على المنفقين في السر والعلن، ليلاً ونهاراً، ببشارة الأجر عند الله دون خوف أو حزن.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
@@ -719,24 +712,6 @@
       </div>
     </div>
     <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">يَأۡكُلُونَ ٱلرِّبَوٰاْ</span><span class="glossary-meaning">يتعاملون بالربا أخذاً وإعطاءً.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يَتَخَبَّطُهُ ٱلشَّيۡطَٰنُ مِنَ ٱلۡمَسِّ</span><span class="glossary-meaning">يصرعه الجنون، تشبيه لحال آكل الربا يوم القيامة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يَمۡحَقُ ٱللَّهُ ٱلرِّبَوٰاْ</span><span class="glossary-meaning">يذهب ببركته ويُنقصه ولو ظهرت زيادته في الظاهر.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يُرۡبِي ٱلصَّدَقَٰتِ</span><span class="glossary-meaning">يزيدها ويبارك فيها ولو قلّت في الظاهر.</span></div>
-        <div class="glossary-item"><span class="glossary-word">كَفَّارٍ أَثِيمٍ</span><span class="glossary-meaning">شديد الكفر بنعمة الله، كثير الإثم بمعاملته الحرام.</span></div>
-        <div class="glossary-item"><span class="glossary-word">فَأۡذَنُواْ بِحَرۡبٖ مِّنَ ٱللَّهِ</span><span class="glossary-meaning">فاعلموا واستيقنوا أنكم محاربون لله ورسوله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">رُءُوسُ أَمۡوَٰلِكُمۡ</span><span class="glossary-meaning">أصل المال دون زيادة الربا.</span></div>
-        <div class="glossary-item"><span class="glossary-word">ذُو عُسۡرَةٖ</span><span class="glossary-meaning">من كان معسراً لا يقدر على السداد.</span></div>
-        <div class="glossary-item"><span class="glossary-word">نَظِرَةٌ إِلَىٰ مَيۡسَرَةٖ</span><span class="glossary-meaning">إمهاله حتى يتيسر له السداد.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تصف الآيات حال آكلي الربا يوم القيامة بأنهم يقومون من قبورهم كمن يتخبطه الشيطان من شدة الجنون، جزاءً على قولهم إن البيع مثل الربا، وترد عليهم الآية بأن الله أحل البيع وحرم الربا تحريماً قاطعاً، مع رخصة العفو عمن انتهى بعد أن جاءه وعظ ربه فله ما مضى وأمره إلى الله، أما من عاد إلى الربا بعد التحريم فمصيره النار خالداً فيها. وتبيّن الآيات أن الله يمحق بركة الربا ويُنمّي بركة الصدقات، مؤكدة أن الله لا يحب كل كفار أثيم مصرّ على الحرام، بينما يبشّر المؤمنين العاملين للصالحات المقيمين للصلاة المؤتين للزكاة بالأجر دون خوف أو حزن. وتأمر الآيات المؤمنين بترك ما بقي من الربا تصديقاً لإيمانهم، محذّرة من استمرار التعامل به بأنه إعلان حرب من الله ورسوله، ومبشّرة التائبين برأس مالهم دون ظلم لهم ولا منهم. وتختم بالرحمة بالمعسر بإمهاله حتى ييسر الله أمره، مع بيان أن الصدقة عليه بإسقاط الدين خير للدائن، والتذكير بيوم الحساب حيث توفى كل نفس ما كسبت دون ظلم.</div>
-    </div>
-    <div class="field">
       <div class="field-label">التدبر</div>
       <div class="field-value">
         <div class="notes-list"></div>
@@ -989,24 +964,6 @@
       </div>
     </div>
     <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">تَدَايَنتُم بِدَيۡنٍ</span><span class="glossary-meaning">تعاملتم بدين مؤجل، كبيع بثمن مؤجل أو قرض.</span></div>
-        <div class="glossary-item"><span class="glossary-word">أَجَلٖ مُّسَمّٗى</span><span class="glossary-meaning">وقت محدد معلوم لسداد الدين.</span></div>
-        <div class="glossary-item"><span class="glossary-word">كَاتِبُۢ بِٱلۡعَدۡلِ</span><span class="glossary-meaning">كاتب موثوق يكتب بالحق دون ميل لأحد الطرفين.</span></div>
-        <div class="glossary-item"><span class="glossary-word">وَلۡيُمۡلِلِ</span><span class="glossary-meaning">وليُملِ الشروط والمبلغ على الكاتب.</span></div>
-        <div class="glossary-item"><span class="glossary-word">سَفِيهًا</span><span class="glossary-meaning">قليل العقل ضعيف التصرف في المال.</span></div>
-        <div class="glossary-item"><span class="glossary-word">وَلِيُّهُۥ</span><span class="glossary-meaning">من يتولى أمره من ولي أو وصي بسبب صغره أو ضعف عقله.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تَضِلَّ إِحۡدَىٰهُمَا</span><span class="glossary-meaning">تنسى إحداهما الشهادة أو تخطئ فيها.</span></div>
-        <div class="glossary-item"><span class="glossary-word">جُنَاحٌ</span><span class="glossary-meaning">إثم وحرج.</span></div>
-        <div class="glossary-item"><span class="glossary-word">رِهَٰنٞ مَّقۡبُوضَةٞ</span><span class="glossary-meaning">شيء يوضع ضماناً للدين عند عدم توفر الكتابة.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تُعرف هذه الآية بآية الدَّين، وهي أطول آية في القرآن، وتأمر المؤمنين إذا تعاملوا بدين إلى أجل محدد أن يكتبوه توثيقاً للحقوق، بكاتب عادل لا يمتنع عن الكتابة كما علمه الله، ويُملي المدين نص الاتفاق مراعياً تقوى الله وعدم بخس الحق، فإن كان المدين سفيهاً أو ضعيفاً أو عاجزاً عن الإملاء أملى وليه بالعدل. وتأمر الآية بالإشهاد على الدَّين برجلين، فإن لم يوجدا فرجل وامرأتان، ليتذكر إحداهما الأخرى إن نسيت، مع النهي عن امتناع الشهود إذا دُعوا للشهادة، وعدم التكاسل عن كتابة الدين صغيراً أو كبيراً لأن ذلك أعدل عند الله وأثبت للشهادة وأدنى لعدم الشك والريبة، إلا أن تكون تجارة حاضرة تُقبض يداً بيد فلا حرج في تركها دون كتابة، مع الأمر بالإشهاد على البيع مطلقاً والنهي عن الإضرار بالكاتب أو الشاهد. وتختم الآيات ببيان أنه في حال السفر وعدم وجود كاتب يمكن الاكتفاء برهن مقبوض يضمن الحق، وإن ائتمن بعض الناس بعضاً بلا كتابة ولا رهن وجب على المؤتمن أداء الأمانة وتقوى الله، مع تحريم كتمان الشهادة، فمن كتمها فقلبه آثم، والله عليم بكل ما يعمل الناس.</div>
-    </div>
-    <div class="field">
       <div class="field-label">التدبر</div>
       <div class="field-value">
         <div class="notes-list"></div>
@@ -1156,6 +1113,27 @@
   </div>
 </div>
 
+<script>
+/* معاني المفردات: إظهار بالوقوف (سطح المكتب) أو بالضغط (الجوال) */
+(function(){
+  function place(el){
+    el.classList.remove('flip-start','flip-end');
+    var r = el.getBoundingClientRect(), w = Math.min(280, innerWidth*0.78);
+    var c = r.left + r.width/2;
+    if(c - w/2 < 8) el.classList.add('flip-start');
+    else if(c + w/2 > innerWidth - 8) el.classList.add('flip-end');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('.wq');
+    if(t) place(t);
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.wq') : null;
+    document.querySelectorAll('.wq.on').forEach(function(el){ if(el !== t) el.classList.remove('on'); });
+    if(t){ place(t); t.classList.toggle('on'); }
+  });
+})();
+</script>
 <script src="../../../assets/tadabbur-engine.js"></script>
 
 </body>
