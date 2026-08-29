@@ -123,6 +123,35 @@
     line-height:2.6;
     color:var(--verse-green);
   }
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
+  }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:'Tajawal', sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
   .tafsir-ayah{
     display:block;
     font-family:'Amiri', serif;
@@ -177,19 +206,6 @@
       <div class="field-value verses-text">
         ﴿لِّلَّهِ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِۗ وَإِن تُبۡدُواْ مَا فِيٓ أَنفُسِكُمۡ أَوۡ تُخۡفُوهُ يُحَاسِبۡكُم بِهِ ٱللَّهُۖ فَيَغۡفِرُ لِمَن يَشَآءُ وَيُعَذِّبُ مَن يَشَآءُۗ وَٱللَّهُ عَلَىٰ كُلِّ شَيۡءٖ قَدِيرٌ (٢٨٤)﴾
       </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">لِّلَّهِ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِ</span><span class="glossary-meaning">له سبحانه الملك والتصرف الكامل في كل ما في الكون.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تُبۡدُواْ</span><span class="glossary-meaning">تظهروا وتعلنوا.</span></div>
-        <div class="glossary-item"><span class="glossary-word">تُخۡفُوهُ</span><span class="glossary-meaning">تسروه في قلوبكم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يُحَاسِبۡكُم بِهِ ٱللَّهُ</span><span class="glossary-meaning">يُجازيكم عليه، مع تخصيص جمهور المفسرين هذا بما يستقر في القلب من عزم لا مجرد خواطر عابرة لا اختيار فيها.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تقرر الآية أن لله وحده ملك كل ما في السماوات والأرض، وأنه سبحانه يحاسب عباده على ما في أنفسهم سواء أظهروه أو أخفوه، فيغفر لمن يشاء برحمته ويعذب من يشاء بعدله، فهو على كل شيء قدير. وقد بيّن جمهور المفسرين أن المحاسبة هنا خاصة بما يستقر في القلب من نية وعزم اختياري، لا بمجرد الخواطر والوساوس العابرة التي لا حيلة للإنسان فيها، رحمة من الله بعباده وتخفيفاً عنهم كما تؤكده الآية التالية.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
@@ -268,21 +284,6 @@
       <div class="field-value verses-text">
         ﴿ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ مِن رَّبِّهِۦ وَٱلۡمُؤۡمِنُونَۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَـٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيۡنَ أَحَدٖ مِّن رُّسُلِهِۦۚ وَقَالُواْ سَمِعۡنَا وَأَطَعۡنَاۖ غُفۡرَانَكَ رَبَّنَا وَإِلَيۡكَ ٱلۡمَصِيرُ (٢٨٥) لَا يُكَلِّفُ ٱللَّهُ نَفۡسًا إِلَّا وُسۡعَهَاۚ لَهَا مَا كَسَبَتۡ وَعَلَيۡهَا مَا ٱكۡتَسَبَتۡۗ رَبَّنَا لَا تُؤَاخِذۡنَآ إِن نَّسِينَآ أَوۡ أَخۡطَأۡنَاۚ رَبَّنَا وَلَا تَحۡمِلۡ عَلَيۡنَآ إِصۡرٗا كَمَا حَمَلۡتَهُۥ عَلَى ٱلَّذِينَ مِن قَبۡلِنَاۚ رَبَّنَا وَلَا تُحَمِّلۡنَا مَا لَا طَاقَةَ لَنَا بِهِۦۖ وَٱعۡفُ عَنَّا وَٱغۡفِرۡ لَنَا وَٱرۡحَمۡنَآۚ أَنتَ مَوۡلَىٰنَا فَٱنصُرۡنَا عَلَى ٱلۡقَوۡمِ ٱلۡكَٰفِرِينَ (٢٨٦)﴾
       </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">لَا نُفَرِّقُ بَيۡنَ أَحَدٖ مِّن رُّسُلِهِۦ</span><span class="glossary-meaning">نؤمن بجميع الرسل دون تمييز بين نبي وآخر في أصل الإيمان به.</span></div>
-        <div class="glossary-item"><span class="glossary-word">سَمِعۡنَا وَأَطَعۡنَا</span><span class="glossary-meaning">قبلنا الأمر وامتثلنا له طاعة وتسليماً.</span></div>
-        <div class="glossary-item"><span class="glossary-word">غُفۡرَانَكَ</span><span class="glossary-meaning">نطلب مغفرتك يا ربنا.</span></div>
-        <div class="glossary-item"><span class="glossary-word">وُسۡعَهَا</span><span class="glossary-meaning">طاقتها وما تقدر عليه دون مشقة تُرهقها.</span></div>
-        <div class="glossary-item"><span class="glossary-word">إِصۡرٗا</span><span class="glossary-meaning">عبئاً وتكليفاً شاقاً ثقيلاً، كما كان على بعض الأمم السابقة.</span></div>
-        <div class="glossary-item"><span class="glossary-word">مَوۡلَىٰنَا</span><span class="glossary-meaning">ناصرنا ومتولي أمورنا.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">تختم السورة بمشهد جليل من إيمان الرسول صلى الله عليه وسلم والمؤمنين بما أُنزل إليه من ربه، إيماناً شاملاً بالله وملائكته وكتبه ورسله دون تفريق بين أحد منهم، مقروناً بالسمع والطاعة والانقياد التام لأمر الله، مع طلب المغفرة والتسليم بأن المصير إليه سبحانه. ثم تقرر الآية الأخيرة قاعدة عظيمة من قواعد الشريعة: أن الله لا يكلف نفساً إلا ما تطيقه دون حرج، فلكل نفس ما كسبت من خير وعليها ما اكتسبت من شر. وتختم السورة بدعاء جامع علّم الله به عباده المؤمنين: أن لا يؤاخذهم بالنسيان أو الخطأ، وألا يحمّلهم عبئاً ثقيلاً كما حمّله على من قبلهم، وألا يكلفهم فوق طاقتهم، مع طلب العفو والمغفرة والرحمة، وختامه بالتوكل الكامل على الله وحده طلباً للنصر على القوم الكافرين.</div>
     </div>
     <div class="field">
       <div class="field-label">التدبر</div>
@@ -434,6 +435,27 @@
   </div>
 </div>
 
+<script>
+/* معاني المفردات: إظهار بالوقوف (سطح المكتب) أو بالضغط (الجوال) */
+(function(){
+  function place(el){
+    el.classList.remove('flip-start','flip-end');
+    var r = el.getBoundingClientRect(), w = Math.min(280, innerWidth*0.78);
+    var c = r.left + r.width/2;
+    if(c - w/2 < 8) el.classList.add('flip-start');
+    else if(c + w/2 > innerWidth - 8) el.classList.add('flip-end');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('.wq');
+    if(t) place(t);
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.wq') : null;
+    document.querySelectorAll('.wq.on').forEach(function(el){ if(el !== t) el.classList.remove('on'); });
+    if(t){ place(t); t.classList.toggle('on'); }
+  });
+})();
+</script>
 <script src="../../../assets/tadabbur-engine.js"></script>
 
 </body>
