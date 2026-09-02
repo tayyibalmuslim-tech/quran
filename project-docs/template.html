@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تيمبلت بناء سورة جديدة — مصحف التدبر</title>
+<title>تيمبلت بناء سورة جديدة — مصحف التدبر (معيار البقرة)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -209,10 +209,12 @@
 <body>
 
 <div class="top-nav">
-  <span class="brand">📖 تيمبلت بناء سورة جديدة — مصحف التدبر (نسخة مصححة)</span>
+  <span class="brand">📖 تيمبلت بناء سورة جديدة — مصحف التدبر (معيار البقرة)</span>
   <div class="toc-links">
     <a href="#guide">دليل آلية العمل</a>
     <a href="#critical">⚠️ الأجزاء الحرجة</a>
+    <a href="#glossary-rule">معاني المفردات</a>
+    <a href="#split-rule">معيار التقسيم</a>
     <a href="#template-muqaddimah">تيمبلت المقدمة</a>
     <a href="#template-mahwar">تيمبلت المحور</a>
     <a href="#checklist">الفحص الذاتي</a>
@@ -222,6 +224,13 @@
 <header class="page-head">
   <h1>ملف مرجعي شامل: بناء سورة كاملة من الصفر</h1>
   <p>هذا الملف يجمع بين برومبت آلية العمل الكامل، وكل الأكواد الفعلية الكاملة (بدون اختصار) المستخدمة في مشروع "مصحف التدبر" الحقيقي على GitHub. تمت مراجعته بعد اكتشاف أن سورة العلق اترفعت بملفات ناقصة (بلا CSS وبلا محرر ملاحظات فعلي) — فأُضيفت كل الأكواد كاملة هنا لمنع تكرار المشكلة.</p>
+  <div class="danger-box" style="margin-top:16px">
+    <strong>تحديث المعيار — المرجع الآن هو سورة البقرة:</strong> اعتُمد هيكل سورة البقرة كمعيار رسمي وحيد لكل سورة جديدة. أهم فرقين عن النسخ السابقة من هذا الملف:
+    <ol>
+      <li><strong>معاني المفردات صارت tooltips داخل نص الآية نفسها</strong> (كلاس <code class="inline">.wq</code>)، بدل قائمة <code class="inline">glossary</code> منفصلة تحت الآيات. راجع قسم «معاني المفردات» أدناه.</li>
+      <li><strong>تقسيم الأقسام الفرعية صار بطول النص لا بعدد الآيات</strong> — القاعدة القديمة «5-10 آيات» أُلغيت لأنها تُنتج أقساماً قصيرة جداً في المفصّل وأقساماً غير عملية عند الآيات الطويلة. راجع قسم «معيار التقسيم» أدناه.</li>
+    </ol>
+  </div>
 </header>
 
 <main>
@@ -236,13 +245,26 @@
         <li><code class="inline">verse-modal-overlay</code> فاضي تماماً بدل محتواه الكامل</li>
       </ul>
     </div>
-    <p><strong>القاعدة الذهبية:</strong> أي ملف مقدمة أو محور جديد <strong>لازم يحتوي 4 أجزاء كاملة</strong> بدون اختصار أو استبدالها بـ "..." أو تعليق يقول "يُنسخ لاحقاً":</p>
+    <p><strong>القاعدة الذهبية:</strong> أي ملف مقدمة أو محور جديد <strong>لازم يحتوي 5 أجزاء كاملة</strong> بدون اختصار أو استبدالها بـ "..." أو تعليق يقول "يُنسخ لاحقاً":</p>
     <ol>
-      <li>كتلة <code class="inline">&lt;style&gt;</code> كاملة (موجودة أسفل هذا القسم، انسخها حرفياً)</li>
+      <li>كتلة <code class="inline">&lt;style&gt;</code> كاملة (موجودة أسفل هذا القسم، انسخها حرفياً) — <strong>متضمنة كلاس <code class="inline">.wq</code></strong> الخاص بـ tooltips المفردات</li>
       <li>محرر ملاحظات كامل (<code class="inline">note-editor</code> بكل أزراره) بعد <strong>كل</strong> زرار <code class="inline">note-add-btn</code> بلا استثناء</li>
       <li><code class="inline">top-nav</code> فيه رابط رجوع لكل السور + رابط لصفحة السورة</li>
       <li><code class="inline">verse-modal-overlay</code> بمحتواه الكامل (تابات البحث والمجموعة)</li>
+      <li><strong>سطور الأصول الخمسة كاملة</strong> في <code class="inline">&lt;head&gt;</code> بالترتيب — وأهمها <code class="inline">tadabbur-toc.js</code> (الفهرس) الذي كان ساقطاً من النسخ السابقة من هذا التيمبلت</li>
     </ol>
+
+    <h3>الأصول الخمسة الإلزامية في &lt;head&gt; (بالترتيب، كما في كل ملفات سورة البقرة)</h3>
+    <div class="danger-box">تنبيه: النسخة السابقة من هذا التيمبلت كانت لا تذكر <code class="inline">tadabbur-toc.js</code> إطلاقاً — أي ملف يُبنى بدونه <strong>يفقد الفهرس الجانبي بالكامل</strong> رغم أن الصفحة تبدو سليمة. فحص وجوده إلزامي.</div>
+    <div class="code-label">تُنسخ حرفياً — انتبه أن المسار <code class="inline">../../../</code> يفترض أن الملف داخل <code class="inline">surahs/[السورة]/mahawir-pages/</code></div>
+    <pre class="code-block">&lt;link rel="stylesheet" href="../../../assets/tadabbur.css"&gt;
+&lt;script src="../../../assets/quran-data.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="../../../assets/firebase-sync.js"&gt;&lt;/script&gt;
+&lt;script src="../../../assets/tadabbur-engine.js"&gt;&lt;/script&gt;
+&lt;script src="../../../assets/tadabbur-toc.js"&gt;&lt;/script&gt;</pre>
+    <div class="note-box">
+      💡 <strong>الفهرس (<code class="inline">tadabbur-toc.js</code>):</strong> يبني الفهرس الجانبي تلقائياً من عناوين الأقسام الفرعية (<code class="inline">.sub-title</code>) في الصفحة، ومن مصفوفة <code class="inline">subsections</code> في <code class="inline">info.json</code>. فلو نسيت <code class="inline">subsections</code> في info.json أو نسيت السكريبت في الـhead، الفهرس يظهر ناقصاً أو لا يظهر أصلاً.
+    </div>
 
     <h3>كتلة الـ&lt;style&gt; الكاملة الإلزامية (تُنسخ كما هي داخل &lt;head&gt; كل ملف مقدمة/محور)</h3>
     <div class="code-label">CSS كامل — بدون اختصار، يحتوي كل الكلاسات المستخدمة في المحتوى</div>
@@ -391,6 +413,36 @@
     color:var(--gold-deep);
     font-family:'Tajawal', sans-serif;
   }
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
+  }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:&#x27;Tajawal&#x27;, sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:&#x27;&#x27;; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
+  /* ↓↓↓ نمط قديم (glossary) — للسور المبنية قبل اعتماد معيار البقرة فقط، لا يُستخدم في الملفات الجديدة ↓↓↓ */
   .glossary{ display:flex; flex-direction:column; gap:8px; }
   .glossary-item{ display:flex; gap:8px; font-size:14px; line-height:1.8; flex-wrap:wrap; }
   .glossary-word{
@@ -542,6 +594,95 @@
     </div>
   </section>
 
+
+  <!-- ============================================================ -->
+  <!-- معاني المفردات: معيار البقرة (tooltips)                        -->
+  <!-- ============================================================ -->
+  <section class="guide-section" id="glossary-rule">
+    <h2>📌 معاني المفردات — معيار البقرة (tooltips داخل النص)</h2>
+
+    <p>معاني المفردات <strong>ليست حقلاً منفصلاً</strong> تحت الآيات. هي تُكتب <strong>داخل نص الآية نفسه</strong>، بلفّ الكلمة الغريبة في <code class="inline">&lt;span class="wq" data-m="المعنى"&gt;</code>، فتظهر تحتها شرطة ذهبية متقطعة، وعند اللمس أو المرور يظهر المعنى في فقاعة فوقها.</p>
+
+    <div class="warn-box">
+      <strong>لماذا هذا المعيار؟</strong> القائمة المنفصلة (<code class="inline">glossary</code>) تعمل في السور القصيرة، لكنها تنهار في السور الطوال: محور واحد في البقرة يحتوي أكثر من 270 مفردة — قائمة بهذا الحجم تفصل القارئ عن الآية وتُطيل الصفحة بلا فائدة. الـtooltip يضع المعنى <strong>عند الكلمة تماماً</strong> دون قطع سياق التلاوة.
+    </div>
+
+    <div class="code-label">الصيغة الإلزامية — تُكتب داخل <code class="inline">.field-value.verses-text</code></div>
+    <pre class="code-block">&lt;div class="field"&gt;
+  &lt;div class="field-label"&gt;نص الآيات&lt;/div&gt;
+  &lt;div class="field-value verses-text"&gt;
+    ﴿&lt;span class="wq" data-m="بساطاً ممهّداً مذلّلاً تستقرّون عليه."&gt;فِرَٰشٗا&lt;/span&gt; ... (٢٢)﴾
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <h3>قواعد كتابة الـ tooltips</h3>
+    <ol>
+      <li><strong>الكلمة داخل الـspan تُكتب بالرسم العثماني كما هي في الآية حرفاً بحرف</strong> — بكل حركاتها وعلاماتها، بلا أي تعديل. لا يُعاد كتابة الكلمة إملائياً.</li>
+      <li><strong>علامات الوقف تبقى خارج الـspan</strong> (مثل ۖ ۗ ۚ ۛ): الصحيح <code class="inline">&lt;span ...&gt;رَيۡبَ&lt;/span&gt;ۛ</code> وليس داخله.</li>
+      <li><strong>المعنى في <code class="inline">data-m</code> جملة واحدة مختصرة</strong> تنتهي بنقطة، ولا تتجاوز سطرين. لا يُوضع فيها HTML ولا علامة اقتباس مزدوجة <code class="inline">"</code> (تكسر الوسم) — تُستبدل بـ «».</li>
+      <li><strong>تُغطّى كل الكلمات الغريبة في القسم</strong>، لا عيّنة منها. الكثافة المرجعية في البقرة: <strong>3–4 مفردات لكل آية</strong> وسطياً.</li>
+      <li><strong>يجوز أن يشمل الـspan عبارة من عدة كلمات</strong> إذا كان المعنى للتركيب لا للمفردة (مثل <code class="inline">وَيُقِيمُونَ ٱلصَّلَوٰةَ</code>)، بشرط ألا تتجاوز العبارة نصف الآية.</li>
+      <li><strong>اللفظ المتكرر في القسم بنفس المعنى يُعلَّم في كل مواضعه</strong>، لا في أوله فقط.</li>
+      <li><strong>اللفظ المتكرر بمعنى مختلف يأخذ في كل موضع معناه الخاص بسياقه</strong> — وهذا أكثر مواضع الخطأ. أمثلة واقعية من البقرة: <code class="inline">ثُمَّ يُحۡيِيكُمۡ</code> (٢٨) معناها البعث لا الإيجاد الأول؛ <code class="inline">وَمَا ظَلَمُونَا</code> (٥٧) معناها «ما نقصونا شيئاً» لا «ينقصون أنفسهم»؛ <code class="inline">بِإِذۡنِ ٱللَّهِ</code> في (٩٧) إذن شرعي وفي (١٠٢) تقدير كوني.</li>
+      <li><strong>لا يجوز وضع span داخل span</strong>، ولا ترك <code class="inline">data-m</code> فارغاً.</li>
+    </ol>
+
+    <div class="danger-box">
+      ⚠️ <strong>تحذير الهايلايت:</strong> إضافة أو تعديل tooltips في محور منشور <strong>تُبطل الهايلايت المحفوظ على نص الآيات</strong> في ذلك المحور، لأن <code class="inline">ilm/tadabbur</code> يحفظ ويستعيد <code class="inline">innerHTML</code> للمنطقة. الملاحظات المرتبطة بـ <code class="inline">data-note-group</code> (التدبر والمعنى التفصيلي) لا تتأثر. لذا: تُكتب المفردات <strong>أثناء بناء المحور</strong> لا بعد نشره واستعماله.
+    </div>
+
+    <div class="note-box">
+      💡 <strong>الفحص البرمجي قبل التسليم:</strong> النص القرآني يجب أن يبقى مطابقاً للأصل بعد تجريد الوسوم. الطريقة: احذف كل <code class="inline">&lt;...&gt;</code> وكل المسافات من نص الآيات قبل الإضافة وبعدها، ثم قارن السلسلتين — أي اختلاف يعني أن كلمة قرآنية تغيّرت وهذا خطأ فادح يوقف التسليم.
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- معيار تقسيم الأقسام الفرعية                                   -->
+  <!-- ============================================================ -->
+  <section class="guide-section" id="split-rule">
+    <h2>📏 معيار تقسيم الأقسام الفرعية (بطول النص، لا بعدد الآيات)</h2>
+
+    <div class="danger-box">
+      <strong>القاعدة القديمة «كل قسم فرعي 5–10 آيات» أُلغيت.</strong> سبب الإلغاء أن طول الآية يتفاوت تفاوتاً هائلاً بين السور، فالعدد وحده مقياس مضلِّل. قياس فعلي على الملفات المنشورة:
+      <ul>
+        <li><strong>البقرة:</strong> وسيط القسم الفرعي = <strong>106 كلمة</strong> (المدى الأوسط 71–141)</li>
+        <li><strong>جزء عمّ:</strong> وسيط القسم الفرعي = <strong>24 كلمة</strong> فقط — أي رُبع البقرة، مع أن عدد الآيات في الحالتين متقارب (وسيط 5 و 5.5)</li>
+        <li><strong>آية الدَّين (٢٨٢) وحدها = 128 كلمة</strong> — أي أطول من متوسط قسم فرعي كامل في البقرة، وأطول من أي قسم في جزء عمّ بخمسة أضعاف</li>
+      </ul>
+      النتيجة: نفس القاعدة العددية أنتجت أقساماً قصيرة جداً في المفصّل، وأقساماً غير عملية عند الآيات الطويلة.
+    </div>
+
+    <h3>القاعدة المعتمدة</h3>
+    <p><strong>الوحدة الموضوعية هي الأصل، وطول النص هو الضابط.</strong> يُقسَّم المحور إلى مقاطع كل مقطع يعالج فكرة أو مشهداً أو حكماً واحداً، ثم يُضبط طول المقطع بالنافذة التالية:</p>
+
+    <table class="plan-table">
+      <tr><th>الحالة</th><th>القياس (كلمات نص الآيات، بلا أرقام الآيات)</th><th>الإجراء</th></tr>
+      <tr><td>المستهدف</td><td><strong>60 – 130 كلمة</strong></td><td>هذا هو النطاق الطبيعي لأي قسم فرعي في أي سورة</td></tr>
+      <tr><td>مقبول بلا تعديل</td><td>40 – 160 كلمة</td><td>يُقبل إذا كانت الوحدة الموضوعية لا تحتمل الفصل</td></tr>
+      <tr><td>قصير جداً</td><td>أقل من 40 كلمة</td><td>يُدمج مع المقطع التالي أو السابق، إلا إذا كان حكماً مستقلاً بذاته لا يقبل الدمج (مثل آية ١٨٨ في البقرة = 18 كلمة)</td></tr>
+      <tr><td>طويل جداً</td><td>أكثر من 160 كلمة</td><td>يُقسَّم من البداية — لا يُبنى كبيراً ثم يُقسَّم لاحقاً</td></tr>
+      <tr><td><strong>الآية الطويلة</strong></td><td>آية واحدة ≥ 100 كلمة</td><td><strong>تُفرَد في قسم فرعي مستقل مهما بلغ طولها</strong> ولا تُدمج مع غيرها ولا تُشطر (آية الدَّين ٢٨٢، آية الكرسي ٢٥٥)</td></tr>
+    </table>
+
+    <h3>كيف يُقاس؟</h3>
+    <p>تُعدّ الكلمات العربية في نص الآيات بعد استبعاد أرقام الآيات وأقواس التزيين. عملياً: <code class="inline">عدد الكلمات = len(re.sub(r'[^\u0600-\u06FF\s]',' ', نص_الآيات).split())</code>. القياس يتم <strong>قبل</strong> كتابة الـHTML، على النص المجرد.</p>
+
+    <h3>ما ينتج عن القاعدة عملياً</h3>
+    <ul>
+      <li><strong>السور الطوال</strong> (البقرة، آل عمران، النساء): القسم الفرعي يقع غالباً بين <strong>4 و 8 آيات</strong>، وقد ينزل إلى آية واحدة عند الآيات الطويلة.</li>
+      <li><strong>المفصّل وجزء عمّ</strong>: القسم الفرعي يستوعب طبيعياً <strong>10–20 آية</strong> لأن آياتها 3–5 كلمات، وهذا هو الصواب لا الخطأ — قسم من 5 آيات قصيرة (20 كلمة) قصير جداً ويُفتّت السورة بلا داعٍ.</li>
+      <li><strong>عدد الآيات ليس معياراً</strong>، لكنه مؤشر تحذيري: إذا تجاوز القسم 20 آية فراجع هل هو فعلاً وحدة موضوعية واحدة.</li>
+    </ul>
+
+    <div class="warn-box">
+      <strong>استثناء السلاسل المتوازية:</strong> المقاطع التي تتكرر فيها صيغة واحدة (مثل ﴿وَيۡلٞ يَوۡمَئِذٖ لِّلۡمُكَذِّبِينَ﴾ في المرسلات، أو مقاطع القسم في الشمس) تُبقى في قسم واحد حتى لو تجاوزت النافذة، لأن فصلها يكسر البناء البلاغي المقصود.
+    </div>
+
+    <div class="note-box">
+      💡 عند تقسيم المحور، اذكر في الخطة الموضوعية <strong>عدد كلمات كل قسم فرعي</strong> بجانب نطاق آياته، ليُراجَع التوازن قبل كتابة أي HTML.
+    </div>
+  </section>
+
   <section class="guide-section" id="guide">
     <h2>🗺️ آلية العمل: بناء سورة كاملة لمصحف التدبر</h2>
 
@@ -549,14 +690,15 @@
 
 
     <h3>الخطوة 0 — الرجوع لملف حقيقي كمرجع (إلزامي)</h3>
-    <div class="warn-box">قبل بناء أي سورة جديدة، لازم تُجلب نسخة فعلية كاملة من ملف مقدمة ومحور من سورة البقرة (الموجودة فعلياً على GitHub) ومقارنتها بأي ملف جديد قبل التسليم — التيمبلت ده مرجع سريع بس، مش بديل عن المقارنة الفعلية.</div>
+    <div class="warn-box">قبل بناء أي سورة جديدة، لازم تُجلب نسخة فعلية كاملة من ملف مقدمة ومحور من <strong>سورة البقرة</strong> (الموجودة فعلياً على GitHub) ومقارنتها بأي ملف جديد قبل التسليم — التيمبلت ده مرجع سريع بس، مش بديل عن المقارنة الفعلية.
+    <br><br><strong>ملف المقارنة المعتمد:</strong> <code class="inline">surahs/002-baqarah/mahawir-pages/01-muqaddimah.html</code> — هو المرجع الحي لهيكل الحقول وطريقة كتابة معاني المفردات. أي سورة قديمة تستخدم <code class="inline">glossary</code> بدل <code class="inline">.wq</code> فهي على النمط السابق ولا تصلح مرجعاً للجديد.</div>
 
     <h3>الخطوة 1 — التخطيط الموضوعي (قبل أي HTML)</h3>
     <p>قبل كتابة أي كود، تُعرض خطة نصية فيها:</p>
     <ol>
-      <li><strong>تقسيم السورة لمحاور رئيسية</strong>: كل محور يغطي مجموعة آيات مترابطة موضوعياً (قصص، أحكام، عقيدة...). لو المحور سيحتوي أكثر من 25-30 آية، يُخطَّط من البداية كأقسام فرعية متعددة واضحة.</li>
-      <li><strong>تقسيم كل محور لأقسام فرعية</strong>: كل قسم فرعي يغطي <strong>5-10 آيات كحد أقصى مريح للقراءة</strong>، حسب الترابط الطبيعي (سياق واحد / قصة واحدة / حكم واحد) — لا تقسيم عشوائي بالعدد.</li>
-      <li>لكل قسم فرعي: عنوان مختصر يعبّر عن جوهر مضمونه.</li>
+      <li><strong>تقسيم السورة لمحاور رئيسية</strong>: كل محور يغطي مجموعة آيات مترابطة موضوعياً (قصص، أحكام، عقيدة...). المحور يُخطَّط من البداية كأقسام فرعية متعددة إذا تجاوز مجموع كلمات آياته <strong>600 كلمة</strong> تقريباً (وهو ما يقابل 25–30 آية في السور الطوال، وقد يتجاوز 100 آية في المفصّل القصير).</li>
+      <li><strong>تقسيم كل محور لأقسام فرعية</strong>: كل قسم فرعي = وحدة موضوعية واحدة (سياق واحد / مشهد واحد / حكم واحد)، مضبوطة بنافذة <strong>60–130 كلمة</strong> من نص الآيات — <strong>لا بعدد الآيات</strong>. راجع قسم <a href="#split-rule">معيار التقسيم</a> كاملاً قبل التخطيط.</li>
+      <li>لكل قسم فرعي: عنوان مختصر يعبّر عن جوهر مضمونه، <strong>ومعه عدد كلمات نص آياته</strong> ليُراجَع التوازن.</li>
     </ol>
     <div class="warn-box">⚠️ لا تُكتب أي HTML قبل اعتماد الخطة الموضوعية من صاحب المشروع.</div>
 
@@ -574,18 +716,19 @@
     <p>كل ملف محور يحتوي sub-block واحد أو أكثر (الأقسام الفرعية)، وكل sub-block يجب أن يحتوي بالترتيب:</p>
 
     <table class="plan-table">
-      <tr><th>العنصر</th><th>الوصف</th></tr>
-      <tr><td>أ) نص الآيات</td><td>النص العربي الكامل بالرسم العثماني (﴿...﴾)، بأرقام الآيات بين قوسين عربية (٩٦)</td></tr>
-      <tr><td>ب) معاني المفردات</td><td>الكلمات الغريبة/المهمة في هذا القسم فقط، كل كلمة مع معناها في جملة مختصرة دقيقة</td></tr>
-      <tr><td>ج) المعنى الإجمالي</td><td>فقرة واحدة متماسكة (5-8 جمل) تلخص القسم الفرعي بأسلوب سردي مبسّط، لا نسخ حرفي من كتب التفسير</td></tr>
-      <tr><td>د) المعنى التفصيلي</td><td>شرح آية بآية، كل آية في ayah-note-block منفصل، بمعرّف فريد ومحرر ملاحظات كامل (كود المحرر أعلى هذا الملف)</td></tr>
-      <tr><td>هـ) التدبر</td><td>حقل فارغ للملاحظات الشخصية، بمعرّف فريد خاص بالقسم الفرعي ومحرر ملاحظات كامل</td></tr>
+      <tr><th>#</th><th>العنصر</th><th>الوصف</th></tr>
+      <tr><td>أ</td><td><strong>نص الآيات</strong><br><span style="font-size:12px">(يشمل معاني المفردات)</span></td><td>النص الكامل بالرسم العثماني (﴿...﴾) بأرقام الآيات بين قوسين عربية (٩٦)، <strong>والكلمات الغريبة ملفوفة في <code class="inline">&lt;span class="wq" data-m="..."&gt;</code></strong>. القوس ﴿﴾ يحيط بكل آيات القسم كوحدة واحدة: يبدأ قبل أول آية وينتهي بعد آخر آية. راجع <a href="#glossary-rule">قسم معاني المفردات</a>.</td></tr>
+      <tr><td>ب</td><td><strong>التدبر</strong></td><td>حقل فارغ للملاحظات الشخصية، بمعرّف <code class="inline">data-note-group</code> فريد للقسم الفرعي ومحرر ملاحظات كامل</td></tr>
+      <tr><td>ج</td><td><strong>المعنى التفصيلي</strong></td><td>شرح آية بآية. <strong>كل آية في <code class="inline">ayah-note-block</code> منفصل</strong> — لا تُجمع عدة آيات في بلوك واحد — بمعرّف فريد ومحرر ملاحظات كامل. نص الآية في <code class="inline">.tafsir-ayah</code> (وهو sticky تلقائياً).</td></tr>
+      <tr><td>د</td><td>المعنى الإجمالي<br><span style="font-size:12px">(اختياري)</span></td><td>فقرة واحدة متماسكة (5-8 جمل) تلخص القسم بأسلوب سردي. <strong>غير موجود في سورة البقرة</strong>، فلا يُعدّ نقصاً إن غاب — لكن إن أُضيف فموضعه بعد نص الآيات وقبل التدبر، ويُضاف حينها لكل أقسام السورة لا لبعضها.</td></tr>
     </table>
+    <div class="note-box">💡 <strong>الترتيب المعتمد داخل الـsub-block:</strong> نص الآيات (بالمفردات) ← [المعنى الإجمالي إن وُجد] ← التدبر ← المعنى التفصيلي.</div>
 
     <h3>قواعد الجودة الإلزامية</h3>
     <ol>
       <li><strong>الدقة الشرعية أولاً</strong>: أي معنى إجمالي/تفصيلي/معاني مفردات يعتمد على مصادر تفسير معتمدة (الطبري، ابن كثير، السعدي، القرطبي)، وليس اجتهاداً شخصياً بلا سند. عند وجود خلاف بين المفسرين، يُذكر بحياد.</li>
-      <li><strong>معيار التقسيم</strong>: أي قسم فرعي أكثر من 10 آيات يُقسَّم من البداية، لا يُبنى كبيراً ثم يُقسَّم لاحقاً.</li>
+      <li><strong>معيار التقسيم</strong>: بطول النص لا بعدد الآيات — المستهدف 60–130 كلمة للقسم الفرعي، وأي قسم يتجاوز 160 كلمة يُقسَّم من البداية لا بعد البناء. الآية الواحدة الطويلة (≥100 كلمة) تُفرَد وحدها. راجع <a href="#split-rule">معيار التقسيم</a>.</li>
+      <li><strong>معاني المفردات</strong>: tooltips داخل نص الآية (<code class="inline">.wq</code>)، تغطي كل الكلمات الغريبة بكثافة 3–4 لكل آية، والكلمة داخل الـspan بالرسم العثماني حرفاً بحرف. راجع <a href="#glossary-rule">قسم معاني المفردات</a>.</li>
       <li><strong>الأرقام والمعرّفات الفريدة</strong>: كل ayah-note-block وكل tadabbur field له معرّف فريد لا يتكرر في نفس الملف.</li>
       <li><strong>البنية التقنية الموحدة والكاملة</strong>: كتلة الـCSS كاملة + محرر الملاحظات كامل + top-nav + verse-modal كامل في كل ملف — راجع قسم "الأجزاء الحرجة" أعلى هذا الملف.</li>
       <li><strong>فحص ذاتي قبل التسليم</strong> — راجع قسم "الفحص الذاتي" أسفل هذا الملف.</li>
@@ -596,7 +739,7 @@
       <li>عرض الخطة الموضوعية أولاً، والانتظار حتى الموافقة عليها</li>
       <li>بعد الموافقة: بناء المقدمة أولاً وعرضها</li>
       <li>بعد ذلك كل محور على حدة، بالترتيب، وبعد كل محور عرض نتيجة الفحص الذاتي (عدد الآيات، توازن الوسوم، عدد الأقسام الفرعية، تأكيد وجود الـstyle والـnote-editor كاملين)</li>
-      <li>لو محور معين كبير جداً (أكثر من 40 آية): يُسأل هل يُبنى على مرتين أو دفعة واحدة</li>
+      <li>لو محور معين كبير جداً (أكثر من 40 آية في السور الطوال، أو تجاوز مجموع كلماته 900 كلمة): يُسأل هل يُبنى على مرتين أو دفعة واحدة</li>
     </ul>
 
     <div class="note-box">
@@ -617,19 +760,23 @@
       <li><code class="inline">verse-modal-overlay</code> يحتوي المحتوى الكامل (تابات بحث/مجموعة)، مش div فاضي</li>
       <li>موجود <code class="inline">top-nav</code> فيه رابط رجوع للصفحة الرئيسية ورابط لصفحة السورة</li>
       <li>عدد الآيات في نص الآيات يطابق النطاق المعلن بالضبط (بدون نقص أو تكرار)</li>
+      <li><strong>[معاني المفردات]</strong> كل قسم فرعي فيه tooltips <code class="inline">.wq</code> تغطي كلماته الغريبة (كثافة 3–4 لكل آية)، ولا يوجد <code class="inline">data-m</code> فارغ، ولا span داخل span، ولا علامة اقتباس مزدوجة داخل <code class="inline">data-m</code></li>
+      <li><strong>[الأهم شرعياً]</strong> النص القرآني مطابق للأصل بعد تجريد الوسوم — يُتحقق برمجياً بحذف كل <code class="inline">&lt;...&gt;</code> والمسافات ومقارنة النتيجة قبل/بعد</li>
+      <li>علامات الوقف (ۖ ۗ ۚ ۛ) خارج وسوم الـ<code class="inline">.wq</code> لا داخلها</li>
       <li>توازن وسوم HTML: كل &lt;div&gt; مفتوح له &lt;/div&gt; مقفول (فحصها بعدّ الفتح والقفل برمجياً أفضل من العين)</li>
       <li>كل قيم <code class="inline">data-note-group</code> فريدة داخل نفس الملف (لا تكرار بين tafsir و tadabbur)</li>
-      <li>كل قسم فرعي لا يتجاوز 10 آيات — وإلا وجب تقسيمه من البداية</li>
-      <li>سطر <code class="inline">firebase-sync.js</code> موجود بعد <code class="inline">quran-data.js</code> مباشرة في &lt;head&gt;</li>
+      <li>كل قسم فرعي داخل نافذة 40–160 كلمة (المستهدف 60–130)، والآية الطويلة (≥100 كلمة) مفردة في قسم مستقل</li>
+      <li><strong>[الفهرس]</strong> الأصول الخمسة كاملة في &lt;head&gt; بالترتيب: <code class="inline">tadabbur.css</code> ← <code class="inline">quran-data.js</code> ← <code class="inline">firebase-sync.js</code> ← <code class="inline">tadabbur-engine.js</code> ← <code class="inline">tadabbur-toc.js</code> — وغياب الأخير يُسقط الفهرس بالكامل</li>
       <li>المعنى الإجمالي والتفصيلي مستندان لمصادر تفسير معتمدة (الطبري / ابن كثير / السعدي / القرطبي)، لا اجتهاد شخصي غير مسنود</li>
       <li><code class="inline">info.json</code> يحتوي <code class="inline">id</code> و <code class="inline">name_ar</code> و <code class="inline">type</code> و <code class="inline">total_verses</code> بالإضافة لـ <code class="inline">muqaddimah</code> و <code class="inline">mahawir</code>، وقيم <code class="inline">range</code> بأرقام إنجليزية عادية (مثل "1-19") مش أرقام عربية هندية</li>
+      <li><strong>[الفهرس]</strong> كل محور في <code class="inline">info.json</code> يحتوي مصفوفة <code class="inline">subsections</code> فيها <code class="inline">title</code> و <code class="inline">range</code> لكل قسم فرعي، مطابقة تماماً لعناوين ونطاقات <code class="inline">.sub-title</code> و <code class="inline">.sub-range</code> في ملف المحور — أي تفاوت يُظهر فهرساً مغلوطاً</li>
       <li>اسم فولدر السورة على النمط <code class="inline">surahs/[رقم 3 خانات]-[الاسم بالإنجليزية]/</code> (مثال: <code class="inline">096-al-alaq</code>) وتم إضافة رقم السورة لمصفوفة <code class="inline">READY_SURAHS</code> في index.html</li>
     </ul>
   </section>
 
 </main>
 
-<footer class="page-foot">تيمبلت بناء سورة جديدة — مصحف التدبر — نسخة مصححة بعد حادثة سورة العلق — للاستخدام الداخلي عند بدء أي سورة جديدة</footer>
+<footer class="page-foot">تيمبلت بناء سورة جديدة — مصحف التدبر — معيار سورة البقرة (tooltips للمفردات + تقسيم بطول النص + الفهرس) — للاستخدام الداخلي عند بدء أي سورة جديدة</footer>
 
 </body>
 </html>
