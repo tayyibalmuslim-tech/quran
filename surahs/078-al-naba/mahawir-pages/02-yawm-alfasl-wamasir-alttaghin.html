@@ -117,31 +117,74 @@
     font-style:italic;
     font-size:13px;
   }
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+  }
+  .info-card .info-label{ font-size:12px; color:var(--ink-soft); margin-bottom:6px; }
+  .info-card .info-value{ font-family:'Amiri', serif; font-size:19px; font-weight:700; color:var(--gold-deep); }
+  .hadith-box{
+    background:var(--mahwar-bg);
+    border-right:3px solid var(--mahwar-text);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    line-height:1.9;
+  }
+  .hadith-box .hadith-text{ font-family:'Amiri', serif; font-size:16px; color:var(--ink); }
+  .hadith-box .hadith-source{ margin-top:6px; font-size:12px; color:var(--ink-soft); }
   .verses-text{
     font-family:'Amiri', serif;
     font-size:19px;
     line-height:2.6;
     color:var(--verse-green);
   }
-  .glossary{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .glossary-item{
-    display:flex;
-    gap:8px;
+  .ayah-num{
     font-size:14px;
-    line-height:1.8;
+    color:var(--gold-deep);
+    font-family:'Tajawal', sans-serif;
   }
-  .glossary-word{
-    font-family:'Amiri', serif;
-    font-weight:700;
-    color:var(--verse-green);
-    flex-shrink:0;
-    white-space:nowrap;
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
   }
-  .glossary-mean{ color:var(--ink); }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:'Tajawal', sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
+  .ayah-note-block{ margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed var(--line); }
+  .ayah-note-block:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
   .tafsir-ayah{
     display:block;
     font-family:'Amiri', serif;
@@ -149,8 +192,20 @@
     color:var(--verse-green);
     margin:16px 0 6px;
     line-height:2;
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:var(--card);
+    padding:10px 4px 8px;
+    box-shadow:0 4px 8px -4px rgba(43,38,32,0.12);
   }
   .tafsir-ayah:first-child{ margin-top:0; }
+  .tafsir-text{
+    font-size:14.5px;
+    line-height:1.9;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
 
   footer{
     text-align:center;
@@ -200,160 +255,23 @@
 
   <div class="sub-block">
     <div class="sub-header">
-      <span class="sub-title">يوم الفصل وأهواله الكونية</span>
-      <span class="sub-range">آيات 17-20</span>
+      <span class="sub-title">يوم الفصل ومصير الطاغين في جهنم</span>
+      <span class="sub-range">آيات 17-30</span>
     </div>
     <div class="field">
       <div class="field-label">نص الآيات</div>
       <div class="field-value verses-text">
-        ﴿إِنَّ يَوۡمَ ٱلۡفَصۡلِ كَانَ مِيقَٰتٗا (١٧) يَوۡمَ يُنفَخُ فِي ٱلصُّورِ فَتَأۡتُونَ أَفۡوَاجٗا (١٨) وَفُتِحَتِ ٱلسَّمَآءُ فَكَانَتۡ أَبۡوَٰبٗا (١٩) وَسُيِّرَتِ ٱلۡجِبَالُ فَكَانَتۡ سَرَابًا (٢٠)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">يَوۡمَ ٱلۡفَصۡلِ</span><span class="glossary-mean">— يوم القيامة، سُمّي بذلك لأن الله يفصل فيه بين الخلائق بالحق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">مِيقَٰتٗا</span><span class="glossary-mean">— وقتاً محدداً معلوماً لا يتقدم ولا يتأخر عنه.</span></div>
-        <div class="glossary-item"><span class="glossary-word">يُنفَخُ فِي ٱلصُّورِ</span><span class="glossary-mean">— النفخة الثانية في القرن، إيذاناً بالبعث وقيام الناس من قبورهم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">فَتَأۡتُونَ أَفۡوَاجٗا</span><span class="glossary-mean">— جماعات جماعات، كل أمة مع من يشاركها في العقيدة أو العمل.</span></div>
-        <div class="glossary-item"><span class="glossary-word">فُتِحَتِ ٱلسَّمَآءُ فَكَانَتۡ أَبۡوَٰبٗا</span><span class="glossary-mean">— انشقت السماء وتصدعت حتى صارت كأنها أبواب مفتوحة من كل جانب.</span></div>
-        <div class="glossary-item"><span class="glossary-word">سُيِّرَتِ ٱلۡجِبَالُ فَكَانَتۡ سَرَابًا</span><span class="glossary-mean">— حُرِّكت الجبال من أماكنها حتى صارت كالسراب لا حقيقة لها ولا ثبات.</span></div>
+        ﴿إِنَّ <span class="wq" data-m="يوم القيامة، سُمّي به لأن الله يقضي فيه بين الخلائق ويفصل بين المحقّ والمبطل.">يَوۡمَ ٱلۡفَصۡلِ</span> كَانَ <span class="wq" data-m="وقتاً محدّداً مضروباً لا يتقدّم ولا يتأخّر.">مِيقَٰتٗا</span> (١٧) يَوۡمَ يُنفَخُ فِي <span class="wq" data-m="القرن الذي ينفخ فيه إسرافيل عليه السلام.">ٱلصُّورِ</span> فَتَأۡتُونَ <span class="wq" data-m="جماعاتٍ متتابعة، كل أمّة مع من كانت تتبعه.">أَفۡوَاجٗا</span> (١٨) <span class="wq" data-m="شُقّت وتصدّعت لنزول الملائكة.">وَفُتِحَتِ</span> ٱلسَّمَآءُ فَكَانَتۡ <span class="wq" data-m="ذات فتوق واسعة كأنها أبواب مفتّحة.">أَبۡوَٰبٗا</span> (١٩) <span class="wq" data-m="قُلعت من أماكنها وسُيّرت في الهواء.">وَسُيِّرَتِ</span> ٱلۡجِبَالُ فَكَانَتۡ <span class="wq" data-m="هباءً يُرى كأنه شيء وليس بشيء، كالماء المتراءى في الفلاة.">سَرَابًا</span> (٢٠) إِنَّ جَهَنَّمَ كَانَتۡ <span class="wq" data-m="مَرصَداً مُعدّاً يُترقَّب فيه المارّون عليها.">مِرۡصَادٗا</span> (٢١) <span class="wq" data-m="المتجاوزين حدود الله بالكفر والمعاصي.">لِّلطَّـٰغِينَ</span> <span class="wq" data-m="مرجعاً ومصيراً يؤولون إليه ويستقرّون فيه.">مَـَٔابٗا</span> (٢٢) <span class="wq" data-m="ماكثين مقيمين.">لَّـٰبِثِينَ</span> فِيهَآ <span class="wq" data-m="دهوراً متتابعة، كلما انقضى حقب تبعه آخر بلا نهاية.">أَحۡقَابٗا</span> (٢٣) لَّا يَذُوقُونَ فِيهَا <span class="wq" data-m="ما يبرّد عنهم حرّ العذاب، وقيل النوم.">بَرۡدٗا</span> وَلَا <span class="wq" data-m="ما يُساغ فيروي عطشهم.">شَرَابًا</span> (٢٤) إِلَّا <span class="wq" data-m="ماءً بالغاً نهاية الحرارة يقطّع الأمعاء.">حَمِيمٗا</span> <span class="wq" data-m="صديداً سائلاً من أهل النار بالغاً نهاية النتن والبرد.">وَغَسَّاقٗا</span> (٢٥) جَزَآءٗ <span class="wq" data-m="موافقاً لأعمالهم مساوياً لها، لا ظلم فيه ولا زيادة.">وِفَاقًا</span> (٢٦) إِنَّهُمۡ كَانُواْ <span class="wq" data-m="لا يتوقّعون ولا يخافون، لإنكارهم البعث.">لَا يَرۡجُونَ</span> <span class="wq" data-m="محاسبةً على أعمالهم يوم القيامة.">حِسَابٗا</span> (٢٧) وَكَذَّبُواْ <span class="wq" data-m="بحججنا وبراهيننا وما أنزلناه على رسلنا.">بِـَٔايَٰتِنَا</span> <span class="wq" data-m="تكذيباً شديداً بالغاً في المكابرة والإصرار.">كِذَّابٗا</span> (٢٨) وَكُلَّ شَيۡءٍ <span class="wq" data-m="ضبطناه وأحطنا به عدداً فلا يفوتنا منه شيء.">أَحۡصَيۡنَٰهُ</span> <span class="wq" data-m="مكتوباً مثبتاً في صحائف الأعمال واللوح المحفوظ.">كِتَٰبٗا</span> (٢٩) <span class="wq" data-m="أمرُ توبيخ وتهكّم بهم عند ورودهم النار.">فَذُوقُواْ</span> <span class="wq" data-m="كلما خبت زيدوا سعيراً، فلا تخفيف ولا انقطاع.">فَلَن نَّزِيدَكُمۡ إِلَّا عَذَابًا</span> (٣٠)﴾
       </div>
     </div>
     <div class="field">
       <div class="field-label">المعنى الإجمالي</div>
       <div class="field-value">
-        بعد الاستدلال بآيات الله الكونية، تنتقل السورة لوصف يوم الفصل -يوم القيامة- الذي يفصل الله فيه بين الخلائق بالحق: إن هذا اليوم كان وقتاً محدداً معلوماً لا يتقدم ولا يتأخر عنه، يوم ينفخ في الصور النفخة الثانية إيذاناً بالبعث، فيأتي الناس جماعات جماعات، كل أمة مع من يشاركها في العقيدة أو العمل.
+بعد الاستدلال بآيات الله الكونية، تنتقل السورة لوصف يوم الفصل -يوم القيامة- الذي يفصل الله فيه بين الخلائق بالحق: إن هذا اليوم كان وقتاً محدداً معلوماً لا يتقدم ولا يتأخر عنه، يوم ينفخ في الصور النفخة الثانية إيذاناً بالبعث، فيأتي الناس جماعات جماعات، كل أمة مع من يشاركها في العقيدة أو العمل.
 
 وتُفتح السماء وتنشق وتتصدع حتى تصير كأنها أبواب مفتوحة من كل جانب، وتُحرَّك الجبال من أماكنها الراسخة حتى تصير كالسراب لا حقيقة لها ولا ثبات، بعد أن كانت أوتاداً ثابتة للأرض كما ذُكر في المحور السابق، وهذا تصوير لعظيم التحول الكوني الذي سيحدث يوم القيامة.
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">التدبر</div>
-      <div class="field-value">
-        <div class="notes-list"></div>
-        <button class="note-add-btn" data-note-group="tadabbur-78-2a">➕ إضافة</button>
-        <div class="note-editor">
-          <div class="note-toolbar">
-            <button type="button" data-cmd="bold" title="غامق">B</button>
-            <button type="button" data-cmd="italic" title="مائل">I</button>
-            <button type="button" data-cmd="underline" title="تسطير">U</button>
-            <span class="toolbar-sep"></span>
-            <select data-cmd="fontSize" title="حجم الخط">
-              <option value="2">صغير</option>
-              <option value="3" selected>عادي</option>
-              <option value="4">متوسط</option>
-              <option value="5">كبير</option>
-              <option value="6">كبير جداً</option>
-            </select>
-            <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
-            <span class="toolbar-sep"></span>
-            <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
-            <span class="toolbar-sep"></span>
-            <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
-            <span class="toolbar-sep"></span>
-            <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
-          </div>
-          <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك هنا..."></div>
-          <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى التفصيلي</div>
-      <div class="field-value">
-        <div class="ayah-note-block" data-note-group="tafsir-78-2-17-18">
-          <span class="tafsir-ayah">إِنَّ يَوۡمَ ٱلۡفَصۡلِ كَانَ مِيقَٰتٗا (١٧) يَوۡمَ يُنفَخُ فِي ٱلصُّورِ فَتَأۡتُونَ أَفۡوَاجٗا (١٨)</span>
-          <div class="notes-list"></div>
-          <button class="note-add-btn" data-note-group="tafsir-78-2-17-18">➕ إضافة</button>
-          <div class="note-editor">
-            <div class="note-toolbar">
-              <button type="button" data-cmd="bold" title="غامق">B</button>
-              <button type="button" data-cmd="italic" title="مائل">I</button>
-              <button type="button" data-cmd="underline" title="تسطير">U</button>
-              <span class="toolbar-sep"></span>
-              <select data-cmd="fontSize" title="حجم الخط">
-                <option value="2">صغير</option>
-                <option value="3" selected>عادي</option>
-                <option value="4">متوسط</option>
-                <option value="5">كبير</option>
-                <option value="6">كبير جداً</option>
-              </select>
-              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
-              <span class="toolbar-sep"></span>
-              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
-              <span class="toolbar-sep"></span>
-              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
-              <span class="toolbar-sep"></span>
-              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
-            </div>
-            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
-            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
-          </div>
-          <div class="tafsir-text">وصف يوم الفصل: وقت محدد معلوم لا يتقدم ولا يتأخر، يوم ينفخ فيه في الصور النفخة الثانية إيذاناً بالبعث، فيأتي الناس جماعات جماعات، كل أمة مع من يشاركها في العقيدة أو العمل، مشهد جماعي مهيب.</div>
-        </div>
-        <div class="ayah-note-block" data-note-group="tafsir-78-2-19-20">
-          <span class="tafsir-ayah">وَفُتِحَتِ ٱلسَّمَآءُ فَكَانَتۡ أَبۡوَٰبٗا (١٩) وَسُيِّرَتِ ٱلۡجِبَالُ فَكَانَتۡ سَرَابًا (٢٠)</span>
-          <div class="notes-list"></div>
-          <button class="note-add-btn" data-note-group="tafsir-78-2-19-20">➕ إضافة</button>
-          <div class="note-editor">
-            <div class="note-toolbar">
-              <button type="button" data-cmd="bold" title="غامق">B</button>
-              <button type="button" data-cmd="italic" title="مائل">I</button>
-              <button type="button" data-cmd="underline" title="تسطير">U</button>
-              <span class="toolbar-sep"></span>
-              <select data-cmd="fontSize" title="حجم الخط">
-                <option value="2">صغير</option>
-                <option value="3" selected>عادي</option>
-                <option value="4">متوسط</option>
-                <option value="5">كبير</option>
-                <option value="6">كبير جداً</option>
-              </select>
-              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
-              <span class="toolbar-sep"></span>
-              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
-              <span class="toolbar-sep"></span>
-              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
-              <span class="toolbar-sep"></span>
-              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
-            </div>
-            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
-            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
-          </div>
-          <div class="tafsir-text">استكمال وصف أهوال يوم الفصل: تُفتح السماء وتنشق حتى تصير كأنها أبواب مفتوحة، وتُحرَّك الجبال من أماكنها الراسخة حتى تصير كالسراب لا حقيقة لها، بعد أن كانت أوتاداً ثابتة، تصوير لعظيم التحول الكوني في ذلك اليوم.</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="sub-block">
-    <div class="sub-header">
-      <span class="sub-title">مصير الطاغين في جهنم</span>
-      <span class="sub-range">آيات 21-30</span>
-    </div>
-    <div class="field">
-      <div class="field-label">نص الآيات</div>
-      <div class="field-value verses-text">
-        ﴿إِنَّ جَهَنَّمَ كَانَتۡ مِرۡصَادٗا (٢١) لِّلطَّـٰغِينَ مَـَٔابٗا (٢٢) لَّـٰبِثِينَ فِيهَآ أَحۡقَابٗا (٢٣) لَّا يَذُوقُونَ فِيهَا بَرۡدٗا وَلَا شَرَابًا (٢٤) إِلَّا حَمِيمٗا وَغَسَّاقٗا (٢٥) جَزَآءٗ وِفَاقًا (٢٦) إِنَّهُمۡ كَانُواْ لَا يَرۡجُونَ حِسَابٗا (٢٧) وَكَذَّبُواْ بِـَٔايَٰتِنَا كِذَّابٗا (٢٨) وَكُلَّ شَيۡءٍ أَحۡصَيۡنَٰهُ كِتَٰبٗا (٢٩) فَذُوقُواْ فَلَن نَّزِيدَكُمۡ إِلَّا عَذَابًا (٣٠)﴾
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">معاني المفردات</div>
-      <div class="field-value glossary">
-        <div class="glossary-item"><span class="glossary-word">مِرۡصَادٗا</span><span class="glossary-mean">— مكاناً مرصوداً معداً ينتظر مروره أو دخوله من أهل الطغيان.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لِّلطَّـٰغِينَ مَـَٔابٗا</span><span class="glossary-mean">— مرجعاً ومصيراً نهائياً للطاغين المتجاوزين حدود الحق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">أَحۡقَابٗا</span><span class="glossary-mean">— أزمنة طويلة متتابعة، كل حقب يتبعه حقب آخر بلا انقطاع.</span></div>
-        <div class="glossary-item"><span class="glossary-word">حَمِيمٗا وَغَسَّاقٗا</span><span class="glossary-mean">— ماء شديد الحرارة، وصديد يسيل من جلود أهل النار شديد البرودة النتن.</span></div>
-        <div class="glossary-item"><span class="glossary-word">جَزَآءٗ وِفَاقًا</span><span class="glossary-mean">— جزاءً موافقاً لأعمالهم، لا ظلم فيه ولا زيادة على استحقاقهم.</span></div>
-        <div class="glossary-item"><span class="glossary-word">لَا يَرۡجُونَ حِسَابٗا</span><span class="glossary-mean">— لا يخافون الحساب ولا يتوقعونه، إذ لم يكونوا يؤمنون بالبعث.</span></div>
-        <div class="glossary-item"><span class="glossary-word">كِذَّابٗا</span><span class="glossary-mean">— تكذيباً شديداً بالغاً في الإصرار على رد الحق.</span></div>
-        <div class="glossary-item"><span class="glossary-word">أَحۡصَيۡنَٰهُ كِتَٰبٗا</span><span class="glossary-mean">— أثبتناه وسجلناه مكتوباً في اللوح المحفوظ وصحائف الأعمال، لا يفوتنا شيء.</span></div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field-label">المعنى الإجمالي</div>
-      <div class="field-value">
-        بعد وصف يوم الفصل، تصف السورة مصير الطاغين الذين تجاوزوا حدود الحق: إن جهنم كانت مكاناً مرصوداً معداً ينتظر مرورهم أو دخولهم، مرجعاً ومصيراً نهائياً لهم، يلبثون فيها أزمنة طويلة متتابعة، لا ينقطع عذابهم، لا يذوقون فيها برداً يخفف عنهم ولا شراباً يرويهم، إلا ماء شديد الحرارة وصديداً نتناً بارداً مؤلماً.
+بعد وصف يوم الفصل، تصف السورة مصير الطاغين الذين تجاوزوا حدود الحق: إن جهنم كانت مكاناً مرصوداً معداً ينتظر مرورهم أو دخولهم، مرجعاً ومصيراً نهائياً لهم، يلبثون فيها أزمنة طويلة متتابعة، لا ينقطع عذابهم، لا يذوقون فيها برداً يخفف عنهم ولا شراباً يرويهم، إلا ماء شديد الحرارة وصديداً نتناً بارداً مؤلماً.
 
 وذلك جزاء موافق لأعمالهم، لا ظلم فيه ولا زيادة على استحقاقهم، لأنهم كانوا لا يخافون الحساب ولا يتوقعونه، إذ لم يكونوا يؤمنون بالبعث، وكذّبوا بآيات الله تكذيباً شديداً بالغاً في الإصرار على رد الحق. وكل شيء من أعمالهم أثبته الله وسجله مكتوباً في اللوح المحفوظ وصحائف الأعمال، لا يفوته منها شيء صغير ولا كبير. فيُقال لهم يوم القيامة: فذوقوا العذاب فلن نزيدكم إلا عذاباً على عذابكم، جزاءً على إصرارهم على الكفر والتكذيب.
       </div>
@@ -362,7 +280,7 @@
       <div class="field-label">التدبر</div>
       <div class="field-value">
         <div class="notes-list"></div>
-        <button class="note-add-btn" data-note-group="tadabbur-78-2b">➕ إضافة</button>
+        <button class="note-add-btn" data-note-group="tadabbur-78-2">➕ إضافة</button>
         <div class="note-editor">
           <div class="note-toolbar">
             <button type="button" data-cmd="bold" title="غامق">B</button>
@@ -392,10 +310,10 @@
     <div class="field">
       <div class="field-label">المعنى التفصيلي</div>
       <div class="field-value">
-        <div class="ayah-note-block" data-note-group="tafsir-78-2-21-23">
-          <span class="tafsir-ayah">إِنَّ جَهَنَّمَ كَانَتۡ مِرۡصَادٗا (٢١) لِّلطَّـٰغِينَ مَـَٔابٗا (٢٢) لَّـٰبِثِينَ فِيهَآ أَحۡقَابٗا (٢٣)</span>
+        <div class="ayah-note-block" data-note-group="tafsir-78-17">
+          <span class="tafsir-ayah">إِنَّ يَوۡمَ ٱلۡفَصۡلِ كَانَ مِيقَٰتٗا (١٧)</span>
           <div class="notes-list"></div>
-          <button class="note-add-btn" data-note-group="tafsir-78-2-21-23">➕ إضافة</button>
+          <button class="note-add-btn" data-note-group="tafsir-78-17">➕ إضافة</button>
           <div class="note-editor">
             <div class="note-toolbar">
               <button type="button" data-cmd="bold" title="غامق">B</button>
@@ -420,12 +338,12 @@
             <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
             <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
           </div>
-          <div class="tafsir-text">بيان أن جهنم كانت مكاناً مرصوداً معداً للطاغين، مرجعاً ومصيراً نهائياً لهم، يلبثون فيها أزمنة طويلة متتابعة لا ينقطع عذابهم، بعد أن كانوا في الدنيا متجاوزين حدود الحق مستكبرين.</div>
+          <div class="tafsir-text">تقرير الجواب بعد إقامة البرهان: إن يوم الفصل الذي يقضي الله فيه بين خلقه وقتٌ مضروب محدّد في علمه سبحانه، لا يتقدّم ولا يتأخّر.</div>
         </div>
-        <div class="ayah-note-block" data-note-group="tafsir-78-2-24-26">
-          <span class="tafsir-ayah">لَّا يَذُوقُونَ فِيهَا بَرۡدٗا وَلَا شَرَابًا (٢٤) إِلَّا حَمِيمٗا وَغَسَّاقٗا (٢٥) جَزَآءٗ وِفَاقًا (٢٦)</span>
+        <div class="ayah-note-block" data-note-group="tafsir-78-18">
+          <span class="tafsir-ayah">يَوۡمَ يُنفَخُ فِي ٱلصُّورِ فَتَأۡتُونَ أَفۡوَاجٗا (١٨)</span>
           <div class="notes-list"></div>
-          <button class="note-add-btn" data-note-group="tafsir-78-2-24-26">➕ إضافة</button>
+          <button class="note-add-btn" data-note-group="tafsir-78-18">➕ إضافة</button>
           <div class="note-editor">
             <div class="note-toolbar">
               <button type="button" data-cmd="bold" title="غامق">B</button>
@@ -450,12 +368,12 @@
             <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
             <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
           </div>
-          <div class="tafsir-text">وصف عذابهم: لا يذوقون برداً يخفف عنهم ولا شراباً يرويهم، إلا ماء شديد الحرارة وصديداً نتناً بارداً مؤلماً، وذلك جزاء موافق تماماً لأعمالهم دون ظلم أو زيادة، فالعذاب يناسب حجم الجرم.</div>
+          <div class="tafsir-text">بيان علامته: يوم يُنفخ في القرن النفخة الثانية، فتخرجون من قبوركم جماعاتٍ متتابعة، كل أمّة مع من كانت تتبعه في الدنيا.</div>
         </div>
-        <div class="ayah-note-block" data-note-group="tafsir-78-2-27-30">
-          <span class="tafsir-ayah">إِنَّهُمۡ كَانُواْ لَا يَرۡجُونَ حِسَابٗا (٢٧) وَكَذَّبُواْ بِـَٔايَٰتِنَا كِذَّابٗا (٢٨) وَكُلَّ شَيۡءٍ أَحۡصَيۡنَٰهُ كِتَٰبٗا (٢٩) فَذُوقُواْ فَلَن نَّزِيدَكُمۡ إِلَّا عَذَابًا (٣٠)</span>
+        <div class="ayah-note-block" data-note-group="tafsir-78-19">
+          <span class="tafsir-ayah">وَفُتِحَتِ ٱلسَّمَآءُ فَكَانَتۡ أَبۡوَٰبٗا (١٩)</span>
           <div class="notes-list"></div>
-          <button class="note-add-btn" data-note-group="tafsir-78-2-27-30">➕ إضافة</button>
+          <button class="note-add-btn" data-note-group="tafsir-78-19">➕ إضافة</button>
           <div class="note-editor">
             <div class="note-toolbar">
               <button type="button" data-cmd="bold" title="غامق">B</button>
@@ -480,7 +398,337 @@
             <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
             <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
           </div>
-          <div class="tafsir-text">تعليل هذا الجزاء: كانوا لا يخافون الحساب ولا يتوقعونه لعدم إيمانهم بالبعث، وكذّبوا بآيات الله تكذيباً شديداً بالغاً. وكل أعمالهم أثبتها الله وسجلها مكتوبة لا يفوته منها شيء. ويُقال لهم: فذوقوا العذاب فلن نزيدكم إلا عذاباً على عذابكم.</div>
+          <div class="tafsir-text">وشُقّت السماء وتصدّعت حتى صارت ذات فتوق واسعة كأنها أبواب مفتّحة، لنزول الملائكة.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-20">
+          <span class="tafsir-ayah">وَسُيِّرَتِ ٱلۡجِبَالُ فَكَانَتۡ سَرَابًا (٢٠)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-20">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">وقُلعت الجبال الرواسي من أماكنها وسُيّرت حتى صارت هباءً يُرى كأنه شيء وليس بشيء. وفي هذا مقابلة بديعة: التي كانت «أوتاداً» ثابتة تصير «سراباً» — فأيّ تحوّل كونيّ أعظم من هذا؟</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-21">
+          <span class="tafsir-ayah">إِنَّ جَهَنَّمَ كَانَتۡ مِرۡصَادٗا (٢١)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-21">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">إن جهنم مَرصَدٌ مُعدّ يُترقَّب فيه المارّون عليها، لا يجوزها أحد إلا بعد الورود عليها.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-22">
+          <span class="tafsir-ayah">لِّلطَّـٰغِينَ مَـَٔابٗا (٢٢)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-22">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">هي للطاغين المتجاوزين حدود الله بالكفر والمعاصي مرجعٌ ومصيرٌ يؤولون إليه ويستقرّون فيه.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-23">
+          <span class="tafsir-ayah">لَّـٰبِثِينَ فِيهَآ أَحۡقَابٗا (٢٣)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-23">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">ماكثين فيها دهوراً متتابعة، كلما انقضى حقب تبعه آخر بلا نهاية — وهو في حقّ الكفار خلود لا انقطاع له، كما دلّت عليه آيات أخر.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-24">
+          <span class="tafsir-ayah">لَّا يَذُوقُونَ فِيهَا بَرۡدٗا وَلَا شَرَابًا (٢٤)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-24">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">لا يجدون فيها ما يبرّد عنهم حرّ العذاب، ولا شراباً يُساغ فيروي عطشهم.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-25">
+          <span class="tafsir-ayah">إِلَّا حَمِيمٗا وَغَسَّاقٗا (٢٥)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-25">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">إلا ماءً بالغاً نهاية الحرارة، وصديداً سائلاً من أهل النار بالغاً نهاية النتن والبرد، فجُمع لهم بين حرٍّ لا يُطاق وبردٍ لا يُطاق.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-26">
+          <span class="tafsir-ayah">جَزَآءٗ وِفَاقًا (٢٦)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-26">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">وذلك جزاء موافق لأعمالهم مساوٍ لها، فلا ظلم ولا زيادة على ما استحقّوه بكسبهم — وفيه ردّ على من توهّم في العذاب مجاوزةً للعدل.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-27">
+          <span class="tafsir-ayah">إِنَّهُمۡ كَانُواْ لَا يَرۡجُونَ حِسَابٗا (٢٧)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-27">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">تعليل استحقاقهم: كانوا لا يتوقّعون حساباً ولا يخافونه، إذ أنكروا البعث من أصله، فانطلقوا في المعاصي بلا رادع.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-28">
+          <span class="tafsir-ayah">وَكَذَّبُواْ بِـَٔايَٰتِنَا كِذَّابٗا (٢٨)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-28">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">وكذّبوا بحجج الله وآياته تكذيباً شديداً بالغاً في المكابرة والإصرار، لا شبهةً عارضة ولا توقّفاً من طالب حقّ.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-29">
+          <span class="tafsir-ayah">وَكُلَّ شَيۡءٍ أَحۡصَيۡنَٰهُ كِتَٰبٗا (٢٩)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-29">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">وكلُّ شيء من أعمالهم ضبطناه وأحطنا به عدداً وأثبتناه مكتوباً في صحائفهم واللوح المحفوظ، لا يفوتنا منه صغير ولا كبير.</div>
+        </div>
+        <div class="ayah-note-block" data-note-group="tafsir-78-30">
+          <span class="tafsir-ayah">فَذُوقُواْ فَلَن نَّزِيدَكُمۡ إِلَّا عَذَابًا (٣٠)</span>
+          <div class="notes-list"></div>
+          <button class="note-add-btn" data-note-group="tafsir-78-30">➕ إضافة</button>
+          <div class="note-editor">
+            <div class="note-toolbar">
+              <button type="button" data-cmd="bold" title="غامق">B</button>
+              <button type="button" data-cmd="italic" title="مائل">I</button>
+              <button type="button" data-cmd="underline" title="تسطير">U</button>
+              <span class="toolbar-sep"></span>
+              <select data-cmd="fontSize" title="حجم الخط">
+                <option value="2">صغير</option>
+                <option value="3" selected>عادي</option>
+                <option value="4">متوسط</option>
+                <option value="5">كبير</option>
+                <option value="6">كبير جداً</option>
+              </select>
+              <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+              <span class="toolbar-sep"></span>
+              <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+            </div>
+            <div class="note-editable" contenteditable="true" data-placeholder="اكتب هنا..."></div>
+            <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+          </div>
+          <div class="tafsir-text">فيُقال لهم توبيخاً وتهكّماً: ذوقوا العذاب، فلن نزيدكم على مرّ الأزمان إلا عذاباً فوق عذابكم. ونُقل عن قتادة أنه ما في القرآن آية أشدّ على أهل النار منها.</div>
         </div>
       </div>
     </div>
@@ -552,6 +800,27 @@
   </div>
 </div>
 
+<script>
+/* معاني المفردات: إظهار بالوقوف (سطح المكتب) أو بالضغط (الجوال) */
+(function(){
+  function place(el){
+    el.classList.remove('flip-start','flip-end');
+    var r = el.getBoundingClientRect(), w = Math.min(280, innerWidth*0.78);
+    var c = r.left + r.width/2;
+    if(c - w/2 < 8) el.classList.add('flip-start');
+    else if(c + w/2 > innerWidth - 8) el.classList.add('flip-end');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('.wq');
+    if(t) place(t);
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.wq') : null;
+    document.querySelectorAll('.wq.on').forEach(function(el){ if(el !== t) el.classList.remove('on'); });
+    if(t){ place(t); t.classList.toggle('on'); }
+  });
+})();
+</script>
 <script src="../../../assets/tadabbur-engine.js"></script>
 <script src="../../../assets/tadabbur-toc.js"></script>
 
