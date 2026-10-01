@@ -49,9 +49,9 @@
     + '.tocOv.open{opacity:1;visibility:visible}'
     + '.tocPanel{position:fixed;top:0;right:0;height:100%;height:100dvh;width:min(430px,92vw);z-index:9501;'
     + 'background:var(--paper,#F4EFE4);border-left:1px solid var(--line,#D9CFB8);'
-    + 'box-shadow:-10px 0 34px rgba(0,0,0,.22);display:flex;flex-direction:column;'
-    + 'font-family:"Tajawal",system-ui,sans-serif;transform:translateX(103%);transition:transform .24s ease;direction:rtl}'
-    + '.tocPanel.open{transform:translateX(0)}'
+    + 'box-shadow:-10px 0 34px rgba(0,0,0,.22);display:none;flex-direction:column;box-sizing:border-box;'
+    + 'font-family:"Tajawal",system-ui,sans-serif;direction:rtl;overflow:hidden}'
+    + '.tocPanel.open{display:flex}'
     + '.tocHead{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;'
     + 'border-bottom:1px solid var(--line,#D9CFB8);background:var(--card,#FBF8F1)}'
     + '.tocHead b{font-family:"Amiri",serif;font-size:19px;color:var(--gold-deep,#7C6329);font-weight:700}'
@@ -152,6 +152,11 @@
     var viewport = window.visualViewport;
     panel.style.height = (viewport ? viewport.height : window.innerHeight) + 'px';
     panel.style.top = (viewport ? viewport.offsetTop : 0) + 'px';
+    var viewportWidth = viewport ? viewport.width : window.innerWidth;
+    var panelWidth = Math.min(430, viewportWidth * 0.92);
+    panel.style.width = panelWidth + 'px';
+    panel.style.left = ((viewport ? viewport.offsetLeft : 0) + viewportWidth - panelWidth) + 'px';
+    panel.style.right = 'auto';
   }
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', fitViewport);
@@ -185,8 +190,7 @@
     ov.classList.remove('open');
     panel.classList.remove('open');
     panel.setAttribute('aria-hidden', 'true');
-    panel.style.height = '';
-    panel.style.top = '';
+    ['height', 'top', 'width', 'left', 'right'].forEach(function (key) { panel.style[key] = ''; });
     if (savedBodyStyle) {
       Object.keys(savedBodyStyle).forEach(function (key) { body.style[key] = savedBodyStyle[key]; });
       savedBodyStyle = null;
