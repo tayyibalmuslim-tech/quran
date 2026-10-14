@@ -1202,3 +1202,14 @@
   }
 
 })();
+
+// Shared note enhancements are loaded relative to this engine on every surah page.
+(function () {
+  if (window.__tadabburNoteToolsLoading) return;
+  window.__tadabburNoteToolsLoading = true;
+  const source = document.currentScript;
+  if (!source || !source.src) return;
+  const script = document.createElement('script');
+  script.src = new URL('note-tools.js', source.src).href;
+  document.head.appendChild(script);
+})();
