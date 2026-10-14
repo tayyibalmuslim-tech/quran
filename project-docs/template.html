@@ -692,14 +692,14 @@
       <tr><th>#</th><th>العنصر</th><th>الوصف</th></tr>
       <tr><td>أ</td><td><strong>نص الآيات</strong><br><span style="font-size:12px">(يشمل معاني المفردات)</span></td><td>النص الكامل بالرسم العثماني (﴿...﴾) بأرقام الآيات بين قوسين عربية (٩٦)، <strong>والكلمات الغريبة ملفوفة في <code class="inline">&lt;span class="wq" data-m="..."&gt;</code></strong>. القوس ﴿﴾ يحيط بكل آيات القسم كوحدة واحدة: يبدأ قبل أول آية وينتهي بعد آخر آية. راجع <a href="#glossary-rule">قسم معاني المفردات</a>.</td></tr>
       <tr><td>ب</td><td><strong>التدبر</strong></td><td>حقل فارغ للملاحظات الشخصية، بمعرّف <code class="inline">data-note-group</code> فريد للقسم الفرعي ومحرر ملاحظات كامل</td></tr>
-      <tr><td>ج</td><td><strong>المعنى التفصيلي</strong></td><td>شرح آية بآية. <strong>كل آية في <code class="inline">ayah-note-block</code> منفصل</strong> — لا تُجمع عدة آيات في بلوك واحد — بمعرّف فريد ومحرر ملاحظات كامل. نص الآية في <code class="inline">.tafsir-ayah</code> (وهو sticky تلقائياً).</td></tr>
+      <tr><td>ج</td><td><strong>المعنى التفصيلي</strong></td><td>حقل فارغ يكتب فيه المستخدم المعنى التفصيلي بنفسه. لا يُضاف تفسير أو شرح جاهز عند بناء السورة. <strong>كل آية في <code class="inline">ayah-note-block</code> منفصل</strong> — لا تُجمع عدة آيات في بلوك واحد — بمعرّف فريد ومحرر ملاحظات كامل. نص الآية في <code class="inline">.tafsir-ayah</code> (وهو sticky تلقائياً).</td></tr>
       <tr><td>د</td><td>المعنى الإجمالي<br><span style="font-size:12px">(اختياري)</span></td><td>فقرة واحدة متماسكة (5-8 جمل) تلخص القسم بأسلوب سردي. <strong>غير موجود في سورة البقرة</strong>، فلا يُعدّ نقصاً إن غاب — لكن إن أُضيف فموضعه بعد نص الآيات وقبل التدبر، ويُضاف حينها لكل أقسام السورة لا لبعضها.</td></tr>
     </table>
     <div class="note-box">💡 <strong>الترتيب المعتمد داخل الـsub-block:</strong> نص الآيات (بالمفردات) ← [المعنى الإجمالي إن وُجد] ← التدبر ← المعنى التفصيلي.</div>
 
     <h3>قواعد الجودة الإلزامية</h3>
     <ol>
-      <li><strong>الدقة الشرعية أولاً</strong>: أي معنى إجمالي/تفصيلي/معاني مفردات يعتمد على مصادر تفسير معتمدة (الطبري، ابن كثير، السعدي، القرطبي)، وليس اجتهاداً شخصياً بلا سند. عند وجود خلاف بين المفسرين، يُذكر بحياد.</li>
+      <li><strong>الدقة الشرعية أولاً</strong>: أي معنى إجمالي أو معاني مفردات يعتمد على مصادر تفسير معتمدة (الطبري، ابن كثير، السعدي، القرطبي)، وليس اجتهاداً شخصياً بلا سند. عند وجود خلاف بين المفسرين، يُذكر بحياد.</li>
       <li><strong>معيار التقسيم</strong>: بالوحدة الموضوعية وسهولة القراءة والفهم والتدبر والحفظ، دون حد ثابت للآيات أو الكلمات. <strong>تمام المعنى مقدَّم</strong>: لا تُفرَد آية لطولها ولا يُفصل حكم عن متمِّمه. راجع <a href="#split-rule">معيار التقسيم</a>.</li>
       <li><strong>معاني المفردات</strong>: tooltips داخل نص الآية (<code class="inline">.wq</code>)، تغطي كل الكلمات الغريبة بكثافة 3–4 لكل آية، والكلمة داخل الـspan بالرسم العثماني حرفاً بحرف. راجع <a href="#glossary-rule">قسم معاني المفردات</a>.</li>
       <li><strong>الأرقام والمعرّفات الفريدة</strong>: كل ayah-note-block وكل tadabbur field له معرّف فريد لا يتكرر في نفس الملف.</li>
@@ -741,7 +741,7 @@
       <li>كل قسم فرعي وحدة مريحة للقراءة والفهم والتدبر والحفظ: لا إطالة ثقيلة ولا تفتيت يكثر التنقل، وتُراجع الحدود بحسب المعنى لا عدد الآيات أو الكلمات</li>
       <li>لا يوجد قسم فرعي مبتور المعنى: لا حكم مفصول عن استثنائه، ولا آية مفصولة عمّا يُتمّمها أو يذيّلها</li>
       <li><strong>[الفهرس]</strong> الأصول الخمسة كاملة في &lt;head&gt; بالترتيب: <code class="inline">tadabbur.css</code> ← <code class="inline">quran-data.js</code> ← <code class="inline">firebase-sync.js</code> ← <code class="inline">tadabbur-engine.js</code> ← <code class="inline">tadabbur-toc.js</code> — وغياب الأخير يُسقط الفهرس بالكامل</li>
-      <li>المعنى الإجمالي والتفصيلي مستندان لمصادر تفسير معتمدة (الطبري / ابن كثير / السعدي / القرطبي)، لا اجتهاد شخصي غير مسنود</li>
+      <li>معاني المفردات والمعنى الإجمالي إن أُضيف مستندان لمصادر تفسير معتمدة. المعنى التفصيلي فارغ بلا شرح مُعدّ مسبقاً، مع بقاء نص كل آية ومحررها الكامل</li>
       <li><code class="inline">info.json</code> يحتوي <code class="inline">id</code> و <code class="inline">name_ar</code> و <code class="inline">type</code> و <code class="inline">total_verses</code> بالإضافة لـ <code class="inline">muqaddimah</code> و <code class="inline">mahawir</code>، وقيم <code class="inline">range</code> بأرقام إنجليزية عادية (مثل "1-19") مش أرقام عربية هندية</li>
       <li><strong>[الفهرس]</strong> كل محور في <code class="inline">info.json</code> يحتوي مصفوفة <code class="inline">subsections</code> فيها <code class="inline">title</code> و <code class="inline">range</code> لكل قسم فرعي، مطابقة تماماً لعناوين ونطاقات <code class="inline">.sub-title</code> و <code class="inline">.sub-range</code> في ملف المحور — أي تفاوت يُظهر فهرساً مغلوطاً</li>
       <li>اسم فولدر السورة على النمط <code class="inline">surahs/[رقم 3 خانات]-[الاسم بالإنجليزية]/</code> (مثال: <code class="inline">096-al-alaq</code>) وتم إضافة رقم السورة لمصفوفة <code class="inline">READY_SURAHS</code> في index.html</li>

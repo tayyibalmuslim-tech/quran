@@ -100,7 +100,7 @@ for m in [dict(info['muqaddimah'], subsections=[]), *info['mahawir']]:
         assert len(detail) == b-a+1
         for n, ayah in zip(range(a,b+1), detail):
             assert ayah.find('tafsir-ayah')[0].text() == f'{verses[n-1]} ({num(n)})'
-            assert ayah.find('tafsir-text')[0].text().strip(), f'Missing explanation: {n}'
+            assert not ayah.find('tafsir-text'), f'Unexpected prewritten explanation: {n}'
             assert ayah.attrs['data-note-group'] == f'tafsir-19-{n}'
             seen.append(n)
         section_count += 1
