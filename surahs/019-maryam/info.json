@@ -1,0 +1,112 @@
+{
+  "id": 19,
+  "name_ar": "مريم",
+  "type": "مكية",
+  "total_verses": 98,
+  "muqaddimah": {
+    "file": "00-muqaddimat-alsurah.html",
+    "title": "مقدمة السورة"
+  },
+  "mahawir": [
+    {
+      "file": "01-zakariyya-yahya.html",
+      "title": "رحمة الله بزكريا ويحيى",
+      "range": "1-15",
+      "color": "gold",
+      "subsections": [
+        {
+          "title": "دعاء زكريا ورجاؤه رحمة ربه",
+          "range": "1-6"
+        },
+        {
+          "title": "البشارة بيحيى وصفاته",
+          "range": "7-15"
+        }
+      ]
+    },
+    {
+      "file": "02-maryam-isa.html",
+      "title": "مريم وعيسى: آية القدرة وصدق العبودية",
+      "range": "16-40",
+      "color": "coral",
+      "subsections": [
+        {
+          "title": "بشارة مريم بالغلام الزكي",
+          "range": "16-21"
+        },
+        {
+          "title": "الولادة ولطف الله بمريم",
+          "range": "22-26"
+        },
+        {
+          "title": "براءة مريم وكلام عيسى في المهد",
+          "range": "27-33"
+        },
+        {
+          "title": "حقيقة عيسى والإنذار بيوم الحسرة",
+          "range": "34-40"
+        }
+      ]
+    },
+    {
+      "file": "03-ibrahim-anbiya.html",
+      "title": "إبراهيم وموكب الأنبياء",
+      "range": "41-58",
+      "color": "purple",
+      "subsections": [
+        {
+          "title": "دعوة إبراهيم لأبيه واعتزاله الشرك",
+          "range": "41-50"
+        },
+        {
+          "title": "اصطفاء الأنبياء وخشوعهم للرحمن",
+          "range": "51-58"
+        }
+      ]
+    },
+    {
+      "file": "04-salah-tawbah-bath.html",
+      "title": "التوبة والعبادة والبعث",
+      "range": "59-72",
+      "color": "green",
+      "subsections": [
+        {
+          "title": "إضاعة الصلاة وباب التوبة ووعد الجنة",
+          "range": "59-63"
+        },
+        {
+          "title": "ربوبية الله والأمر بعبادته ودليل البعث",
+          "range": "64-72"
+        }
+      ]
+    },
+    {
+      "file": "05-radd-mukadhibin.html",
+      "title": "الرد على اغترار المكذبين ومصيرهم",
+      "range": "73-87",
+      "color": "blue",
+      "subsections": [
+        {
+          "title": "الاغترار بزينة الدنيا وبقاء العمل الصالح",
+          "range": "73-76"
+        },
+        {
+          "title": "بطلان دعاوى الكافرين ومشهد الحشر",
+          "range": "77-87"
+        }
+      ]
+    },
+    {
+      "file": "06-tawhid-khitam.html",
+      "title": "تنزيه الرحمن وختام السورة",
+      "range": "88-98",
+      "color": "gold",
+      "subsections": [
+        {
+          "title": "نفي الولد وعبودية الخلق والبشارة والإنذار",
+          "range": "88-98"
+        }
+      ]
+    }
+  ]
+}
