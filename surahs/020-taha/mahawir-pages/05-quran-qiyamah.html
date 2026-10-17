@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القرآن ومشاهد القيامة — سورة طه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Tajawal:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --gold:#A8863B;
+    --gold-deep:#7C6329;
+    --line:#D9CFB8;
+    --card:#FBF8F1;
+    --mahwar-bg:#EEEDFE;
+    --mahwar-text:#3C3489;
+    --verse-green:#2E7D4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+  }
+  .top-nav{
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .nav-links{ display:flex; gap:16px; font-size:14px; }
+  .nav-links a{ color:var(--gold-deep); text-decoration:none; }
+  .nav-links a:hover{ text-decoration:underline; }
+  header{
+    text-align:center;
+    padding:36px 20px 24px;
+  }
+  .mahwar-badge{
+    display:inline-block;
+    background:var(--mahwar-bg);
+    color:var(--mahwar-text);
+    font-size:13px;
+    padding:5px 14px;
+    border-radius:20px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Amiri', serif;
+    font-size:34px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .range{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:12px 20px 80px;
+  }
+  .sub-block{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:20px;
+    padding:22px 24px;
+  }
+  .sub-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .sub-title{
+    font-family:'Amiri', serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .sub-range{
+    font-size:12px;
+    color:var(--gold-deep);
+    background:rgba(168,134,59,0.12);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .field{ margin-bottom:14px; }
+  .field:last-child{ margin-bottom:0; }
+  .field-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+    font-weight:500;
+  }
+  .field-value{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ink);
+    white-space:pre-line;
+  }
+  .field-value.empty{
+    color:#B3A98F;
+    font-style:italic;
+    font-size:13px;
+  }
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+  }
+  .info-card .info-label{ font-size:12px; color:var(--ink-soft); margin-bottom:6px; }
+  .info-card .info-value{ font-family:'Amiri', serif; font-size:19px; font-weight:700; color:var(--gold-deep); }
+  .hadith-box{
+    background:var(--mahwar-bg);
+    border-right:3px solid var(--mahwar-text);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    font-size:14.5px;
+    line-height:1.9;
+  }
+  .hadith-box .hadith-text{ font-family:'Amiri', serif; font-size:16px; color:var(--ink); }
+  .hadith-box .hadith-source{ margin-top:6px; font-size:12px; color:var(--ink-soft); }
+  .verses-text{
+    font-family:'Amiri', serif;
+    font-size:19px;
+    line-height:2.6;
+    color:var(--verse-green);
+  }
+  .ayah-num{
+    font-size:14px;
+    color:var(--gold-deep);
+    font-family:'Tajawal', sans-serif;
+  }
+  .wq{
+    position:relative;
+    cursor:pointer;
+    border-bottom:1px dashed rgba(168,134,59,.8);
+  }
+  .wq:hover, .wq.on{ background:rgba(168,134,59,.16); border-radius:4px; }
+  .wq::after{
+    content:attr(data-m);
+    position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:9px; width:max-content; max-width:min(280px, 78vw);
+    background:var(--ink); color:#FBF8F1;
+    font-family:'Tajawal', sans-serif; font-size:13px; font-weight:400;
+    line-height:1.75; white-space:normal; text-align:center;
+    padding:8px 11px; border-radius:9px;
+    box-shadow:0 6px 20px rgba(0,0,0,.24);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq::before{
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    margin-bottom:3px; border:6px solid transparent; border-top-color:var(--ink);
+    opacity:0; visibility:hidden; transition:opacity .15s ease;
+    pointer-events:none; z-index:60;
+  }
+  .wq:hover::after, .wq:hover::before,
+  .wq.on::after, .wq.on::before{ opacity:1; visibility:visible; }
+  .wq.flip-start::after{ left:0; transform:none; }
+  .wq.flip-end::after{ left:auto; right:0; transform:none; }
+
+  /* ↓↓↓ نمط قديم (glossary) — للسور المبنية قبل اعتماد معيار البقرة فقط، لا يُستخدم في الملفات الجديدة ↓↓↓ */
+  .glossary{ display:flex; flex-direction:column; gap:8px; }
+  .glossary-item{ display:flex; gap:8px; font-size:14px; line-height:1.8; flex-wrap:wrap; }
+  .glossary-word{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    color:var(--verse-green);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .glossary-meaning{ color:var(--ink); }
+  .ayah-note-block{ margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed var(--line); }
+  .ayah-note-block:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .tafsir-ayah{
+    display:block;
+    font-family:'Amiri', serif;
+    font-size:17px;
+    color:var(--verse-green);
+    margin:16px 0 6px;
+    line-height:2;
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:var(--card);
+    padding:10px 4px 8px;
+    box-shadow:0 4px 8px -4px rgba(43,38,32,0.12);
+  }
+  .tafsir-ayah:first-child{ margin-top:0; }
+  .tafsir-text{
+    font-size:14.5px;
+    line-height:1.9;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="../../../assets/tadabbur.css">
+<script src="../../../assets/quran-data.js"></script>
+<script type="module" src="../../../assets/firebase-sync.js"></script>
+<script defer src="../../../assets/tadabbur-engine.js"></script>
+<script defer src="../../../assets/tadabbur-toc.js"></script>
+</head>
+<body data-surah="20" data-mahwar="05-quran-qiyamah">
+<div style="background:#FFF3CD;border-bottom:2px solid #E0A800;color:#664D03;padding:10px 16px;font-family:Tahoma,sans-serif;font-size:13.5px;line-height:1.7;text-align:center;direction:rtl" role="note">⚠️ <strong>تنبيه:</strong> هذا المحتوى تم إعداده بمساعدة الذكاء الاصطناعي وقد يحتوي على أخطاء في الشرح والتحليل، يُرجى المراجعة والتحقق خاصة في المسائل الشرعية.</div>
+<div class="top-nav">
+<a href="../../../index.html" class="nav-links"><span>← كل السور</span></a>
+<div class="nav-links"><a href="../../../surah.html?id=20">سورة طه</a></div>
+</div>
+<header><span class="mahwar-badge">المحور ٥ من ٧</span><h1>القرآن ومشاهد القيامة</h1><p class="range">الآيات ٩٩–١١٤</p></header>
+<main>
+<section class="sub-block" id="section-99-104">
+<div class="sub-header"><span class="sub-title">الإعراض عن الذكر وحمل الوزر والحشر</span><span class="sub-range">٩٩–١٠٤</span></div>
+<div class="field"><div class="field-label">نص الآيات — المس الكلمة المسطرة لمعناها</div><div class="field-value verses-text">﴿كَذَٰلِكَ نَقُصُّ عَلَيۡكَ مِنۡ <span class="wq" data-m="أخبار.">أَنۢبَآءِ</span> مَا قَدۡ سَبَقَۚ وَقَدۡ ءَاتَيۡنَٰكَ مِن <span class="wq" data-m="عندنا.">لَّدُنَّا</span> <span class="wq" data-m="القرآن.">ذِكۡرٗا</span> <span class="ayah-num">(٩٩)</span> مَّنۡ <span class="wq" data-m="انصرف عن الإيمان والعمل به.">أَعۡرَضَ</span> عَنۡهُ فَإِنَّهُۥ يَحۡمِلُ يَوۡمَ ٱلۡقِيَٰمَةِ <span class="wq" data-m="إثما ثقيلا يستوجب العقاب.">وِزۡرًا</span> <span class="ayah-num">(١٠٠)</span> <span class="wq" data-m="باقين في عذابه.">خَٰلِدِينَ</span> فِيهِۖ <span class="wq" data-m="وبئس.">وَسَآءَ</span> لَهُمۡ يَوۡمَ ٱلۡقِيَٰمَةِ <span class="wq" data-m="عبئا محمولا.">حِمۡلٗا</span> <span class="ayah-num">(١٠١)</span> يَوۡمَ يُنفَخُ فِي <span class="wq" data-m="القرن الذي ينفخ فيه للبعث.">ٱلصُّورِ</span>ۚ <span class="wq" data-m="ونجمع.">وَنَحۡشُرُ</span> ٱلۡمُجۡرِمِينَ يَوۡمَئِذٖ <span class="wq" data-m="متغيرة ألوانهم من شدة الهول، وفسرت بزرقة العيون.">زُرۡقٗا</span> <span class="ayah-num">(١٠٢)</span> <span class="wq" data-m="يتحدثون بأصوات خفية.">يَتَخَٰفَتُونَ</span> بَيۡنَهُمۡ إِن <span class="wq" data-m="مكثتم.">لَّبِثۡتُمۡ</span> إِلَّا عَشۡرٗا <span class="ayah-num">(١٠٣)</span> نَّحۡنُ أَعۡلَمُ بِمَا يَقُولُونَ إِذۡ يَقُولُ <span class="wq" data-m="أعدلهم وأقربهم إلى تقدير المدة.">أَمۡثَلُهُمۡ</span> <span class="wq" data-m="رأيا ومسلكا.">طَرِيقَةً</span> إِن <span class="wq" data-m="مكثتم.">لَّبِثۡتُمۡ</span> إِلَّا يَوۡمٗا <span class="ayah-num">(١٠٤)</span>﴾</div></div>
+<div class="field"><div class="field-label">التدبر</div><div class="field-value"><div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tadabbur-20-99-104">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div></div>
+<div class="field"><div class="field-label">المعنى التفصيلي</div><div class="field-value">
+<div class="ayah-note-block" data-note-group="tafsir-20-99"><span class="tafsir-ayah">كَذَٰلِكَ نَقُصُّ عَلَيۡكَ مِنۡ أَنۢبَآءِ مَا قَدۡ سَبَقَۚ وَقَدۡ ءَاتَيۡنَٰكَ مِن لَّدُنَّا ذِكۡرٗا (٩٩)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-99">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-100"><span class="tafsir-ayah">مَّنۡ أَعۡرَضَ عَنۡهُ فَإِنَّهُۥ يَحۡمِلُ يَوۡمَ ٱلۡقِيَٰمَةِ وِزۡرًا (١٠٠)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-100">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-101"><span class="tafsir-ayah">خَٰلِدِينَ فِيهِۖ وَسَآءَ لَهُمۡ يَوۡمَ ٱلۡقِيَٰمَةِ حِمۡلٗا (١٠١)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-101">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-102"><span class="tafsir-ayah">يَوۡمَ يُنفَخُ فِي ٱلصُّورِۚ وَنَحۡشُرُ ٱلۡمُجۡرِمِينَ يَوۡمَئِذٖ زُرۡقٗا (١٠٢)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-102">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-103"><span class="tafsir-ayah">يَتَخَٰفَتُونَ بَيۡنَهُمۡ إِن لَّبِثۡتُمۡ إِلَّا عَشۡرٗا (١٠٣)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-103">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-104"><span class="tafsir-ayah">نَّحۡنُ أَعۡلَمُ بِمَا يَقُولُونَ إِذۡ يَقُولُ أَمۡثَلُهُمۡ طَرِيقَةً إِن لَّبِثۡتُمۡ إِلَّا يَوۡمٗا (١٠٤)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-104">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+</div></div>
+</section>
+<section class="sub-block" id="section-105-112">
+<div class="sub-header"><span class="sub-title">نسف الجبال وخشوع الخلق والحساب</span><span class="sub-range">١٠٥–١١٢</span></div>
+<div class="field"><div class="field-label">نص الآيات — المس الكلمة المسطرة لمعناها</div><div class="field-value verses-text">﴿وَيَسۡـَٔلُونَكَ عَنِ ٱلۡجِبَالِ فَقُلۡ <span class="wq" data-m="يفتتها ويذريها.">يَنسِفُهَا</span> رَبِّي نَسۡفٗا <span class="ayah-num">(١٠٥)</span> <span class="wq" data-m="فيترك مواضعها.">فَيَذَرُهَا</span> <span class="wq" data-m="أرضا مستوية.">قَاعٗا</span> <span class="wq" data-m="ملساء لا نبات فيها ولا بناء.">صَفۡصَفٗا</span> <span class="ayah-num">(١٠٦)</span> لَّا تَرَىٰ فِيهَا <span class="wq" data-m="انخفاضا واعوجاجا.">عِوَجٗا</span> وَلَآ <span class="wq" data-m="ارتفاعا ونتوءا.">أَمۡتٗا</span> <span class="ayah-num">(١٠٧)</span> يَوۡمَئِذٖ يَتَّبِعُونَ <span class="wq" data-m="المنادي إلى موقف الحساب.">ٱلدَّاعِيَ</span> لَا عِوَجَ لَهُۥۖ <span class="wq" data-m="وذلت وسكنت.">وَخَشَعَتِ</span> ٱلۡأَصۡوَاتُ لِلرَّحۡمَٰنِ فَلَا تَسۡمَعُ إِلَّا <span class="wq" data-m="صوتا خفيا؛ قيل وطء الأقدام وقيل مخافتة الكلام.">هَمۡسٗا</span> <span class="ayah-num">(١٠٨)</span> يَوۡمَئِذٖ لَّا تَنفَعُ <span class="wq" data-m="التوسط عند الله لنفع المشفوع له.">ٱلشَّفَٰعَةُ</span> إِلَّا مَنۡ <span class="wq" data-m="سمح.">أَذِنَ</span> لَهُ ٱلرَّحۡمَٰنُ وَرَضِيَ لَهُۥ قَوۡلٗا <span class="ayah-num">(١٠٩)</span> يَعۡلَمُ مَا بَيۡنَ أَيۡدِيهِمۡ وَمَا خَلۡفَهُمۡ وَلَا <span class="wq" data-m="يدركون ويستوعبون.">يُحِيطُونَ</span> بِهِۦ عِلۡمٗا <span class="ayah-num">(١١٠)</span> ۞<span class="wq" data-m="وذلت وخضعت.">وَعَنَتِ</span> ٱلۡوُجُوهُ لِلۡحَيِّ <span class="wq" data-m="القائم بنفسه المقيم لغيره.">ٱلۡقَيُّومِ</span>ۖ وَقَدۡ <span class="wq" data-m="خسر.">خَابَ</span> مَنۡ حَمَلَ <span class="wq" data-m="شركا وكفرا.">ظُلۡمٗا</span> <span class="ayah-num">(١١١)</span> وَمَن يَعۡمَلۡ مِنَ ٱلصَّـٰلِحَٰتِ وَهُوَ مُؤۡمِنٞ فَلَا يَخَافُ <span class="wq" data-m="زيادة في سيئاته.">ظُلۡمٗا</span> وَلَا <span class="wq" data-m="نقصا من حسناته.">هَضۡمٗا</span> <span class="ayah-num">(١١٢)</span>﴾</div></div>
+<div class="field"><div class="field-label">التدبر</div><div class="field-value"><div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tadabbur-20-105-112">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div></div>
+<div class="field"><div class="field-label">المعنى التفصيلي</div><div class="field-value">
+<div class="ayah-note-block" data-note-group="tafsir-20-105"><span class="tafsir-ayah">وَيَسۡـَٔلُونَكَ عَنِ ٱلۡجِبَالِ فَقُلۡ يَنسِفُهَا رَبِّي نَسۡفٗا (١٠٥)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-105">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-106"><span class="tafsir-ayah">فَيَذَرُهَا قَاعٗا صَفۡصَفٗا (١٠٦)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-106">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-107"><span class="tafsir-ayah">لَّا تَرَىٰ فِيهَا عِوَجٗا وَلَآ أَمۡتٗا (١٠٧)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-107">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-108"><span class="tafsir-ayah">يَوۡمَئِذٖ يَتَّبِعُونَ ٱلدَّاعِيَ لَا عِوَجَ لَهُۥۖ وَخَشَعَتِ ٱلۡأَصۡوَاتُ لِلرَّحۡمَٰنِ فَلَا تَسۡمَعُ إِلَّا هَمۡسٗا (١٠٨)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-108">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-109"><span class="tafsir-ayah">يَوۡمَئِذٖ لَّا تَنفَعُ ٱلشَّفَٰعَةُ إِلَّا مَنۡ أَذِنَ لَهُ ٱلرَّحۡمَٰنُ وَرَضِيَ لَهُۥ قَوۡلٗا (١٠٩)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-109">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-110"><span class="tafsir-ayah">يَعۡلَمُ مَا بَيۡنَ أَيۡدِيهِمۡ وَمَا خَلۡفَهُمۡ وَلَا يُحِيطُونَ بِهِۦ عِلۡمٗا (١١٠)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-110">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-111"><span class="tafsir-ayah">۞وَعَنَتِ ٱلۡوُجُوهُ لِلۡحَيِّ ٱلۡقَيُّومِۖ وَقَدۡ خَابَ مَنۡ حَمَلَ ظُلۡمٗا (١١١)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-111">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-112"><span class="tafsir-ayah">وَمَن يَعۡمَلۡ مِنَ ٱلصَّـٰلِحَٰتِ وَهُوَ مُؤۡمِنٞ فَلَا يَخَافُ ظُلۡمٗا وَلَا هَضۡمٗا (١١٢)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-112">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+</div></div>
+</section>
+<section class="sub-block" id="section-113-114">
+<div class="sub-header"><span class="sub-title">حكمة تنزيل القرآن والتأني في تلقيه</span><span class="sub-range">١١٣–١١٤</span></div>
+<div class="field"><div class="field-label">نص الآيات — المس الكلمة المسطرة لمعناها</div><div class="field-value verses-text">﴿وَكَذَٰلِكَ أَنزَلۡنَٰهُ قُرۡءَانًا عَرَبِيّٗا <span class="wq" data-m="ونوعنا وكررنا البيان.">وَصَرَّفۡنَا</span> فِيهِ مِنَ <span class="wq" data-m="التهديد بالعقاب.">ٱلۡوَعِيدِ</span> لَعَلَّهُمۡ يَتَّقُونَ أَوۡ يُحۡدِثُ لَهُمۡ <span class="wq" data-m="اتعاظا وتذكرا.">ذِكۡرٗا</span> <span class="ayah-num">(١١٣)</span> <span class="wq" data-m="فتنزه وتعاظم.">فَتَعَٰلَى</span> ٱللَّهُ ٱلۡمَلِكُ ٱلۡحَقُّۗ وَلَا <span class="wq" data-m="تسرع في القراءة قبل تمام الوحي.">تَعۡجَلۡ</span> بِٱلۡقُرۡءَانِ مِن قَبۡلِ أَن <span class="wq" data-m="يتم ويفرغ منه.">يُقۡضَىٰٓ</span> إِلَيۡكَ وَحۡيُهُۥۖ وَقُل رَّبِّ زِدۡنِي عِلۡمٗا <span class="ayah-num">(١١٤)</span>﴾</div></div>
+<div class="field"><div class="field-label">التدبر</div><div class="field-value"><div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tadabbur-20-113-114">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب تدبرك..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div></div>
+<div class="field"><div class="field-label">المعنى التفصيلي</div><div class="field-value">
+<div class="ayah-note-block" data-note-group="tafsir-20-113"><span class="tafsir-ayah">وَكَذَٰلِكَ أَنزَلۡنَٰهُ قُرۡءَانًا عَرَبِيّٗا وَصَرَّفۡنَا فِيهِ مِنَ ٱلۡوَعِيدِ لَعَلَّهُمۡ يَتَّقُونَ أَوۡ يُحۡدِثُ لَهُمۡ ذِكۡرٗا (١١٣)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-113">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+<div class="ayah-note-block" data-note-group="tafsir-20-114"><span class="tafsir-ayah">فَتَعَٰلَى ٱللَّهُ ٱلۡمَلِكُ ٱلۡحَقُّۗ وَلَا تَعۡجَلۡ بِٱلۡقُرۡءَانِ مِن قَبۡلِ أَن يُقۡضَىٰٓ إِلَيۡكَ وَحۡيُهُۥۖ وَقُل رَّبِّ زِدۡنِي عِلۡمٗا (١١٤)</span>
+<div class="notes-list"></div>
+<button type="button" class="note-add-btn" data-note-group="tafsir-20-114">➕ إضافة</button>
+<div class="note-editor">
+  <div class="note-toolbar">
+    <button type="button" data-cmd="bold" title="غامق">B</button>
+    <button type="button" data-cmd="italic" title="مائل">I</button>
+    <button type="button" data-cmd="underline" title="تسطير">U</button>
+    <span class="toolbar-sep"></span>
+    <select data-cmd="fontSize" title="حجم الخط">
+      <option value="2">صغير</option>
+      <option value="3" selected>عادي</option>
+      <option value="4">متوسط</option>
+      <option value="5">كبير</option>
+      <option value="6">كبير جداً</option>
+    </select>
+    <button type="button" class="color-trigger" data-cmd="foreColor" title="لون النص"><span class="color-swatch"></span></button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="hl-trigger" data-cmd="hilite" title="هايلايت">🖊️</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" class="verse-add-btn" data-cmd="insertVerse" title="إضافة آية">📖 آية</button>
+    <span class="toolbar-sep"></span>
+    <button type="button" data-cmd="removeFormat" title="إزالة التنسيق">✕</button>
+  </div>
+  <div class="note-editable" contenteditable="true" data-placeholder="اكتب المعنى التفصيلي للآية..."></div>
+  <div class="note-editor-actions"><button class="note-save-btn">إضافة</button><button class="note-cancel-btn">إلغاء</button></div>
+</div></div>
+</div></div>
+</section>
+<div class="nav-links"><a href="04-bani-israel-ijl.html">→ المحور السابق</a><a href="06-adam-huda.html">المحور التالي ←</a></div>
+</main>
+<footer>سورة طه — مصحف التدبر<br><a href="https://quranpedia.net/surah/1/20/book/3" target="_blank" rel="noopener">مصدر معاني المفردات: تفسير السعدي — سورة طه</a></footer>
+<div id="selectionMenu">
+  <button class="dot-yellow" data-action="hl-yellow" title="هايلايت أصفر"></button>
+  <button class="dot-green" data-action="hl-green" title="هايلايت أخضر"></button>
+  <button class="dot-pink" data-action="hl-pink" title="هايلايت وردي"></button>
+  <button class="dot-blue" data-action="hl-blue" title="هايلايت أزرق"></button>
+  <button class="dot-strike" data-action="strike" title="شطب">S</button>
+  <button class="dot-remove" data-action="remove" title="إزالة التنسيق">✕</button>
+</div>
+
+<div class="verse-modal-overlay" id="verseModalOverlay">
+  <div class="verse-modal">
+    <div class="verse-modal-header">
+      <h3>➕ إضافة آية</h3>
+      <button class="verse-modal-close" id="verseModalClose">✕</button>
+    </div>
+    <div class="verse-tabs">
+      <button class="verse-tab active" data-tab="search">🔍 بحث</button>
+      <button class="verse-tab" data-tab="range">📑 مجموعة آيات</button>
+    </div>
+
+    <div class="verse-tab-panel" id="tabSearch">
+      <div class="verse-search-box">
+        <input type="text" id="verseSearchInput" placeholder="اكتب جزء من الآية، أو اسم السورة، أو 'البقرة 255'...">
+        <div class="verse-search-hint">مثال: "الرحمن الرحيم" أو "البقرة 255" أو "يس"</div>
+      </div>
+      <div class="verse-results" id="verseResults">
+        <div class="verse-no-results">اكتب في الأعلى للبحث عن آية</div>
+      </div>
+    </div>
+
+    <div class="verse-tab-panel" id="tabRange" style="display:none;">
+      <div class="verse-range-box">
+        <select id="rangeSurahSelect"></select>
+        <div class="verse-range-inputs">
+          <div class="verse-range-field">
+            <label>من آية</label>
+            <input type="number" id="rangeFromInput" min="1" value="1">
+          </div>
+          <div class="verse-range-field">
+            <label>إلى آية</label>
+            <input type="number" id="rangeToInput" min="1" value="1">
+          </div>
+        </div>
+        <button class="verse-range-add-btn" id="rangeAddBtn">➕ إضافة المجموعة</button>
+        <div class="verse-range-preview" id="rangePreview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== الملف المشترك: كل منطق الهايلايت + الملاحظات + البحث عن آيات (نفسه في كل المحاور) ===== -->
+
+<script>
+/* معاني المفردات: إظهار بالوقوف (سطح المكتب) أو بالضغط (الجوال) */
+(function(){
+  function place(el){
+    el.classList.remove('flip-start','flip-end');
+    var r = el.getBoundingClientRect(), w = Math.min(280, innerWidth*0.78);
+    var c = r.left + r.width/2;
+    if(c - w/2 < 8) el.classList.add('flip-start');
+    else if(c + w/2 > innerWidth - 8) el.classList.add('flip-end');
+  }
+  document.addEventListener('mouseover', function(e){
+    var t = e.target.closest && e.target.closest('.wq');
+    if(t) place(t);
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.wq') : null;
+    document.querySelectorAll('.wq.on').forEach(function(el){ if(el !== t) el.classList.remove('on'); });
+    if(t){ place(t); t.classList.toggle('on'); }
+  });
+})();
+</script>
+</body>
+</html>
