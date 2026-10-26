@@ -291,7 +291,7 @@
       const items = notesData[group] || [];
       notesData[group] = items.map(entry=>{
         if(typeof entry === 'string') return { html: entry, done: false };
-        return { html: entry.html || '', done: !!entry.done };
+        return { ...entry, html: entry.html || '', done: !!entry.done };
       });
     });
 
@@ -420,6 +420,15 @@
           actionsRow.appendChild(editBtn);
           actionsRow.appendChild(deleteBtn);
           item.appendChild(p);
+          const tagsRow = document.createElement('div');
+          tagsRow.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap';
+          (entry.tags || []).forEach(tag => {
+            const link = document.createElement('a');
+            link.textContent = '#' + tag;
+            link.href = new URL('../../../hashtags.html#' + encodeURIComponent(tag), location.href).href;
+            tagsRow.appendChild(link);
+          });
+          item.appendChild(tagsRow);
           item.appendChild(actionsRow);
           list.appendChild(item);
         });
@@ -586,6 +595,7 @@
       const editable = editor.querySelector('.note-editable');
       const items = notesData[group] || [];
       editable.innerHTML = (editIndex !== undefined && editIndex !== null) ? (items[editIndex] ? items[editIndex].html : '') : '';
+      editor.querySelector('.note-tags-input').value = editIndex != null ? (items[editIndex]?.tags || []).map(tag => '#' + tag).join(' ') : '';
       editor.dataset.editIndex = (editIndex !== undefined && editIndex !== null) ? editIndex : '';
       editor.classList.add('open');
       editable.focus();
@@ -815,6 +825,16 @@
       const wrap = editor.closest('.ayah-note-block') || editor.closest('.field-value');
       const group = wrap.querySelector('.note-add-btn').dataset.noteGroup;
       const editable = editor.querySelector('.note-editable');
+      const tagsLabel = document.createElement('label');
+      tagsLabel.style.cssText = 'display:block;padding:8px 0;font-size:14px';
+      tagsLabel.textContent = 'الهاشتاجات ';
+      const tagsInput = document.createElement('input');
+      tagsInput.className = 'note-tags-input';
+      tagsInput.type = 'text';
+      tagsInput.placeholder = '#الصبر #الصلاة (افصل بمسافة)';
+      tagsInput.style.cssText = 'max-width:100%;width:300px;padding:6px;border:1px solid #D9CFB8;border-radius:6px';
+      tagsLabel.appendChild(tagsInput);
+      editable.after(tagsLabel);
       const saveBtn = editor.querySelector('.note-save-btn');
       const cancelBtn = editor.querySelector('.note-cancel-btn');
       const toolbar = editor.querySelector('.note-toolbar');
@@ -882,12 +902,13 @@
         const text = editable.textContent.trim();
         if(!text) return;
         if(!notesData[group]) notesData[group] = [];
+        const tags = [...new Set(tagsInput.value.normalize('NFC').split(/[\s,#،]+/u).map(t => t.replace(/[^\p{L}\p{M}\p{N}_-]/gu, '')).filter(Boolean))];
         const idx = editor.dataset.editIndex;
         if(idx !== '' && idx !== undefined){
           const existing = notesData[group][parseInt(idx)];
-          notesData[group][parseInt(idx)] = { html, done: existing ? !!existing.done : false };
+          notesData[group][parseInt(idx)] = { ...existing, html, tags, done: existing ? !!existing.done : false };
         } else {
-          notesData[group].push({ html, done: false });
+          notesData[group].push({ html, tags, done: false });
         }
         saveNotes();
         renderGroup(group);
@@ -1212,4 +1233,14 @@
   const script = document.createElement('script');
   script.src = new URL('note-tools.js', source.src).href;
   document.head.appendChild(script);
+})();
+
+(function(){
+  const source = [...document.scripts].find(s => /tadabbur-engine\.js(?:[?#]|$)/.test(s.src));
+  if(!source) return;
+  const link = document.createElement('a');
+  link.href = new URL('../hashtags.html', source.src).href;
+  link.textContent = '# الهاشتاجات';
+  link.style.cssText = 'position:fixed;left:16px;bottom:18px;z-index:8400;background:#FBF8F1;color:#7C6329;padding:10px 14px;border:1px solid #A8863B;border-radius:24px;text-decoration:none';
+  document.body.appendChild(link);
 })();

@@ -24,6 +24,8 @@ import {
   getFirestore,
   doc,
   getDoc,
+  getDocs,
+  collection,
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -45,6 +47,7 @@ const _readyPromise = new Promise((r) => { _resolveReady = r; });
 window.TadabburCloud = {
   ready: _readyPromise,   // Promise يكتمل بعد نجاح تسجيل الدخول
   user: null,             // كائن المستخدم الحالي
+  loadAllNotes,
   loadPage,               // تحميل بيانات صفحة (سورة/محور)
   saveField,              // حفظ حقل معيّن (مؤجَّل تلقائياً)
   signOut: doSignOut      // تسجيل الخروج
@@ -359,3 +362,11 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', () => {
   Object.keys(_pending).forEach(flushKey);
 });
+
+// Read this account's notes across all surahs for the hashtag index.
+async function loadAllNotes(){
+  const user = window.TadabburCloud.user;
+  if(!user) return [];
+  const snapshots = await getDocs(collection(db, 'tadabbur_users', user.uid, 'pages'));
+  return snapshots.docs.filter(s => typeof s.data().notes === 'string').map(s => ({ id:s.id, ...s.data() }));
+}
